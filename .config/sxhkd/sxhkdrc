@@ -53,7 +53,7 @@ super + Print
   maimpick
 
 # Changes to next/previous tracks
-super + {_,shift +} backspace
+super + {_,shift +} BackSpace
   mpc {prev,next}
 # Volume
 super + {minus,plus}
