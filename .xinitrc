@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# Background
+setbg &
+
+# Keyboard
+setxkbmap -option caps:super se && killall xcape 2>/dev/null ; xcape -e 'Super_L=Escape' &
+xmodmap -e 'keycode 135 = Super_R'
+xset r rate 300 50
+
+# Xresources
+xrdb ~/.Xresources
+
+# Start up daemons
+sxhkd &
+unclutter &
+dunst &
+xcompmgr &
+syncthing -no-browser &
+unclutter --timeout 3 &
+mpd &
+
+# Misc stuff
+newsup &
+getforecast $LOCATION &
+pulsemixer --set-volume 50
+
+dwmbar & exec dwm

@@ -1,0 +1,8 @@
+*.font:	Monospace:pixelsize=20
+*.hinting: true
+*.hintstyle: hintslight
+
+!*.foreground:	#F7F7F7
+!*.background:	#282A36
+*.alpha: 0.80
+*.background:	#030303
