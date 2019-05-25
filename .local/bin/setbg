@@ -1,14 +1,11 @@
 #!/bin/sh
 # Sets the background. If given an argument, will set file as background.
 
-getwp() { fd "$1" -e jpg -e png . ~/pics/wallpapers; }
-
 while getopts "rRc" opt; do
 	shift
 	case $opt in
-		r) w=$( getwp | shuf -n 1 ) ;;
-		R) w=$( getwp -L | shuf -n 1 ) ;;
-		c) w=$( getwp -L | shuf -n 50 | sxiv -ftio 2>/dev/null | sed 1q ) ;;
+		r) w=$( find ~/pics/wallpapers | grep -e jpg -e png | shuf -n 1 ) ;;
+		c) w=$( find -L ~/pics/wallpapers | grep -e jpg -e png | shuf -n 50 | sxiv -ftio 2>/dev/null | sed 1q ) ;;
 		*) echo "Usage: setbg [-rRc] [file]" && exit 1
 	esac
 done
