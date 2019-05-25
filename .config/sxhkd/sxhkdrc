@@ -52,13 +52,6 @@ super + {_,shift +} Insert
 super + Print
   maimpick
 
-# Changes to next/previous tracks
-super + {_,shift +} BackSpace
-  mpc {prev,next}
-# Volume
-super + {minus,plus}
-  pulsemixer --change-volume {-5,5}
-
 # Function keys
 super + F1
   manview
@@ -70,6 +63,12 @@ super + F4
   timer
 super + {F9,F10}
   {dmenumount,dmenuumount}
+
+# Audio
+super + {_,shift +} BackSpace
+  mpc {prev,next}
+super + {minus,plus}
+  pulsemixer --change-volume {-5,5}
 
 # XF86 keys
 XF86AudioMute
