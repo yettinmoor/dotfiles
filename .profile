@@ -13,7 +13,6 @@ export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 export NOTMUCH_CONFIG="$HOME/.config/notmuch-config"
 export GTK2_RC_FILES="$HOME/.config/gtk-2.0/gtkrc-2.0"
 export INPUTRC="$HOME/.config/inputrc"
-export PYTHONSTARTUP="$HOME/.config/pythonrc"
 export LESSHIST="-"
 
 export LOCATION="Ljungsbro"
