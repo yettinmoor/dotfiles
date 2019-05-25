@@ -1,0 +1,3 @@
+#!/bin/sh
+# Copies common inputs e.g. email addresses to clipboard
+cat ~/.config/commoninput | dmenu -i -l 10 | xclip -sel clip -r

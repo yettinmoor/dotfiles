@@ -1,0 +1,57 @@
+#!/bin/sh
+
+sep="    "
+rate=0.3
+trap "exec $0" INT
+
+# Function blocks ==========================================
+
+get_music() {
+	mpc -f "%title%" | sed "/^volume/d" | tac |
+		sed "
+			s/\\[\(.*\)\\].*/\1 /;
+			s/paused//;
+			s/playing//;" | tr -d '\n'
+}
+
+#get_weather() {
+	#sed '13q;d' /tmp/weatherreport | \
+		#grep -o "m\\([+-]\\)*[0-9]\\+" | \
+		#sort -n -t 'm' -k 2n | \
+		#sed -n '1p;$p' | \
+		#tr '\n|m|+' ' ' | \
+		#awk '{print $2 "°", $1 "°"}'
+#}
+
+get_rss() {
+	# Output reloading symbol
+	[ -s /tmp/newsupdate ] && cat /tmp/newsupdate && exit 0
+	# Or unread if any
+	newsboat -x print-unread | cut -d' ' -f1 | sed "/^0/d; s/^[0-9]/! &/"
+}
+
+get_volume() {
+	{
+		[ "$(pulsemixer --get-mute)" = "0" ] \
+		&& echo $( pulsemixer --get-volume ) \
+		|| echo "0";
+	} | cut -f1 | volume.c
+}
+
+get_date() {
+	echo "$( date '+%a %b/%d %R' )"
+}
+
+# Main loop ================================================
+
+# Get all funcs defined above and evaluate
+# Display value and sep only if non-empty
+while true; do
+	bar=""
+	for func in $( grep -o "^get_[a-z]*" $0 ); do
+		val=$( $func )
+		bar=$( printf "%s%s%s" "${bar}${val}${val:+"$sep"}" )
+	done
+	xsetroot -name "  $bar  "
+	sleep $rate
+done

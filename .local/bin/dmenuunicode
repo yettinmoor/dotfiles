@@ -1,0 +1,5 @@
+#!/bin/sh
+# Give dmenu list of all unicode characters to copy.
+c=$( cat ~/.config/unicode/* | dmenu -i -l 20 -fn Monospace-18) || exit 1
+echo "$c" | cut -d' ' -f1 | xclip -sel c -r
+echo "$c" | sed "s/.*; //" | xclip -sel p -r

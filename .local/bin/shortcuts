@@ -1,0 +1,20 @@
+#!/bin/bash
+# Output locations. Unactivated progs should go to /dev/null.
+shell_shortcuts="$HOME/.config/shortcutrc"
+vifm_shortcuts="$HOME/.config/vifm/vifmshortcuts"
+ranger_shortcuts="/dev/null"
+qute_shortcuts="/dev/null"
+
+# Remove, prepare files
+printf "# vim: filetype=sh\\nalias " > "$shell_shortcuts"
+printf "\" vim: filetype=vim\\n" > "$vifm_shortcuts"
+
+# Format `directories` in the correct syntax and sent it to all configs.
+sed "s/\s*#.*$//; /^\s*$/d" "$HOME/.config/directories" | tee \
+	>( awk '{print $1"=\"cd "$2" && ls\" \\"}' >> "$shell_shortcuts" ) \
+	| awk '{print "map g" $1, ":cd", $2 "<CR>\nmap t" $1, "<tab>:cd", $2 "<CR><tab>\nmap M" $1, "<tab>:cd", $2 "<CR><tab>:mo<CR>\nmap Y" $1, "<tab>:cd", $2 "<CR><tab>:co<CR>" }' >> "$vifm_shortcuts"
+
+# Format `files` in the correct syntax and sent it to all configs.
+sed "s/\s*#.*$//; /^\s*$/d" "$HOME/.config/files" | tee \
+	>( awk '{print $1"=\"$EDITOR "$2"\" \\"}' >> "$shell_shortcuts" ) \
+	| awk '{print "map "$1" shell $EDITOR "$2}' >> "$vifm_shortcuts"

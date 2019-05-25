@@ -1,0 +1,84 @@
+# Term
+super + Return
+  $TERMINAL
+super + shift + Return
+  samedir
+
+# Letters
+super + shift + q
+  prompt "Kill dwm?" "pkill dwm"
+super + w
+  urlparse -d | xargs -r0 $BROWSER
+super + e
+  $TERMINAL -e $FILE
+super + shift + t
+  tor
+super + y
+  $TERMINAL -e calcurse -D ~/.config/calcurse
+super + o
+  open
+super + {_,shift +} p
+  mpc {toggle,pause}
+super + a
+  $TERMINAL -e python -q
+super + shift + a
+  $TERMINAL -e pulsemixer
+super + d
+  dmenu_run
+super + x
+  lockscreen
+super + shift + x
+  prompt "Shutdown computer?" "sudo -A shutdown -h now"
+super + c
+  plumb
+super + b
+  $BROWSER $HOMEPAGE
+super + n
+  $TERMINAL -e newsboat
+super + m
+  $TERMINAL -f mono:pixelsize=19 -e ncmpcpp
+super + shift + m
+  pulsemixer --toggle-mute
+
+# Etc
+super + comma
+  dmenuunicode
+super + {_,shift +} period
+  {qcopy, qpass}
+super + section
+  qwikt
+super + {_,shift +} Insert
+  {showclip, qrclip}
+super + Print
+  maimpick
+
+# Changes to next/previous tracks
+super + {_,shift +} backspace
+  mpc {prev,next}
+# Volume
+super + {minus,plus}
+  pulsemixer --change-volume {-5,5}
+
+# Function keys
+super + F1
+  manview
+super + {_,shift +} F2
+  setbg {-c,-r}
+super + F3
+  displayselect
+super + F4
+  timer
+super + F7
+  open /media
+super + {F9,F10}
+  {dmenumount,dmenuumount}
+
+# XF86 keys
+XF86AudioMute
+  pulsemixer --toggle-mute
+XF86Audio{Lower,Raise}Volume
+  pulsemixer --change-volume {-5,5}
+XF86Audio{Play,Stop,Next,Prev}
+  mpc {toggle,pause,next,prev}
+XF86MonBrightness{Down,Up}
+  xbacklight {-dec,-inc} 15

@@ -1,0 +1,9 @@
+#!/bin/sh
+# Set as a cron job to check for new RSS entries for newsboat.
+# If newsboat is open, sends it an "R" key to refresh.
+
+ping -q -c 1 1.1.1.1 >/dev/null || exit 1
+
+echo 🔄 > /tmp/newsupdate
+{ pgrep -x newsboat >/dev/null && /usr/bin/xdotool key --window "$(/usr/bin/xdotool search --name newsboat)" R; } || /usr/bin/newsboat -x reload
+rm -f /tmp/newsupdate

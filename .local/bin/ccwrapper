@@ -1,0 +1,28 @@
+#!/bin/sh
+# Quick (t)cc wrapper, aliased to "tw" in bash.
+# Called by compiler script for .c files (vim: leader+c).
+# If no args are given, compile all .c files in dir.
+# Uses tcc by default. Use -G for gcc.
+
+cc="tcc"
+while getopts "Ggbo:" opt; do
+	case $opt in
+		G) cc=${cc#t} ;;
+		o) out="$OPTARG" ;;
+		*) cc="$cc -$opt" ;;
+	esac
+done
+shift $(( OPTIND - 1 ))
+
+# Autoexit if no .c files in dir.
+! ls ./*.c >/dev/null 2>&1 && echo "Error: No C files found." && exit 1
+
+files=${*:-"./*.c"}
+[ -n "$out" ] || [ $# -ne 1 ] && out=${PWD##*\/} || out=${1%.c}
+
+# Link modules as needed
+grep -q "<math.h>" $files && cc="$cc -lm"
+grep -q "<pthread.h>" $files && cc="$cc -$( echo "$cc" | grep -q "^tcc" && echo "l" )pthread"
+grep -q "<editline[/a-z]*>" $files && cc="$cc -ledit"
+
+$cc -std=c99 -o "$out" $files

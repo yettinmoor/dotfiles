@@ -1,0 +1,3 @@
+#!/bin/sh
+# Opens manpage in pdf form.
+man -k . | dmenu -l 20 | awk '{ gsub("[()]", "", $2); print $2, $1 }' | ( read c || exit; man -Tpdf $c | zathura - )

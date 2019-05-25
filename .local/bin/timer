@@ -1,0 +1,25 @@
+#!/bin/sh
+# Timer with dunst+dmenu, bound to mod+F4.
+
+msgid=$(( 9001 + $( pgrep "timer" | wc -l ) ))
+
+input="$( dmenu -p "Time:" <&- )" || exit 1
+topic="$( dmenu -p "Note:" <&- )" || exit 1
+
+if echo "$input" | grep ":"; then
+	# If time specified
+	t=$(( $( date -d "$input" +%s ) - $( date +%s ) ))
+else
+	# If duration given
+	t=$(( $( echo "$input" | sed "s/h/\*3600\+/; s/m/\*60\+/; s/s/\*1\+/; s/+$//" ) ))
+fi
+
+start=$( date +%R )
+
+while [ $t -gt 0 ]; do
+	dunstify -r $msgid -u low -t 1100 "${topic:-"Timer started $start"}" "$( printf "%02d:%02d" $(( t / 60 )) $(( t % 60 )) )"
+	t=$(( t - 1 ))
+	sleep 0.99 # above cmds average about ~10ms; not a perfect solution but good enough for most needs
+done
+
+dunstify -a timerdone -r $msgid -u critical "${topic:-"Timer done"}" "Started: $start"

@@ -1,0 +1,6 @@
+#!/bin/sh
+# Syncs repositories and downloads updates, meant to be run as a cronjob.
+
+ping -q -c 1 1.1.1.1 >/dev/null || exit 1
+sudo pacman -Syyuw --noconfirm || exit 1
+pacman -Qu | grep -v "\[ignored\]" && notify-send "🎁 Package updates available."
