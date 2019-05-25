@@ -6,7 +6,7 @@ super + shift + Return
 
 # Letters
 super + shift + q
-  prompt "Kill dwm?" "pkill dwm"
+  prompt "Exit X?" "killall Xorg"
 super + w
   urlparse -d | xargs -r0 $BROWSER
 super + e
@@ -68,8 +68,6 @@ super + F3
   displayselect
 super + F4
   timer
-super + F7
-  open /media
 super + {F9,F10}
   {dmenumount,dmenuumount}
 
