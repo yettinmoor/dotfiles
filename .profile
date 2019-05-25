@@ -18,6 +18,7 @@ export LESSHIST="-"
 
 export LOCATION="Ljungsbro"
 export HOMEPAGE="$HOME/repos/homepage/home.html"
+export GIT="https://github.com/yettinmoor"
 
 # colors
 export LESS=-R
