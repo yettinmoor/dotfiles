@@ -1,6 +1,7 @@
 #!/bin/sh
 # Set as a cron job to check for new RSS entries for newsboat.
 # If newsboat is open, sends it an "R" key to refresh.
+# /tmp/newsupdate is read by dwmbar.
 
 ping -q -c 1 1.1.1.1 >/dev/null || exit 1
 
