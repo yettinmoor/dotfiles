@@ -7,7 +7,7 @@ trap "exec $0" INT
 # Function blocks ==========================================
 
 get_music() {
-	mpc -f "%title%" | sed "/^volume/d" | tac |
+	mpc -f "%artist% - %title%" | sed "/^volume/d" | tac |
 		sed "
 			s/\\[\(.*\)\\].*/\1 /;
 			s/paused//;
