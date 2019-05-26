@@ -32,7 +32,7 @@ alias ytv="youtube-viewer -C"
 command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d"
 
 # fzf
-se() { find -L ~/.local ~/.config -type f | fzf --reverse --color=16 | xargs -r "$EDITOR"; }
+se() { fd -t d -L . ~/.local ~/.config | fzf --reverse --color=16 | xargs -r "$EDITOR"; }
 vf() { fzf --reverse --color=16 | xargs -r "$EDITOR"; }
 mo() { mv "${@?}" "$( cut -f2- ~/.config/directories | fzf | sed "s:~:$HOME:" )"; }
 co() { cp "${@?}" "$( cut -f2- ~/.config/directories | fzf | sed "s:~:$HOME:" )"; }
