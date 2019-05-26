@@ -2,6 +2,8 @@
 # Moves photos from DCIM and WhatsApp directories in synced phone to repo directory.
 # Also removes "IMG-" prefix and replaces "_" with "-" for convenient naming.
 
+[ -d "$HOME/phone" ] || exit 1
+
 wadir="$HOME/phone/WhatsApp/Media/WhatsApp Images"
 camdir="$HOME/phone/DCIM"
 
