@@ -28,7 +28,8 @@ set tabstop=4
 set shiftwidth=4
 
 " Some basics:
-	nnoremap <leader>rc :so $MYVIMRC<CR>
+	nnoremap <leader>rcs :so $MYVIMRC<CR>
+	nnoremap <leader>rce :vsp $MYVIMRC<CR>
 	nnoremap c "_c
 	set nocompatible
 	filetype plugin on
