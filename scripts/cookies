@@ -1,6 +1,6 @@
 #!/bin/sh
 # Clean surf cookies and cache.
-cookies="$HOME/.config/surf/cookies.txt"
+cookies="$HOME/.cache/surf/cookies.txt"
 wanted="(duckduckgo)"
 sed -nE "/^(www\.)?$wanted/p" "$cookies" > /tmp/cookies.txt
 mv -f /tmp/cookies.txt "$cookies"
