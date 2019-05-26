@@ -40,6 +40,8 @@ set shiftwidth=4
 	set encoding=utf-8
 	set number relativenumber
 
+" Magit
+	nnoremap <leader>g :Magit<CR>
 " Enable autocompletion:
 	set wildmode=longest,list,full
 
