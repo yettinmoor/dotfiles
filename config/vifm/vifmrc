@@ -1,0 +1,106 @@
+" vim: filetype=vifm
+source ~/.config/vifm/vifmshortcuts
+
+set vicmd=$EDITOR
+set syscalls
+set nofollowlinks
+set sortnumbers
+set undolevels=100
+set wildmenu
+set wildstyle=popup
+set scrolloff=4
+set ignorecase
+set smartcase
+set nohlsearch
+set incsearch
+set suggestoptions=normal,visual,view,otherpane,keys,marks,registers
+set dirsize=nitems
+set dotdirs=rootparent
+"set fillchars=vborder:"-"
+set classify='  :dir:/,  :exe:,  :reg:,-> :link:'
+colorscheme luke
+
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+map <C-o> <C-w>o
+map <C-s> <C-w>s
+map <C-v> <C-w>v
+
+map R :restart<CR>
+map x :!sxiv -t * 2>/dev/null &<CR>
+nnoremap o :file &<cr>
+map E :!$EDITOR %f<CR>
+map mkd :mkdir<space>
+map bg :!setbg %f &<CR>
+map X :!ext %f &<CR>
+nnoremap s :shell<cr>
+nnoremap w :view<cr>
+vnoremap w :view<cr>gv
+nnoremap yd :!echo %d | xclip %i<cr>
+nnoremap yf :!echo %c:p | xclip %i<cr>
+nnoremap I cw<c-a>
+nnoremap cc cw<c-u>
+nnoremap A cw
+nnoremap ,w :set wrap!<cr>
+nmap <space> tj
+nmap q ZQ
+nmap <BS> za
+nmap V :!vim<space>
+
+" Directories
+fileview */ tree %c -C -L 1 --dirsfirst
+fileview .*/ tree %c -C -L 1 --dirsfirst
+
+" PDF, ebooks
+filextype *.pdf,*.ps,*.eps,*.ps.gz,*.djvu,*.epub,*.cbz,*.cbr zathura %f 2>/dev/null &,
+fileviewer *.pdf pdftotext -l 1 -nopgbrk %c -
+"fileviewer *.pdf conv2img %c %pw %ph ; vifmimg draw %px %py %pw %ph $HOME/.cache/vifm/_%c:r.jpg %pc vifmimg clear
+
+" Images
+fileviewer *.jpg,*.jpeg,*.png,*.ico,*.tiff vifmimg draw %px %py %pw %ph %c %pc vifmimg clear
+filextype *.bmp,*.jpg,*.jpeg,*.png,*.ico,*.tiff,*.gif,*.xpm sxiv -a %c 2>/dev/null &
+set classify+='  ::*.bmp,,*.gif,,*.jpeg,,*.jpg,,*.ico,,*.png,,*.ppm,,*.svg,,*.svgz,,*.tga,,*.tif,,*.tiff,,*.xbm,,*.xcf,,*.xpm,,*.xspf,,*.xwd::'
+
+" Media
+fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.qt,*.divx,*.as[fx],*mp3,*.flac file
+filextype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,*.as[fx] mpv --input-ipc-server=/tmp/mpvsoc$(date +%%s) %f 2>/dev/null &,
+filetype *.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus mpv --input-ipc-server=/tmp/mpvsoc$(date +%%s) %c
+set classify+='  ::*.aac,,*.anx,,*.asf,,*.au,,*.axa,,*.flac,,*.m2a,,*.m4a,,*.mid,,*.midi,,*.mp3,,*.mpc,,*.oga,,*.ogg,,*.ogx,,*.opus,,*.ra,,*.ram,,*.rm,,*.spx,,*.wav,,*.wma,,*.ac3::'
+set classify+='  ::*.avi,,*.ts,,*.axv,,*.divx,,*.m2v,,*.m4p,,*.m4v,,.mka,,*.mkv,,*.mov,,*.mp4,,*.flv,,*.mp4v,,*.mpeg,,*.mpg,,*.nuv,,*.ogv,,*.pbm,,*.pgm,,*.qt,,*.vob,,*.webm,,*.wmv,,*.xvid::'
+
+" --no-audio-display
+
+" HTML
+fileviewer *.html w3m -dump %c
+filextype *.html,*.htm $BROWSER %f 2>/dev/null &
+
+" Archives
+fileview *.zip,*.rar,*.tar.gz atool -l %f
+filetype *.zip,*.rar,*.tar.gz ext %f
+set classify+='  ::*.7z,,*.ace,,*.arj,,*.bz2,,*.cpio,,*.deb,,*.dz,,*.gz,,*.jar,,*.lzh,,*.lzma,,*.rar,,*.rpm,,*.rz,,*.tar,,*.taz,,*.tb2,,*.tbz,,*.tbz2,,*.tgz,,*.tlz,,*.trz,,*.txz,,*.tz,,*.tz2,,*.xz,,*.z,,*.zip,,*.zoo::'
+
+" Man pages
+fileviewer *.[1-8] man ./%c | col -b
+filetype *.[1-8] man ./%c
+
+" Doc files
+fileviewer *.docx docx2txt %c -
+fileviewer *.odt odt2txt %c -
+
+" Spreadsheets
+filetype *.csv,*.xlsx sc-im %c
+fileviewer *.csv sed "s/,,,,/,,-,,/g;s/,,/ /g" %c | column -t | sed "s/ - /  /g" | cut -c -%pw
+
+" Image project files
+filextype *.svg inkscape %f 2>/dev/null &
+filextype *.xcf gimp %f 2>/dev/null &
+
+" Default
+fileviewer *[^/] highlight --out-format=ansi -t4 --force %c
+
+set vifminfo=dhistory,chistory,tui,shistory,phistory,fhistory,dirstack,registers,bookmarks,bmarks
+
+"nnoremap ,c <tab>:cd ~/.config/vifm<CR>
+nnoremap ,c :write | edit $MYVIFMRC | restart<cr>

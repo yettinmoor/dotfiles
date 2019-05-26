@@ -1,0 +1,38 @@
+highlight clear
+highlight Win cterm=none ctermfg=15 ctermbg=none
+highlight Directory cterm=none ctermfg=11 ctermbg=default
+highlight Link cterm=none ctermfg=15 ctermbg=default
+highlight BrokenLink cterm=bold ctermfg=red ctermbg=default
+highlight Socket cterm=bold ctermfg=magenta ctermbg=default
+highlight Device cterm=bold ctermfg=red ctermbg=default
+highlight Fifo cterm=bold ctermfg=cyan ctermbg=default
+highlight Executable cterm=none ctermfg=9 ctermbg=default
+highlight Selected cterm=none ctermfg=magenta ctermbg=default
+highlight CurrLine cterm=reverse ctermfg=default ctermbg=16
+highlight TopLine cterm=none ctermfg=black ctermbg=11
+highlight TopLineSel cterm=bold ctermfg=black ctermbg=default
+highlight StatusLine cterm=none ctermfg=black ctermbg=blue
+highlight WildMenu cterm=underline,reverse ctermfg=white ctermbg=black
+highlight CmdLine cterm=none ctermfg=white ctermbg=black
+highlight ErrorMsg cterm=none ctermfg=red ctermbg=black
+highlight Border cterm=none ctermfg=15 ctermbg=none
+highlight JobLine cterm=bold,reverse ctermfg=black ctermbg=white
+highlight SuggestBox cterm=none ctermfg=default ctermbg=default
+highlight CmpMismatch cterm=bold ctermfg=white ctermbg=red
+highlight AuxWin cterm=bold,underline,reverse,standout,italic ctermfg=default ctermbg=default
+highlight TabLine cterm=none ctermfg=white ctermbg=black
+highlight TabLineSel cterm=bold,reverse ctermfg=default ctermbg=default
+
+highlight /^.*\.(jpg|png|gif)$/ ctermfg=12
+highlight /^.*\.(mp3|ogg|opus|m4a)$/ ctermfg=14
+highlight /^.*\.(webm|mp4|m4v|avi|mkv)$/ ctermfg=12
+
+highlight User1 cterm=bold,underline,reverse,standout,italic ctermfg=default ctermbg=default
+highlight User2 cterm=bold,underline,reverse,standout,italic ctermfg=default ctermbg=default
+highlight User3 cterm=bold,underline,reverse,standout,italic ctermfg=default ctermbg=default
+highlight User4 cterm=bold,underline,reverse,standout,italic ctermfg=default ctermbg=default
+highlight User5 cterm=bold,underline,reverse,standout,italic ctermfg=default ctermbg=default
+highlight User6 cterm=bold,underline,reverse,standout,italic ctermfg=default ctermbg=default
+highlight User7 cterm=bold,underline,reverse,standout,italic ctermfg=default ctermbg=default
+highlight User8 cterm=bold,underline,reverse,standout,italic ctermfg=default ctermbg=default
+highlight User9 cterm=bold,underline,reverse,standout,italic ctermfg=default ctermbg=default

@@ -1,0 +1,7 @@
+#!/bin/sh
+
+dest="$HOME/.cache/vifm/_$1"
+
+#[ -f "$dest" ] || ddjvu -format=tiff -page=1 -quality=60 "$1" "$dest"
+
+pdftoppm -f 1 -l 1 -singlefile -jpeg -tiffcompression jpeg "$1" "$dest"
