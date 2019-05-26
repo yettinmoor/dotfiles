@@ -5,15 +5,11 @@ do
 	"w")
 		setbg "$file" & ;;
 	"c")
-		[ -z "$destdir" ] && destdir="$(sed "s/\s.*#.*$//;/^\s*$/d" ~/.config/bmdirs | awk '{print $2}' | dmenu -l 20 -i -p "Copy file(s) to where?" | sed "s|~|$HOME|g")"
-		[ -z "$destdir" ] && exit
-		cp "$file" "$destdir" && notify-send -i "$(readlink -f "$file")" "$file copied to $destdir." &
-		;;
+		[ -z "$destdir" ] && { destdir="$( cut -f2 ~/.config/directories | dmenu -l 20 -i -p "Copy file(s) where?" )" || exit 1; }
+		cp "$file" "$( echo "$destdir" | sed "s:~:$HOME:" )" && notify-send "$file copied to $destdir." & ;;
 	"m")
-		[ -z "$destdir" ] && destdir="$(sed "s/\s.*#.*$//;/^\s*$/d" ~/.config/bmdirs | awk '{print $2}' | dmenu -l 20 -i -p "Move file(s) to where?" | sed "s|~|$HOME|g")"
-		[ -z "$destdir" ] && exit
-		mv "$file" "$destdir" && notify-send -i "$(readlink -f "$file")" "$file moved to $destdir." &
-		;;
+		[ -z "$destdir" ] && { destdir="$( cut -f2 ~/.config/directories | dmenu -l 20 -i -p "Move file(s) where?" )" || exit 1; }
+		mv "$file" "$( echo "$destdir" | sed "s:~:$HOME:" )" && notify-send "$file moved to $destdir." & ;;
 	"r")
 		convert -rotate 90 "$file" "$file" ;;
 	"R")
@@ -21,16 +17,14 @@ do
 	"f")
 		convert -flop "$file" "$file" ;;
 	"y")
-		echo -n "$file" | xclip -selection clipboard &&
-		notify-send "$file copied to clipboard" & ;;
+		echo -n "$file" | xclip -sel clip && notify-send "$file copied to clipboard" & ;;
 	"Y")
-		echo -n "$(readlink -f "$file")" | xclip -selection clipboard &&
-			notify-send "$(readlink -f "$file") copied to clipboard" & ;;
+		echo -n "$( readlink -f "$file" )" | xclip -sel clip && notify-send "$( readlink -f "$file" ) copied to clipboard" & ;;
 	"d")
 		[ "$(printf "No\\nYes" | dmenu -i -p "Really delete $file?")" = "Yes" ] && rm "$file" && notify-send "$file deleted." ;;
 	"g")
-		ifinstalled gimp && gimp "$file" & ;;
+		gimp "$file" & ;;
 	"e")
-		notify-send "$( identify $file | awk '{print $1 "\n" $3 }'; du -h $file | awk '{print $1}' )"
+		notify-send "$(  identify "$file" | cut -f2  )"
 	esac
 done
