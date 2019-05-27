@@ -54,12 +54,18 @@ fileview */ tree %c -C -L 1 --dirsfirst
 fileview .*/ tree %c -C -L 1 --dirsfirst
 
 " PDF, ebooks
-filextype *.pdf,*.ps,*.eps,*.ps.gz,*.djvu,*.epub,*.cbz,*.cbr zathura %f 2>/dev/null &,
-fileviewer *.pdf pdftotext -l 1 -nopgbrk %c -
-"fileviewer *.pdf conv2img %c %pw %ph ; vifmimg draw %px %py %pw %ph $HOME/.cache/vifm/_%c:r.jpg %pc vifmimg clear
+filextype *.pdf,*.ps,*.eps,*.ps.gz,*.djvu,*.epub,*.cbz,*.cbr zathura %f 2>/dev/null &
+fileviewer *.pdf,*djvu
+	\ vifmimg docpreview %px %py %pw %ph %c
+	\ %pc
+	\ vifmimg clear
+
 
 " Images
-fileviewer *.jpg,*.jpeg,*.png,*.ico,*.tiff vifmimg draw %px %py %pw %ph %c %pc vifmimg clear
+fileviewer *.jpg,*.jpeg,*.png,*.ico,*.tiff,*.gif
+	\ vifmimg draw %px %py %pw %ph %c
+	\ %pc
+	\ vifmimg clear
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.ico,*.tiff,*.gif,*.xpm sxiv -a %c 2>/dev/null &
 set classify+='  ::*.bmp,,*.gif,,*.jpeg,,*.jpg,,*.ico,,*.png,,*.ppm,,*.svg,,*.svgz,,*.tga,,*.tif,,*.tiff,,*.xbm,,*.xcf,,*.xpm,,*.xspf,,*.xwd::'
 
