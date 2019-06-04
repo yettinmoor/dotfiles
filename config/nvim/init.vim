@@ -113,7 +113,7 @@ set shiftwidth=4
 " Runs certain update commands when configs are saved
 	autocmd BufWritePost *files,*directories !shortcuts
 	autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
-	autocmd BufWritePost *dwmbar !pkill -SIGINT dwmbar
+	autocmd BufWritePost *dwmbar !killall dwmbar && setsid dwmbar &
 	autocmd BufWritePost *i3/config !i3 reload
 	autocmd BufWritePost *i3blocks/config !i3 restart
 	autocmd BufWritePost *sxhkdrc !pkill -SIGUSR1 sxhkd

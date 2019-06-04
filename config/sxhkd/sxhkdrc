@@ -13,16 +13,16 @@ super + e
   $TERMINAL -e $FILE
 super + shift + t
   tor
-super + y
-  $TERMINAL -e calcurse -D ~/.config/calcurse
 super + o
   open
 super + {_,shift +} p
-  mpc {toggle,pause}
+  audio {toggle,pause}
 super + a
   $TERMINAL -e python -q
 super + shift + a
   $TERMINAL -e pulsemixer
+super + s
+  $TERMINAL -e calcurse -D ~/.config/calcurse
 super + d
   dmenu_run
 super + x
@@ -38,7 +38,7 @@ super + n
 super + m
   $TERMINAL -f mono:pixelsize=19 -e ncmpcpp
 super + shift + m
-  pulsemixer --toggle-mute
+  audio --toggle-mute
 
 # Etc
 super + comma
@@ -66,16 +66,16 @@ super + {F9,F10}
 
 # Audio
 super + {_,shift +} BackSpace
-  mpc {prev,next}
+  audio {prev,next}
 super + {minus,plus}
-  pulsemixer --change-volume {-5,5}
+  audio vol {-5,5}
 
 # XF86 keys
 XF86AudioMute
-  pulsemixer --toggle-mute
+  audio mute
 XF86Audio{Lower,Raise}Volume
-  pulsemixer --change-volume {-5,5}
+  audio vol {-5,5}
 XF86Audio{Play,Stop,Next,Prev}
-  mpc {toggle,pause,next,prev}
+  audio {toggle,pause,next,prev}
 XF86MonBrightness{Down,Up}
   xbacklight {-dec,-inc} 15

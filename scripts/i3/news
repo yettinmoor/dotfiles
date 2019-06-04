@@ -1,9 +1,0 @@
-#!/bin/sh
-# Displays number of unread news items and an loading icon if updating.
-
-case $BLOCK_BUTTON in
-	1) setsid "$TERMINAL" -e newsboat ;;
-	3) setsid newsup >/dev/null & exit ;;
-esac
-
-[ -f /tmp/newsupdate ] && cat /tmp/newsupdate 2>/dev/null || newsboat -x print-unread | cut -d' ' -f1 | sed "/^0/d"

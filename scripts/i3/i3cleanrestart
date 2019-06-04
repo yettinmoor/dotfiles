@@ -1,5 +1,0 @@
-#!/bin/sh
-# Restarts i3 without all my fucking dropdown terminals spawning.
-
-pkill -f "\-n dd_"
-i3 restart

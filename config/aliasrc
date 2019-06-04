@@ -3,6 +3,7 @@
 # Programs
 alias f="\$FILE"
 alias v="\$EDITOR"
+alias magit="\$EDITOR -c MagitOnly"
 alias x="sxiv -at * 2>/dev/null & disown"
 alias mpv="mpv --input-ipc-server=/tmp/mpvsoc\$( date +%s )"
 alias ffmpeg="ffmpeg -hide_banner"
