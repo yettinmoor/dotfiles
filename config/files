@@ -5,6 +5,8 @@ cfb	~/.bashrc
 cfp	~/.profile
 cfk	~/.config/sxhkd/sxhkdrc
 cfa	~/.config/aliasrc
+cfi3	~/.config/i3/config
+cfib	~/.config/i3blocks/config
 cfv	~/.config/nvim/init.vim
 cff	~/.config/vifm/vifmrc
 cfd	~/.local/bin/dwmbar

@@ -1,0 +1,8 @@
+#!/bin/sh
+# Prints weather forecast
+
+case $BLOCK_BUTTON in
+	1) $TERMINAL -f mono:pixelsize=21 -e less /tmp/weatherreport ;;
+esac
+
+printf "%s" "$(sed '13q;d' /tmp/weatherreport | grep -o "m\\([+-]\\)*[0-9]\\+" | sort -n -t 'm' -k 2n | sed -n '1p;$p' | tr '\n|m|+' ' ' | awk '{print "<span color=\"#db9934\">" $2 "°</span>", "<span color=\"#83a598\">" $1 "°</span>"}')"

@@ -114,6 +114,8 @@ set shiftwidth=4
 	autocmd BufWritePost *files,*directories !shortcuts
 	autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
 	autocmd BufWritePost *dwmbar !pkill -SIGINT dwmbar
+	autocmd BufWritePost *i3/config !i3 reload
+	autocmd BufWritePost *i3blocks/config !i3 restart
 	autocmd BufWritePost *sxhkdrc !pkill -SIGUSR1 sxhkd
 
 " Navigating with guides

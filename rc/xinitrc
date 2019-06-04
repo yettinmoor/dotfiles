@@ -19,10 +19,12 @@ xcompmgr &
 syncthing -no-browser &
 unclutter --timeout 3 &
 mpd &
+mpdupdate &
 
 # Misc stuff
 rssping &
 forecast $LOCATION &
 pulsemixer --set-volume 50 &
 
-dwmbar & exec dwm
+#dwmbar & exec dwm
+exec i3
