@@ -34,5 +34,5 @@ done &
 
 # dwm
 while true; do
-	ssh-agent dwm || break
+	dwm 2> ~/.local/share/dwm.log
 done
