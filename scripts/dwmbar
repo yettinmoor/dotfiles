@@ -1,6 +1,7 @@
 #!/bin/sh
 
 sep="  :  "
+rp="  " # right padding
 
 set_status() {
 	# Music
@@ -30,6 +31,6 @@ set_status() {
 }
 
 while true; do
-	xsetroot -name "$( set_status )"
+	xsetroot -name "$( set_status )$rp"
 	sleep 10
 done
