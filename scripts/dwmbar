@@ -38,7 +38,7 @@ get_date() {
 
 # Get all funcs defined above and evaluate
 # Display value and sep only if non-empty
-sep=" | "
+sep="  :  "
 while true; do
 	bar=""
 	for func in $( grep -o "^get_[a-z]*" $0 ); do

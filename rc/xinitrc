@@ -16,15 +16,23 @@ sxhkd &
 unclutter &
 dunst &
 xcompmgr &
-syncthing -no-browser &
+syncthing -no-browser >/dev/null &
 unclutter --timeout 3 &
 mpd &
-#mpdupdate &
 
 # Misc stuff
 rssping &
 forecast $LOCATION &
 pulsemixer --set-volume 50 &
 
-dwmbar & exec dwm
-#exec i3
+# dwmbar
+dwmbar &
+while pgrep -x mpd; do
+	mpc idle >/dev/null 2>&1
+	refbar
+done &
+
+# dwm
+while true; do
+	ssh-agent dwm || break
+done
