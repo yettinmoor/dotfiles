@@ -40,7 +40,7 @@ co() { cp "${@?}" "$( cut -f2- ~/.config/directories | fzf | sed "s:~:$HOME:" )"
 
 # Convenience functions
 src()  { . "$HOME/.profile"; echo "Reloaded bashrc, profile and shortcuts."; }
-kr()   { killall "$1"; nohup "$1" >/dev/null 2>&1 & echo "Killed and revived $1"; }
+kr()   { killall "$1"; setsid "$1" >/dev/null 2>&1 & echo "Killed and revived $1"; }
 xw()   { xwininfo -tree -root | grep "${1:-""}"; }
 
 foo()  { echo "Hello world!"; }
