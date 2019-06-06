@@ -1,0 +1,3 @@
+#!/bin/sh
+syncthing --no-browser &
+sleep 1m
