@@ -1,4 +1,4 @@
 #!/bin/sh
-pw=$( dmenu -p "pass:" <&- ) || exit 1
+pw=$( fd -e gpg . .password-store | sed "s/.password-store\///; s/\.gpg$//;" | dmenu -p "pass:" ) || exit 1
 pass -c "$pw" && msg="Password copied." || msg="Invalid password."
 notify-send -u critical "$msg"
