@@ -1,36 +1,50 @@
 #!/bin/sh
+# dwm statusbar script, somewhat inspired by i3blocks.
+# Declare a function starting with "get_" to add a block.
 
-sep="  :  "
+sep="  |  "
 rp="  " # right padding
 
-set_status() {
-	# Music
+get_music() {
 	mpc -f "%artist% - %title%" | sed "/^volume/d" | tac |
 		sed "
 			s/\\[\(.*\)\\].*/\1 /;
 			s/paused/⏸/;
-			s/playing/▶/;" | tr -d '\n' | sed -E "s/.+/&${sep}/"
+			s/playing/▶/;" | tr -d '\n'
+}
 
-	# Weather
+get_weather() {
 	sed '13q;d' /tmp/weatherreport | \
 		grep -o "m\\([+-]\\)*[0-9]\\+" | \
 		sort -n -t 'm' -k 2n | \
 		sed -n '1p;$p' | \
 		tr '\n|m|+' ' ' | \
-		awk '{print "" $2 "° " $1 "°"}' | printf "%s${sep}" "$( cat - )"
+		awk '{print "" $2 "° " $1 "°"}'
+}
 
-	# RSS
-	[ -s /tmp/newsupdate ] && printf "%s${sep}" "$( cat /tmp/newsupdate | tr -d '\n' )"
-	newsboat -x print-unread | cut -d' ' -f1 | sed "/^0/d; s/^[0-9]/! &${sep}/"
+get_packages() {
+	pacman -Qu | grep -v "ignored" | wc -l | sed "/^0/d; s/^[0-9]/? &/"
+}
 
-	# Volume
-	printf "%s%%${sep}" $( pulsemixer --get-volume | cut -d' ' -f1 )
+get_rss() {
+	[ -s /tmp/newsupdate ] && cat /tmp/newsupdate | tr -d '\n'
+	newsboat -x print-unread | cut -d' ' -f1 | sed "/^0/d; s/^[0-9]/! &/"
+}
 
-	# Date
+get_volume() {
+	printf "%s%%" $( pulsemixer --get-volume | cut -d' ' -f1 )
+}
+
+get_date() {
 	printf "%s" "$( date '+%a %b/%d %R' )"
 }
 
 while true; do
-	xsetroot -name "$( set_status )$rp"
+	status=""
+	for f in $( grep -o "^get_[a-z]*" $0 ); do
+		val="$( $f )"
+		status="$status$val${val:+$sep}"
+	done
+	xsetroot -name "${status%${sep}}$rp"
 	sleep 10
 done
