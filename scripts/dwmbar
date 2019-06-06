@@ -3,7 +3,7 @@
 # Declare a function starting with "get_" to add a block.
 
 sep="  |  "
-rp="  " # right padding
+rp="   " # right padding
 
 get_music() {
 	mpc -f "%artist% - %title%" | sed "/^volume/d" | tac |
@@ -22,9 +22,9 @@ get_weather() {
 		awk '{print "" $2 "° " $1 "°"}'
 }
 
-get_packages() {
-	pacman -Qu | grep -v "ignored" | wc -l | sed "/^0/d; s/^[0-9]/? &/"
-}
+#get_packages() {
+	#pacman -Qu | grep -v "ignored" | wc -l | sed "/^0/d; s/^[0-9]/? &/"
+#}
 
 get_rss() {
 	[ -s /tmp/newsupdate ] && cat /tmp/newsupdate | tr -d '\n'
@@ -32,7 +32,9 @@ get_rss() {
 }
 
 get_volume() {
-	printf "%s%%" $( pulsemixer --get-volume | cut -d' ' -f1 )
+	[ $( pulsemixer --get-mute ) -eq 1 ] \
+		&& printf "Muted" \
+		|| printf "%s%%" $( pulsemixer --get-volume | cut -d' ' -f1 )
 }
 
 get_date() {
