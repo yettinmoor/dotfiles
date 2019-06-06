@@ -1,5 +1,6 @@
 #!/bin/sh
 pgrep syncthing && exit 1
 
-syncthing --no-browser &
+syncthing --no-browser & PID=$!
 sleep 1m
+kill -HUP $PID
