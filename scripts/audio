@@ -1,0 +1,17 @@
+#!/bin/sh
+# Slightly more convenient volume interface
+
+case "$1" in
+	vol)
+		pulsemixer --change-volume $2 && pulsemixer --unmute ;;
+	mute)
+		pulsemixer --toggle-mute ;;
+	truemute)
+		pulsemixer --mute ;;
+esac
+
+[ $( pulsemixer --get-mute ) -eq 1 ] \
+	&& dunstify -u low -r 54321 "Muted" \
+	|| dunstify -u low -r 54321 "Volume: $( pulsemixer --get-volume | cut -d' ' -f1 )%"
+
+dwmbar volume
