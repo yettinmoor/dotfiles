@@ -10,3 +10,4 @@ dwmbar rss
 { pgrep -x newsboat >/dev/null && /usr/bin/xdotool key --window "$(/usr/bin/xdotool search --name newsboat)" R; } || /usr/bin/newsboat -x reload
 rm -f /tmp/newsupdate
 dwmbar rss
+! pgrep -x newsboat >/dev/null && [ $( newsboat -x print-unread | cut -d' ' -f1 ) -gt 0 ] && notify-send " Unread RSS items."
