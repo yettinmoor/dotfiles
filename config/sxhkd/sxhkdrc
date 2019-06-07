@@ -11,7 +11,7 @@ super + w
   urlparse -d | xargs -r0 $BROWSER
 super + e
   $TERMINAL -e $FILE
-super + shift + t
+super + t
   tor
 super + o
   open
