@@ -21,7 +21,7 @@ alias ccat="highlight --out-format=ansi --force"
 alias ka="killall"
 alias p="sudo pacman"
 alias SS="sudo systemctl"
-alias upc="sudo pacman -Syu; pkill -RTMIN+8 i3blocks"
+alias upc="sudo pacman -Syu; dwmbar packages"
 alias wttr="less -S /tmp/weatherreport"
 
 # YouTube
