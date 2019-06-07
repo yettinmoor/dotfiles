@@ -34,7 +34,7 @@ super + c
 super + b
   $BROWSER $HOMEPAGE
 super + n
-  $TERMINAL -e newsboat
+  $TERMINAL -e newsboat; dwmbar rss
 super + m
   $TERMINAL -f mono:pixelsize=19 -e ncmpcpp
 super + shift + m
