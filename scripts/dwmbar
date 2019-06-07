@@ -2,7 +2,9 @@
 # dwm statusbar script, somewhat inspired by i3blocks.
 # Declare a function starting with "get_" to add a block.
 # Call dwmbar init to set everything up and dwmbar [function name] to update that function.
-#	E.g. "dwmbar rss" will update the RSS block WITHOUT calling all other functions, like the slow pacman -Qu command.
+# E.g. "dwmbar rss" will update the RSS block WITHOUT calling all other functions, like the slow pacman -Qu command.
+#
+# TODO: add more convenient coloring if I can figure out dwm pango
 
 sep="  |  "
 rp="   " # right padding
@@ -40,7 +42,7 @@ get_volume() {
 }
 
 get_date() {
-	printf "%s\n" "$( date '+%a %b/%d (%V)' )"
+	echo "$( date '+%a %b/%d (%V)' )"
 }
 
 get_time() {
@@ -51,11 +53,11 @@ case $1 in
 	"init")
 		rm -f /tmp/dwmbar
 		for f in $( grep -o "^get_[a-z]*" $0 ); do
-			val="$( $f )"
-			echo "!${f#get_}::$val" >> /tmp/dwmbar
+			echo "${f#get_}:$( $f )" >> /tmp/dwmbar
 		done ;;
 	*)
-		sed -i "s/^\(\!$1::\).*/\1$( get_$1 )/" /tmp/dwmbar ;;
+		command -v "get_$1" || exit 1
+		sed -i "s/^\($1:\).*/\1$( get_$1 )/" /tmp/dwmbar ;;
 esac
 
-xsetroot -name "$( sed "s/^![a-z]*:://g; /^$/d" /tmp/dwmbar | tr '\n' '^' | sed "s/\^/$sep/g; s/$sep$/$rp/" )"
+xsetroot -name "$( sed "s/^[a-z]*://g; /^$/d" /tmp/dwmbar | tr '\n' '^' | sed "s/\^/$sep/g; s/$sep$/$rp/" )"
