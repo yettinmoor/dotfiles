@@ -10,8 +10,8 @@ case "$1" in
 		pulsemixer --mute ;;
 esac
 
+dwmbar volume
+
 [ $( pulsemixer --get-mute ) -eq 1 ] \
 	&& dunstify -u low -r 54321 "Muted" \
 	|| dunstify -u low -r 54321 "Volume: $( pulsemixer --get-volume | cut -d' ' -f1 )%"
-
-dwmbar volume

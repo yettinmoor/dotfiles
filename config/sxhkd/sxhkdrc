@@ -68,13 +68,13 @@ super + {F9,F10}
 super + {_,shift +} BackSpace
   mpc {prev,next}
 super + {minus,plus}
-  audio vol {-5,5}
+  audio vol {-,+}5
 
 # XF86 keys
 XF86AudioMute
   audio mute
 XF86Audio{Lower,Raise}Volume
-  audio vol {-5,5}
+  audio vol {-,+}5
 XF86Audio{Play,Stop,Next,Prev}
   mpc {toggle,pause,next,prev}
 XF86MonBrightness{Down,Up}
