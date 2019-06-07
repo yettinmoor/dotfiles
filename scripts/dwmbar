@@ -1,6 +1,8 @@
 #!/bin/sh
 # dwm statusbar script, somewhat inspired by i3blocks.
 # Declare a function starting with "get_" to add a block.
+# Call dwmbar init to set everything up and dwmbar [function name] to update that function.
+#	E.g. "dwmbar rss" will update the RSS block WITHOUT calling all other functions, like the slow pacman -Qu command.
 
 sep="  |  "
 rp="   " # right padding
@@ -22,31 +24,38 @@ get_weather() {
 		awk '{print "" $2 "° " $1 "°"}'
 }
 
-#get_packages() {
-	#pacman -Qu | grep -v "ignored" | wc -l | sed "/^0/d; s/^[0-9]/? &/"
-#}
+get_packages() {
+	pacman -Qu | grep -v "ignored" | wc -l | sed "/^0/d; s/^[0-9]/? &/"
+}
 
 get_rss() {
-	[ -s /tmp/newsupdate ] && cat /tmp/newsupdate | tr -d '\n'
+	[ -s /tmp/newsupdate ] && cat /tmp/newsupdate
 	newsboat -x print-unread | cut -d' ' -f1 | sed "/^0/d; s/^[0-9]/! &/"
 }
 
 get_volume() {
 	[ $( pulsemixer --get-mute ) -eq 1 ] \
-		&& printf "Muted" \
-		|| printf "%s%%" $( pulsemixer --get-volume | cut -d' ' -f1 )
+		&& echo "Muted" \
+		|| echo "$( pulsemixer --get-volume | cut -d' ' -f1 )%"
 }
 
 get_date() {
-	printf "%s" "$( date '+%a %b/%d %R' )"
+	printf "%s\n" "$( date '+%a %b/%d (%V)' )"
 }
 
-while true; do
-	status=""
-	for f in $( grep -o "^get_[a-z]*" $0 ); do
-		val="$( $f )"
-		status="$status$val${val:+$sep}"
-	done
-	xsetroot -name "${status%${sep}}$rp"
-	sleep 10
-done
+get_time() {
+	date +%R
+}
+
+case $1 in
+	"init")
+		rm -f /tmp/dwmbar
+		for f in $( grep -o "^get_[a-z]*" $0 ); do
+			val="$( $f )"
+			echo "!${f#get_}::$val" >> /tmp/dwmbar
+		done ;;
+	*)
+		sed -i "s/^\(\!$1::\).*/\1$( get_$1 )/" /tmp/dwmbar ;;
+esac
+
+xsetroot -name "$( sed "s/^![a-z]*:://g; /^$/d" /tmp/dwmbar | tr '\n' '^' | sed "s/\^/$sep/g; s/$sep$/$rp/" )"
