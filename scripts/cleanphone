@@ -7,7 +7,7 @@
 wadir="$HOME/phone/WhatsApp/Media/WhatsApp Images"
 camdir="$HOME/phone/DCIM"
 
-destdir="$HOME/repos/phone"
+destdir="$HOME/pics/photos/$( date +%Y )"
 [ -d "$destdir" ] || mkdir -p "$destdir"
 
 {
