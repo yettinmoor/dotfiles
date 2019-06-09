@@ -57,7 +57,7 @@ case $1 in
 			echo "${f#get_}:$( $f )" >> /tmp/dwmbar
 		done ;;
 	*)
-		command -v "get_$1" || exit 1
+		command -v "get_$1" >/dev/null 2>&1 || exit 1
 		sed -i "s|^\($1:\).*|\1$( get_$1 | tr -d '\n' )|" /tmp/dwmbar ;;
 esac
 
