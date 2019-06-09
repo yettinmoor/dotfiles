@@ -1,5 +1,5 @@
 #!/bin/sh
-# Slightly more convenient volume interface
+# Volume interface for sxhkd. Updates dwmbar and notifies with dunst.
 
 unmute() {
 	amixer -M scontrols | cut -d \' -f 2 | xargs -I % amixer -M sset % unmute >/dev/null 2>&1
@@ -10,9 +10,11 @@ case "$1" in
 		amixer -M sset Master $2
 		amixer -M get Master | grep -q "off" && unmute ;;
 	mute)
-		{
-			amixer -M get Master | grep -q "off" && unmute
-		} || amixer -M sset Master mute ;;
+		if amixer -M get Master | grep -q "off"; then
+			unmute
+		else
+			amixer -M sset Master mute
+		fi ;;
 esac
 
 dwmbar volume
