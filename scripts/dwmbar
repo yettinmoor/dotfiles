@@ -37,9 +37,9 @@ get_rss() {
 }
 
 get_volume() {
-	[ $( pulsemixer --get-mute ) -eq 1 ] \
+	amixer -M get Master | grep -q "off" \
 		&& echo "Muted" \
-		|| echo "$( pulsemixer --get-volume | cut -d' ' -f1 )%"
+		|| amixer -M get Master | grep -o "[0-9]*%"
 }
 
 get_date() {

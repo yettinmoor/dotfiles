@@ -23,7 +23,6 @@ mpd &
 # Misc stuff
 rssping &
 forecast $LOCATION &
-pulsemixer --set-volume 50 &
 
 # dwmbar
 dwmbar init &

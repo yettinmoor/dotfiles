@@ -1,17 +1,22 @@
 #!/bin/sh
 # Slightly more convenient volume interface
 
+unmute() {
+	amixer -M scontrols | cut -d \' -f 2 | xargs -I % amixer -M sset % unmute >/dev/null 2>&1
+}
+
 case "$1" in
 	vol)
-		pulsemixer --change-volume $2 && pulsemixer --unmute ;;
+		amixer -M sset Master $2
+		amixer -M get Master | grep -q "off" && unmute ;;
 	mute)
-		pulsemixer --toggle-mute ;;
-	truemute)
-		pulsemixer --mute ;;
+		{
+			amixer -M get Master | grep -q "off" && unmute
+		} || amixer -M sset Master mute ;;
 esac
 
 dwmbar volume
 
-[ $( pulsemixer --get-mute ) -eq 1 ] \
+amixer -M get Master | grep -q "off" \
 	&& dunstify -u low -r 54321 "Muted" \
-	|| dunstify -u low -r 54321 "Volume: $( pulsemixer --get-volume | cut -d' ' -f1 )%"
+	|| dunstify -u low -r 54321 "Volume: $( amixer -M get Master | grep -o "[0-9]*%" )"
