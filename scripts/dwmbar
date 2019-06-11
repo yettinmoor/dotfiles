@@ -17,6 +17,16 @@ get_music() {
 			s/playing/▶/;" | tr -d '\n'
 }
 
+get_torrents() {
+	tor=$( transmission-remote -l | sed '1d;$d' | \
+		sed -E "
+			s/.*(100%|Seeding).*/@/;
+			s/.*%.*/v/;
+			s/.*(Paused|Waiting).*/\./" | \
+				sort | uniq -c | awk '{print $2 $1}' | tr '\n' ' ' | sed "s/ $//" )
+	[ -n "$tor" ] && printf "%s" "$tor"
+}
+
 get_weather() {
 	sed '13q;d' /tmp/weatherreport | \
 		grep -o "m\\([+-]\\)*[0-9]\\+" | \
@@ -61,4 +71,4 @@ case $1 in
 		sed -i "s|^\($1:\).*|\1$( get_$1 | tr -d '\n' )|" /tmp/dwmbar ;;
 esac
 
-xsetroot -name "$( sed "s/^[a-z]*://g; /^$/d" /tmp/dwmbar | tr '\n' '^' | sed "s/\^/$sep/g; s/$sep$/$rp/" )"
+xsetroot -name "$( sed "s/^[a-z]*://g; /^$/d; 1,$ a$sep" /tmp/dwmbar | tr -d '\n' | sed "s/$sep$/$rp/" )"
