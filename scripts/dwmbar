@@ -10,9 +10,7 @@
 sep="  |  "
 rp="   " # right padding
 
-color() {
-	echo -n "$1"
-}
+alias color="echo -n"
 
 get_music() {
 	color 
