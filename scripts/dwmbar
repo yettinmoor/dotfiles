@@ -18,6 +18,7 @@ get_music() {
 }
 
 get_torrents() {
+	pgrep transmission-remote || exit 1
 	tor=$( transmission-remote -l | sed '1d;$d' | \
 		sed -E "
 			s/.*(100%|Seeding).*/@/;
@@ -47,7 +48,7 @@ get_rss() {
 }
 
 get_volume() {
-	amixer -M get Master | grep -q "off" \
+	amixer get Master | grep -q "off" \
 		&& echo "Muted" \
 		|| amixer -M get Master | grep -o "[0-9]*%"
 }
