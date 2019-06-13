@@ -18,8 +18,7 @@ get_music() {
 }
 
 get_torrents() {
-	pgrep transmission-remote || exit 1
-	tor=$( transmission-remote -l | sed '1d;$d' | \
+	tor=$( { transmission-remote -l 2>/dev/null || exit 1; } | sed '1d;$d' | \
 		sed -E "
 			s/.*(100%|Seeding).*/@/;
 			s/.*%.*/v/;
