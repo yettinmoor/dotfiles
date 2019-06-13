@@ -1,6 +1,7 @@
 #!/bin/sh
 # dwm statusbar script, somewhat inspired by i3blocks.
 # Declare a function starting with "get_" to add a block.
+# Call "color [dwm statuscolor code]" to color the block.
 # Call dwmbar init to set everything up and dwmbar [function name] to update that function.
 # E.g. "dwmbar rss" will update the RSS block WITHOUT calling all other functions, like the slow pacman -Qu command.
 #
@@ -9,22 +10,27 @@
 sep="  |  "
 rp="   " # right padding
 
+color() {
+	echo -n "$1"
+}
+
 get_music() {
+	color 
 	mpc -f "%artist% - %title%" | sed "/^volume/d" | tac |
 		sed "
-			s/\\[\(.*\)\\].*/\1 /;
+			s/\\[\(.*\)\\].*/\1 /;
 			s/paused/⏸/;
 			s/playing/▶/;" | tr -d '\n'
 }
 
 get_torrents() {
-	tor=$( { transmission-remote -l 2>/dev/null || exit 1; } | sed '1d;$d' | \
+	color 
+	{ transmission-remote -l 2>/dev/null || exit 1; } | sed '1d;$d' | \
 		sed -E "
 			s/.*(100%|Seeding).*/@/;
 			s/.*%.*/v/;
 			s/.*(Paused|Waiting).*/\./" | \
-				sort | uniq -c | awk '{print $2 $1}' | tr '\n' ' ' | sed "s/ $//" )
-	[ -n "$tor" ] && printf "%s" "$tor"
+				sort | uniq -c | awk '{print $2 $1}' | tr '\n' ' ' | sed "s/ $//"
 }
 
 get_weather() {
@@ -53,7 +59,8 @@ get_volume() {
 }
 
 get_date() {
-	echo "$( date '+%a %b/%d (%V)' )"
+	color 
+	date '+%a %b/%d (%V)'
 }
 
 get_time() {
@@ -71,4 +78,4 @@ case $1 in
 		sed -i "s|^\($1:\).*|\1$( get_$1 | tr -d '\n' )|" /tmp/dwmbar ;;
 esac
 
-xsetroot -name "$( sed "s/^[a-z]*://g; /^$/d; 1,$ a$sep" /tmp/dwmbar | tr -d '\n' | sed "s/$sep$/$rp/" )"
+xsetroot -name "$( sed "s/^[a-z]*://; /^.\?$/d; 1,$ a$sep" /tmp/dwmbar | tr -d '\n' | sed "s/$sep$/$rp/" )"
