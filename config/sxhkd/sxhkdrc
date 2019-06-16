@@ -56,7 +56,7 @@ super + Print
 super + F1
   manview
 super + {_,shift +} F2
-  setbg {-c,-r}
+  setbg {pick,random}
 super + F3
   displayselect
 super + F4
