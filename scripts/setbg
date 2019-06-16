@@ -1,13 +1,15 @@
 #!/bin/sh
-# Sets the background. If given an argument, will set file as background.
+# Sets the background with xwallpaper.
+# If given a file as argument, will set that file as background.
+# "setbg pick" spawns sxiv with 50 random images from wallpaper dir and lets you pick one.
+# "setbg random" picks a random wallpaper.
+#
+# pick uses fd -L in case a larger wp repo is symlinked in the main wp dir.
 
 case "$1" in
-	"random")
-		fd "jpg|png" ~/pics/wallpapers | shuf -n 1 ;;
-	"pick")
-		fd -L "jpg|png" ~/pics/wallpapers | shuf -n 50 | sxiv -ftio 2>/dev/null | sed 1q ;;
-	*)
-		echo $1 ;;
+	"random") fd "jpg|png" ~/pics/wallpapers | shuf -n 1 ;;
+	"pick")   fd -L "jpg|png" ~/pics/wallpapers | shuf -n 50 | sxiv -ftio 2>/dev/null | sed 1q ;;
+	*)        echo $1 ;;
 esac | xargs -r -I {} sh -c '\
 	cp -u "{}" ~/pics/wallpapers 2>/dev/null; \
 	cp "{}" ~/.config/wall.png; \
