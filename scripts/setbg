@@ -2,18 +2,15 @@
 # Sets the background. If given an argument, will set file as background.
 
 case "$1" in
-		random)
-			w=$( fd -e jpg -e png . ~/pics/wallpapers | shuf -n 1 ) ;;
-		pick)
-			w=$( fd -L -e jpg -e png . ~/pics/wallpapers | shuf -n 50 | sxiv -ftio 2>/dev/null | sed 1q ) ;;
-		*)
-			w=$1 ;;
-esac
-
-if [ -n "$w" ]; then
-	cp -u "$w" ~/pics/wallpapers 2>/dev/null
-	cp "$w" ~/.config/wall.png
-	notify-send "Wallpaper changed."
-fi
+	"random")
+		fd "jpg|png" ~/pics/wallpapers | shuf -n 1 ;;
+	"pick")
+		fd -L "jpg|png" ~/pics/wallpapers | shuf -n 50 | sxiv -ftio 2>/dev/null | sed 1q ;;
+	*)
+		echo $1 ;;
+esac | xargs -r -I {} sh -c '\
+	cp -u "{}" ~/pics/wallpapers 2>/dev/null; \
+	cp "{}" ~/.config/wall.png; \
+	notify-send "Wallpaper changed."'
 
 xwallpaper --zoom ~/.config/wall.png
