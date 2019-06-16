@@ -45,6 +45,7 @@ get_packages() {
 }
 
 get_rss() {
+	color 
 	[ -s /tmp/newsupdate ] \
 		&& cat /tmp/newsupdate \
 		|| newsboat -x print-unread | cut -d' ' -f1 | sed "/^0/d; s/^[0-9]/\! &/"
