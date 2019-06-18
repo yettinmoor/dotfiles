@@ -6,7 +6,6 @@ alias v="\$EDITOR"
 alias magit="\$EDITOR -c MagitOnly"
 alias x="sxiv -at * 2>/dev/null & disown"
 alias mpv="mpv --input-ipc-server=/tmp/mpvsoc\$( date +%s )"
-alias ffmpeg="ffmpeg -hide_banner"
 alias trem="transmission-remote"
 alias calcurse="calcurse -D ~/.config/calcurse"
 alias pw="pass -c"
@@ -30,18 +29,10 @@ alias ytd="youtube-dl --add-metadata -i -f \"bestvideo[height<=1080]+bestaudio/b
 alias ytda="ytd -x -f \"bestaudio[ext=mp3]/best\""
 alias ytv="youtube-viewer -C"
 
-# Neovim
-command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d"
-
 # fzf
 se() { fd -t f -L . ~/.local ~/.config | fzf --reverse --color=16 | xargs -r "$EDITOR"; }
-vf() { fzf --reverse --color=16 | xargs -r "$EDITOR"; }
-mo() { mv "${@?}" "$( cut -f2- ~/.config/directories | fzf | sed "s:~:$HOME:" )"; }
-co() { cp "${@?}" "$( cut -f2- ~/.config/directories | fzf | sed "s:~:$HOME:" )"; }
 
 # Convenience functions
 src()  { . "$HOME/.profile"; echo "Reloaded bashrc, profile and shortcuts."; }
 kr()   { killall "$1"; setsid "$1" >/dev/null 2>&1 & echo "Killed and revived $1"; }
 xw()   { xwininfo -tree -root | grep "${1:-""}"; }
-
-foo()  { echo "Hello world!"; }
