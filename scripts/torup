@@ -1,5 +1,5 @@
 #!/bin/sh
-while true; do
-	pgrep -x transmission-da >/dev/null && dwmbar torrents
+while pgrep -x transmission-da; do
+	dwmbar torrents
 	sleep 5
 done
