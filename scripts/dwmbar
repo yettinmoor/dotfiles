@@ -18,6 +18,15 @@ get_music() {
 		sed "s/\\[\(.*\)\\].*/\1 /; s/paused/⏸/; s/playing/▶/;"
 }
 
+get_weather() {
+	sed '13q;d' /tmp/weatherreport | \
+		grep -o "m\\([+-]\\)*[0-9]\\+" | \
+		sort -n -t 'm' -k 2n | \
+		sed -n '1p;$p' | \
+		tr '\n|m|+' ' ' | \
+		awk '{print "" $2 "° " $1 "°"}'
+}
+
 get_torrents() {
 	color 
 	{ transmission-remote -l 2>/dev/null || exit 1; } | sed '1d;$d' | \
@@ -26,15 +35,6 @@ get_torrents() {
 			s/.*%.*/v/;
 			s/.*(Paused|Waiting).*/\./" | \
 				sort | uniq -c | awk '{print $2 $1}' | tr '\n' ' ' | sed "s/ $//"
-}
-
-get_weather() {
-	sed '13q;d' /tmp/weatherreport | \
-		grep -o "m\\([+-]\\)*[0-9]\\+" | \
-		sort -n -t 'm' -k 2n | \
-		sed -n '1p;$p' | \
-		tr '\n|m|+' ' ' | \
-		awk '{print "" $2 "° " $1 "°"}'
 }
 
 get_packages() {
