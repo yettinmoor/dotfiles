@@ -1,6 +1,7 @@
 #show-read-feeds no
 auto-reload no
 max-items 0
+download-timeout 3
 
 external-url-viewer "urlscan -dc -r 'linkhandler {}'"
 
