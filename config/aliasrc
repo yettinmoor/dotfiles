@@ -22,6 +22,7 @@ alias ka="killall"
 alias p="sudo pacman"
 alias SS="sudo systemctl"
 alias upc="sudo pacman -Syu; dwmbar packages"
+alias dot="git -C \"$HOME/repos/dotfiles\""
 alias wttr="less -S /tmp/weatherreport"
 
 # YouTube
