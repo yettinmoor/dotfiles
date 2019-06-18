@@ -44,11 +44,11 @@ super + shift + m
 super + comma
   dmenuunicode
 super + {_,shift +} period
-  {qcopy, qpass}
+  {qcopy,qpass}
 super + section
   qwikt
 super + {_,shift +} Insert
-  {showclip, qrclip}
+  {show,qr}clip
 super + Print
   maimpick
 
@@ -62,7 +62,7 @@ super + F3
 super + F4
   timer
 super + {F9,F10}
-  {dmenumount,dmenuumount}
+  dmenu{mount,umount}
 
 # Audio
 super + {_,shift +} BackSpace
