@@ -1,27 +1,9 @@
 #!/bin/sh
 # Generic URL parser, adapted from lukesmithxyz's ducksearch script.
-# Reads stdin; use "urlparse -d" to read from dmenu instead. Prints to stdout.
-# "urlparse -r" throws error and exits if empty input, similar to xargs. Needed by surf.
+# Reads stdin; call "urlparse dmenu" to read from dmenu instead. Prints to stdout.
 # Tries to match URL, then keyword in .config/bookmarks; else return ddg search URL.
-#
-# To use w/ surf: in config.h under SETPROP definition, pipe dmenu into urlparse like so:
-#     dmenu -p \"$4\" -w $1 | urlparse -r -s \"$3\"
 
-while getopts "drs:" opt; do
-	case $opt in
-		d) spawnd=1 ;;
-		r) exitonempty=1 ;;
-		s) [ "$OPTARG" = "_SURF_FIND" ] && cat - && exit 0 ;; # -s option used by surf
-		*) exit 1 ;;
-	esac
-done
-shift $(( OPTIND - 1 ))
-
-# Spawn dmenu if -d, else read stdin
-[ -n "$spawnd" ] && { url="$( dmenu -p "$BROWSER:" <&- )" || exit 1; } || url="$( cat - )"
-
-# Exit if empty input and -r given
-[ -n "$exitonempty" ] && echo ${url:?} >/dev/null
+[ $1 = "dmenu" ] && { url="$( dmenu -p "$BROWSER:" <&- )" || exit 1; } || url=$( cat - )
 
 # If valid URL, return it
 echo "$url" | grep -E "^(http://|https://)?(www\.)?[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+.*$" && exit 0

@@ -8,7 +8,7 @@ super + shift + Return
 super + shift + q
   prompt "Exit X?" "killall Xorg"
 super + w
-  urlparse -d | xargs -r0 $BROWSER
+  urlparse dmenu | xargs -r0 $BROWSER
 super + e
   $TERMINAL -e $FILE
 super + t
