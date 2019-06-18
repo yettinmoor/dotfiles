@@ -29,10 +29,8 @@ alias ytd="youtube-dl --add-metadata -i -f \"bestvideo[height<=1080]+bestaudio/b
 alias ytda="ytd -x -f \"bestaudio[ext=mp3]/best\""
 alias ytv="youtube-viewer -C"
 
-# fzf
-se() { fd -t f -L . ~/.local ~/.config | fzf --reverse --color=16 | xargs -r "$EDITOR"; }
-
 # Convenience functions
+se() { fd -t f -L . ~/.local ~/.config | fzf --reverse --color=16 | xargs -r "$EDITOR"; }
 src()  { . "$HOME/.profile"; echo "Reloaded bashrc, profile and shortcuts."; }
 kr()   { killall "$1"; setsid "$1" >/dev/null 2>&1 & echo "Killed and revived $1"; }
 xw()   { xwininfo -tree -root | grep "${1:-""}"; }
