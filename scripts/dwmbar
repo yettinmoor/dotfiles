@@ -15,10 +15,7 @@ alias color="echo -n"
 get_music() {
 	color 
 	mpc -f "%artist% - %title%" | sed "/^volume/d" | tac |
-		sed "
-			s/\\[\(.*\)\\].*/\1 /;
-			s/paused/⏸/;
-			s/playing/▶/;"
+		sed "s/\\[\(.*\)\\].*/\1 /; s/paused/⏸/; s/playing/▶/;"
 }
 
 get_torrents() {
@@ -52,9 +49,7 @@ get_rss() {
 }
 
 get_volume() {
-	amixer get Master | grep -q "off" \
-		&& echo "Muted" \
-		|| amixer -M get Master | grep -o "[0-9]*%"
+	amixer -M get Master | grep % | sed 's/.*off.*/Muted/; s/.*\[\([0-9]*\%\)\].*/\1/'
 }
 
 get_date() {
