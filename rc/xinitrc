@@ -13,7 +13,6 @@ xrdb ~/.Xresources
 
 # Start up daemons
 sxhkd &
-unclutter &
 dunst &
 xcompmgr &
 #syncthing -no-browser >/dev/null &
