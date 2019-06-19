@@ -17,6 +17,7 @@ set shellopts '-eu'
 
 # Unmap unwanted
 map c
+map w
 map m
 
 #set previewer ~/.config/lf/preview.sh
@@ -24,7 +25,9 @@ set previewer ~/.config/lf/scope.sh
 
 set ifs "\n"
 set scrolloff 10
+
 map <enter> shell
+map s $$SHELL
 
 cmd mkdir %mkdir "$(echo $* | tr ' ' '\ ')"
 map mkd push :mkdir<space>
