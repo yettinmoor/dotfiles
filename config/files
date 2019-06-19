@@ -8,7 +8,7 @@ cfa	~/.config/rcfiles/aliasrc
 cfi3	~/.config/i3/config
 cfib	~/.config/i3blocks/config
 cfv	~/.config/nvim/init.vim
-cff	~/.config/vifm/vifmrc
+cff	~/.config/lf/lfrc
 cfd	~/.local/bin/dwmbar
 cfx	~/.Xresources
 cfX	~/.xinitrc
