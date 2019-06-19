@@ -1,5 +1,0 @@
-#!/bin/sh
-#Backs up package list.
-{
-	pacman -Qeqn | awk '{print "P," $1}'; pacman -Qeqm | awk '{print "A," $1}';
-} > $HOME/repos/autoinstall/backpack.txt
