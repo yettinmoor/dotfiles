@@ -6,7 +6,7 @@ export EDITOR="nvim"
 export TERMINAL="st"
 export BROWSER="firefox"
 export READER="zathura"
-export FILE="vifmrun"
+export FILE="lf"
 
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 export INPUTRC="$HOME/.config/inputrc"
