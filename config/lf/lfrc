@@ -5,14 +5,14 @@ set shellopts '-eu'
 
 # Adjust columns on startup
 %{{
-    w=$(tput cols)
-    if [ $w -le 80 ]; then
-        lf -remote "send $id set ratios 1:2"
-    elif [ $w -le 160 ]; then
-        lf -remote "send $id set ratios 1:2:3"
-    else
-        lf -remote "send $id set ratios 1:2:3:5"
-    fi
+	w=$(tput cols)
+	if [ $w -le 80 ]; then
+		lf -remote "send $id set ratios 1:2"
+	elif [ $w -le 160 ]; then
+		lf -remote "send $id set ratios 1:2:3"
+	else
+		lf -remote "send $id set ratios 1:2:3:5"
+	fi
 }}
 
 # Unmap unwanted
@@ -29,21 +29,22 @@ map <enter> shell
 cmd mkdir %mkdir "$(echo $* | tr ' ' '\ ')"
 map mkd push :mkdir<space>
 
-map x &sxiv -t * 2>/dev/null &
+map x &sxivwrapper
+map X &sxivwrapper all
 map <bs2> set hidden!
 
 map o &mimeopen $f
 map O $mimeopen --ask $f
 
 cmd open ${{
-    case $(file --mime-type $f -b) in
-        text/*)
+	case $(file --mime-type $f -b) in
+		text/*)
 			$EDITOR $f;;
-        *)
+		*)
 			[ -x "$f" ] \
 				&& lf -remote "send $id !$f" \
 				|| $OPENER $f >/dev/null 2>/dev/null & ;;
-    esac
+	esac
 }}
 
 cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
@@ -54,42 +55,42 @@ map A $lf -remote "send $id push :rename<space>$f<a-b><left>"
 cmd trash %set -f; mv $fx ~/.trash
 
 cmd delete ${{
-    set -f
-    printf "$fx\n"
-    printf "Delete? [y/n] "
-    read ans
-    [ $ans = "y" ] && rm -rf $fx
+	set -f
+	printf "$fx\n"
+	printf "Delete? [y/n] "
+	read ans
+	[ $ans = "y" ] && rm -rf $fx
 }}
 map D delete
 
 cmd extract ${{
-    set -f
-    case $f in
-        *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f;;
-        *.tar.gz|*.tgz) tar xzvf $f;;
-        *.tar.xz|*.txz) tar xJvf $f;;
-        *.zip) unzip $f;;
-        *.rar) unrar x $f;;
-        *.7z) 7z x $f;;
-    esac
+	set -f
+	case $f in
+		*.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f;;
+		*.tar.gz|*.tgz) tar xzvf $f;;
+		*.tar.xz|*.txz) tar xJvf $f;;
+		*.zip) unzip $f;;
+		*.rar) unrar x $f;;
+		*.7z) 7z x $f;;
+	esac
 }}
 
 # compress current file or selected files with tar and gunzip
 cmd tar ${{
-    set -f
-    mkdir $1
-    cp -r $fx $1
-    tar czf $1.tar.gz $1
-    rm -rf $1
+	set -f
+	mkdir $1
+	cp -r $fx $1
+	tar czf $1.tar.gz $1
+	rm -rf $1
 }}
 
 # compress current file or selected files with zip
 cmd zip ${{
-    set -f
-    mkdir $1
-    cp -r $fx $1
-    zip -r $1.zip $1
-    rm -rf $1
+	set -f
+	mkdir $1
+	cp -r $fx $1
+	zip -r $1.zip $1
+	rm -rf $1
 }}
 
 source ~/.config/lf/lfshortcuts

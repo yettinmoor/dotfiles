@@ -4,7 +4,7 @@
 alias f="\$FILE"
 alias v="\$EDITOR"
 alias magit="\$EDITOR -c MagitOnly"
-alias x="sxiv -at * 2>/dev/null & disown"
+alias x="sxivwrapper"
 alias mpv="mpv --input-ipc-server=/tmp/mpvsoc\$( date +%s )"
 alias trem="transmission-remote"
 alias calcurse="calcurse -D ~/.config/calcurse"
