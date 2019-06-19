@@ -1,0 +1,14 @@
+# vim: filetype=sh
+
+# Less/man
+export LESS=-R
+export LESS_TERMCAP_mb="$(printf '%b' '')"; a="${a%_}"
+export LESS_TERMCAP_md="$(printf '%b' '')"; a="${a%_}"
+export LESS_TERMCAP_me="$(printf '%b' '')"; a="${a%_}"
+export LESS_TERMCAP_so="$(printf '%b' ' ')"; a="${a%_}"
+export LESS_TERMCAP_se="$(printf '%b' '')"; a="${a%_}"
+export LESS_TERMCAP_us="$(printf '%b' '')"; a="${a%_}"
+export LESS_TERMCAP_ue="$(printf '%b' '')"; a="${a%_}"
+
+# ls and tree
+eval $( dircolors -b ~/.config/dircolors )

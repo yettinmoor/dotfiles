@@ -2,10 +2,9 @@
 # Profile file. Runs on login.
 
 export PATH="$HOME/.local/bin:$PATH"
-
 export EDITOR="nvim"
 export TERMINAL="st"
-export BROWSER="surf"
+export BROWSER="firefox"
 export READER="zathura"
 export FILE="vifmrun"
 
@@ -19,22 +18,7 @@ export LOCATION="Ljungsbro"
 export HOMEPAGE="$HOME/repos/homepage/home.html"
 export GIT="https://github.com/yettinmoor"
 
-# colors
-export LESS=-R
-export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')"; a="${a%_}"
-export LESS_TERMCAP_md="$(printf '%b' '[1;36m')"; a="${a%_}"
-export LESS_TERMCAP_me="$(printf '%b' '[0m')"; a="${a%_}"
-export LESS_TERMCAP_so="$(printf '%b' '[01;44;33m')"; a="${a%_}"
-export LESS_TERMCAP_se="$(printf '%b' '[0m')"; a="${a%_}"
-export LESS_TERMCAP_us="$(printf '%b' '[1;32m')"; a="${a%_}"
-export LESS_TERMCAP_ue="$(printf '%b' '[0m')"; a="${a%_}"
-
-eval `dircolors -b ~/.config/dircolors`
-export TREE_COLORS=$LS_COLORS
-
-# Source bashrc and shortcuts
-echo "$0" | grep -q "bash$" && [ -f ~/.bashrc ] && . "$HOME/.bashrc"
-shortcuts >/dev/null 2>&1
+source "$HOME/.$( basename "$0" )rc"
 
 # Autorun startx
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x Xorg >/dev/null && exec startx

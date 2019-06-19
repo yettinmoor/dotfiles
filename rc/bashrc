@@ -1,8 +1,15 @@
-stty -ixon # Disable ctrl-s and ctrl-q.
-shopt -s autocd #Allows you to cd into directory merely by typing the directory name.
-HISTSIZE= HISTFILESIZE= # Infinite history.
+# Source rcfiles
+{
+	shortcuts
+ 	source "$HOME/.config/rcfiles/shortcutrc"
+	source "$HOME/.config/rcfiles/aliasrc"
+	source "$HOME/.config/rcfiles/colorrc"
+} >/dev/null
 
-export PS1="\[$(tput setaf 1)\][\[$(tput setaf 3)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 4)\]\h \[$(tput setaf 11)\]\w\[$(tput setaf 1)\]]\[$(tput setaf 15)\]\\$ \[$(tput sgr0)\]"
-#export PS1="\[$(tput bold)$(tput setaf 4)\]\w \[$(tput setaf 15)\]\\$ \[$(tput sgr0)\]"
+#export PS1="\[$(tput setaf 1)\][\[$(tput setaf 3)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 4)\]\h \[$(tput setaf 11)\]\w\[$(tput setaf 1)\]]\[$(tput setaf 15)\]\\$ \[$(tput sgr0)\]"
+export PS1=" \[$(tput bold)$(tput setaf 4)\]\w \[$(tput setaf 15)\]\\$ \[$(tput sgr0)\]"
 
-{ . "$HOME/.config/shortcutrc"; . "$HOME/.config/aliasrc"; } 2>/dev/null
+# Some misc settings
+stty -ixon
+HISTSIZE=""
+HISTFILESIZE=""
