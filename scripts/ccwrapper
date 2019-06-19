@@ -1,13 +1,13 @@
 #!/bin/sh
-# Quick (t)cc wrapper, aliased to "tw" in bash.
+# Quick (g)cc wrapper, aliased to "cw" in bash.
 # Called by compiler script for .c files (vim: leader+c).
 # If no args are given, compile all .c files in dir.
-# Uses tcc by default. Use -G for gcc.
+# Uses gcc by default. Use -t for tcc.
 
-cc="tcc"
+cc="gcc"
 while getopts "Ggbo:" opt; do
 	case $opt in
-		G) cc=${cc#t} ;;
+		t) cc="t${cc#g}" ;;
 		o) out="$OPTARG" ;;
 		*) cc="$cc -$opt" ;;
 	esac

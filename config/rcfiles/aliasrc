@@ -9,7 +9,7 @@ alias mpv="mpv --input-ipc-server=/tmp/mpvsoc\$( date +%s )"
 alias trem="transmission-remote"
 alias calcurse="calcurse -D ~/.config/calcurse"
 alias pw="pass -c"
-alias tw="ccwrapper"
+alias cw="ccwrapper"
 
 # General shortcuts
 alias mkd="mkdir -v"
