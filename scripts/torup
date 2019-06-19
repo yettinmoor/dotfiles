@@ -3,3 +3,4 @@ while pgrep -x transmission-da; do
 	dwmbar torrents
 	sleep 5
 done
+dwmbar torrents
