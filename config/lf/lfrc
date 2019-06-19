@@ -29,7 +29,7 @@ set scrolloff 10
 map <enter> shell
 map s $$SHELL
 
-cmd mkdir %mkdir "$(echo $* | tr ' ' '\ ')"
+cmd mkdir %mkdir "$@"
 map mkd push :mkdir<space>
 
 map x &sxivwrapper
