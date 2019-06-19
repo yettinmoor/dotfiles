@@ -15,7 +15,7 @@ xrdb ~/.Xresources
 sxhkd &
 dunst &
 xcompmgr &
-#syncthing -no-browser >/dev/null &
+syncthing -no-browser >/dev/null &
 unclutter --timeout 3 &
 mpd &
 
