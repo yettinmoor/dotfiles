@@ -56,7 +56,7 @@ esac
 case "$( file -b --mime-type -- "$1" | tr '[:upper:]' '[:lower:]' )" in
 	# Text
 	text/*|*/xml)
-		highlight -t 4 -O ansi -- "$1"
+		highlight -t 4 -O ansi -- "$1" || cat -- "$1"
 		exit 0 ;;
 	# Image
 	image/*)
