@@ -73,7 +73,7 @@ case "$1" in
 		done ;;
 	*)
 		command -v "get_$1" >/dev/null 2>&1 || exit 1
-		printf ",s/^$1:.*/$1:$( get_$1 | sed 's:/:\\/:g; s:%:%%:g' | tr -d '\n' )/\nwq\n" | ed /tmp/dwmbar >/dev/null ;;
+		printf "%s%s\nwq\n" "/^$1:/" "s/:.*/:$( get_$1 | sed 's:/:\\/:g' | tr -d '\n' )/" | ed /tmp/dwmbar >/dev/null ;;
 esac
 
 xsetroot -name "$( sed "s/^[a-z]*://; /^.\?$/d; 1,$ a$sep" /tmp/dwmbar | tr -d '\n' | sed "s/$sep$/$rp/" )"
