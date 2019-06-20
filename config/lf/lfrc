@@ -46,7 +46,7 @@ cmd open ${{
 		*)
 			[ -x "$f" ] \
 				&& lf -remote "send $id !$f" \
-				|| $OPENER $f >/dev/null 2>/dev/null & ;;
+				|| setsid $OPENER $f >/dev/null 2>/dev/null & ;;
 	esac
 }}
 
