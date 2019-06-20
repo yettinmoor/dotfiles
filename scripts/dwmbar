@@ -14,8 +14,12 @@ alias color="echo -n"
 
 get_music() {
 	color 
-	mpc -f "%artist% - %title%" | sed "/^volume/d" | tac |
-		sed "s/\\[\(.*\)\\].*/\1 /; s/paused/⏸/; s/playing/▶/;"
+	mpc -f "%artist% - %title%" | sed "/^volume/d" | tac | sed "s/\\[\(.*\)\\].*/\1 /; s/paused/⏸/; s/playing/▶/;"
+}
+
+get_timer() {
+	ls /tmp/timer* >/dev/null 2>&1 || return 1
+	awk -F ';' '{printf "%s %02d:%02d :: ", $1, ($2-'"$( date +%s )"')/60, ($2-'"$( date +%s )"')%60}' /tmp/timer* | sed "s/[^0-9]*$//"
 }
 
 get_weather() {
@@ -29,7 +33,7 @@ get_weather() {
 
 get_torrents() {
 	color 
-	{ transmission-remote -l 2>/dev/null || exit 1; } | sed '1d;$d' | \
+	{ transmission-remote -l 2>/dev/null || return 1; } | sed '1d;$d' | \
 		sed -E "
 			s/.*(100%|Seeding).*/@/;
 			s/.*%.*/v/;
