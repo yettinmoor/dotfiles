@@ -18,8 +18,7 @@ get_music() {
 }
 
 get_timer() {
-	ls /tmp/timer* >/dev/null 2>&1 || return 1
-	awk -F ';' '{printf "%s %02d:%02d :: ", $1, ($2-'"$( date +%s )"')/60, ($2-'"$( date +%s )"')%60}' /tmp/timer* | sed "s/[^0-9]*$//"
+	awk -F ';' '{printf "%s %02d:%02d :: ", $1, ($2-'"$( date +%s )"')/60, ($2-'"$( date +%s )"')%60}' /tmp/timer* 2>/dev/null | sed "s/[^0-9]*$//"
 }
 
 get_weather() {
@@ -73,7 +72,7 @@ case "$1" in
 		done ;;
 	*)
 		command -v "get_$1" >/dev/null 2>&1 || exit 1
-		printf "%s%s\nwq\n" "/^$1:/" "s/:.*/:$( get_$1 | sed 's:/:\\/:g' | tr -d '\n' )/" | ed /tmp/dwmbar >/dev/null ;;
+		printf "%s\nwq\n" "/^$1:/s/:.*/:$( get_$1 | sed 's:/:\\/:g' | tr -d '\n' )/" | ed /tmp/dwmbar >/dev/null ;;
 esac
 
 xsetroot -name "$( sed "s/^[a-z]*://; /^.\?$/d; 1,$ a$sep" /tmp/dwmbar | tr -d '\n' | sed "s/$sep$/$rp/" )"

@@ -37,14 +37,14 @@ cmd bulk-rename ${{
 	if [ -n "${fs}" ]; then
 		echo "$fs"
 	else
-		echo "$( ls "$( dirname $f )" | tr ' ' '\n')"
+		echo "$( fd -d 1 )"
 	fi > $index
 	index_edit=$( mktemp /tmp/lf-bulk-rename.XXXXXXXXXX )
-	cat $index > $index_edit
+	cat "$index" > "$index_edit"
 	$EDITOR "$index_edit"
 	if [ $( < "$index" wc -l ) -eq $( < "$index_edit" wc -l ) ]; then
-		max=$( < $index wc -l )
-		counter=0
+		max=$(( $( < "$index" wc -l ) + 1 ))
+		counter=1
 		while [ $counter -le $max ]; do
 			a="$( sed "${counter}q;d" "$index" )"
 			b="$( sed "${counter}q;d" "$index_edit" )"
@@ -61,10 +61,10 @@ cmd bulk-rename ${{
 
 cmd delete ${{
 	set -f
-	printf "$fx\n"
+	printf "%s\n" "$fx"
 	printf "Delete? [y/n] "
 	read ans
-	[ $ans = "y" ] && rm -rf $fx
+	[ $ans = "y" ] && rm -rf "$fx"
 }}
 
 # MAPPINGS

@@ -4,8 +4,6 @@
 set -C -f -u
 IFS='\n'
 
-[ -x "$1" ] && echo "Binary file." && exit 0
-
 # Handle extension.
 case "${1##*.}" in
 	# Archive
@@ -69,5 +67,7 @@ case "$( file -b --mime-type -- "$1" | tr '[:upper:]' '[:lower:]' )" in
 		mediainfo "$1"
 		exit 0 ;;
 esac
+
+[ -x "$1" ] && echo "Binary file." && exit 0
 
 echo "No preview available." && exit 1

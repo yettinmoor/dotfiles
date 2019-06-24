@@ -6,7 +6,7 @@
     "alt-speed-time-enabled": false,
     "alt-speed-time-end": 1020,
     "alt-speed-up": 50,
-    "bind-address-ipv4": "0.0.0.0",
+    "bind-address-ipv4": "",
     "bind-address-ipv6": "::",
     "blocklist-enabled": false,
     "blocklist-url": "http://list.iblocklist.com/?list=se&fileformat=p2p&archiveformat=gz",

@@ -7,12 +7,9 @@
 # pick uses fd -L in case a larger wp repo is symlinked in the main wp dir.
 
 case "$1" in
-	"random") fd "jpg|png" ~/pics/wallpapers | shuf -n 1 ;;
-	"pick")   fd -L "jpg|png" ~/pics/wallpapers | shuf -n 50 | sxiv -ftio 2>/dev/null | sed 1q ;;
-	*)        echo $1 ;;
-esac | xargs -r -I {} sh -c '\
-	cp -u "{}" ~/pics/wallpapers 2>/dev/null; \
-	cp "{}" ~/.config/wall.png; \
-	notify-send "Wallpaper changed."'
+	random) fd "jpg|png" ~/pics/wallpapers | shuf -n 1 ;;
+	pick)   fd -L "jpg|png" ~/pics/wallpapers | shuf -n 50 | sxiv -ftio 2>/dev/null | sed 1q ;;
+	*)      echo $1 ;;
+esac | xargs -r -I {} sh -c 'cp -u "{}" ~/pics/wallpapers 2>/dev/null; cp "{}" ~/.config/wall.png; notify-send "Wallpaper changed."'
 
 xwallpaper --zoom ~/.config/wall.png
