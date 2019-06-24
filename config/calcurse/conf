@@ -1,5 +1,5 @@
 appearance.calendarview=monthly
-appearance.compactpanels=no
+appearance.compactpanels=yes
 appearance.defaultpanel=calendar
 appearance.layout=1
 appearance.notifybar=yes
@@ -25,3 +25,8 @@ notification.warning=300
 appearance.headingpos=right-justified
 format.dayheading=%B %e, %Y
 general.systemevents=yes
+appearance.headerline=yes
+appearance.eventseparator=yes
+appearance.dayseparator=yes
+appearance.emptyline=yes
+general.multipledays=yes
