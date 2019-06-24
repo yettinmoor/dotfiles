@@ -10,8 +10,8 @@ trap 'rm -f "$file"; dwmbar timer; exit 1' INT TERM
 start="$( date +%s )"
 
 case "$input" in
-	*:*) end=$( date -d "$input" +%s ) ;;                                                         # time given
-	*)   end=$(( $start + $( echo "$input" | sed "s/h/*3600+/; s/m/*60+/; s/s//; s/+$//" ) )) ;;  # duration given
+	*:*) end=$( date -d "$input" +%s ) ;;
+	*)   end=$(( $start + $( echo "$input" | sed "s/h/*3600+/; s/m/*60+/; s/s//; s/+$//" ) )) ;;
 esac
 
 echo "${topic:-⏲};$end" > "$file"
