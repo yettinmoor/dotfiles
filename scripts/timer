@@ -5,19 +5,18 @@ input="$( dmenu -p "Time:" <&- )" || exit 1
 topic="$( dmenu -p "Note:" <&- )" || exit 1
 
 file="/tmp/timer$$"
-trap 'rm -f "$file"; dwmbar timer; exit 1' INT TERM
+trap 'rm -f "$file"; dwmbar timer; exit 0' INT TERM
 
 start="$( date +%s )"
 
+printf "%s;" "${topic:-⏲}" > "$file"
+
 case "$input" in
-	*:*) end=$( date -d "$input" +%s ) ;;
-	*)   end=$(( $start + $( echo "$input" | sed "s/h/*3600+/; s/m/*60+/; s/s//; s/+$//" ) )) ;;
-esac
-
-echo "${topic:-⏲};$end" > "$file"
-
-while [ $( date +%s ) -lt $end ]; do dwmbar timer; sleep 0.5; done
+	*:*) date -d "$input" +%s ;;
+	*)   echo $(( start + $( echo "$input" | sed "s/h/*3600+/; s/m/*60+/; s/s//; s/+$//" ) )) ;;
+esac | tee -a "$file" | \
+	{ read -r end; while [ $( date +%s ) -lt $end ]; do dwmbar timer; sleep 0.5; done; }
 
 notify-send -a timerdone -u critical "${topic:-"Timer done"}" "Started: $( date -d "@$start" +%R )"
 
-rm "$file"; dwmbar timer
+kill -TERM $$
