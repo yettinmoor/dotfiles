@@ -24,7 +24,7 @@ rssping &
 forecast $LOCATION &
 
 # dwmbar
-dwmbar init &
+dwmbar init
 while pgrep -x mpd; do
 	mpc idle >/dev/null 2>&1
 	dwmbar music
