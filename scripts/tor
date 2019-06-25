@@ -1,5 +1,5 @@
 #!/bin/sh
 pgrep -x transmission-da >/dev/null || ( transmission-daemon && notify-send "Starting torrent daemon..." && sleep 3 )
 transmission-remote -a "$@" >/dev/null && notify-send " Torrent(s) added."
-$TERMINAL -e tremc &
 pgrep -x torup >/dev/null || torup &
+$TERMINAL -e tremc

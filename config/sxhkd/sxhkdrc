@@ -12,7 +12,7 @@ super + w
 super + e
   $TERMINAL -e $FILE
 super + t
-  tor
+  tor; dwmbar torrents
 super + o
   open
 super + {_,shift +} p
