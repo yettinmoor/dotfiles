@@ -34,9 +34,9 @@ get_torrents() {
 	color 
 	{ transmission-remote -l 2>/dev/null || return 1; } | sed '1d;$d' | \
 		sed -E "
+			s/.*Stopped.*/\./;
 			s/.*(100%|Seeding).*/@/;
-			s/.*%.*/v/;
-			s/.*(Paused|Waiting).*/\./" | \
+			s/.*%.*/v/" | \
 				sort | uniq -c | awk '{print $2 $1}' | tr '\n' ' ' | sed "s/ $//"
 }
 
