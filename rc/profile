@@ -16,7 +16,7 @@ export LOCATION="Ljungsbro"
 export HOMEPAGE="$HOME/repos/homepage/home.html"
 export GIT="https://github.com/yettinmoor"
 
-source "$HOME/.$( basename "$0" )rc"
+source "$HOME/.$( basename "$SHELL" )rc"
 
 # Autorun startx
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x Xorg >/dev/null && exec startx
