@@ -1,0 +1,4 @@
+#!/bin/sh
+# Pause mpc and all mpv instances.
+mpc pause
+ls /tmp/mpvsoc* | xargs -r -I '{}' /bin/sh -c "echo '{ \"command\": [\"set_property\", \"pause\", true] }' | socat - {}" 2>/dev/null
