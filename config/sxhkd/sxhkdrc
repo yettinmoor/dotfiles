@@ -15,8 +15,10 @@ super + t
   tor; dwmbar torrents
 super + o
   open
-super + {_,shift +} p
-  mpc {toggle,pause}
+super + p
+  mpc toggle
+super + shift + p
+  pauseall
 super + a
   $TERMINAL -e python -q
 super + shift + a
