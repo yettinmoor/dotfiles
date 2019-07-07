@@ -63,6 +63,8 @@ super + F3
   displayselect
 super + F4
   timer
+super + F7
+  open /media
 super + {F9,F10}
   dmenu{mount,umount}
 
