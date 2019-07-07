@@ -30,7 +30,7 @@ cmd open ${{
 	esac
 }}
 
-cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
+cmd rename %[ -e "$*" ] && printf "File exists!" || mv "$f" "$*"
 
 cmd bulk-rename ${{
 	index=$( mktemp /tmp/lf-bulk-rename-index.XXXXXXXXXX )
@@ -76,6 +76,8 @@ source ~/.config/lf/lfshortcuts
 
 map <enter> shell
 map s $$SHELL
+
+map U clear
 
 map <bs2> set hidden!
 map V :unselect; invert
