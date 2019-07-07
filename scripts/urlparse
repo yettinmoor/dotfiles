@@ -3,10 +3,11 @@
 # Reads stdin; call "urlparse dmenu" to read from dmenu instead. Prints to stdout.
 # Tries to match URL, then keyword in .config/bookmarks; else return ddg search URL.
 
-[ "$1" = "dmenu" ] && { url="$( dmenu -p "$BROWSER:" <&- )" || exit 1; } || url=$( cat - )
-
-# If valid URL, return it
-echo "$url" | grep -E "^(http://|https://)?(www\.)?[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+.*$" && exit 0
-
-# Else if keyword match, return bookmark, else return duckduckgo search URL.
-awk "/^$url\t/ {url=\$2}; END {print url ? url : \"https://duckduckgo.com/$url\"}" ~/.config/bookmarks
+case "$1" in
+	dmenu) dmenu -p "$BROWSER:" <&- ;;
+	*)     cat - ;;
+esac | {
+	read -r url || exit 1
+	grep -E "^(http://|https://)?(www\.)?[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+.*$" && exit 0
+	awk -F ';' "/^$url;/ {url=\$2}; END {print url ? url : \"https://duckduckgo.com/$url\"}" ~/.config/bookmarks
+}

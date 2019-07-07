@@ -1,7 +1,7 @@
-mail	protonmail.com/login
-osm 	openstreetmaps.org
-ogt		ostgotatrafiken.se
-sync	127.0.0.1:8384
-to		1337x.to
-git		github.com
-bd		bookdepository.com
+mail;protonmail.com/login
+osm;openstreetmaps.org
+ogt;ostgotatrafiken.se
+sync;127.0.0.1:8384
+to;1337x.to
+git;github.com
+bd;bookdepository.com
