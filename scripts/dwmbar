@@ -65,7 +65,7 @@ case "$1" in
 		grep -o "^get_[a-z]*" "$0" | while read f; do echo "${f#get_}:$( "$f" | tr -d '\n' )" >> /tmp/dwmbar; done ;;
 	*)
 		command -v "get_$1" >/dev/null 2>&1 || exit 1
-		printf "%s\nwq\n" "/^$1:/s/:.*/:$( "get_$1" | sed 's:/:\\/:g' | tr -d '\n' )/" | ed /tmp/dwmbar >/dev/null ;;
+		printf "%s\nwq\n" "/^$1:/s/:.*/:$( "get_$1" | sed -E 's:(/|&):\\\1:g' | tr -d '\n' )/" | ed /tmp/dwmbar >/dev/null ;;
 esac
 
 xsetroot -name "$( sed "s/^[a-z]*://; /^.\?$/d; 1,$ a$sep" /tmp/dwmbar | tr -d '\n' | sed "s/$sep$/$rp/" )"
