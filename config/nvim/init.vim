@@ -125,14 +125,17 @@ set shiftwidth=4
 
 " Autocomplete & highlight brackets
 	hi MatchParen cterm=underline ctermbg=none ctermfg=none
-	inoremap {{	{}<++><Esc>F{a
-	inoremap [[ []<++><Esc>F[a
-	inoremap (( ()<++><Esc>F(a
-	inoremap <leader>bc	{}<++><Esc>F{a
-	inoremap <leader>bs []<++><Esc>F[a
-	inoremap <leader>bS []<++><Esc>F[a
-	inoremap <leader>bb ()<++><Esc>F(a
-	inoremap <leader>bB (())<++><Esc>F(a
+	inoremap ( ()<Esc>i
+	inoremap [ []<Esc>i
+	inoremap { {}<Esc>i
+	"inoremap {{	{}<++><Esc>F{a
+	"inoremap [[ []<++><Esc>F[a
+	"inoremap (( ()<++><Esc>F(a
+	"inoremap <leader>bc	{}<++><Esc>F{a
+	"inoremap <leader>bs []<++><Esc>F[a
+	"inoremap <leader>bS []<++><Esc>F[a
+	"inoremap <leader>bb ()<++><Esc>F(a
+	"inoremap <leader>bB (())<++><Esc>F(a
 
 " Macrons
 	imap __a ā
