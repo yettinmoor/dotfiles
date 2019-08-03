@@ -22,6 +22,7 @@ get_timer() {
 }
 
 get_weather() {
+	[ -f /tmp/weatherreport ] || exit 1
 	sed '13q;d' /tmp/weatherreport | \
 		grep -o "m\\([+-]\\)*[0-9]\\+" | \
 		sort -n -t 'm' -k 2n | \
