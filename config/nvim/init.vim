@@ -154,8 +154,8 @@ set shiftwidth=4
 	autocmd FileType sh inoremap <leader>N >/dev/null 2>&1
 
 """C
-	autocmd FileType c,cpp set tabstop=8
-	autocmd FileType c,cpp set shiftwidth=8
+	"autocmd FileType c,cpp set tabstop=8
+	"autocmd FileType c,cpp set shiftwidth=8
 	autocmd FileType c,cpp inoremap <leader>4 /*  */<Esc>3ha
 	autocmd FileType c,cpp inoremap <leader>pr printf()<++><Esc>F(a
 	autocmd FileType c,cpp inoremap <leader>if if () {<Enter><++><Enter>}<Esc>2k0f(a
