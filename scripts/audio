@@ -1,23 +1,12 @@
 #!/bin/sh
 # Volume interface for sxhkd. Updates dwmbar and notifies with dunst.
 
-unmute() {
-	amixer get Master | grep -q "\\[on\\]" && return 1
-	amixer scontrols | cut -d \' -f 2 | xargs -I {} amixer sset {} unmute >/dev/null 2>&1
-	return 0
-}
-
-case "$1" in
-	vol)
-		amixer -M sset Master $2
-		unmute ;;
-	mute)
-		unmute || amixer sset Master mute ;;
-esac
+amixer get Master | grep -q "\\[on\\]" \
+	&& amixer -M sset Master $1 \
+	|| amixer scontrols | cut -d \' -f 2 | xargs -I % amixer sset % unmute >/dev/null 2>&1
 
 dwmbar volume
 
-dunstify -u low -r 54321 \
-	"$( amixer get Master | grep -q "off" \
-		&& echo "Muted" \
-		|| echo "Volume: $( amixer -M get Master | grep -o "[0-9]*%" )" )"
+amixer get Master | grep -q "off" \
+	&& dunstify -u low -r 54321 "Muted" \
+	|| dunstify -u low -r 54321 "Volume: $( amixer -M get Master | grep -o "[0-9]*%" )"
