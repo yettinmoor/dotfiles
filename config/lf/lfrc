@@ -90,8 +90,8 @@ map mkd push :mkdir<space>
 map o &mimeopen $f
 map O $mimeopen --ask $f
 
-map x &sxivwrapper
-map X &sxivwrapper all
+map x &setsid sxivwrapper &
+map X &setsid sxivwrapper all &
 
 map r push :rename<space>
 map R $lf -remote "send $id push :rename<space>.${f##*.}<c-a><a-f><c-f>"
