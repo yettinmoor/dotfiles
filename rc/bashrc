@@ -1,7 +1,7 @@
 # Source rcfiles
 {
 	shortcuts
- 	source "$HOME/.config/rcfiles/shortcutrc"
+	source "$HOME/.config/rcfiles/shortcutrc"
 	source "$HOME/.config/rcfiles/aliasrc"
 	source "$HOME/.config/rcfiles/colorrc"
 } >/dev/null
