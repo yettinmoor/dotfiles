@@ -84,10 +84,10 @@ set shiftwidth=4
 	nnoremap <leader>l :!sloc %<CR>
 
 " Compile document, be it groff/LaTeX/markdown/etc.
-	map <leader>c :w! \| !compiler <c-r>%<CR>
+	map <leader>c :w! \| !compiler <c-r>\"%"<CR>
 
 " Open corresponding .pdf/.html or preview
-	map <leader>p :!opout <c-r>%<CR><CR>
+	map <leader>p :!opout <c-r>\"%"<CR><CR>
 
 " Runs a script that cleans out tex build files whenever I close out of a .tex file.
 	autocmd VimLeave *.tex !texclear %
@@ -170,6 +170,10 @@ set shiftwidth=4
 	autocmd FileType python inoremap <leader>if if :<Enter><++><Esc>k0f:i
 	autocmd FileType python inoremap <leader>wh while :<Enter><++><Esc>k0f:i
 	autocmd FileType python inoremap <leader>fr for :<Enter><++><Esc>k0f:i
+
+"""SHEME
+	autocmd FileType scheme set tabstop=2
+	autocmd FileType scheme set shiftwidth=2
 
 """LATEX
 	" Word count:
