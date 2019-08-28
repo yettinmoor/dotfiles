@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 # dwm statusbar script, somewhat inspired by i3blocks.
 # Declare a function starting with "get_" to add a block.
 # Call "color [dwm statuscolor code]" to color the block.

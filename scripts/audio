@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 # Volume interface for sxhkd. Updates dwmbar and notifies with dunst.
 
 amixer get Master | grep -q "\\[on\\]" \

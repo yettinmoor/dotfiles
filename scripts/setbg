@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 # Sets the background with xwallpaper.
 # If given a file as argument, will set that file as background.
 # "setbg pick" spawns sxiv with 50 random images from wallpaper dir and lets you pick one.

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 # Moves photos from DCIM and WhatsApp directories in synced phone to repo directory.
 # Also removes "IMG-" prefix and replaces "_" with "-" for convenient naming.
 

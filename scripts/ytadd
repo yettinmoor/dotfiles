@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 # Add YT channel to newsboat via youtube-dl.
 echo "$1" | grep youtube\.com || exit 1
 youtube-viewer --no-interactive -e="https://www.youtube.com/feeds/videos.xml?channel_id=*CHANNELID* \"~*AUTHOR*\"" $1 >> $HOME/.config/newsboat/urls

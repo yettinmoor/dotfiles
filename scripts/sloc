@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 # SLOC counter for code. Doesn't count comments & empty lines. Default comment tag is "#".
 
 count() {

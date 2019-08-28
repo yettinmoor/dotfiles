@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 # Timer with dmenu and dwmbar integration, bound to mod+F4. Notifies with dunst upon completion.
 
 input="$( dmenu -p "Time:" <&- )" || exit 1

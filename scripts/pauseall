@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 # Pause mpc and all mpv instances.
 mpc pause >/dev/null
 ls /tmp/mpvsoc* | while read -r mpvsoc; do

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 # Generic URL parser, adapted from lukesmithxyz's ducksearch script.
 # Reads stdin; call "urlparse dmenu" to read from dmenu instead. Prints to stdout.
 # Tries to match URL, then keyword in .config/bookmarks; else return ddg search URL.

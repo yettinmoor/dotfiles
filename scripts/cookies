@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 # Clean surf cookies and cache.
 cookies="$HOME/.cache/surf/cookies.txt"
 wanted="(duckduckgo|youtube)"

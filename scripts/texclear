@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 # Clears LaTeX build files.
 
 file=$( readlink -f "$1" )

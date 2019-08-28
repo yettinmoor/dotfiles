@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 while pgrep -x transmission-da; do
 	dwmbar torrents
 	sleep 5
