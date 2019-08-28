@@ -1,3 +1,4 @@
 #!/usr/bin/env sh
-[ "$1" = "all" ] && depth="999" || depth="1"
-sxiv -at $( fd -t f -d $depth ) 2>/dev/null &
+{
+	[ "$1" = "all" ] && sxiv -atr . || sxiv -at .
+} 2>/dev/null &
