@@ -4,33 +4,32 @@
 # Opens .sent files as sent presentations.
 # Runs scripts based on extension or shebang
 
-file=$( readlink -f "$1" )
-dir=$( dirname "$file" )
+file="$( readlink -f "$1" )"
+dir="$( dirname "$file" )"
 base="${file%.*}"
 
 cd "$dir" || exit
 
-textype() { \
-	xelatex --output-directory="$dir" "$base" &&
-	grep -i addbibresource "$file" >/dev/null &&
-	biber --input-directory "$dir" "$base" &&
-	xelatex --output-directory="$dir" "$base" &&
+textype() {
 	xelatex --output-directory="$dir" "$base"
-	}
+	grep -qi 'addbibresource' "$file" && \
+		biber --input-directory "$dir" "$base" && \
+		xelatex --output-directory="$dir" "$base" && \
+		xelatex --output-directory="$dir" "$base"
+}
 
 case "$file" in
 	# Make install
 	*config\.h) sudo make install ;;
 
 	# Programming
-	*\.c)  ccwrapper "$file" ;;
-	*\.py) python "$file" ;;
-	*\.go) go run "$file" ;;
+	*\.c)   ccwrapper "$file" ;;
+	*\.py)  python    "$file" ;;
+	*\.go)  go run    "$file" ;;
+	*\.scm) guile     "$file" ;;
 
 	# Document formatting
-	*\.tex) textype "$file" ;;
-	*\.ms)  refer -PS -e "$file" | groff -me -ms -kejpt -T pdf > "$base".pdf ;;
-	*\.mom) refer -PS -e "$file" | groff -mom -kejpt -T pdf > "$base".pdf ;;
+	*\.tex) textype ;;
 	*\.md)  pandoc "$file" --pdf-engine=xelatex -o "$base".pdf ;;
 
 	# Sent

@@ -2,10 +2,13 @@
 # opout: "open output": A general handler for opening a file's intended output.
 # I find this useful especially running from vim.
 
-basename="$(echo "$1" | sed 's/\.[^\/.]*$//')"
+file="$( readlink -f "$1" )"
+basename="${file%.*}"
 
-case "$1" in
+cd "$( dirname "$file" )" || exit 1
+
+case "$file" in
 	*.tex|*.md|*.rmd|*.ms|*.me|*.mom) setsid "$READER" "$basename".pdf >/dev/null 2>&1 & ;;
 	*.html) setsid "$BROWSER" --new-window "$basename".html >/dev/null 2>&1 & ;;
-	*.sent) setsid sent "$1" >/dev/null 2>&1 & ;;
+	*.sent) setsid sent "$file" >/dev/null 2>&1 & ;;
 esac

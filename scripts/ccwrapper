@@ -5,9 +5,9 @@
 # Uses gcc by default. Use -t for tcc.
 
 cc="gcc"
-while getopts "Ggbo:" opt; do
+while getopts "gto:" opt; do
 	case $opt in
-		t) cc="t${cc#g}" ;;
+		t) cc="tcc" ;;
 		o) out="$OPTARG" ;;
 		*) cc="$cc -$opt" ;;
 	esac

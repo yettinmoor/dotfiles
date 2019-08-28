@@ -3,6 +3,6 @@
 *.hintstyle: hintslight
 
 !*.foreground:	#F7F7F7
-!*.background:	#282A36
-*.alpha: 0.80
-*.background:	#030303
+*.background:	#282A36
+!*.alpha: 0.80
+*.alpha: 1
