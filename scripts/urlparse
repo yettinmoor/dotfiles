@@ -8,6 +8,6 @@ case "$1" in
 	*)     cat - ;;
 esac | {
 	read -r url || exit 1
-	grep -E "^(http://|https://)?(www\.)?[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+.*$" && exit 0
-	awk -F ';' "/^$url;/ {url=\$2}; END {print url ? url : \"https://duckduckgo.com/$url\"}" ~/.config/bookmarks
+	echo $url | grep -E "^(http://|https://)?(www\.)?[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+.*$" && exit 0
+	awk '/^'"$url"' / {url=$2}; END {print url ? url : "https://duckduckgo.com/?q='"${url}"'"}' ~/.config/bookmarks
 }
