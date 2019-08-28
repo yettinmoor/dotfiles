@@ -1,5 +1,5 @@
-#!/usr/bin/env sh
-# Shows clipboard selection as QR code. Mapped to mod+shift+Insert.
-
-xclip -sel clip -o | qrencode -s 25 -o /tmp/qrclip.png || { notify-send "Empty clipboard."; exit 1; }
-sxiv -pb -s h -N qrclip -g 725x725 /tmp/qrclip.png &
+#!/usr/bin/env bash
+# Shows clipboard selection as QR code.
+xclip -sel clip -o | qrencode -s 25 -o /tmp/qrclip.png || exit 1
+sxiv -pb -N 'qrclip' /tmp/qrclip.png
+rm -f /tmp/qrclip.png
