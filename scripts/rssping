@@ -3,10 +3,11 @@
 # If newsboat is open, sends it an "R" key to refresh.
 # /tmp/newsupdate is read by dwmbar.
 
+pgrep -x rssping >/dev/null && exit 1
 ping -q -c 1 1.1.1.1 >/dev/null || exit 1
 
-echo 🔄 > /tmp/newsupdate
-dwmbar rss
-{ pgrep -x newsboat >/dev/null && /usr/bin/xdotool key --window "$(/usr/bin/xdotool search --name newsboat)" R; } || /usr/bin/newsboat -x reload
-rm -f /tmp/newsupdate
-dwmbar rss
+pgrep -x newsboat && xdotool search --name newsboat key R && exit
+
+echo 🔄 >/tmp/newsupdate; dwmbar rss
+newsboat -x reload
+rm -f /tmp/newsupdate; dwmbar rss
