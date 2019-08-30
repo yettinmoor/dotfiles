@@ -171,9 +171,8 @@ set shiftwidth=4
 	autocmd FileType python inoremap <leader>wh while :<Enter><++><Esc>k0f:i
 	autocmd FileType python inoremap <leader>fr for :<Enter><++><Esc>k0f:i
 
-"""SHEME
-	autocmd FileType scheme set tabstop=2
-	autocmd FileType scheme set shiftwidth=2
+"""SCHEME
+	autocmd FileType scheme set tabstop=2 shiftwidth=2 expandtab
 
 """LATEX
 	" Word count:
