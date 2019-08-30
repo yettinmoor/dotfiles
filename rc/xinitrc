@@ -4,7 +4,8 @@
 setbg &
 
 # Keyboard
-setxkbmap -option caps:super se && killall xcape 2>/dev/null ; xcape -e 'Super_L=Escape' &
+setxkbmap -option caps:super se
+xcape -e 'Super_L=Escape' &
 xmodmap -e 'keycode 135 = Super_R' &
 xset r rate 300 50 &
 
@@ -19,12 +20,10 @@ syncthing -no-browser >/dev/null &
 unclutter --timeout 3 &
 mpd &
 
-# Misc stuff
-rssping &
-forecast $LOCATION &
-
 # dwmbar
 dwmbar init
+rssping &
+forecast &
 while pgrep -x mpd; do
 	mpc idle >/dev/null 2>&1
 	dwmbar music
