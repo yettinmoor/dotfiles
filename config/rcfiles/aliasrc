@@ -6,6 +6,7 @@ alias v="\$EDITOR"
 alias magit="\$EDITOR -c MagitOnly"
 alias x="sxivwrapper"
 alias mpv="mpv --input-ipc-server=/tmp/mpvsoc\$( date +%s )"
+alias mpva="mpvwrapper"
 alias trem="transmission-remote"
 alias calcurse="calcurse -D ~/.config/calcurse"
 alias pw="pass -c"
@@ -30,7 +31,7 @@ alias ytda="ytd -x -f \"bestaudio[ext=mp3]/best\""
 alias ytv="youtube-viewer -C"
 
 # Convenience functions
-se() { fd -t f -L . ~/.local ~/.config | fzf --reverse --color=16 | xargs -r "$EDITOR"; }
+se()   { fd -t f -L . ~/.local ~/.config | fzf --reverse --color=16 | xargs -r "$EDITOR"; }
 src()  { . "$HOME/.profile"; echo "Reloaded bashrc, profile and shortcuts."; }
 kr()   { killall "$1"; setsid "$1" >/dev/null 2>&1 & echo "Killed and revived $1"; }
 xw()   { xwininfo -tree -root | grep "${1:-""}"; }
