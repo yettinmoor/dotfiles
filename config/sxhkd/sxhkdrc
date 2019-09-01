@@ -67,8 +67,9 @@ super + F4
   timer
 super + F7
   open /media
-super + {F9,F10}
-  dmenu{mount,umount}
+super + F8
+  warncaps
+super + {F9,F10} dmenu{mount,umount}
 
 # Audio
 super + {_,shift +} BackSpace

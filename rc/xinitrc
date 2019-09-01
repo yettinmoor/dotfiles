@@ -4,9 +4,8 @@
 setbg &
 
 # Keyboard
-setxkbmap -option caps:super se
-xcape -e 'Super_L=Escape' &
-xmodmap -e 'keycode 135 = Super_R' &
+setxkbmap -option caps:escape -option compose:ctrl-altgr -variant nodeadkeys se
+xmodmap -e 'keysym Menu = Super_R' &
 xset r rate 300 50 &
 
 # Xresources
