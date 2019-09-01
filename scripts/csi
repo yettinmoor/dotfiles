@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+chicken-csi -e "$(cat ~/.config/chicken/csirc)" -s "$@"

@@ -17,6 +17,8 @@ Plug 'bling/vim-airline'
 Plug 'tpope/vim-commentary'
 Plug 'vifm/vifm.vim'
 Plug 'kovetskiy/sxhkd-vim'
+Plug 'luochen1990/rainbow'
+	let g:rainbow_active = 1
 call plug#end()
 
 set go=a
