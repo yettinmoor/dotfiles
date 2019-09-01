@@ -44,7 +44,7 @@ get_packages() {
 
 get_rss() {
 	color 
-	cat /tmp/newsupdate 2>/dev/null || newsboat -x print-unread | cut -d' ' -f1 | sed "/^0/d; s/^[0-9]/\! &/"
+	cat /tmp/newsupdate 2>/dev/null || newsboat -x print-unread | awk '/^[1-9]/ {print "!", $1}'
 }
 
 get_volume() {
