@@ -28,9 +28,9 @@ alias dot='git -C "$HOME/repos/dotfiles"'
 alias wttr='less -S /tmp/weatherreport'
 
 # YouTube
-alias ytd='youtube-dl --add-metadata -i -f "bestvideo[height<=1080]+bestaudio/best" -o "%(upload_date)s - %(title)s.%(ext)s"'
-alias ytda='ytd -x -f "bestaudio[ext=mp3]/best"'
 alias ytv='youtube-viewer -C'
+alias ytd='youtube-dl'
+alias ytda='youtube-dl -x -f "bestaudio[ext=mp3]/best"'
 
 # Convenience functions
 se()   { fd -t f -L . ~/.local ~/.config | fzf --reverse --color=16 | xargs -r "$EDITOR"; }
