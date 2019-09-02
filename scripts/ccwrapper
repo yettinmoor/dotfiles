@@ -1,8 +1,24 @@
 #!/usr/bin/env sh
 # Quick (g)cc wrapper, aliased to "cw" in bash.
 # Called by compiler script for .c files (vim: leader+c).
-# If no args are given, compile all .c files in dir.
 # Uses gcc by default. Use -t for tcc.
+# If Makefile exists:
+#   make,
+#   sudo make install IF in repo dir.
+#   Exit ccwrapper.
+# If file argument(s) given, execute:
+#   $ gcc [opts] -o <out_file> <file1.c> [<file2.c> ...]
+#   where out_file is file.c if 1 argument,
+#   dirname if several files given.
+# If no files are given:
+#   If no Makefile, compile all .c files in dir.
+
+if ls "$( dirname "$file" )/Makefile"; then
+	cd "$( dirname "$file" )"
+	make
+	pwd -P | grep 'repos/bin' && sudo make install
+	exit 0
+fi
 
 cc="gcc"
 while getopts "gto:" opt; do

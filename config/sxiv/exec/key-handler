@@ -1,15 +1,18 @@
 #!/bin/bash
+getdir() {
+	{ cat ~/.config/directories | dmenu -l 20 -i -p "Copy file(s) where?" || exit 1; } | cut -d' ' -f2 | sed "s:~:$HOME:"
+}
 while read file
 do
 	case "$1" in
 	"w")
 		setbg "$file" & ;;
 	"c")
-		[ -z "$destdir" ] && { destdir="$( cut -f2 ~/.config/directories | dmenu -l 20 -i -p "Copy file(s) where?" )" || exit 1; }
-		cp "$file" "$( echo "$destdir" | sed "s:~:$HOME:" )" && notify-send "$file copied to $destdir." & ;;
+		[ -z "$destdir" ] && destdir=$( getdir )
+		cp "$file" "$destdir" && notify-send "sxiv" "$file copied to $destdir." & ;;
 	"m")
-		[ -z "$destdir" ] && { destdir="$( cut -f2 ~/.config/directories | dmenu -l 20 -i -p "Move file(s) where?" )" || exit 1; }
-		mv "$file" "$( echo "$destdir" | sed "s:~:$HOME:" )" && notify-send "$file moved to $destdir." & ;;
+		[ -z "$destdir" ] && destdir=$( getdir )
+		mv "$file" "$destdir" && notify-send "sxiv" "$file moved to $destdir." & ;;
 	"r")
 		convert -rotate 90 "$file" "$file" ;;
 	"R")
@@ -17,14 +20,14 @@ do
 	"f")
 		convert -flop "$file" "$file" ;;
 	"y")
-		echo -n "$file" | xclip -sel clip && notify-send "$file copied to clipboard" & ;;
+		echo -n "$file" | xclip -sel clip && notify-send "sxiv" "$file copied to clipboard" & ;;
 	"Y")
-		echo -n "$( readlink -f "$file" )" | xclip -sel clip && notify-send "$( readlink -f "$file" ) copied to clipboard" & ;;
+		echo -n "$( readlink -f "$file" )" | xclip -sel clip && notify-send "sxiv" "$( readlink -f "$file" ) copied to clipboard" & ;;
 	"d")
-		[ "$(printf "No\\nYes" | dmenu -i -p "Really delete $file?")" = "Yes" ] && rm "$file" && notify-send "$file deleted." ;;
+		[ "$(printf "No\\nYes" | dmenu -i -p "Really delete $file?")" = "Yes" ] && rm "$file" && notify-send "sxiv" "$file deleted." ;;
 	"g")
 		gimp "$file" & ;;
 	"e")
-		notify-send "$(  identify "$file" | cut -f2  )"
+		notify-send "sxiv" "$( identify "$file" | cut -f2  )"
 	esac
 done
