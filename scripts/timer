@@ -13,9 +13,11 @@ printf "%s;" "${topic:-⏲}" > "$file"
 
 case "$input" in
 	*:*) date -d "$input" +%s ;;
-	*)   echo $(( start + $( echo "$input" | sed "s/h/*3600+/; s/m/*60+/; s/s//; s/+$//" ) )) ;;
-esac | tee -a "$file" | \
-	{ read -r end; while [ $( date +%s ) -lt $end ]; do dwmbar timer; sleep 0.5; done; }
+	*)   echo "$start + $input" | sed "s/h/*3600+/; s/m/*60+/; s/s//; s/+$//" | bc ;;
+esac | tee -a "$file" | {
+	read -r end
+	while [ $( date +%s ) -lt $end ]; do dwmbar timer; sleep 0.5; done
+}
 
 notify-send -a timerdone -u critical "${topic:-"Timer done"}" "Started: $( date -d "@$start" +%R )"
 
