@@ -64,7 +64,7 @@ cmd delete ${{
 	printf "%s\n" "$fx"
 	printf "Delete? [y/n] "
 	read ans
-	[ $ans = "y" ] && rm -rf "$fx"
+	[ $ans = "y" ] && rm -rf $fx
 }}
 
 # MAPPINGS
