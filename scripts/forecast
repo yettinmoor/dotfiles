@@ -4,5 +4,5 @@
 ping -q -c 1 1.1.1.1 >/dev/null || exit 1
 report=$( curl -s "wttr.in/${1:-$LOCATION}" )
 echo "$report" | grep "Sorry" && exit 1 # Exit if wttr server overload
-echo "$report" | sed "1s/$/, $( date "+%A %R" )/; \$d" > /tmp/weatherreport
+echo "$report" >/tmp/weatherreport
 dwmbar weather

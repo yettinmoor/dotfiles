@@ -25,7 +25,6 @@ alias p='sudo pacman'
 alias SS='sudo systemctl'
 alias upc='sudo pacman -Syu; dwmbar packages'
 alias dot='git -C "$HOME/repos/dotfiles"'
-alias wttr='less -S /tmp/weatherreport'
 
 # YouTube
 alias ytv='youtube-viewer -C'
@@ -37,3 +36,4 @@ se()   { fd -t f -L . ~/.local ~/.config | fzf --reverse --color=16 | xargs -r "
 src()  { . "$HOME/.profile"; echo "Reloaded bashrc, profile and shortcuts."; }
 kr()   { killall "$1"; setsid "$1" >/dev/null 2>&1 & echo "Killed and revived $1"; }
 xw()   { xwininfo -tree -root | grep "${1:-""}"; }
+wttr() { date -d "@$(stat -c '%Y' /tmp/weatherreport)" '+%A %R' | cat - /tmp/weatherreport | less -S; }
