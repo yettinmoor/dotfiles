@@ -1,44 +1,13 @@
 #!/usr/bin/env sh
-# Quick (g)cc wrapper, aliased to "cw" in bash.
-# Called by compiler script for .c files (vim: leader+c).
-# Uses gcc by default. Use -t for tcc.
-# If Makefile exists:
-#   make,
-#   sudo make install IF in repo dir.
-#   Exit ccwrapper.
-# If file argument(s) given, execute:
-#   $ gcc [opts] -o <out_file> <file1.c> [<file2.c> ...]
-#   where out_file is file.c if 1 argument,
-#   dirname if several files given.
-# If no files are given:
-#   If no Makefile, compile all .c files in dir.
+# gcc wrapper meant for vim hotkey usage.
+# If Makefile exists, make. If in repo dir, sudo make install.
+# Otherwise compile file with gcc.
 
-if ls "$( dirname "$file" )/Makefile"; then
-	cd "$( dirname "$file" )"
+dir=$( dirname "$1" )
+if ls "$dir/Makefile" >/dev/null 2>&1; then
+	cd "$dir"
 	make
 	pwd -P | grep 'repos/bin' && sudo make install
-	exit 0
+else
+	gcc -std=c99 -Wall $( grep -q "<math.h>" "$1" && echo "-lm" ) -o "${1%.c}" "$1"
 fi
-
-cc="gcc"
-while getopts "gto:" opt; do
-	case $opt in
-		t) cc="tcc" ;;
-		o) out="$OPTARG" ;;
-		*) cc="$cc -$opt" ;;
-	esac
-done
-shift $(( OPTIND - 1 ))
-
-# Autoexit if no .c files in dir.
-! ls ./*.c >/dev/null 2>&1 && echo "Error: No C files found." && exit 1
-
-files=${*:-"./*.c"}
-[ -n "$out" ] || [ $# -ne 1 ] && out=${PWD##*\/} || out=${1%.c}
-
-# Link modules as needed
-grep -q "<math.h>" $files && cc="$cc -lm"
-grep -q "<pthread.h>" $files && cc="$cc -$( echo "$cc" | grep -q "^tcc" && echo "l" )pthread"
-grep -q "<editline[/a-z]*>" $files && cc="$cc -ledit"
-
-$cc -std=c99 -o "$out" $files
