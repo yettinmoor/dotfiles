@@ -21,6 +21,6 @@ destdir="$HOME/pics/photos/$( date +%Y )"
 
 	cd "$destdir" || exit 1;
 	for f in ./*.jp*g; do
-		mv "$f" "$( echo "$f" | sed "s/IMG-//; s/_/-/" )"
+		mv "$f" "$( echo "$f" | sed "s/IMG-//; s/Screenshot-//; s/_/-/" )"
 	done;
 } 2>/dev/null
