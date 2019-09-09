@@ -9,5 +9,5 @@ if ls "$dir/Makefile" >/dev/null 2>&1; then
 	make
 	pwd -P | grep 'repos/bin' && sudo make install
 else
-	gcc -std=c99 -Wall $( grep -q "<math.h>" "$1" && echo "-lm" ) -o "${1%.c}" "$1"
+	gcc -std=c99 -Wall -g $( grep -q "<math.h>" "$1" && echo "-lm" ) -o "${1%.c}" "$1"
 fi
