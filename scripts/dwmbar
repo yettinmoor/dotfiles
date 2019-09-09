@@ -48,7 +48,7 @@ get_rss() {
 }
 
 get_volume() {
-	amixer -M get Master | grep % | sed 's/.*off.*/Muted/; s/.*\[\([0-9]*\%\)\].*/\1/'
+	amixer -M get Master | grep % | sed 's/.*off.*/Muted/; s/.*\[\([0-9]*\%\)\].*/\1/; 1q'
 }
 
 get_date() {
