@@ -2,6 +2,6 @@
 # Virtual capslock that warns me with dunst.
 xdotool key Caps_Lock
 xset q | grep -io "Caps Lock:\s*[a-z]*" | grep -i "on" \
-	&& dunstify -r 2323 -u critical -t 0 "⚠ CAPS LOCK ON! ⚠" \
+	&& dunstify -r 2323 -u critical -t 0 "⚠ CAPS LOCK ON! ⚠" "Press '$( grep -B 1 'warncaps' .config/sxhkd/sxhkdrc | sed 1q )' to turn off." \
 	|| dunstify -r 2323 -u critical -t 10 ""
 
