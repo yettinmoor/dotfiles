@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 # Searches for media (pictures, videos, pdfs, etc.) in $1 OR home folder and opens them with xdg-open.
 
-fd -L -t f "(jpg|png|gif|mkv|mp4|m4v|avi|pdf|djvu|txt)$" "${1:-.}" | sed "s:$HOME:~:" | dmenu -i -l 15 -p "Read file:" | sed "s:~:$HOME:" | xargs -r0 setsid xdg-open 2>/dev/null &
+fd -L -E "repos/wallpapers*" -E "media/*" -t f "(jpg|png|gif|mkv|mp4|m4v|avi|pdf|djvu|txt)$" "${1:-.}" | sed "s:$HOME:~:" | dmenu -i -l 15 -p "Read file:" | sed "s:~:$HOME:" | xargs -r0 setsid xdg-open 2>/dev/null &
