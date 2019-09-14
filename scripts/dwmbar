@@ -6,7 +6,6 @@
 # E.g. "dwmbar rss" will update the RSS block WITHOUT calling all other functions, like the slow pacman -Qu command.
 
 sep='8 // 0'
-rp='   ' # right padding
 
 color() { echo -n "$1"; }
 
@@ -57,9 +56,11 @@ get_time() {
 case "$1" in
 	init)
 		grep -o "^get_[a-z]*" "$0" | while read f; do echo "${f#get_}:$($f)"; done >/tmp/dwmbar ;;
+	cat)
+		sed 's/[0-9A-E]//' /tmp/dwmbar && exit 0 ;;
 	*)
 		command -v "get_$1" >/dev/null || { echo "dwmbar does not have '$1' function."; exit 1; }
 		printf "%s\nwq\n" "/^$1:/s/:.*/:$( "get_$1" | sed -E 's/(\/|&)/\\\1/g')/" | ed -s /tmp/dwmbar ;;
 esac
 
-xsetroot -name "$( sed /tmp/dwmbar -e 's/^[a-z]*://; /^.[0-9]$/d' -e "$ !a\\${sep}" -e "$ a\\${rp}" | tr -d '\n' )"
+xsetroot -name "$( sed /tmp/dwmbar -e 's/^[a-z]*:\([0-9A-E]$\)\?//' -e "/^$/ !a\\${sep}" | tr -d '\n' )"
