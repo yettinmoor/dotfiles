@@ -4,17 +4,15 @@
 # Call "color [dwm statuscolor code]" to color the block.
 # Call dwmbar init to set everything up and dwmbar [function name] to update that function.
 # E.g. "dwmbar rss" will update the RSS block WITHOUT calling all other functions, like the slow pacman -Qu command.
-#
-# TODO: add more convenient coloring if I can figure out dwm pango
 
-sep="  |  "
-rp="   " # right padding
+sep='8 // 0'
+rp='   ' # right padding
 
-alias color="echo -n"
+color() { echo -n "$1"; }
 
 get_music() {
-	color 
-	mpc -f "%artist% - %title%" | tac | sed "/^volume/d; s/\\[\(.*\)\\].*/\1 /; s/paused/⏸/; s/playing/▶/;"
+	color 5
+	mpc | sed '/^volume/d; 2{s/^\[pa.*/⏸ /; s/^\[pl.*/▶ /}' | tac | tr -d '\n'
 }
 
 get_timer() {
@@ -24,11 +22,11 @@ get_timer() {
 get_weather() {
 	{ sed '13q;d' /tmp/weatherreport 2>/dev/null || return 1; } | \
 		grep -oE 'm(e+-])*[0-9]+' | sort -n -t 'm' -k 2n | sed -n '2,${$!d}; s/$/°/p' | tr '\n|m|+' ' ' | \
-		awk '{print "" $2, "" $1}'
+		awk '{print "3" $2, "4" $1}'
 }
 
 get_torrents() {
-	color 
+	color 4
 	{ transmission-remote -l 2>/dev/null || return 1; } | \
 		sed '1d; $d; s/.*\(Stopped\|n\/a\).*/./; s/.*\(100%\|Seeding\).*/@/; s/.*%.*/v/' | \
 		sort | uniq -c | awk '{print $2 $1}' | tr '\n' ' ' | sed "s/ $//"
@@ -39,7 +37,7 @@ get_packages() {
 }
 
 get_rss() {
-	color 
+	color 6
 	cat /tmp/newsupdate 2>/dev/null || newsboat -x print-unread | awk '/^[1-9]/ {print "!", $1}'
 }
 
@@ -48,7 +46,7 @@ get_volume() {
 }
 
 get_date() {
-	color 
+	color 2
 	date '+%a, %b %d (%V)'
 }
 
@@ -64,4 +62,4 @@ case "$1" in
 		printf "%s\nwq\n" "/^$1:/s/:.*/:$( "get_$1" | sed -E 's/(\/|&)/\\\1/g')/" | ed -s /tmp/dwmbar ;;
 esac
 
-xsetroot -name "$( sed /tmp/dwmbar -e 's/^[a-z]*://; /^.\?$/d' -e "$ !a\\${sep}" -e "$ a\\${rp}" | tr -d '\n' )"
+xsetroot -name "$( sed /tmp/dwmbar -e 's/^[a-z]*://; /^.[0-9]$/d' -e "$ !a\\${sep}" -e "$ a\\${rp}" | tr -d '\n' )"
