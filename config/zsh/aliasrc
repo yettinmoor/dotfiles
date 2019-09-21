@@ -1,0 +1,39 @@
+# vim: filetype=sh
+
+# Programs
+alias f='$FILE'
+alias v='$EDITOR'
+alias z='setsid zathura 2>/dev/null'
+alias magit='$EDITOR -c MagitOnly'
+alias x='sxivwrapper'
+alias mpv='mpv --input-ipc-server=/tmp/mpvsoc$( date +%s )'
+alias mpva='mpvwrapper'
+alias trem='transmission-remote'
+alias calcurse='calcurse -D ~/.config/calcurse'
+alias pw='pass -c'
+alias cw='ccwrapper'
+alias csi='chicken-csi -q'
+
+# General shortcuts
+alias mkd='mkdir -v'
+alias ls='ls -hN --color=auto --group-directories-first'
+alias grep='grep --color=auto'
+alias diff='diff --color=auto'
+alias ccat='highlight --out-format=ansi --force'
+alias ka='killall'
+alias p='sudo pacman'
+alias SS='sudo systemctl'
+alias upc='sudo pacman -Syu; dwmbar packages'
+alias dot='git -C "$HOME/repos/dotfiles"'
+
+# YouTube
+alias ytv='youtube-viewer -C'
+alias ytd='youtube-dl'
+alias ytda='youtube-dl -x -f "bestaudio[ext=mp3]/best"'
+
+# Convenience functions
+se()   { fd -t f -L . ~/.local ~/.config | fzf --reverse --color=16 | xargs -r "$EDITOR"; }
+src()  { . "$HOME/.profile"; echo "Reloaded bashrc, profile and shortcuts."; }
+kr()   { killall "$1"; setsid "$1" >/dev/null 2>&1 & echo "Killed and revived $1"; }
+xw()   { xwininfo -tree -root | grep "${1:-""}"; }
+wttr() { date -d "@$(stat -c '%Y' /tmp/weatherreport)" '+%A %R' | cat - /tmp/weatherreport | less -S; }
