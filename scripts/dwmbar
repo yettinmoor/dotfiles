@@ -5,7 +5,7 @@
 # Call dwmbar init to set everything up and dwmbar [function name] to update that function.
 # E.g. "dwmbar rss" will update the RSS block WITHOUT calling all other functions, like the slow pacman -Qu command.
 
-sep='8 // 0'
+sep=' / '
 
 color() { echo -n "$1"; }
 
@@ -18,14 +18,14 @@ get_timer() {
 	awk -F ';' '{printf "%s %02d:%02d :: ", $1, ($2-'"$( date +%s )"')/60, ($2-'"$( date +%s )"')%60}' /tmp/timer* 2>/dev/null | sed "s/[^0-9]*$//"
 }
 
-get_weather() {
-	{ sed '13q;d' /tmp/weatherreport 2>/dev/null || return 1; } | \
-		grep -oE 'm(e+-])*[0-9]+' | sort -n -t 'm' -k 2n | sed -n '2,${$!d}; s/$/°/p' | tr '\n|m|+' ' ' | \
-		awk '{print "3" $2, "4" $1}'
-}
+#get_weather() {
+	#{ sed '13q;d' /tmp/weatherreport 2>/dev/null || return 1; } | \
+		#grep -oE 'm(e+-])*[0-9]+' | sort -n -t 'm' -k 2n | sed -n '2,${$!d}; s/$/°/p' | tr '\n|m|+' ' ' | \
+		#awk '{print "3" $2, "4" $1}'
+#}
 
 get_torrents() {
-	color 4
+	#color 4
 	{ transmission-remote -l 2>/dev/null || return 1; } | \
 		sed '1d; $d; s/.*\(Stopped\|n\/a\).*/./; s/.*\(100%\|Seeding\).*/@/; s/.*%.*/v/' | \
 		sort | uniq -c | awk '{print $2 $1}' | tr '\n' ' ' | sed "s/ $//"
@@ -36,7 +36,7 @@ get_packages() {
 }
 
 get_rss() {
-	color 6
+	#color 6
 	cat /tmp/newsupdate 2>/dev/null || newsboat -x print-unread | awk '/^[1-9]/ {print "!", $1}'
 }
 
@@ -45,7 +45,7 @@ get_volume() {
 }
 
 get_date() {
-	color 2
+	#color 2
 	date '+%a, %b %d (%V)'
 }
 
@@ -56,11 +56,9 @@ get_time() {
 case "$1" in
 	init)
 		grep -o "^get_[a-z]*" "$0" | while read f; do echo "${f#get_}:$($f)"; done >/tmp/dwmbar ;;
-	cat)
-		sed 's/[0-9A-E]//' /tmp/dwmbar && exit 0 ;;
 	*)
 		command -v "get_$1" >/dev/null || { echo "dwmbar does not have '$1' function."; exit 1; }
 		printf "%s\nwq\n" "/^$1:/s/:.*/:$( "get_$1" | sed -E 's/(\/|&)/\\\1/g')/" | ed -s /tmp/dwmbar ;;
 esac
 
-xsetroot -name "$( sed /tmp/dwmbar -e 's/^[a-z]*:\([0-9A-E]$\)\?//' -e "/^$/ !a\\${sep}" | tr -d '\n' )"
+xsetroot -name "$( sed -E /tmp/dwmbar -e 's/^[a-z]*:([0-9A-E]$)?//' -e 's/.*.*/&0/' -e "/^$/!a\\${sep}" | tr -d '\n' | sed "s:$sep$:  :" )"
