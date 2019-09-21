@@ -1,12 +1,14 @@
 #!/bin/sh
 # Profile file. Runs on login.
 
+export SHELL="zsh"
 export PATH="$HOME/.local/bin:$PATH"
 export EDITOR="nvim"
 export TERMINAL="st"
 export BROWSER="firefox"
 export READER="zathura"
 export FILE="lf"
+export ZDOTDIR="$HOME/.config/zsh"
 
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 export INPUTRC="$HOME/.config/inputrc"
@@ -16,7 +18,7 @@ export LOCATION="Ljungsbro"
 export HOMEPAGE="$HOME/repos/homepage/home.html"
 export GIT="https://github.com/yettinmoor"
 
-source "$HOME/.$( basename "$SHELL" )rc"
+source "$HOME/.config/zsh/.zshrc"
 
 # Autorun startx
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x Xorg >/dev/null && exec startx

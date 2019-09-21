@@ -2,6 +2,6 @@
 [ "$1" = "-n" ] && notify-send "Transmission" "$TR_TORRENT_NAME complete." && exit 0
 
 pgrep -x transmission-da >/dev/null || ( transmission-daemon && notify-send "Starting torrent daemon..." && sleep 3 )
-transmission-remote -a "$@" >/dev/null && notify-send " Torrent(s) added."
-pgrep -x torup >/dev/null || torup &
+transmission-remote -a "$@" >/dev/null && notify-send " $# torrent(s) added."
+pgrep -x torup >/dev/null || setsid torup &
 $TERMINAL -e tremc

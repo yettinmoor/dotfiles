@@ -1,0 +1,17 @@
+#!/bin/sh
+
+. "$HOME/.xprofile"
+
+# dwmbar
+dwmbar init
+rssping &
+forecast &
+while pgrep -x mpd; do
+	mpc idle >/dev/null 2>&1
+	dwmbar music
+done &
+
+# dwm
+while true; do
+	dwm 2>> ~/.local/share/dwm.log
+done

@@ -2,6 +2,7 @@ bf ~/.config/files
 bd ~/.config/directories
 bm ~/.config/bookmarks
 cfb ~/.bashrc
+cfz ~/.config/zsh/.zshrc
 cfp ~/.profile
 cfk ~/.config/sxhkd/sxhkdrc
 cfa ~/.config/rcfiles/aliasrc
