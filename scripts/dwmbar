@@ -1,16 +1,9 @@
 #!/usr/bin/env sh
 # dwm statusbar script, somewhat inspired by i3blocks.
-# Declare a function starting with "get_" to add a block.
-# Call "color [dwm statuscolor code]" to color the block.
-# Call dwmbar init to set everything up and dwmbar [function name] to update that function.
-# E.g. "dwmbar rss" will update the RSS block WITHOUT calling all other functions, like the slow pacman -Qu command.
 
 sep=' / '
 
-color() { echo -n "$1"; }
-
 get_music() {
-	color 5
 	mpc | sed '/^volume/d; 2{s/^\[pa.*/⏸ /; s/^\[pl.*/▶ /}' | tac | tr -d '\n'
 }
 
@@ -25,7 +18,6 @@ get_timer() {
 #}
 
 get_torrents() {
-	#color 4
 	{ transmission-remote -l 2>/dev/null || return 1; } | \
 		sed '1d; $d; s/.*\(Stopped\|n\/a\).*/./; s/.*\(100%\|Seeding\).*/@/; s/.*%.*/v/' | \
 		sort | uniq -c | awk '{print $2 $1}' | tr '\n' ' ' | sed "s/ $//"
@@ -36,8 +28,7 @@ get_packages() {
 }
 
 get_rss() {
-	#color 6
-	cat /tmp/newsupdate 2>/dev/null || newsboat -x print-unread | awk '/^[1-9]/ {print "!", $1}'
+	cat /tmp/newsupdate 2>/dev/null || newsboat -x print-unread | awk '/^[1-9]/ {print "!" $1}'
 }
 
 get_volume() {
@@ -45,7 +36,6 @@ get_volume() {
 }
 
 get_date() {
-	#color 2
 	date '+%a, %b %d (%V)'
 }
 
