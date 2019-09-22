@@ -4,6 +4,9 @@
 autoload -U colors && colors
 PS1="%B %{$fg[blue]%}%~%{$reset_color%} $%b "
 
+# Time
+TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
+
 # History in cache directory:
 HISTSIZE=10000
 SAVEHIST=10000
