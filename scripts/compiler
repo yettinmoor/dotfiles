@@ -8,31 +8,24 @@ file="$( readlink -f "$1" )"
 dir="$( dirname "$file" )"
 base="${file%.*}"
 
-cd "$dir" || exit
+cd "$dir" || exit 1
 
-textype() {
-	xelatex --output-directory="$dir" "$base"
-	grep -qi 'addbibresource' "$file" && \
-		biber --input-directory "$dir" "$base" && \
-		xelatex --output-directory="$dir" "$base" && \
-		xelatex --output-directory="$dir" "$base"
-}
+if ls "Makefile" >/dev/null 2>&1; then
+	make
+	pwd -P | grep 'repos/bin' && sudo make install
+	exit 0
+fi
 
 case "$file" in
-	# Make install
-	*config\.h) sudo make install ;;
-
 	# Programming
 	*\.c)   ccwrapper "$file" ;;
 	*\.py)  python    "$file" ;;
 	*\.scm) csi       "$file" ;;
+	*\.cs)  mcs       "$file" ;;
 
 	# Document formatting
-	*\.tex) textype ;;
+	*\.tex) xelatex --output-directory="$dir" "$base" ;;
 	*\.md)  pandoc "$file" --pdf-engine=xelatex -o "$base".pdf ;;
-
-	# Sent
-	*\.sent) setsid sent "$file" 2>/dev/null & ;;
 
 	# Shebang
 	*) sed 1q "$file" | grep "^#!/" | sed "s/^#!//" | xargs -r -I % "$file" ;;

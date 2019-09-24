@@ -1,13 +1,4 @@
 #!/usr/bin/env sh
 # gcc wrapper meant for vim hotkey usage.
-# If Makefile exists, make. If in repo dir, sudo make install.
-# Otherwise compile file with gcc.
 
-dir=$( dirname "$1" )
-if ls "$dir/Makefile" >/dev/null 2>&1; then
-	cd "$dir"
-	make
-	pwd -P | grep 'repos/bin' && sudo make install
-else
-	gcc -std=c99 -Wall -g $( grep -q "<math.h>" "$1" && echo "-lm" ) -o "${1%.c}" "$1"
-fi
+gcc -std=c99 -Wall -g $( grep -q "<math.h>" "$1" && echo "-lm" ) -o "${1%.c}" "$1"
