@@ -12,7 +12,7 @@ export ZDOTDIR="$HOME/.config/zsh"
 
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 export INPUTRC="$HOME/.config/inputrc"
-export LESSHIST="-"
+export LESSHISTFILE="/dev/null"
 export XAUTHORITY="$HOME/.config/xorg/.Xauthority"
 
 export LOCATION="Ljungsbro"
