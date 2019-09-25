@@ -4,16 +4,12 @@
 setbg &
 
 # Keyboard
-setxkbmap -option caps:escape -option compose:sclk -variant nodeadkeys se
+setxkbmap -option caps:escape -option compose:sclk -variant nodeadkeys se &
 xmodmap -e 'keycode 135 = Super_R' &
 xset r rate 300 50 &
 
 # Xresources
-if [ -f ~/.config/xorg/Xresources.custom ]; then
-	xrdb ~/.config/xorg/Xresources.custom
-else
-	xrdb ~/.config/xorg/Xresources
-fi
+xrdb ~/.config/xorg/Xresources.custom 2>/dev/null || xrdb ~/.config/xorg/Xresources
 
 # Start up daemons
 sxhkd &
