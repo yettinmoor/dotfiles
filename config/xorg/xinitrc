@@ -1,6 +1,9 @@
 #!/bin/sh
 
-. "$HOME/.xprofile"
+[ -f "$HOME/.config/xorg/xprofile.custom" ] && \
+	. "$HOME/.config/xorg/xprofile.custom"
+
+. "$HOME/.config/xorg/xprofile"
 
 # dwmbar
 dwmbar init

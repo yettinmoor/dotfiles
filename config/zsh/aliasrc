@@ -33,7 +33,7 @@ alias ytda='youtube-dl -x -f "bestaudio[ext=mp3]/best"'
 
 # Convenience functions
 se()   { fd -t f -L . ~/.local ~/.config | fzf --reverse --color=16 | xargs -r "$EDITOR"; }
-src()  { . "$HOME/.profile"; echo "Reloaded profile."; }
+src()  { . "$HOME/.config/profile"; echo "Reloaded profile."; }
 kr()   { killall "$1"; setsid "$1" >/dev/null 2>&1 & echo "Killed and revived $1"; }
 xw()   { xwininfo -tree -root | grep "${1:-""}"; }
 wttr() { date -d "@$(stat -c '%Y' /tmp/weatherreport)" '+%A %R' | cat - /tmp/weatherreport | less -S; }

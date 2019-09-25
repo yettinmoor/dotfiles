@@ -2,8 +2,5 @@
 *.hinting: true
 *.hintstyle: hintslight
 
-!*.foreground:	#F7F7F7
-!*.background:	#282A36
 *.background:	#031320
 *.alpha: 0.80
-!*.alpha: 1

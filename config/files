@@ -2,11 +2,9 @@ bf ~/.config/files
 bd ~/.config/directories
 bm ~/.config/bookmarks
 cfz ~/.config/zsh/.zshrc
-cfp ~/.profile
+cfp ~/.config/profile
 cfk ~/.config/sxhkd/sxhkdrc
 cfa ~/.config/zsh/aliasrc
 cfv ~/.config/nvim/init.vim
 cff ~/.config/lf/lfrc
 cfd ~/.local/bin/dwmbar
-cfx ~/.xinitrc
-cfX ~/.Xresources
