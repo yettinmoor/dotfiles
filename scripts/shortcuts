@@ -1,17 +1,14 @@
 #!/bin/bash
 # Output locations. Unactivated progs should go to /dev/null.
-shell_shortcuts="$HOME/.config/zsh/shortcutrc"
-lf_shortcuts="$HOME/.config/lf/lfshortcuts"
+sh_file="$HOME/.config/zsh/shortcutrc"
+lf_file="$HOME/.config/lf/lfshortcuts"
 
-# Remove, prepare files
-printf "# vim: filetype=sh\\nalias " > "$shell_shortcuts"
-printf "# vim: filetype=conf\\n" > "$lf_shortcuts"
-
-# Format `directories` in the correct syntax and sent it to all configs.
+# Directories
 sed "s/\s*#.*$//; /^\s*$/d" "$HOME/.config/directories" | tee \
-	>( awk '{print $1"=\"cd "$2" && ls\" \\"}' >> "$shell_shortcuts" ) \
-	| awk '{print "map g" $1, "cd", $2 "\nmap M" $1, "$mv $fx", $2}' >> "$lf_shortcuts"
-# Format `files` in the correct syntax and sent it to all configs.
+	>( awk '{print "alias", $1"=\"cd "$2" && ls\""}' > "$sh_file" ) \
+	| awk '{print "map g" $1, "cd", $2 "\nmap M" $1, "$mv $fx", $2}' > "$lf_file"
+
+# Files
 sed "s/\s*#.*$//; /^\s*$/d" "$HOME/.config/files" | tee \
-	>( awk '{print $1"=\"$EDITOR "$2"\" \\"}' >> "$shell_shortcuts" ) \
-	| awk '{print "map", $1, "shell $EDITOR", $2}' >> "$lf_shortcuts"
+	>( awk '{print "alias", $1"=\"$EDITOR "$2"\""}' >> "$sh_file" ) \
+	| awk '{print "map", $1, "shell $EDITOR", $2}' >> "$lf_file"

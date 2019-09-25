@@ -1,9 +1,9 @@
 h ~/
 dc ~/docs
-pr ~/docs/programming
-lng ~/docs/language
+pr ~/docs/prog
+lng ~/docs/lang
 eb ~/docs/ebooks
-cv ~/docs/CV
+cv ~/docs/cv
 wo ~/docs/work
 sk ~/docs/skola
 dl ~/dl
