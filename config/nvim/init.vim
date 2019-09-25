@@ -9,16 +9,17 @@ if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
 endif
 call plug#begin('~/.config/nvim/plugged')
 Plug 'tpope/vim-surround'
-Plug 'scrooloose/nerdtree'
-Plug 'junegunn/goyo.vim'
-Plug 'PotatoesMaster/i3-vim-syntax'
-Plug 'jreybert/vimagit'
-Plug 'vimwiki/vimwiki'
-Plug 'bling/vim-airline'
 Plug 'tpope/vim-commentary'
-Plug 'vifm/vifm.vim'
-Plug 'kovetskiy/sxhkd-vim'
+Plug 'vim-scripts/ReplaceWithRegister'
+Plug 'christoomey/vim-sort-motion'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'jreybert/vimagit'
+Plug 'scrooloose/nerdtree'
+
 Plug 'luochen1990/rainbow'
+Plug 'bling/vim-airline'
+Plug 'kovetskiy/sxhkd-vim'
+Plug 'junegunn/goyo.vim'
 let g:rainbow_active = 1
 call plug#end()
 
@@ -34,15 +35,14 @@ set shiftwidth=4
 set nocompatible
 set wildmode=longest,list,full
 
-filetype plugin on
 set encoding=utf-8
 set number relativenumber
-syntax on
 set bg=dark
 colorscheme gruvbox
 hi Normal guibg=NONE ctermbg=NONE
 
 command! W w
+map Q <nop>
 
 nnoremap c "_c
 nmap <leader>ft :set filetype=
@@ -50,6 +50,9 @@ map <leader>o :setlocal spell! spelllang=en_us<CR>
 
 nnoremap <leader>g :Magit<CR>
 map <leader>ff :Goyo \| set linebreak \| hi Normal guibg=NONE ctermbg=NONE<CR>
+
+map <C-n> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 set splitbelow splitright
 map <C-h> <C-w>h
@@ -88,48 +91,5 @@ inoremap ( ()<Esc>i
 inoremap [ []<Esc>i
 inoremap { {}<Esc>i
 
-" sh
-autocmd FileType sh inoremap <leader>n >/dev/null
-autocmd FileType sh inoremap <leader>N >/dev/null 2>&1
-
-" C
-autocmd FileType c,cpp inoremap <leader>4 /*  */<Esc>3ha
-autocmd FileType c,cpp inoremap <leader>pr printf()<++><Esc>F(a
-autocmd FileType c,cpp inoremap <leader>if if () {<Enter><++><Enter>}<Esc>2k0f(a
-autocmd FileType c,cpp inoremap <leader>ti () ? <++> : <++> <Esc>F(a
-autocmd FileType c,cpp inoremap <leader>wh while () {<Enter><++><Enter>}<Esc>2k0f(a
-autocmd FileType c,cpp inoremap <leader>fr for () {<Enter><++><Enter>}<Esc>2k0f(a
-autocmd FileType c,cpp inoremap <leader>fn <Space>(<++>) {<Enter><++><Enter>}<Esc>2k0f(hi
-
-" Python
-autocmd FileType python inoremap <leader>pr print()<++><Esc>F(a
-autocmd FileType python inoremap <leader>if if :<Enter><++><Esc>k0f:i
-autocmd FileType python inoremap <leader>wh while :<Enter><++><Esc>k0f:i
-autocmd FileType python inoremap <leader>fr for :<Enter><++><Esc>k0f:i
-
-" Scheme
-autocmd FileType scheme set tabstop=2 shiftwidth=2 expandtab
-
-" LaTeX
-autocmd VimLeave *.tex !texclear %
-autocmd FileType tex map <leader>w :w !detex \| wc -w<CR>
-autocmd FileType tex inoremap ,bf \textbf{}<++><Esc>T{i
-autocmd FileType tex inoremap ,it \textit{}<++><Esc>T{i
-autocmd FileType tex inoremap ,ol \begin{enumerate}<Enter><Enter>\end{enumerate}<Enter><Enter><++><Esc>3kA\item<Space>
-autocmd FileType tex inoremap ,ul \begin{itemize}<Enter><Enter>\end{itemize}<Enter><Enter><++><Esc>3kA\item<Space>
-autocmd FileType tex inoremap ,li <Enter>\item<Space>
-autocmd FileType tex inoremap ,ref \ref{}<Space><++><Esc>T{i
-autocmd FileType tex inoremap ,tab \begin{tabular}<Enter><++><Enter>\end{tabular}<Esc>2kA{}<Esc>i
-autocmd FileType tex inoremap ,a \href{}{<++>}<Space><++><Esc>2T{i
-autocmd FileType tex inoremap ,sc \textsc{}<Space><++><Esc>T{i
-autocmd FileType tex inoremap ,sec \section{}<Enter><Enter><++><Esc>2kf}i
-autocmd FileType tex inoremap ,ssec \subsection{}<Enter><Enter><++><Esc>2kf}i
-autocmd FileType tex inoremap ,sssec \subsubsection{}<Enter><Enter><++><Esc>2kf}i
-autocmd FileType tex inoremap ,beg \begin{}<Enter><++><Enter>\end{<++>}2k0f{a
-autocmd FileType tex inoremap ,tt \texttt{}<Space><++><Esc>T{i
-autocmd FileType tex inoremap ,bt {\blindtext}
-
-"html/css
-autocmd FileType html,css set expandtab
-autocmd FileType html,css set tabstop=2
-autocmd FileType html,css set shiftwidth=2
+" Source snippets from separate file
+so ~/.config/nvim/snippets.vim
