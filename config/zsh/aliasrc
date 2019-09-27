@@ -29,6 +29,7 @@ alias dot='git -C "$HOME/repos/dotfiles"'
 # YouTube
 alias ytv='youtube-viewer -C'
 alias ytd='youtube-dl'
+alias ytdp='youtube-dl -o "%(playlist_index)s - %(title)s.%(ext)s"'
 alias ytda='youtube-dl -x -f "bestaudio[ext=mp3]/best"'
 
 # Convenience functions
