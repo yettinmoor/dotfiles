@@ -15,10 +15,10 @@ Plug 'christoomey/vim-sort-motion'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'jreybert/vimagit'
 Plug 'scrooloose/nerdtree'
-
 Plug 'luochen1990/rainbow'
 Plug 'bling/vim-airline'
 Plug 'kovetskiy/sxhkd-vim'
+Plug 'sophacles/vim-processing'
 Plug 'junegunn/goyo.vim'
 let g:rainbow_active = 1
 call plug#end()
