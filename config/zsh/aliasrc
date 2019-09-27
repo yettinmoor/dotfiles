@@ -13,9 +13,9 @@ alias calcurse='calcurse -D ~/.config/calcurse'
 alias pw='pass -c'
 alias cw='ccwrapper'
 alias csi='chicken-csi -q'
+alias oct='octave -q'
 
 # General shortcuts
-alias mkd='mkdir -v'
 alias ls='ls -hN --color=auto --group-directories-first'
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
@@ -32,6 +32,7 @@ alias ytd='youtube-dl'
 alias ytda='youtube-dl -x -f "bestaudio[ext=mp3]/best"'
 
 # Convenience functions
+mkd()  { mkdir -v "$@"; [ $# -eq 1 ] && cd "$1"; }
 se()   { fd -t f -L . ~/.local ~/.config | fzf --reverse --color=16 | xargs -r "$EDITOR"; }
 src()  { . "$HOME/.config/profile"; echo "Reloaded profile."; }
 kr()   { killall "$1"; setsid "$1" >/dev/null 2>&1 & echo "Killed and revived $1"; }

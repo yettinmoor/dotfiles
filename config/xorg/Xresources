@@ -1,7 +1,6 @@
-*.font:	Monospace:pixelsize=20
+*.font:	Monospace:pixelsize=18
 *.hinting: true
 *.hintstyle: hintslight
 
-/* *.background:	#031320 */
 *.background:	#030303
 *.alpha: 0.80

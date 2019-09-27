@@ -4,7 +4,7 @@
 setbg &
 
 # Keyboard
-setxkbmap -option caps:escape -option compose:sclk -variant nodeadkeys se &
+setxkbmap -option caps:escape -option compose:sclk -variant nodeadkeys se
 xmodmap -e 'keycode 135 = Super_R' &
 xset r rate 300 50 &
 
