@@ -1,26 +1,15 @@
 #!/usr/bin/env sh
-# Moves photos from DCIM and WhatsApp directories in synced phone to repo directory.
-# Also removes "IMG-" prefix and replaces "_" with "-" for convenient naming.
+# Moves photos from synced phone to repos for later filtering.
 
-[ -d "$HOME/phone" ] || exit 1
+[ -d ~/phone ] || exit 1
+[ -d ~/repos/phone ] || mkdir -p ~/repos/phone
 
-wadir="$HOME/phone/WhatsApp/Media/WhatsApp Images"
-camdir="$HOME/phone/DCIM"
+cd ~/phone || exit 1
+fd --exclude 'WallPaper' '(jp?g|png)$' -x sh -c '\
+	jhead -autorot {}; \
+	mv -vf {} ~/repos/phone' 2>/dev/null
 
-destdir="$HOME/pics/photos/$( date +%Y )"
-[ -d "$destdir" ] || mkdir -p "$destdir"
-
-{
-	cd "$wadir" || exit 1;
-	mv -f ./*.jp*g "$destdir";
-	rm -r ./*;
-
-	cd "$camdir" || exit 1;
-	jhead -autorot ./**/*.jp*g;
-	mv -f ./**/*.jp*g "$destdir";
-
-	cd "$destdir" || exit 1;
-	for f in ./*.jp*g; do
-		mv "$f" "$( echo "$f" | sed "s/IMG-//; s/Screenshot-//; s/_/-/" )"
-	done;
-} 2>/dev/null
+cd ~/repos/phone || exit 1
+for f in *; do
+	mv "$f" "$( echo $f | sed 's/IMG-//; s/_/-/g' )" 2>/dev/null
+done
