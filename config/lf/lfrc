@@ -74,6 +74,7 @@ source ~/.config/lf/lfshortcuts
 
 map <enter> shell
 map s $$SHELL
+map i $~/.config/lf/scope.sh $f | less
 
 map U clear
 
