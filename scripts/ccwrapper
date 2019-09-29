@@ -1,4 +1,0 @@
-#!/usr/bin/env sh
-# gcc wrapper meant for vim hotkey usage.
-
-gcc -std=c99 -Wall -g $( grep -q "<math.h>" "$1" && echo "-lm" ) -o "${1%.c}" "$1"
