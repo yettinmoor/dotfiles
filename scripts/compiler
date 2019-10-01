@@ -1,8 +1,5 @@
 #!/usr/bin/env sh
-# Compiles or runs programs e.g. C, python.
-# Formats .tex, groff (.mom, .ms), .rmd, .md into pdf.
-# Opens .sent files as sent presentations.
-# Runs scripts based on extension or shebang
+# All-in-one file compiler.
 
 file="$( readlink -f "$1" )"
 dir="$( dirname "$file" )"
@@ -18,7 +15,7 @@ fi
 
 case "$file" in
 	# Programming
-	*\.c)   gcc -std=c99 -Wall -g -o "$base" "$file" ;;
+	*\.c)   CFLAGS="-std=c99 -Wall -g" make "$base" ;;
 	*\.py)  python "$file" ;;
 	*\.scm) csi    "$file" ;;
 	*\.cs)  mcs    "$file" ;;
