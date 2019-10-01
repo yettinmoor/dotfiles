@@ -21,4 +21,4 @@ for f in ${@:-*}; do
 done
 
 [ $( echo $out | wc -l ) -gt 1 ] && out="${out}TOTAL $tot lines"
-echo "$out" | column -t -R 2
+printf "$out" | column -t -R 2
