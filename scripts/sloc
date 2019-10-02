@@ -14,7 +14,7 @@ for f in ${@:-*}; do
 	[ -f $f ] || continue
 	n=$( count $f )
 	out="${out}$f $n\n"
-	let tot+=n
+	tot=$((tot+n))
 done
 
 [ $( printf "$out" | wc -l ) -gt 1 ] && out="${out}TOTAL $tot"
