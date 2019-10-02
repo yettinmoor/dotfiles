@@ -18,13 +18,13 @@ set scrolloff 10
 
 # COMMANDS
 cmd open ${{
-	case $(file --mime-type $f -b) in
+	case $(file --mime-type "$f" -b) in
 		text/*)
-			$EDITOR $f;;
+			$EDITOR "$f";;
 		*)
 			[ -x "$f" ] \
 				&& lf -remote "send $id !$f" \
-				|| setsid $OPENER $f >/dev/null 2>/dev/null & ;;
+				|| setsid $OPENER "$f" >/dev/null 2>/dev/null & ;;
 	esac
 }}
 
