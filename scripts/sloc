@@ -7,18 +7,15 @@ count() {
 		*.tex)		com="%" ;;
 		*)			com="#" ;;
 	esac
-	sed -E "/^\s*$com/d;/^\s*$/d" $1 | wc -l
+	grep -cvE "(^\s*$com|^\s*$)" "$1"
 }
-
-tot=0
-out=
 
 for f in ${@:-*}; do
 	[ -f $f ] || continue
 	n=$( count $f )
-	out="${out}$f $n lines\n"
-	tot=$(( tot + n ))
+	out="${out}$f $n\n"
+	let tot+=n
 done
 
-[ $( echo $out | wc -l ) -gt 1 ] && out="${out}TOTAL $tot lines"
-echo "$out" | column -t -R 2
+[ $( printf "$out" | wc -l ) -gt 1 ] && out="${out}TOTAL $tot"
+printf "$out" | column -t -R 2
