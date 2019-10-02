@@ -1,3 +1,3 @@
 #!/usr/bin/env sh
 # Simple sxiv wrapper that handles all the disown garbage
-setsid sxiv -at "$@". >/dev/null 2>&1
+if [ "$1" = '-r' ]; then sxiv -atr . >/dev/null 2>&1; else ls -v | sxiv -ait >/dev/null 2>&1; fi

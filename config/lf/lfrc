@@ -89,8 +89,8 @@ map mkd push :mkdir<space>
 map o &mimeopen $f
 map O $mimeopen --ask $f
 
-map x &sxivwrapper
-map X &sxivwrapper -r
+map x &setsid sxivwrapper
+map X &setsid sxivwrapper -r
 
 map P &mpvwrapper $fs
 
