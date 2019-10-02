@@ -24,6 +24,7 @@ alias p='sudo pacman'
 alias SS='sudo systemctl'
 alias upc='sudo pacman -Syu; dwmbar packages'
 alias dot='git -C "$HOME/repos/dotfiles"'
+alias myip='curl ifconfig.me'
 
 # YouTube
 alias ytv='youtube-viewer -C'
