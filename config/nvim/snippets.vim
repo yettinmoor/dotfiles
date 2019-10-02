@@ -47,4 +47,5 @@ autocmd FileType html,css set shiftwidth=2
 autocmd BufRead,BufNewFile *.asm set filetype=nasm
 
 " Processing
+autocmd FileType processing set tabstop=4 shiftwidth=4
 autocmd FileType processing map <leader>c :w! \| make<CR>
