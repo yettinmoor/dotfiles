@@ -10,6 +10,7 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+Plug 'vim-syntastic/syntastic'
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'christoomey/vim-sort-motion'
 Plug 'michaeljsmith/vim-indent-object'
@@ -17,10 +18,10 @@ Plug 'jreybert/vimagit'
 Plug 'scrooloose/nerdtree'
 Plug 'luochen1990/rainbow'
 Plug 'bling/vim-airline'
+Plug 'lervag/vimtex'
 Plug 'kovetskiy/sxhkd-vim'
 Plug 'sophacles/vim-processing'
 Plug 'junegunn/goyo.vim'
-let g:rainbow_active = 1
 call plug#end()
 
 " Basics
@@ -38,8 +39,19 @@ set wildmode=longest,list,full
 set encoding=utf-8
 set number relativenumber
 set bg=dark
+
+let g:gruvbox_bold='0'
 colorscheme gruvbox
 hi Normal guibg=NONE ctermbg=NONE
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 command! W w
 map Q <nop>
@@ -87,9 +99,9 @@ map <leader><leader> <Esc>/<++><Enter>"_c4l
 
 " Autocomplete & highlight brackets
 hi MatchParen cterm=underline ctermbg=none ctermfg=none
-inoremap ( ()<Esc>i
-inoremap [ []<Esc>i
-inoremap { {}<Esc>i
+inoremap ( ()<Left>
+inoremap [ []<Left>
+inoremap { {}<Left>
 
 " Source snippets from separate file
 so ~/.config/nvim/snippets.vim
