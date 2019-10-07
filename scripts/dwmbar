@@ -36,7 +36,8 @@ get_volume() {
 }
 
 get_date() {
-	date '+%a, %b %d (%V)'
+	#date '+%a, %b %d (%V)'
+	japdate.py
 }
 
 get_time() {
@@ -45,7 +46,7 @@ get_time() {
 
 case "$1" in
 	init)
-		grep -o "^get_[a-z]*" "$0" | while read f; do echo "${f#get_}:$($f)"; done >/tmp/dwmbar ;;
+		grep -o "^get_[a-z]*" "$0" | while read -r f; do echo "${f#get_}:$($f)"; done >/tmp/dwmbar ;;
 	*)
 		command -v "get_$1" >/dev/null || { echo "dwmbar does not have '$1' function."; exit 1; }
 		printf "%s\nwq\n" "/^$1:/s/:.*/:$( "get_$1" | sed -E 's/(\/|&)/\\\1/g')/" | ed -s /tmp/dwmbar ;;
