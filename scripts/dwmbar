@@ -37,7 +37,7 @@ get_volume() {
 
 get_date() {
 	#date '+%a, %b %d (%V)'
-	japdate.py
+	japdate
 }
 
 get_time() {
