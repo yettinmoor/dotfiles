@@ -10,7 +10,6 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-Plug 'vim-syntastic/syntastic'
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'christoomey/vim-sort-motion'
 Plug 'michaeljsmith/vim-indent-object'
@@ -47,11 +46,6 @@ hi Normal guibg=NONE ctermbg=NONE
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
 
 command! W w
 map Q <nop>
