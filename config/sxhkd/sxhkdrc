@@ -40,7 +40,7 @@ super + n
 super + shift + n
   rssping
 super + m
-  $TERMINAL -f mono:pixelsize=19 -e ncmpcpp
+  $TERMINAL -e ncmpcpp
 super + shift + m
   audio mute
 
@@ -69,7 +69,8 @@ super + F7
   open /media
 super + F8
   warncaps
-super + {F9,F10} dmenu{mount,umount}
+super + {F9,F10}
+  dmenu{mount,umount}
 
 # Audio
 super + {_,shift +} BackSpace
