@@ -7,6 +7,10 @@ get_music() {
 	mpc | sed '/^volume/d; 2{s/^\[pa.*/⏸ /; s/^\[pl.*/▶ /}' | tac | tr -d '\n'
 }
 
+get_ibus() {
+	ib show
+}
+
 get_timer() {
 	awk -F ';' '{printf "%s %02d:%02d :: ", $1, ($2-'"$( date +%s )"')/60, ($2-'"$( date +%s )"')%60}' /tmp/timer* 2>/dev/null | sed "s/[^0-9]*$//"
 }

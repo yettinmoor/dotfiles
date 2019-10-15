@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+
+case "$1" in
+	on)
+		ibus-daemon -drx ;;
+	off)
+		ibus exit ;;
+	toggle)
+		pgrep ibus || exit 1
+		if [ "$( ibus engine )" = "anthy" ]; then ibus engine xkb:se::swe; else ibus engine anthy; fi
+		dunstify -r 9191 -u critical "$( ib show )" ;;
+	show)
+		ibus engine 2>/dev/null | sed 's/anthy/あ/; s/xkb.*/Aa/'
+		exit ;;
+esac
+
+dwmbar ibus
