@@ -19,6 +19,10 @@ export LOCATION="Ljungsbro"
 export HOMEPAGE="$HOME/repos/homepage/home.html"
 export GIT="https://github.com/yettinmoor"
 
+export GTK_IM_MODULE='ibus'
+export QT_IM_MODULE='ibus'
+export XMODIFIERS=@im='ibus'
+
 source "$HOME/.config/zsh/.zshrc"
 
 # Autorun startx
