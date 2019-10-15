@@ -2,7 +2,7 @@
 # Profile file. Runs on login.
 
 export SHELL="zsh"
-export PATH="$PATH:$HOME/.local/bin:$HOME/.config/sympath"
+export PATH="$HOME/.local/bin:$HOME/.config/sympath:$PATH"
 export EDITOR="nvim"
 export TERMINAL="st"
 export BROWSER="firefox"
