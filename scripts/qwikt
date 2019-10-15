@@ -1,4 +1,0 @@
-#!/usr/bin/env sh
-# Quick wiktionary search. Going through duckduckgo makes non-ASCII chars e.g. ü work properly on surf.
-in=$( dmenu -p "Wiktionary:" <&- ) || exit 1
-echo "!wt $in" | urlparse | xargs -r0 $BROWSER

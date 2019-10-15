@@ -49,8 +49,6 @@ super + comma
   dmenuunicode
 super + {_,shift +} period
   {qcopy,qpass}
-super + section
-  qwikt
 super + {_,shift +} Insert
   {show,qr}clip
 super + Print
