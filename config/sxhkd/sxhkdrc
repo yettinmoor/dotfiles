@@ -53,8 +53,8 @@ super + {_,shift +} Insert
   {show,qr}clip
 super + Print
   maimpick
-super + section
-  ib toggle
+super + {_,shift +} section
+  ib {toggle, onoff}
 
 # Function keys
 super + F1

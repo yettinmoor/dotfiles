@@ -1,12 +1,14 @@
 #!/usr/bin/env sh
 
 case "$1" in
+	onoff)
+		if pgrep ibus 2>/dev/null; then ibus exit; else ibus-daemon -drx; fi ;;
 	on)
 		ibus-daemon -drx ;;
 	off)
 		ibus exit ;;
 	toggle)
-		pgrep ibus || exit 1
+		pgrep ibus 2>/dev/null || exit 1
 		if [ "$( ibus engine )" = "anthy" ]; then ibus engine xkb:se::swe; else ibus engine anthy; fi
 		dunstify -r 9191 -u critical "$( ib show )" ;;
 	show)
