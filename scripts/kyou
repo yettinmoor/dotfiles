@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-date '+%w %m %d %V' | awk '{split("日月火水木金土", days, ""); printf("(%c) 月 %d 日 %d (%d)", days[$1+1], $2, $3, $4)}'
+date '+%Y %m %d %w %V' | awk '{split("日月火水木金土", days, ""); printf("%d年%d月%d日 (%c) v%d", $1, $2, $3, days[$4+1], $5)}'
