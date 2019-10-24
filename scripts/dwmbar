@@ -28,7 +28,7 @@ get_torrents() {
 }
 
 get_packages() {
-	pacman -Qu | grep -cv "ignored" | sed "/^0/d; s/^[0-9]/? &/"
+	pacman -Qu | grep -cv "ignored" | awk '/^[1-9]/ {print "?" $1}'
 }
 
 get_rss() {
