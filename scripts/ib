@@ -10,10 +10,8 @@ case "$1" in
 	toggle)
 		pgrep ibus 2>/dev/null || exit 1
 		if [ "$( ibus engine )" = "anthy" ]; then ibus engine xkb:se::swe; else ibus engine anthy; fi
-		dunstify -r 9191 -u critical "$( ib show )" ;;
+		dunstify -r 9191 -u critical "$( ib show )"
+		dwmbar ibus ;;
 	show)
 		ibus engine 2>/dev/null | sed 's/anthy/あ/; s/xkb.*/Aa/'
-		exit ;;
 esac
-
-dwmbar ibus
