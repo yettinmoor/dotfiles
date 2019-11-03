@@ -2,14 +2,21 @@
 
 case "$1" in
 	onoff)
-		if pgrep ibus 2>/dev/null; then ibus exit; else ibus-daemon -drx; fi ;;
+		if pgrep ibus 2>/dev/null; then ib off; else ib on; fi ;;
 	on)
-		ibus-daemon -drx ;;
+		ibus-daemon -drx
+		sleep 1
+		dwmbar ibus ;;
 	off)
-		ibus exit ;;
+		ibus exit
+		dwmbar ibus ;;
 	toggle)
 		pgrep ibus 2>/dev/null || exit 1
-		if [ "$( ibus engine )" = "anthy" ]; then ibus engine xkb:se::swe; else ibus engine anthy; fi
+		if [ "$( ibus engine )" = "anthy" ]; then
+			ibus engine xkb:se::swe
+		else
+			ibus engine anthy
+		fi
 		dunstify -r 9191 -u critical "$( ib show )"
 		dwmbar ibus ;;
 	show)
