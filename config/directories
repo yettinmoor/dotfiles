@@ -21,7 +21,6 @@ ph ~/pics/photos
 wp ~/pics/wallpapers
 pd ~/podcasts
 r ~/repos
-bn ~/repos/bin
 dt ~/repos/dotfiles
 hp ~/repos/homepage
 cf ~/.config

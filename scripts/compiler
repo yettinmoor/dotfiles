@@ -8,8 +8,7 @@ base="${file%.*}"
 cd "$dir" || exit 1
 
 if ls "Makefile" >/dev/null 2>&1; then
-	make
-	pwd -P | grep 'repos/bin' && sudo make install
+	if pwd -P | grep "$HOME/repos"; then sudo make install; else make; fi
 	exit 0
 fi
 
