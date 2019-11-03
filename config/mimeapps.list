@@ -10,4 +10,5 @@ application/pdf=pdf.desktop;
 image/png=img.desktop;
 image/jpeg=img.desktop;
 image/gif=img.desktop;
+audio/mpeg=audio.desktop;
 application/rss+xml=rss.desktop
