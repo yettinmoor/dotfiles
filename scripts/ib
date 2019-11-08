@@ -20,5 +20,5 @@ case "$1" in
 		dunstify -r 9191 -u critical "$( ib show )"
 		dwmbar ibus ;;
 	show)
-		ibus engine 2>/dev/null | sed 's/anthy/あ/; s/xkb.*/Aa/'
+		ibus engine 2>/dev/null | sed 's/anthy/文/; s/xkb.*/Aa/'
 esac
