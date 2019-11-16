@@ -54,7 +54,7 @@ esac
 # Handle mimetype.
 case "$( file -b --mime-type -- "$file" | tr '[:upper:]' '[:lower:]' )" in
 	# Text
-	text/*|*/xml)
+	text/*|*/xml|*/json)
 		highlight -t 4 -O ansi -- "$file" || cat -- "$file"
 		exit 0 ;;
 	# Image
