@@ -1,24 +1,16 @@
 #!/usr/bin/env sh
 
 case "$1" in
-	onoff)
-		if pgrep ibus 2>/dev/null; then ib off; else ib on; fi ;;
-	on)
-		ibus-daemon -drx
-		sleep 1
-		dwmbar ibus ;;
-	off)
-		ibus exit
+	power)
+		if pgrep ibus 2>/dev/null; then ibus exit; else ibus-daemon -drx; sleep .5; fi
 		dwmbar ibus ;;
 	toggle)
 		pgrep ibus 2>/dev/null || exit 1
-		if [ "$( ibus engine )" = "anthy" ]; then
-			ibus engine xkb:se::swe
-		else
-			ibus engine anthy
-		fi
-		dunstify -r 9191 -u critical "$( ib show )"
+		ibus engine "$( [ "$( ibus engine )" = 'kkc' ] && echo 'xkb:se::swe' || echo 'kkc' )"
+		dunstify -r 9191 -u critical "$( $0 show )"
 		dwmbar ibus ;;
 	show)
-		ibus engine 2>/dev/null | sed 's/anthy/文/; s/xkb.*/Aa/'
+		ibus engine 2>/dev/null | sed 's/kkc/文/; s/xkb.*/Aa/' ;;
+	config)
+		ibus-setup 2>/dev/null ;;
 esac

@@ -54,7 +54,7 @@ super + {_,shift +} Insert
 super + Print
   maimpick
 super + {_,shift +} section
-  ib {toggle, onoff}
+  ib {toggle, power}
 
 # Function keys
 super + F1
