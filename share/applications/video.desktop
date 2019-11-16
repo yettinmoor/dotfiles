@@ -1,0 +1,4 @@
+[Desktop Entry]
+Type=Application
+Name=Video
+Exec=mpv --input-ipc-server=/tmp/mpvsoc$(date +%s) %u
