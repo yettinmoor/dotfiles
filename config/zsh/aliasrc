@@ -3,6 +3,7 @@
 # Programs
 alias f='$FILE'
 alias v='$EDITOR'
+alias sv='sudoedit'
 alias z='setsid zathura 2>/dev/null'
 alias magit='$EDITOR -c MagitOnly'
 alias x='setsid sxivwrapper &'
