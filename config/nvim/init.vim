@@ -49,6 +49,7 @@ set statusline+=%*
 
 autocmd TermOpen * set nonumber norelativenumber
 autocmd TermOpen * startinsert
+tnoremap <Esc> <C-\><C-n>
 
 command! W w
 map Q <nop>
