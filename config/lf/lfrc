@@ -5,6 +5,7 @@ set shellopts '-eu'
 set previewer ~/.config/lf/scope.sh
 set ifs "\n"
 set scrolloff 10
+set icons
 
 # Adjust columns on startup
 %{{
