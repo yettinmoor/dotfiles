@@ -4,6 +4,7 @@ set selection-clipboard clipboard
 set guioptions none
 set statusbar-home-tilde true
 set page-padding 1
+set font "mono 14"
 
 map u scroll half-up
 map d scroll half-down
