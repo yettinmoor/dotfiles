@@ -27,6 +27,8 @@ super + s
   $TERMINAL -e calcurse -D ~/.config/calcurse
 super + d
   dmenu_run
+super + shift + d
+  $TERMINAL -e cordless
 super + x
   lockscreen
 super + shift + x
