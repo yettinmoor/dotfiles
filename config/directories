@@ -28,6 +28,5 @@ sc ~/.local/bin
 lc ~/.local/share
 pn ~/phone
 dr ~/phone/Dropbox
-R /
 M /mnt
 T /tmp
