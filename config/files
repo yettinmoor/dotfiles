@@ -1,6 +1,7 @@
 bf ~/.config/files
 bd ~/.config/directories
-bm ~/.config/bookmarks
+bm ~/.config/urlparse/bookmarks
+bse ~/.config/urlparse/searchengines
 cfz ~/.config/zsh/.zshrc
 cfp ~/.config/profile
 cfk ~/.config/sxhkd/sxhkdrc
