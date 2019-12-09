@@ -34,7 +34,7 @@ super + shift + p
 super + a
   $TERMINAL -e python -q
 super + shift + a
-  $TERMINAL -e pulsemixer
+  anki
 super + s
   $TERMINAL -e calcurse -D ~/.config/calcurse
 super + d
@@ -83,7 +83,7 @@ super + F7
   open /media
 super + F8
   warncaps
-super + {F9,F10}
+super + {_,shift +} F9
   dmenu{mount,umount}
 
 # Audio
