@@ -1,18 +1,21 @@
 #!/bin/sh
 
-# Background
-setbg &
-
 # Keyboard
 kbset &
 
-# Xresources
+# Appearance
+setbg &
 xrdb ~/.config/xorg/Xresources.custom 2>/dev/null || xrdb ~/.config/xorg/Xresources
+xsetroot -cursor_name left_ptr
 
-# Start up daemons
+# Daemons
 sxhkd &
 dunst &
 xcompmgr &
 syncthing -no-browser >/dev/null &
 unclutter --timeout 3 &
 mpd &
+
+# Some pings
+rssping &
+forecast &

@@ -1,0 +1,298 @@
+; vim:ft=dosini
+
+[colors]
+black = ${xrdb:color0:#1d2021}
+darkred = ${xrdb:color1:#cc241d}
+darkgreen = ${xrdb:color2:#98971a}
+darkyellow = ${xrdb:color3:#d79921}
+darkblue = ${xrdb:color4:#458588}
+darkmagenta = ${xrdb:color5:#b16286}
+darkcyan = ${xrdb:color6:#689d6a}
+lightgray = ${xrdb:color7:#a89984}
+gray = ${xrdb:color8:#928374}
+red = ${xrdb:color9:#fb4934}
+green = ${xrdb:color10:#b8bb26}
+yellow = ${xrdb:color11:#fabd2f}
+blue = ${xrdb:color12:#83a598}
+magenta = ${xrdb:color13:#d3869b}
+cyan = ${xrdb:color14:#8ec07c}
+white = ${xrdb:color15:#ebdbb2}
+; background = ${xrdb:color256:#1d2021}
+background = #bb030303
+foreground = ${xrdb:color257:#ebdbb2}
+
+
+[bar/default]
+;monitor = ${env:MONITOR:LVDS-1}
+;monitor = ${env:MONITOR:HDMI-1}
+enable-ipc = true
+width = 100%
+height = 28
+; offset-x = 1%
+; offset-y = 1%
+; radius = 3.0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = {$xrdb:red}
+
+border-size = 0
+border-color = ${colors.darkyellow}
+
+padding-left = 0
+padding-right = 1
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = mono:pixelsize=13;1
+font-1 = Inconsolata Nerd Font:size=10;1
+font-2 = Noto Sans Mono CJK JP:size=13;1
+font-3 = Symbola:pixelsize=12;1
+; font-3 = Noto Color Emoji:scale=12;2
+
+
+modules-left = bspwm
+modules-center = mpd torrents updates rss
+modules-right = ibus volume date time
+
+tray-position = right
+tray-padding = 0
+
+wm-restack = bspwm
+
+;override-redirect = true
+
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+
+
+[module/ibus]
+type = custom/ipc
+hook-0 = ib show
+initial = 1
+
+format-prefix = " "
+
+
+[module/torrents]
+type = custom/script
+exec = torget
+exec-if = pgrep -x transmission-da
+interval = 5
+
+format-foreground = ${colors.darkgreen}
+format-underline = ${colors.darkgreen}
+
+
+[module/updates]
+type = custom/ipc
+hook-0 = pacman -Qu | grep -cv "ignored" | awk '/^[1-9]/ {print "?" $1}'
+hook-1 = exit
+
+initial = 2
+
+format-foreground = ${colors.green}
+format-underline = ${colors.green}
+
+
+[module/rss]
+type = custom/ipc
+hook-0 = cat /tmp/newsupdate 2>/dev/null || newsboat -x print-unread | awk '/^[1-9]/ {print $1}'
+hook-1 = echo "🔄"
+
+initial = 1
+
+format-prefix = " "
+format-prefix-foreground = ${colors.red}
+format-underline = ${colors.red}
+
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:40:...%
+format-foreground = ${colors.yellow}
+
+
+[module/bspwm]
+type = internal/bspwm
+
+enable-scroll = false
+
+label-focused = %index%
+label-focused-foreground = ${colors.black}
+label-focused-background = ${colors.yellow}
+label-focused-underline= ${colors.white}
+label-focused-padding = 1
+
+label-occupied = %index%
+label-occupied-underline = ${colors.blue}
+label-occupied-padding = 1
+
+label-urgent = %index%!
+label-urgent-background = ${colors.red}
+label-urgent-padding = 1
+
+label-empty =
+
+
+[module/mpd]
+type = internal/mpd
+format-online = <label-song>
+; format-online = <label-song> :: <label-time>
+
+label-song =  %artist% - %title%
+label-song-maxlen = 70
+label-song-ellipsis = true
+
+format-playing-foreground = ${colors.magenta}
+format-paused-foreground = ${colors.gray}
+
+
+[module/wlan]
+type = internal/network
+interface = wlp2s0
+interval = 3.0
+
+format-connected = 直 <label-connected>
+format-connected-underline = ${colors.darkmagenta}
+label-connected = %essid%
+
+;format-disconnected =
+format-disconnected = <label-disconnected>
+format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+label-disconnected = 睊no wifi
+label-disconnected-foreground = ${colors.gray}
+
+; <ramp-signal>
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-foreground = ${colors.gray}
+
+
+[module/date]
+type = custom/script
+exec = kyou
+interval = 20
+
+format-prefix = " "
+format-prefix-foreground = ${colors.gray}
+format-underline = ${colors.yellow}
+
+
+[module/time]
+type = internal/date
+interval = 20
+
+time = "%R"
+
+format-prefix-foreground = ${colors.gray}
+format-underline = ${colors.blue}
+
+label = %time%
+
+
+[module/volume]
+type = internal/alsa
+
+format-volume = <label-volume> <bar-volume>
+label-volume = 
+label-volume-foreground = ${root.foreground}
+
+format-muted-prefix = " "
+format-muted-foreground = ${colors.gray}
+label-muted = muted
+
+; format-volume-underline = ${colors.white}
+
+bar-volume-width = 6
+bar-volume-foreground-0 = ${colors.blue}
+bar-volume-foreground-1 = ${colors.blue}
+bar-volume-foreground-2 = ${colors.green}
+bar-volume-foreground-3 = ${colors.green}
+bar-volume-foreground-4 = ${colors.green}
+bar-volume-foreground-5 = ${colors.yellow}
+bar-volume-foreground-6 = ${colors.red}
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = =
+bar-volume-fill-font = 2
+bar-volume-empty = =
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.gray}
+
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ADP1
+full-at = 98
+
+;format-charging = Charging... <label-charging>
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = ${colors.darkyellow}
+
+;format-discharging = <label-discharging>
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-underline = ${self.format-charging-underline}
+
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.gray}
+format-full-underline = ${self.format-charging-underline}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-foreground = ${colors.gray}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-foreground = ${colors.gray}
+animation-charging-framerate = 500
+
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <ramp> <label>
+format-underline = ${colors.red}
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${self.format-underline}
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.darkmagenta}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+ramp-4 = 
+ramp-foreground = ${colors.gray}
+
+
+[settings]
+screenchange-reload = true
+; compositing-background = xor
+; compositing-background = screen
+; compositing-foreground = source
+;compositing-border = over
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5

@@ -4,15 +4,27 @@ super + Return
 super + shift + Return
   samedir
 
+# bspwm
+super + F5
+  bspc wm -r
+super + {1,2,3,4,5,6,7,8,9}
+  bspc desktop -f {1,2,3,4,5,6,7,8,9}
+super + shift {1,2,3,4,5,6,7,8,9}
+  bspc node -d {1,2,3,4,5,6,7,8,9} --follow
+super + q
+  bspc node -c
+super + {_,shift +} {j,k}
+  bspc node {-f,-s} {next,prev}.local
+
 # Letters
 super + shift + q
   prompt "Exit X?" "killall Xorg"
 super + w
-  setsid urlparse dmenu | xargs -r0 $BROWSER &
+  setsid urlparse $( dmenu -p $BROWSER ) | xargs -r0 $BROWSER &
 super + e
   $TERMINAL -e $FILE
 super + t
-  tor; dwmbar torrents
+  tor
 super + o
   open
 super + p
@@ -38,7 +50,7 @@ super + c
 super + b
   $BROWSER $HOMEPAGE
 super + n
-  $TERMINAL -e newsboat; dwmbar rss
+  $TERMINAL -e newsboat; polybar-msg hook module/rss 1
 super + shift + n
   rssping
 super + m

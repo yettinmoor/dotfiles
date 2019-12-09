@@ -1,13 +1,12 @@
 #!/usr/bin/env sh
 # Set as a cron job to check for new RSS entries for newsboat.
 # If newsboat is open, sends it an "R" key to refresh.
-# /tmp/newsupdate is read by dwmbar.
 
 pgrep -x rssping >/dev/null && exit 1
 ping -q -c 1 1.1.1.1 >/dev/null || exit 1
 
 pgrep -x newsboat && xdotool search --name newsboat key R && exit
 
-echo 🔄 >/tmp/newsupdate; dwmbar rss
+polybar-msg hook module/rss 2
 newsboat -x reload
-rm -f /tmp/newsupdate; dwmbar rss
+polybar-msg hook module/rss 1

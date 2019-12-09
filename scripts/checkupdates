@@ -3,4 +3,4 @@
 
 ping -q -c 1 1.1.1.1 >/dev/null || exit 1
 sudo pacman -Syyuw --noconfirm || exit 1
-pacman -Qu | grep -v "\[ignored\]" && notify-send "🎁 Package updates available." && dwmbar packages
+pacman -Qu | grep -v "\[ignored\]" && notify-send "🎁 Package updates available." && polybar-msg hook modules/rss 0
