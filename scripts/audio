@@ -2,9 +2,9 @@
 # Volume interface for sxhkd.
 
 if amixer get Master | grep -q "\\[on\\]"; then
-	amixer -M sset Master $1
-	dunstify -u low -r 54321 "Volume: $( amixer -M get Master | grep -o "[0-9]*%" )"
+	amixer sset Master $1
 else
 	amixer scontrols | cut -d \' -f 2 | xargs -I % amixer sset % unmute >/dev/null 2>&1
-	dunstify -u low -r 54321 "Muted"
 fi
+
+dunstify -u low -r 54321 $( amixer get Master | grep -q "\\[on\\]" && echo "Volume: $( amixer get Master | grep -o "[0-9]*%" )" || echo "Muted" )
