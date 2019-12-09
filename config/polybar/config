@@ -52,7 +52,6 @@ font-0 = mono:pixelsize=13;1
 font-1 = Inconsolata Nerd Font:size=10;1
 font-2 = Noto Sans Mono CJK JP:size=13;1
 font-3 = Symbola:pixelsize=12;1
-; font-3 = Noto Color Emoji:scale=12;2
 
 
 modules-left = bspwm
@@ -65,9 +64,6 @@ tray-padding = 0
 wm-restack = bspwm
 
 ;override-redirect = true
-
-scroll-up = bspwm-desknext
-scroll-down = bspwm-deskprev
 
 
 [module/ibus]
@@ -122,17 +118,17 @@ type = internal/bspwm
 
 enable-scroll = false
 
-label-focused = %index%
+label-focused = %name%
 label-focused-foreground = ${colors.black}
 label-focused-background = ${colors.yellow}
 label-focused-underline= ${colors.white}
 label-focused-padding = 1
 
-label-occupied = %index%
+label-occupied = %name%
 label-occupied-underline = ${colors.blue}
 label-occupied-padding = 1
 
-label-urgent = %index%!
+label-urgent = %name%!
 label-urgent-background = ${colors.red}
 label-urgent-padding = 1
 
