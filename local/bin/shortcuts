@@ -1,14 +1,10 @@
-#!/bin/bash
-# Output locations. Unactivated progs should go to /dev/null.
+#!/usr/bin/env sh
 sh_file="$HOME/.config/zsh/shortcutrc"
 lf_file="$HOME/.config/lf/lfshortcuts"
 
 # Directories
-sed "s/\s*#.*$//; /^\s*$/d" "$HOME/.config/directories" | tee \
-	>( awk '{print "alias", $1"=\"cd "$2" && ls\""}' > "$sh_file" ) \
-	| awk '{print "map g" $1, "cd", $2 "\nmap M" $1, "$mv -v $fx", $2, "\nmap Y" $1, "$cp -rv $fx", $2}' > "$lf_file"
+awk '{printf "alias %s=\"cd %s && ls\"\n", $1, $2}' $HOME/.local/share/directories > "$sh_file"
+awk '{print "map g" $1, "cd", $2 "\nmap M" $1, "$mv -v $fx", $2, "\nmap Y" $1, "$cp -rv $fx", $2}' $HOME/.local/share/directories > "$lf_file"
 
 # Files
-sed "s/\s*#.*$//; /^\s*$/d" "$HOME/.config/files" | tee \
-	>( awk '{print "alias", $1"=\"$EDITOR "$2"\""}' >> "$sh_file" ) \
-	| awk '{print "map", $1, "shell $EDITOR", $2}' >> "$lf_file"
+awk '{printf "alias %s=\"$EDITOR %s\"\n", $1, $2}' $HOME/.local/share/files >> "$sh_file"

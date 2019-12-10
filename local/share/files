@@ -1,5 +1,5 @@
-bf ~/.config/files
-bd ~/.config/directories
+bf ~/.local/share/files
+bd ~/.local/share/directories
 bm ~/.local/share/urlparse/bookmarks
 bse ~/.local/share/urlparse/searchengines
 cfz ~/.config/zsh/.zshrc
