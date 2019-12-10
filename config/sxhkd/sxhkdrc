@@ -26,7 +26,7 @@ super + space
 super + shift + q
   prompt "Exit X?" "killall Xorg"
 super + w
-  setsid urlparse $( dmenu -p $BROWSER ) | xargs -r0 $BROWSER &
+  urlgoto
 super + e
   $TERMINAL -e $FILE
 super + t
