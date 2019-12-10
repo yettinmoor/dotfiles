@@ -1,4 +1,6 @@
 ; vim:ft=dosini
+; vim:fdm=marker
+; vim:fmr=],;;
 
 [colors]
 black = ${xrdb:color0:#1d2021}
@@ -17,20 +19,14 @@ blue = ${xrdb:color12:#83a598}
 magenta = ${xrdb:color13:#d3869b}
 cyan = ${xrdb:color14:#8ec07c}
 white = ${xrdb:color15:#ebdbb2}
-; background = ${xrdb:color256:#1d2021}
 background = #bb030303
 foreground = ${xrdb:color257:#ebdbb2}
-
+;;
 
 [bar/default]
-;monitor = ${env:MONITOR:LVDS-1}
-;monitor = ${env:MONITOR:HDMI-1}
 enable-ipc = true
 width = 100%
 height = 28
-; offset-x = 1%
-; offset-y = 1%
-; radius = 3.0
 fixed-center = true
 
 background = ${colors.background}
@@ -53,7 +49,6 @@ font-1 = Inconsolata Nerd Font:size=10;1
 font-2 = Noto Sans Mono CJK JP:size=13;1
 font-3 = Symbola:pixelsize=12;1
 
-
 modules-left = bspwm
 modules-center = mpd torrents updates rss
 modules-right = ibus volume date time
@@ -62,9 +57,7 @@ tray-position = right
 tray-padding = 0
 
 wm-restack = bspwm
-
-;override-redirect = true
-
+;;
 
 [module/ibus]
 type = custom/ipc
@@ -73,7 +66,7 @@ hook-1 = echo
 initial = 1
 
 format-prefix = " "
-
+;;
 
 [module/torrents]
 type = custom/script
@@ -83,22 +76,22 @@ interval = 5
 
 format-foreground = ${colors.darkgreen}
 format-underline = ${colors.darkgreen}
-
+;;
 
 [module/updates]
 type = custom/ipc
-hook-0 = pacman -Qu | grep -cv "ignored" | awk '/^[1-9]/ {print "?" $1}'
+hook-0 = pacman -Qu | grep -cv "ignored" | awk '!/^0/ {print "?" $1}'
 hook-1 = exit
 
 initial = 2
 
 format-foreground = ${colors.green}
 format-underline = ${colors.green}
-
+;;
 
 [module/rss]
 type = custom/ipc
-hook-0 = cat /tmp/newsupdate 2>/dev/null || newsboat -x print-unread | awk '/^[1-9]/ {print $1}'
+hook-0 = cat /tmp/newsupdate 2>/dev/null || newsboat -x print-unread | awk '!/^0/ {print $1}'
 hook-1 = echo "🔄"
 
 initial = 1
@@ -106,13 +99,13 @@ initial = 1
 format-prefix = " "
 format-prefix-foreground = ${colors.red}
 format-underline = ${colors.red}
-
+;;
 
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:40:...%
 format-foreground = ${colors.yellow}
-
+;;
 
 [module/bspwm]
 type = internal/bspwm
@@ -134,12 +127,11 @@ label-urgent-background = ${colors.red}
 label-urgent-padding = 1
 
 label-empty =
-
+;;
 
 [module/mpd]
 type = internal/mpd
 format-online = <label-song>
-; format-online = <label-song> :: <label-time>
 
 label-song =  %artist% - %title%
 label-song-maxlen = 70
@@ -148,7 +140,9 @@ label-song-ellipsis = true
 format-playing-foreground = ${colors.magenta}
 format-paused-foreground = ${colors.gray}
 
-
+click-left = mpc toggle
+;;
+;
 [module/wlan]
 type = internal/network
 interface = wlp2s0
@@ -172,7 +166,7 @@ ramp-signal-2 = 
 ramp-signal-3 = 
 ramp-signal-4 = 
 ramp-signal-foreground = ${colors.gray}
-
+;;
 
 [module/date]
 type = custom/script
@@ -182,7 +176,7 @@ interval = 20
 format-prefix = " "
 format-prefix-foreground = ${colors.gray}
 format-underline = ${colors.yellow}
-
+;;
 
 [module/time]
 type = internal/date
@@ -194,7 +188,7 @@ format-prefix-foreground = ${colors.gray}
 format-underline = ${colors.blue}
 
 label = %time%
-
+;;
 
 [module/volume]
 type = internal/alsa
@@ -206,8 +200,6 @@ label-volume-foreground = ${root.foreground}
 format-muted-prefix = " "
 format-muted-foreground = ${colors.gray}
 label-muted = muted
-
-; format-volume-underline = ${colors.white}
 
 bar-volume-width = 6
 bar-volume-foreground-0 = ${colors.blue}
@@ -225,7 +217,7 @@ bar-volume-fill-font = 2
 bar-volume-empty = =
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.gray}
-
+;;
 
 [module/battery]
 type = internal/battery
@@ -233,11 +225,9 @@ battery = BAT0
 adapter = ADP1
 full-at = 98
 
-;format-charging = Charging... <label-charging>
 format-charging = <animation-charging> <label-charging>
 format-charging-underline = ${colors.darkyellow}
 
-;format-discharging = <label-discharging>
 format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
@@ -259,7 +249,7 @@ animation-charging-3 = 
 animation-charging-4 = 
 animation-charging-foreground = ${colors.gray}
 animation-charging-framerate = 500
-
+;;
 
 [module/temperature]
 type = internal/temperature
@@ -281,15 +271,13 @@ ramp-2 = 
 ramp-3 = 
 ramp-4 = 
 ramp-foreground = ${colors.gray}
-
+;;
 
 [settings]
 screenchange-reload = true
-; compositing-background = xor
-; compositing-background = screen
-; compositing-foreground = source
-;compositing-border = over
+;;
 
 [global/wm]
 margin-top = 5
 margin-bottom = 5
+;;
