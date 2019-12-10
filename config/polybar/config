@@ -36,17 +36,16 @@ line-size = 3
 line-color = {$xrdb:red}
 
 border-size = 0
-border-color = ${colors.darkyellow}
 
 padding-left = 0
-padding-right = 1
+padding-right = 2
 
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = mono:pixelsize=13;1
+font-0 = mono:pixelsize=12:weight=bold;1
 font-1 = Inconsolata Nerd Font:size=10;1
-font-2 = Noto Sans Mono CJK JP:size=13;1
+font-2 = Noto Sans Mono CJK JP:size=11:weight=bold;1
 font-3 = Symbola:pixelsize=12;1
 
 modules-left = bspwm
@@ -74,7 +73,6 @@ exec = torget
 exec-if = pgrep -x transmission-da
 interval = 5
 
-format-foreground = ${colors.darkgreen}
 format-underline = ${colors.darkgreen}
 ;;
 
