@@ -69,6 +69,7 @@ wm-restack = bspwm
 [module/ibus]
 type = custom/ipc
 hook-0 = ib show
+hook-1 = echo
 initial = 1
 
 format-prefix = " "

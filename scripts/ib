@@ -4,9 +4,14 @@ engine='anthy'
 
 case "$1" in
 	power)
-		if pgrep ibus >/dev/null; then ibus exit; else ibus-daemon -drx; fi
-		sleep .5
-		polybar-msg hook module/ibus 1 ;;
+		if pgrep ibus >/dev/null; then
+			ibus exit
+			polybar-msg hook module/ibus 2
+		else
+			ibus-daemon -drx
+			sleep 1
+			polybar-msg hook module/ibus 1
+		fi ;;
 	toggle)
 		pgrep ibus >/dev/null || exit 1
 		ibus engine "$( [ "$( ibus engine )" = "${engine}" ] && echo 'xkb:se::swe' || echo "${engine}" )"
