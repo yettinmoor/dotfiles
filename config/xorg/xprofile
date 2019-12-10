@@ -5,7 +5,7 @@ kbset &
 
 # Appearance
 setbg &
-xrdb ~/.config/xorg/Xresources.custom 2>/dev/null || xrdb ~/.config/xorg/Xresources
+xrdb ~/.config/xorg/Xresources
 xsetroot -cursor_name left_ptr
 
 # Daemons

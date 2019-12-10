@@ -1,8 +1,5 @@
 #!/bin/sh
 
-[ -f "$HOME/.config/xorg/xprofile.custom" ] && \
-	. "$HOME/.config/xorg/xprofile.custom"
-
 . "$HOME/.config/xorg/xprofile"
 
 while true; do
