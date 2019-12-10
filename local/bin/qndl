@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+cat ~/.local/share/newsboat/queue | cut -d' ' -f1 | while read -r f; do echo $( basename $f ); curl -LO $f; done
