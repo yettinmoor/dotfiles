@@ -25,6 +25,7 @@ bspc config borderless_monocle true
 # dwm-like behavior
 bspc config automatic_scheme spiral
 bspc config initial_polarity first_child
+bspc rule -a *:* node=@/1
 
 bspc rule -a Zathura state=tiled
 
