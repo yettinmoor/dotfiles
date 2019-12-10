@@ -168,19 +168,17 @@ ramp-signal-foreground = ${colors.gray}
 ;;
 
 [module/date]
-type = custom/script
-exec = kyou
-interval = 20
+type = custom/ipc
+hook-0 = kyou
+initial = 1
 
 format-foreground = ${colors.darkyellow}
 ;;
 
 [module/time]
-type = internal/date
-interval = 20
-
-time = "%R"
-label = %time%
+type = custom/ipc
+hook-0 = date +%R
+initial = 1
 
 format-foreground = ${colors.blue}
 ;;
