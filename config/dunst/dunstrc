@@ -224,10 +224,6 @@ timeout = 8
 # NOTE: It might be helpful to run dunst -print in a terminal in order
 # to find fitting options for rules.
 
-[timerdone]
-	appname = "timerdone"
-	script = /home/nico/.config/dunst/noti.sh
-
 [volume]
 	appname = "lmc"
 	history_ignore = yes
