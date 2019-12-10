@@ -8,4 +8,5 @@ cfk ~/.config/sxhkd/sxhkdrc
 cfa ~/.config/zsh/aliasrc
 cfv ~/.config/nvim/init.vim
 cff ~/.config/lf/lfrc
-cfd ~/.local/bin/dwmbar
+cfw ~/.config/bspwm/bspwmrc
+cfb ~/.config/polybar/config
