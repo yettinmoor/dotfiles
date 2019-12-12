@@ -1,109 +1,109 @@
 # Term
 super + Return
-  $TERMINAL
+	$TERMINAL
 super + shift + Return
-  samedir
+	samedir
 
 # bspwm
 super + F5
-  bspc wm -r
+	bspc wm -r
 super + {1,2,3,4,5,6,7,8,9,0}
-  bspc desktop -f ^{1,2,3,4,5,6,7,8,9,10}
+	bspc desktop -f ^{1,2,3,4,5,6,7,8,9,10}
 super + shift {1,2,3,4,5,6,7,8,9,0}
-  bspc node -d ^{1,2,3,4,5,6,7,8,9,10} --follow
+	bspc node -d ^{1,2,3,4,5,6,7,8,9,10} --follow
 super + q
-  bspc node -c
+	bspc node -c
 super + f
-  bspc node -t \~fullscreen
+	bspc node -t \~fullscreen
 super + {_,shift +} {j,k}
-  bspc node {-f,-s} {next,prev}.local
+	bspc node {-f,-s} {next,prev}.local
 super + {h,l}
-  bspc node @/1/parent -r {-,+}.05
+	bspc node @/1/parent -r {-,+}.05
 super + space
-  bspc node -s @/1
+	bspc node -s @/1
 
 # Letters
 super + shift + q
-  prompt "Exit X?" "killall Xorg"
+	prompt "Exit X?" "killall Xorg"
 super + w
-  urlgoto
+	urlgoto
 super + e
-  $TERMINAL -e $FILE
+	$TERMINAL -e $FILE
 super + t
-  tor
+	tor
 super + o
-  open
+	open
 super + p
-  mpc toggle
+	mpc toggle
 super + shift + p
-  pauseall
+	pauseall
 super + a
-  $TERMINAL -e python -q
+	$TERMINAL -e python -q
 super + shift + a
-  anki
+	anki
 super + s
-  $TERMINAL -e calcurse -D ~/.config/calcurse
+	$TERMINAL -e calcurse -D ~/.config/calcurse
 super + d
-  dmenu_run
+	dmenu_run
 super + shift + d
-  $TERMINAL -e cordless
+	$TERMINAL -e cordless
 super + x
-  lockscreen
+	lockscreen
 super + shift + x
-  prompt "Shutdown computer?" "sudo -A shutdown -h now"
+	prompt "Shutdown computer?" "sudo -A shutdown -h now"
 super + c
-  plumb
+	plumb
 super + b
-  $BROWSER $HOMEPAGE
+	$BROWSER $HOMEPAGE
 super + n
-  $TERMINAL -e newsboat; polybar-msg hook module/rss 1
+	$TERMINAL -e newsboat; polybar-msg hook module/rss 1
 super + shift + n
-  rssping
+	rssping
 super + m
-  $TERMINAL -e ncmpcpp
+	$TERMINAL -e ncmpcpp
 super + shift + m
-  audio mute
+	audio mute
 
 # Etc
 super + comma
-  dmenuunicode
+	dmenuunicode
 super + {_,shift +} period
-  {qcopy,qpass}
+	{qcopy,qpass}
 super + {_,shift +} Insert
-  {show,qr}clip
+	{show,qr}clip
 super + Print
-  maimpick
+	maimpick
 super + {_,shift +} section
-  ib {toggle, power}
+	ib {toggle, power}
 
 # Function keys
 super + F1
-  manview
+	manview
 super + {_,shift +} F2
-  setbg {pick,random}
+	setbg {pick,random}
 super + F3
-  displayselect
+	displayselect
 super + F4
-  timer
+	timer
 super + F7
-  open /media
+	open /media
 super + F8
-  warncaps
+	warncaps
 super + {_,shift +} F9
-  dmenu{mount,umount}
+	dmenu{mount,umount}
 
 # Audio
 super + {_,shift +} BackSpace
-  mpc {prev,next}
+	mpc {prev,next}
 super + {minus,plus}
-  audio 2{-,+}
+	audio 2{-,+}
 
 # XF86 keys
 XF86AudioMute
-  audio mute
+	audio mute
 XF86Audio{Lower,Raise}Volume
-  audio 2{-,+}
+	audio 2{-,+}
 XF86Audio{Play,Stop,Next,Prev}
-  mpc {toggle,pause,next,prev}
+	mpc {toggle,pause,next,prev}
 XF86MonBrightness{Down,Up}
-  xbacklight {-dec,-inc} 15
+	xbacklight {-dec,-inc} 15
