@@ -4,7 +4,8 @@ engine='anthy'
 
 case "$1" in
 	power)
-		if pgrep ibus >/dev/null; then ibus exit; else ibus-daemon -drx; sleep .5; fi
+		if pgrep ibus >/dev/null; then ibus exit; else ibus-daemon -drx; fi
+		sleep .5
 		polybar-msg hook module/ibus 1 ;;
 	toggle)
 		pgrep ibus >/dev/null || exit 1
