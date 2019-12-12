@@ -4,23 +4,18 @@ engine='anthy'
 
 case "$1" in
 	power)
-		if pgrep ibus >/dev/null; then
-			ibus exit
-			polybar-msg hook module/ibus 2
-		else
-			ibus-daemon -drx
-			sleep 1
-			polybar-msg hook module/ibus 1
-		fi ;;
+		if pgrep ibus >/dev/null; then ibus exit; else ibus-daemon -drx; sleep .5; fi
+		polybar-msg hook module/ibus 1 ;;
 	toggle)
 		pgrep ibus >/dev/null || exit 1
 		ibus engine "$( [ "$( ibus engine )" = "${engine}" ] && echo 'xkb:se::swe' || echo "${engine}" )"
 		dunstify -r 9191 -u critical "$( $0 show )"
 		polybar-msg hook module/ibus 1 ;;
 	show)
-		ibus engine 2>/dev/null | sed -e "s/${engine}/文/" -e 's/xkb.*/Aa/' ;;
+		pgrep ibus >/dev/null || exit 1
+		ibus engine | sed -e "s/${engine}/文/" -e 's/xkb.*/Aa/';;
 	config)
-		ibus-setup 2>/dev/null ;;
+		ibus-setup ;;
 	*)
 		ibus "$@" ;;
-esac
+esac 2>/dev/null

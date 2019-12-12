@@ -62,8 +62,7 @@ wm-restack = bspwm
 
 [module/ibus]
 type = custom/ipc
-hook-0 = ib show
-hook-1 = echo
+hook-0 = ib show || echo '\n'
 initial = 1
 ;;
 
@@ -78,9 +77,7 @@ format-underline = ${colors.darkgreen}
 
 [module/updates]
 type = custom/ipc
-hook-0 = pacman -Qu | grep -cv 'ignored' | grep -v '^0'
-hook-1 = echo
-
+hook-0 = pacman -Qu | grep -cv 'ignored' | awk '!/^0/ {print $1} /^0/ {printf "\n"}'
 initial = 1
 
 format-prefix = "⬆ "
@@ -90,9 +87,8 @@ format-underline = ${colors.green}
 
 [module/rss]
 type = custom/ipc
-hook-0 = cat /tmp/newsupdate 2>/dev/null || newsboat -x print-unread | awk '!/^0/ {print $1}'
+hook-0 = newsboat -x print-unread | awk '!/^0/ {print $1} /^0/ {printf "\n"}'
 hook-1 = echo "🔄"
-
 initial = 1
 
 format-prefix = " "
@@ -141,7 +137,7 @@ format-paused-foreground = ${colors.gray}
 
 click-left = mpc toggle
 ;;
-;
+
 [module/wlan]
 type = internal/network
 interface = wlp2s0
