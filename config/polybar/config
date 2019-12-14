@@ -45,12 +45,13 @@ module-margin-right = 2
 
 font-0 = mono:pixelsize=12:weight=bold;1
 font-1 = Inconsolata Nerd Font:size=10;1
-font-2 = Noto Sans Mono CJK JP:size=11:weight=bold;1
+; font-2 = Noto Sans Mono CJK JP:size=11:weight=bold;1
+font-2 = Noto Sans Mono CJK JP:size=11;1
 font-3 = Symbola:pixelsize=12;1
 
 modules-left = bspwm
-modules-center = mpd torrents updates rss
-modules-right = ibus volume date time
+modules-center = mpd torrents updates rss ibus
+modules-right = volume date time
 
 ; separator = ·
 
@@ -168,7 +169,7 @@ type = custom/ipc
 hook-0 = kyou
 initial = 1
 
-format-foreground = ${colors.darkyellow}
+format-underline = ${colors.darkyellow}
 ;;
 
 [module/time]
@@ -176,7 +177,7 @@ type = custom/ipc
 hook-0 = date +%R
 initial = 1
 
-format-foreground = ${colors.blue}
+format-underline = ${colors.blue}
 ;;
 
 [module/volume]
@@ -186,8 +187,8 @@ label-volume = %percentage%%
 
 label-muted = Muted (%percentage%%)
 
-format-volume-foreground = ${colors.darkmagenta}
-format-muted-foreground = ${colors.darkmagenta}
+format-volume-underline = ${colors.darkmagenta}
+format-muted-underline = ${colors.darkmagenta}
 ;;
 
 [module/battery]
