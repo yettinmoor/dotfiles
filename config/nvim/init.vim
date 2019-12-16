@@ -73,7 +73,8 @@ map <C-l> <C-w>l
 nnoremap S :%s//g<Left><Left>
 
 nnoremap <leader>l :!sloc %<CR>
-map <leader>c :w! \| :te compiler <c-r>\"%"<CR>
+map <leader>c :w! \| !compiler <c-r>\"%"<CR>
+map <leader>C :w! \| :te compiler <c-r>\"%"<CR>
 map <leader>p :!opout <c-r>\"%"<CR>
 
 let g:vimwiki_ext2syntax = {'.md': 'markdown'}
