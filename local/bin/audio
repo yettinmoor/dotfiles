@@ -7,4 +7,4 @@ else
 	amixer scontrols | cut -d \' -f 2 | xargs -I % amixer sset % unmute >/dev/null 2>&1
 fi
 
-dunstify -u low -r 54321 $( amixer get Master | grep -q "\\[on\\]" && echo "Volume: $( amixer get Master | grep -o "[0-9]*%" )" || echo "Muted" )
+dunstify -u low -r 54321 -t 1000 $( amixer get Master | grep -q "\\[on\\]" && echo "Volume: $( amixer get Master | grep -o "[0-9]*%" )" || echo "Muted" )
