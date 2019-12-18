@@ -51,6 +51,8 @@ super + shift + x
 	prompt "Shutdown computer?" "sudo -A shutdown -h now"
 super + c
 	plumb
+super + shift + c
+	$TERMINAL -e bc -q
 super + b
 	$BROWSER $HOMEPAGE
 super + n
