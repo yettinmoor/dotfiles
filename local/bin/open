@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
-# Searches for media (pictures, videos, pdfs, etc.) in $1 OR home folder and opens them with xdg-open.
-
-fd -E 'repos' -t f '(jpg|png|gif|mkv|mp4|m4v|avi|pdf|djvu|epub|txt)$' "${1:-.}" | sed "s:$HOME:~:" | dmenu -i -l 15 -p "Read file:" | sed "s:~:$HOME:" | xargs -r0 xdg-open 2>/dev/null &
+dir=${1:-~}
+exts='(jpg|png|gif|mkv|mp4|m4v|avi|pdf|djvu|epub|txt)$'
+fd -t f $exts "$dir" | sed "s:^$dir/::" | rofi -dmenu -i -l 15 -p "Read file in $dir"  | xargs -r -I {} xdg-open "$dir/{}" 2>/dev/null &

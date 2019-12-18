@@ -25,6 +25,8 @@ super + shift + q
 	prompt "Exit X?" "killall Xorg"
 super + w
 	urlgoto
+super + shift + w
+	rofi -show window -theme sidebar
 super + e
 	$TERMINAL -e $FILE
 super + t
@@ -42,7 +44,7 @@ super + shift + a
 super + s
 	$TERMINAL -e calcurse -D ~/.config/calcurse
 super + d
-	dmenu_run
+	rofi -show run
 super + shift + d
 	$TERMINAL -e cordless
 super + x
