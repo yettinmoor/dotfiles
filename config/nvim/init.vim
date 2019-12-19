@@ -44,7 +44,6 @@ hi Normal guibg=NONE ctermbg=NONE
 
 "Statusline
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 " Term mode
