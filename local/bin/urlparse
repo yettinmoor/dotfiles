@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+
+[ -z "$1" ] && exit 1
+
+dir=~/.local/share/urlparse
+
+# Check url
+echo "$1" | grep -E '^(http://|https://)?(www\.)?[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+.*$' && exit
+
+# Check searchengines
+se=$( grep "^$1 " $dir/searchengines | cut -d' ' -f2 )
+if [ ! -z "$se" ]; then shift; printf "$se" "$*"; exit; fi
+
+# Check bookmarks
+bm=$( grep "^$1 " $dir/bookmarks | cut -d' ' -f2 )
+if [ ! -z "$bm" ]; then echo "$bm"; exit; fi
+
+# Default to first search engine
+printf "$( head -n 1 $dir/searchengines | cut -d' ' -f2 )" "$*"
