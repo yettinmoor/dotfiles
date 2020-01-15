@@ -34,7 +34,7 @@ autocmd FileType tex inoremap ,sc \textsc{}<Space><++><Esc>T{i
 autocmd FileType tex inoremap ,sec \section{}<Enter><Enter><++><Esc>2kf}i
 autocmd FileType tex inoremap ,ssec \subsection{}<Enter><Enter><++><Esc>2kf}i
 autocmd FileType tex inoremap ,sssec \subsubsection{}<Enter><Enter><++><Esc>2kf}i
-autocmd FileType tex inoremap ,beg \begin{}<Enter><++><Enter>\end{<++>}2k0f{a
+autocmd FileType tex inoremap ,beg \begin{}<Enter><++><Enter>\end{<++>}<Esc>2k0f{a
 autocmd FileType tex inoremap ,tt \texttt{}<Space><++><Esc>T{i
 autocmd FileType tex inoremap ,bt {\blindtext}
 
