@@ -18,6 +18,7 @@ case "$file" in
 	*\.py)  python "$file" ;;
 	*\.scm) csi    "$file" ;;
 	*\.cs)  mcs    "$file" ;;
+	*\.js)  node   "$file" ;;
 
 	# Document formatting
 	*\.tex) xelatex --output-directory="$dir" "$base" ;;
