@@ -39,13 +39,13 @@ autocmd FileType tex inoremap ,tt \texttt{}<Space><++><Esc>T{i
 autocmd FileType tex inoremap ,bt {\blindtext}
 
 " HTML/CSS
-autocmd FileType html,css set expandtab
-autocmd FileType html,css set tabstop=2
-autocmd FileType html,css set shiftwidth=2
+autocmd FileType html,css setlocal expandtab
+autocmd FileType html,css setlocal tabstop=2
+autocmd FileType html,css setlocal shiftwidth=2
 
 " Assembly
 autocmd BufRead,BufNewFile *.asm set filetype=nasm
 
 " Processing
-autocmd FileType processing set tabstop=4 shiftwidth=4
+autocmd FileType processing setlocal tabstop=4 shiftwidth=4
 autocmd FileType processing map <leader>c :w! \| make<CR>
