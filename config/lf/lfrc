@@ -2,7 +2,7 @@
 
 set shell sh
 set shellopts '-eu'
-set previewer ~/.config/lf/scope.sh
+set previewer pistol
 set ifs "\n"
 set scrolloff 10
 set icons
