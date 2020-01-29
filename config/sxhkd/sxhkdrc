@@ -47,6 +47,8 @@ super + d
 	rofi -show run
 super + shift + d
 	$TERMINAL -e cordless
+super + {_, shift +} z
+	bspc config -d any.focused window_gap {50,0}
 super + x
 	lockscreen
 super + shift + x
