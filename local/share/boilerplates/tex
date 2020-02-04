@@ -1,0 +1,87 @@
+\documentclass[12pt]{article}
+
+%% --> BASIC UTILITIES <-- %%
+
+\usepackage{blindtext}
+\usepackage{enumitem}
+
+%% Math
+\usepackage{amsmath}
+\usepackage[per-mode=symbol]{siunitx}
+\usepackage{unicode-math}
+\usepackage[super]{nth}
+
+%% Font/encoding
+\usepackage{fontspec}
+\usepackage{sourcecodepro}
+
+%% --> GEOMETRY & AESTHETICS <-- %%
+
+\usepackage[margin=1in, top=1.2in, bottom=1.2in]{geometry}
+\usepackage{parskip}
+\renewcommand{\arraystretch}{1.2}
+
+\setcounter{secnumdepth}{0}
+\usepackage{nopageno}
+
+\usepackage{xcolor, colortbl}
+
+%% --> TABLES & FIGURES <-- &&
+
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{array}
+
+%% --> CUSTOM MACROS <-- %%
+
+%% Title command
+\newcommand\droptitle[2][]{
+	\begin{center}
+		\Huge\textbf{\scshape #2}\\
+		\vspace{0.3em}
+		\Large #1
+	\end{center}
+	\vspace{0.25in}
+	\hrule
+	\vspace{0.1em}
+	\hrule
+	\vspace{0.25in}
+}
+
+%% Fancy underline \ul
+\usepackage{contour}
+\contourlength{0.8pt}
+\usepackage{ulem}
+\renewcommand{\ULdepth}{2pt}
+\newcommand{\ul}[1]{%
+	\uline{\phantom{#1}}%
+	\llap{\contour{white}{#1}}%
+}
+
+
+%% --> LANGUAGE SUPPORT <-- %%
+
+\usepackage{polyglossia}
+%\setmainlanguage{swedish}
+
+%% CJK (hanzi/kanji)
+%\usepackage{xeCJK}
+%\setCJKmainfont{Noto Serif CJK JP}
+%\setCJKsansfont{Noto Sans CJK JP}
+
+%% Runes
+%\usepackage{allrunes}
+
+
+%%% -------------------------------------- %%%
+%%% ---> !!! DOCUMENT BEGINS HERE !!! <--- %%%
+%%% -------------------------------------- %%%
+
+
+\begin{document}
+
+\droptitle{<++>}
+
+<++>
+
+\end{document}
