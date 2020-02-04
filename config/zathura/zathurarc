@@ -17,7 +17,7 @@ map i recolor
 map p print
 map f toggle_fullscreen
 map F follow
-map B toggle_statusbar
+map b toggle_statusbar
 
 map [fullscreen] u scroll half-up
 map [fullscreen] d scroll half-down
@@ -30,4 +30,4 @@ map [fullscreen] i recolor
 map [fullscreen] p print
 map [fullscreen] f toggle_fullscreen
 map [fullscreen] F follow
-map [fullscreen] B toggle_statusbar
+map [fullscreen] b toggle_statusbar
