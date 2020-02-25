@@ -11,7 +11,8 @@ xsetroot -cursor_name left_ptr
 # Daemons
 sxhkd &
 dunst &
-xcompmgr &
+# xcompmgr &
+picom -b
 syncthing -no-browser >/dev/null &
 unclutter --timeout 3 &
 mpd &

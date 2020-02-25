@@ -45,7 +45,6 @@ module-margin-right = 2
 
 font-0 = mono:pixelsize=12:weight=bold;1
 font-1 = Inconsolata Nerd Font:size=10;1
-; font-2 = Noto Sans Mono CJK JP:size=11:weight=bold;1
 font-2 = Noto Sans Mono CJK JP:size=11;1
 font-3 = Symbola:pixelsize=12;1
 

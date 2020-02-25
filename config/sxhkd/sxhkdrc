@@ -6,7 +6,7 @@ super + shift + Return
 
 # bspwm
 super + F5
-	bspc wm -r
+	rebootwm
 super + {_,shift + } {1,2,3,4,5,6,7,8,9,0}
 	bspc {desktop -f,node -d} ^{1,2,3,4,5,6,7,8,9,10}
 super + q
@@ -15,10 +15,12 @@ super + f
 	bspc node -t \~fullscreen
 super + {_,shift +} {j,k}
 	bspc node {-f,-s} {next,prev}.local
-super + {h,l}
-	bspc node @/1/parent -r {-,+}.05
+super + {_,shift +} {h,l}
+	bspc node {@parent,@/1/parent} -r {-,+}.05
 super + space
 	bspc node -s @/1
+super + shift + space
+	bspc node -t \~floating
 
 # Letters
 super + shift + q
