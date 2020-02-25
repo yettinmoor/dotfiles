@@ -1,0 +1,12 @@
+using System;
+
+namespace <++>
+{
+	public class <++>
+	{
+		public static void Main(string[] args)
+		{
+			<++>
+		}
+	}
+}
