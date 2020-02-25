@@ -7,22 +7,23 @@ base="${file%.*}"
 
 cd "$dir" || exit 1
 
-if ls "Makefile" >/dev/null 2>&1; then
-	if pwd -P | grep "$HOME/repos"; then sudo make install; else make; fi
+if ls Makefile >/dev/null 2>&1; then
+	# if pwd -P | grep "$HOME/repos"; then sudo make install; else make; fi
+	make
 	exit 0
 fi
 
 case "$file" in
 	# Programming
-	*\.c)   CFLAGS="-std=c99 -Wall -g" make "$base" ;;
-	*\.py)  python "$file" ;;
-	*\.scm) csi    "$file" ;;
-	*\.cs)  mcs    "$file" ;;
-	*\.js)  node   "$file" ;;
+	*\.c|*\.cpp) CFLAGS="-std=c99 -Wall -g" make "$base" ;;
+	*\.py) python "$file" ;;
+	*\.cs) mcs "$file" ;;
+	*\.js) node "$file" ;;
+	*\.scm) csi "$file" ;;
 
 	# Document formatting
 	*\.tex) xelatex --output-directory="$dir" "$base" ;;
-	*\.md)  pandoc "$file" --pdf-engine=xelatex -o "$base".pdf ;;
+	# *\.md) pandoc "$file" --pdf-engine=xelatex -o "$base".pdf ;;
 
 	# Shebang
 	*) sed -n '1{/^#!/s///p}' "$file" | xargs -r -I % "$file" ;;

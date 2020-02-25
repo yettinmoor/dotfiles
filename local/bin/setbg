@@ -7,7 +7,7 @@
 case "$1" in
 	random) fd "jpg|png" ~/pics/wallpapers | shuf -n 1 ;;
 	pick)   fd "jpg|png" ~/pics/wallpapers | sxiv -ftio 2>/dev/null | sed 1q ;;
-	*)      echo $1 ;;
+	*)      readlink -f "$1" ;;
 esac | xargs -r -I {} sh -c 'ln -sf "{}" ~/.config/wall.png; notify-send "Wallpaper changed."'
 
 xwallpaper --zoom ~/.config/wall.png

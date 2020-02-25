@@ -1,4 +1,4 @@
 [Desktop Entry]
 Type=Application
 Name=Browser
-Exec=/usr/local/bin/surf %u
+Exec=/usr/bin/firefox %u

@@ -87,6 +87,9 @@ map D delete
 cmd mkdir %mkdir "$@"
 map mkd push :mkdir<space>
 
+cmd mkfile %touch "$@"
+map mkf push :mkfile<space>
+
 map o &mimeopen $f
 map O $mimeopen --ask $f
 
