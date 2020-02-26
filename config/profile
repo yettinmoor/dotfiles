@@ -2,10 +2,10 @@
 # Profile file. Runs on login.
 
 export SHELL=zsh
-export PATH=$HOME/.local/bin:$HOME/.config/sympath:$PATH
+export PATH=$HOME/.local/bin:$HOME/.local/share/sympath:$PATH
 export EDITOR=nvim
 export TERMINAL=st
-export BROWSER=firefox
+export BROWSER=brave
 export READER=zathura
 export FILE=lf
 export ZDOTDIR=$HOME/.config/zsh

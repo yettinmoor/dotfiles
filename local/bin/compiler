@@ -7,11 +7,7 @@ base="${file%.*}"
 
 cd "$dir" || exit 1
 
-if ls Makefile >/dev/null 2>&1; then
-	# if pwd -P | grep "$HOME/repos"; then sudo make install; else make; fi
-	make
-	exit 0
-fi
+if ls Makefile >/dev/null 2>&1; then make; exit 0; fi
 
 case "$file" in
 	# Programming
