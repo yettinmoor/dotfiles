@@ -87,9 +87,9 @@ map Q <nop>
 " NERDTree
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeMinimalUI = 1
-au StdinReadPre * let s:std_in=1
-au VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" au StdinReadPre * let s:std_in=1
+" au VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Splits
 set splitbelow splitright
@@ -122,7 +122,7 @@ au BufWritePost *sxhkdrc !pkill -SIGUSR1 sxhkd
 
 " CoC
 set shortmess+=c
-set signcolumn=yes
+" set signcolumn=yes
 inoremap <expr> <CR> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <silent><expr> <TAB>
 	\ pumvisible() ? "\<C-n>" :
@@ -150,3 +150,24 @@ endfunction
 
 " Source snippets from separate file
 so ~/.config/nvim/snippets.vim
+
+" Per-filetype syntax stuff
+
+" Python
+let g:python_highlight_all = 1
+let g:python_highlight_space_errors = 0
+
+" HTML/CSS
+au FileType html,css setlocal expandtab
+au FileType html,css setlocal tabstop=2
+au FileType html,css setlocal shiftwidth=2
+
+" Assembly
+au BufRead,BufNewFile *.asm set filetype=nasm
+
+" Processing
+au FileType processing setlocal tabstop=4 shiftwidth=4
+au FileType processing map <leader>c :w! \| make<CR>
+
+" LaTeX
+au VimLeave *.tex !texclear %
