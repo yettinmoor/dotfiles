@@ -19,7 +19,8 @@ blue = ${xrdb:color12:#83a598}
 magenta = ${xrdb:color13:#d3869b}
 cyan = ${xrdb:color14:#8ec07c}
 white = ${xrdb:color15:#ebdbb2}
-background = #bb030303
+background = #131313
+modulebackground = #302428
 foreground = ${xrdb:color257:#ebdbb2}
 ;;
 
@@ -32,30 +33,31 @@ fixed-center = true
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 3
-line-color = {$xrdb:red}
+line-size = 2
 
 border-size = 0
 
 padding-left = 0
-padding-right = 2
+padding-right = 0
 
-module-margin-left = 1
-module-margin-right = 2
+; module-margin-left = 1
+; module-margin-right = 1
 
-font-0 = mono:pixelsize=12:weight=bold;1
+font-0 = mono:pixelsize=11:weight=bold;1
 font-1 = Inconsolata Nerd Font:size=10;1
 font-2 = Noto Sans Mono CJK JP:size=11;1
 font-3 = Symbola:pixelsize=12;1
 
 modules-left = bspwm
-modules-center = mpd torrents updates rss ibus
-modules-right = volume date time
+modules-center = mpd
+modules-right = torrents updates rss ibus volume date time
+
+; tray-position = center
+; tray-background = root.background
 
 ; separator = ·
 
-tray-position = right
-tray-padding = 0
+tray-position = none
 
 wm-restack = bspwm
 ;;
@@ -90,9 +92,8 @@ type = custom/ipc
 hook-0 = newsboat -x print-unread | awk '!/^0/ {print $1} /^0/ {printf "\n"}'
 hook-1 = echo "🔄"
 initial = 1
-
 format-prefix = " "
-format-prefix-foreground = ${colors.red}
+; format-prefix-foreground = ${colors.red}
 format-underline = ${colors.red}
 ;;
 
@@ -105,6 +106,8 @@ format-foreground = ${colors.yellow}
 [module/bspwm]
 type = internal/bspwm
 
+format-padding =
+
 enable-scroll = false
 
 label-focused = %name%
@@ -114,6 +117,7 @@ label-focused-underline= ${colors.white}
 label-focused-padding = 1
 
 label-occupied = %name%
+label-occupied-background = ${colors.modulebackground}
 label-occupied-underline = ${colors.blue}
 label-occupied-padding = 1
 
@@ -126,15 +130,22 @@ label-empty =
 
 [module/mpd]
 type = internal/mpd
-format-online = <label-song>
-
+format-online = <label-song> | <bar-progress>
 label-song =  %artist% - %title%
 label-song-maxlen = 70
 label-song-ellipsis = true
-
-format-playing-foreground = ${colors.magenta}
+format-playing-foreground = ${colors.darkmagenta}
+format-playing-underline = ${colors.darkyellow}
 format-paused-foreground = ${colors.gray}
-
+format-paused-underline =
+format-online-background =
+format-online-padding = 0
+; format-playing-background =
+; format-paused-background =
+bar-progress-width = 10
+bar-progress-indicator = |
+bar-progress-fill = ─
+bar-progress-empty = ─
 click-left = mpc toggle
 ;;
 
@@ -167,7 +178,6 @@ ramp-signal-foreground = ${colors.gray}
 type = custom/ipc
 hook-0 = kyou
 initial = 1
-
 format-underline = ${colors.darkyellow}
 ;;
 
@@ -175,17 +185,14 @@ format-underline = ${colors.darkyellow}
 type = custom/ipc
 hook-0 = date +%R
 initial = 1
-
 format-underline = ${colors.blue}
+; format-padding = 5px
 ;;
 
 [module/volume]
 type = internal/alsa
-
-label-volume = %percentage%%
-
+label-volume =  %percentage%%
 label-muted = Muted (%percentage%%)
-
 format-volume-underline = ${colors.darkmagenta}
 format-muted-underline = ${colors.darkmagenta}
 ;;
@@ -246,6 +253,9 @@ ramp-foreground = ${colors.gray}
 
 [settings]
 screenchange-reload = true
+format-background = ${colors.modulebackground}
+format-padding = 2px
+format-underline = ${colors.white}
 ;;
 
 [global/wm]
