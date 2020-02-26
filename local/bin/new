@@ -2,6 +2,5 @@
 [ $# -lt 2 ] && echo "Usage: new <type> <name>\nAborted" && exit 1;
 
 cp -r ~/.local/share/boilerplates/$1 $2 || echo "Error: '$1' not found."
-cd $2 || exit 1
-./new.sh $2
-rm new.sh
+
+{ cd $2 || exit 1; ./new.sh $2; rm new.sh; } 2>/dev/null
