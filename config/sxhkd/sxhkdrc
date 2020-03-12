@@ -31,6 +31,8 @@ super + shift + w
 	rofi -show window -theme sidebar
 super + e
 	$TERMINAL -e $FILE
+super + r
+	audio toggle
 super + t
 	tor
 super + o
@@ -58,7 +60,7 @@ super + shift + x
 super + c
 	plumb
 super + shift + c
-	$TERMINAL -e bc -q
+	if pgrep -x picom; then killall picom; else picom -b; fi
 super + b
 	$BROWSER $HOMEPAGE
 super + n
@@ -68,7 +70,7 @@ super + shift + n
 super + m
 	$TERMINAL -e ncmpcpp
 super + shift + m
-	audio mute
+	audio vol mute
 
 # Etc
 super + comma
@@ -87,10 +89,6 @@ super + F1
 	manview
 super + {_,shift +} F2
 	setbg {pick,random}
-super + F3
-	displayselect
-super + F4
-	timer
 super + F7
 	open /media
 super + F8
@@ -102,13 +100,13 @@ super + {_,shift +} F9
 super + {_,shift +} BackSpace
 	mpc {prev,next}
 super + {minus,plus}
-	audio 2{-,+}
+	audio vol 2{-,+}
 
 # XF86 keys
 XF86AudioMute
-	audio mute
+	audio vol mute
 XF86Audio{Lower,Raise}Volume
-	audio 2{-,+}
+	audio vol 2{-,+}
 XF86Audio{Play,Stop,Next,Prev}
 	mpc {toggle,pause,next,prev}
 XF86MonBrightness{Down,Up}

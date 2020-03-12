@@ -1,10 +1,24 @@
 #!/usr/bin/env sh
 # Volume interface for sxhkd.
 
-if amixer get Master | grep -q "\\[on\\]"; then
-	amixer sset Master $1
-else
-	amixer scontrols | cut -d \' -f 2 | xargs -I % amixer sset % unmute >/dev/null 2>&1
-fi
+case $1 in
+	vol)
+		if amixer get Master | grep -q '\[on\]'; then
+			amixer sset Master $2
+			msg="$( amixer get Master | grep -o '[0-9]*%' )"
+		else
+			amixer scontrols | cut -d \' -f 2 | xargs -I % amixer sset % unmute
+			msg='Muted'
+		fi
+		dunstify -u low -r 54321 -t 1000 "$msg" ;;
 
-dunstify -u low -r 54321 -t 1000 $( amixer get Master | grep -q "\\[on\\]" && echo "Volume: $( amixer get Master | grep -o "[0-9]*%" )" || echo "Muted" )
+	toggle)
+		[ -n "$( amixer sget Front | grep '\[0%\]' )" ] \
+			&& { FRONT=100; HOOK=1; } \
+			|| { FRONT=0;   HOOK=2; }
+		amixer sset Front $FRONT
+		amixer sset Headphone $(( 100 - FRONT ))
+		polybar-msg hook volicon $HOOK ;;
+esac
+
+
