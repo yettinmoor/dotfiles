@@ -23,7 +23,6 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 Plug 'lervag/vimtex'
 Plug 'kovetskiy/sxhkd-vim'
@@ -87,9 +86,9 @@ map Q <nop>
 " NERDTree
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeMinimalUI = 1
-" au StdinReadPre * let s:std_in=1
-" au VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-" au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+au StdinReadPre * let s:std_in=1
+au VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Splits
 set splitbelow splitright
@@ -109,7 +108,6 @@ au BufRead,BufNewFile *.vs,*.fs set filetype=glsl
 " Markdown
 let g:vimwiki_ext2syntax = {'.md': 'markdown'}
 let g:instant_markdown_autostart = 0
-let g:vim_markdown_new_list_item_indent = 0
 au BufRead,BufNewFile *.md nnoremap <leader>md :InstantMarkdownPreview<CR>
 
 " Delete trailing whitespace

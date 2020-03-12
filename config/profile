@@ -16,7 +16,7 @@ export LESSHISTFILE=/dev/null
 export XAUTHORITY=$HOME/.config/xorg/.Xauthority
 
 export LOCATION=Ljungsbro
-export HOMEPAGE=$HOME/repos/homepage/home.html
+export HOMEPAGE=$HOME/repos/splash/home.html
 export GIT=https://github.com/yettinmoor
 
 export GTK_IM_MODULE=ibus
