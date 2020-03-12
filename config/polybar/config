@@ -50,14 +50,14 @@ font-3 = Symbola:pixelsize=12;1
 
 modules-left = bspwm
 modules-center = mpd
-modules-right = torrents updates rss ibus volume date time
+modules-right = steam torrents updates rss ibus volicon volume date time
 
 ; tray-position = center
 ; tray-background = root.background
 
 ; separator = ·
 
-tray-position = none
+; tray-position = none
 
 wm-restack = bspwm
 ;;
@@ -73,16 +73,13 @@ type = custom/script
 exec = torget; echo '\n'
 exec-if = pgrep -x transmission-da
 interval = 5
-
 format-underline = ${colors.darkgreen}
 ;;
 
 [module/updates]
 type = custom/ipc
-hook-0 = pacman -Qu | grep -cv 'ignored' | awk '!/^0/ {print $1} /^0/ {printf "\n"}'
+hook-0 = pacman -Qu | grep -cv 'ignored' | awk '!/^0/ {print $1, "updates"} /^0/ {printf "\n"}'
 initial = 1
-
-format-prefix = "⬆ "
 format-foreground = ${colors.green}
 format-underline = ${colors.green}
 ;;
@@ -93,8 +90,15 @@ hook-0 = newsboat -x print-unread | awk '!/^0/ {print $1} /^0/ {printf "\n"}'
 hook-1 = echo "🔄"
 initial = 1
 format-prefix = " "
-; format-prefix-foreground = ${colors.red}
 format-underline = ${colors.red}
+;;
+
+[module/steam]
+type = custom/script
+exec = echo 
+exec-if = pgrep -x steam
+interval = 5
+format-underline = ${colors.gray}
 ;;
 
 [module/xwindow]
@@ -189,10 +193,21 @@ format-underline = ${colors.blue}
 ; format-padding = 5px
 ;;
 
+[module/volicon]
+type = custom/ipc
+hook-0 = echo ''
+hook-1 = echo ''
+hook-2 = echo 'Muted'
+initial = 1
+format-underline = ${colors.darkmagenta}
+;;
+
 [module/volume]
 type = internal/alsa
-label-volume =  %percentage%%
-label-muted = Muted (%percentage%%)
+label-volume = %percentage%%
+label-muted = muted
+format-volume-padding = 0
+label-volume-padding-right = 2px
 format-volume-underline = ${colors.darkmagenta}
 format-muted-underline = ${colors.darkmagenta}
 ;;
