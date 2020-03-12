@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-# unset GTK_IM_MODULE
-# unset QT_IM_MODULE
-unset XMODIFIERS
-cat - | /usr/local/bin/dmenu "$@"

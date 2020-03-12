@@ -11,5 +11,6 @@ image/png=img.desktop;
 image/jpeg=img.desktop;
 image/gif=img.desktop;
 audio/mpeg=audio.desktop;
+audio/mp4=audio.desktop;
 application/rss+xml=rss.desktop
 application/json=json.desktop;

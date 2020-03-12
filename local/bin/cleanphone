@@ -5,7 +5,9 @@
 [ -d ~/pics/phone ] || mkdir -p ~/pics/phone
 
 cd ~/phone || exit 1
-fd '(jp?g|png)$' --exclude 'WallPaper' -x sh -c 'jhead -autorot {}; mv -vf {} ~/pics/phone' 2>/dev/null
+fd '(jpe?g|png)$' \
+	--exclude 'WallPaper' --exclude 'Sent' \
+	-x sh -c 'jhead -autorot "{}"; mv -vf "{}" ~/pics/phone'
 
 cd ~/pics/phone || exit 1
 for f in *; do

@@ -1,5 +1,5 @@
 [Desktop Entry]
 Type=Application
 Name=Audio
-Exec=mpv --input-ipc-server=/tmp/mpvsoc$(date +%s) %u
+Exec=mpv --input-ipc-server=/tmp/mpvsoc$(date +%s) --force-window %u
 MimeType=audio/*
