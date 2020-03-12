@@ -11,7 +11,8 @@ if ls Makefile >/dev/null 2>&1; then make; exit 0; fi
 
 case "$file" in
 	# Programming
-	*\.c|*\.cpp) CFLAGS="-std=c99 -Wall -g" make "$base" ;;
+	*\.c) CFLAGS="-std=c99 -Wall -g" make "$base" ;;
+	*\.cpp) CFLAGS="-std=c++11 -Wall -g" make "$base" ;;
 	*\.py) python "$file" ;;
 	*\.cs) mcs "$file" ;;
 	*\.js) node "$file" ;;
@@ -19,7 +20,7 @@ case "$file" in
 
 	# Document formatting
 	*\.tex) xelatex --output-directory="$dir" "$base" ;;
-	# *\.md) pandoc "$file" --pdf-engine=xelatex -o "$base".pdf ;;
+	*\.md) pandoc "$file" --pdf-engine=xelatex -o "$base".pdf ;;
 
 	# Shebang
 	*) sed -n '1{/^#!/s///p}' "$file" | xargs -r -I % "$file" ;;
