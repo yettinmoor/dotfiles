@@ -8,7 +8,7 @@ super + shift + Return
 super + F5
 	rebootwm
 super + {_,shift + } {1,2,3,4,5,6,7,8,9,0}
-	bspc {desktop -f,node -d} ^{1,2,3,4,5,6,7,8,9,10}
+	bspc {desktop -f,node -d} ^{1,2,3,4,5,6,7,8,9,0}
 super + q
 	bspc node -c
 super + f
@@ -18,9 +18,11 @@ super + {_,shift +} {j,k}
 super + {_,shift +} {h,l}
 	bspc node {@parent,@/1/parent} -r {-,+}.05
 super + space
-	bspc node -s @/1
+	bspc node -t tiled; bspc node -s @/1
 super + shift + space
-	bspc node -t \~floating
+	bspc node -t floating
+super + shift + r
+	bspc node @/1/parent -R 90
 
 # Letters
 super + shift + q
@@ -50,7 +52,7 @@ super + s
 super + d
 	rofi -show run
 super + shift + d
-	$TERMINAL -e cordless
+	discord
 super + {_, shift +} z
 	bspc config -d any.focused window_gap {50,0}
 super + x
@@ -60,11 +62,11 @@ super + shift + x
 super + c
 	plumb
 super + shift + c
-	if pgrep -x picom; then killall picom; else picom -b; fi
+	if pgrep -x picom; then killall picom; else picom -b --experimental-backends; fi
 super + b
 	$BROWSER $HOMEPAGE
 super + n
-	$TERMINAL -e newsboat; polybar-msg hook module/rss 1
+	$TERMINAL -e newsboat && polybar-msg hook module/rss 1
 super + shift + n
 	rssping
 super + m
@@ -74,7 +76,7 @@ super + shift + m
 
 # Etc
 super + comma
-	dmenuunicode
+	qunicode
 super + {_,shift +} period
 	{qcopy,qpass}
 super + {_,shift +} Insert

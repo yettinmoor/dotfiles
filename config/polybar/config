@@ -43,21 +43,18 @@ padding-right = 0
 ; module-margin-left = 1
 ; module-margin-right = 1
 
-font-0 = mono:pixelsize=11:weight=bold;1
-font-1 = Inconsolata Nerd Font:size=10;1
-font-2 = Noto Sans Mono CJK JP:size=11;1
-font-3 = Symbola:pixelsize=12;1
+font-0 = mono:pixelsize=11;1
+font-1 = Noto Sans Mono CJK JP:weight=bold:size=9;1
+font-2 = Symbola:weight=bold:size=11;1
 
 modules-left = bspwm
 modules-center = mpd
-modules-right = steam torrents updates rss ibus volicon volume date time
+modules-right = torrents updates rss ibus volicon volume date time
 
-; tray-position = center
-; tray-background = root.background
-
-; separator = ·
-
-; tray-position = none
+tray-position = right
+tray-background = ${colors.modulebackground}
+tray-transparent = false
+tray-padding = 5
 
 wm-restack = bspwm
 ;;
@@ -93,12 +90,11 @@ format-prefix = " "
 format-underline = ${colors.red}
 ;;
 
-[module/steam]
+[module/systray]
 type = custom/script
-exec = echo 
-exec-if = pgrep -x steam
-interval = 5
-format-underline = ${colors.gray}
+exec = systray
+interval = 1
+format-underline = ${colors.white}
 ;;
 
 [module/xwindow]
@@ -208,6 +204,8 @@ label-volume = %percentage%%
 label-muted = muted
 format-volume-padding = 0
 label-volume-padding-right = 2px
+format-muted-padding = 0
+label-muted-padding-right = 2px
 format-volume-underline = ${colors.darkmagenta}
 format-muted-underline = ${colors.darkmagenta}
 ;;

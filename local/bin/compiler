@@ -17,6 +17,7 @@ case "$file" in
 	*\.cs) mcs "$file" ;;
 	*\.js) node "$file" ;;
 	*\.scm) csi "$file" ;;
+	*\.hs) runhaskell "$file" ;;
 
 	# Document formatting
 	*\.tex) xelatex --output-directory="$dir" "$base" ;;

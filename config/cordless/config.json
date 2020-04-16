@@ -1,5 +1,5 @@
 {
-    "Token": "MzA3ODk1MjUzOTE3MTA2MTc2.XelJTw.VXi3Xmptw0vKpH7puvEAJn3MH28",
+    "Token": "MzA3ODk1MjUzOTE3MTA2MTc2.XmpOLQ.js1XJznEWZi_yH4gl-oRf8kZ3zg",
     "Autocomplete": true,
     "Times": 0,
     "UseRandomUserColors": true,
@@ -16,8 +16,9 @@
     "DesktopNotifications": true,
     "ShowPlaceholderForBlockedMessages": true,
     "ShowUpdateNotifications": true,
-    "DontShowUpdateNotificationFor": "",
+    "DontShowUpdateNotificationFor": "2020-01-05",
     "Accounts": null,
     "IndicateChannelAccessRestriction": false,
-    "ShowBottomBar": false
+    "ShowBottomBar": false,
+    "ImageViewer": "feh"
 }

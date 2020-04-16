@@ -2,6 +2,7 @@ let mapleader=","
 
 " Plugins
 filetype plugin on
+filetype plugin indent on
 if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
 	echo "Downloading junegunn/vim-plug to manage plugins..."
 	silent !mkdir -p ~/.config/nvim/autoload/
@@ -9,8 +10,8 @@ if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
 endif
 call plug#begin('~/.config/nvim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'morhetz/gruvbox'
-Plug 'sheerun/vim-polyglot'
+Plug 'dkasak/gruvbox'
+" Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'vim-scripts/ReplaceWithRegister'
@@ -24,6 +25,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'godlygeek/tabular'
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+Plug 'neovimhaskell/haskell-vim'
 Plug 'lervag/vimtex'
 Plug 'kovetskiy/sxhkd-vim'
 Plug 'sophacles/vim-processing'
@@ -46,12 +48,14 @@ set tabstop=4
 set shiftwidth=4
 
 " Colorscheme
+set termguicolors
 set bg=dark
 let g:gruvbox_italic='1'
 let g:gruvbox_bold='0'
+let g:gruvbox_italicize_strings='1'
 colorscheme gruvbox
 let g:airline_theme = 'gruvbox'
-hi Normal guibg=NONE ctermbg=NONE
+hi Normal guibg=NONE
 
 " Statusline
 set statusline+=%#warningmsg#
@@ -67,14 +71,21 @@ inoremap <leader><leader> <Esc>/<++><Enter>"_c4l
 vnoremap <leader><leader> <Esc>/<++><Enter>"_c4l
 nnoremap <leader><leader> <Esc>/<++><Enter>"_c4l
 
+" Whitespace
+set listchars=tab:▸\ ,
+set list
+nnoremap <leader>s :set list!<CR>
+
 " Script maps
 nmap <leader>l :!sloc %<CR>
 nmap <leader>c :w! \| !compiler <c-r>\"%"<CR>
-nmap <leader>C :w! \| :te compiler <c-r>\"%"<CR>
+nmap <leader>Cj :w! \| :split term://compiler %<CR>
+nmap <leader>Cl :w! \| :vsplit term://compiler %<CR>
 nmap <leader>p :!opout <c-r>\"%"<CR>
 
 " Misc remaps
 nnoremap S :%s//g<Left><Left>
+nnoremap <A-S> :.s//g<Left><Left>
 nnoremap c "_c
 nnoremap <leader>g :Magit<CR>
 map <leader>ff :Goyo \| set linebreak \| hi Normal guibg=NONE ctermbg=NONE<CR>
@@ -146,6 +157,8 @@ function! s:show_documentation()
 	endif
 endfunction
 
+nnoremap <leader>f :call CocAction('format')<CR>
+
 " Source snippets from separate file
 so ~/.config/nvim/snippets.vim
 
@@ -169,3 +182,14 @@ au FileType processing map <leader>c :w! \| make<CR>
 
 " LaTeX
 au VimLeave *.tex !texclear %
+
+" Haskell
+au FileType haskell setlocal expandtab
+au FileType haskell noremap <leader>Q :%!indent<CR>
+let g:haskell_enable_quantification = 1
+let g:haskell_enable_recursivedo = 1
+let g:haskell_enable_arrowsyntax = 1
+let g:haskell_enable_pattern_synonyms = 1
+let g:haskell_enable_typeroles = 1
+let g:haskell_enable_static_pointers = 1
+let g:haskell_backpack = 1

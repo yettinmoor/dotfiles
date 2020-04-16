@@ -1,2 +1,0 @@
-#!/usr/bin/env sh
-{ cut -d ';' -f 1 ~/.config/unicode/* | rofi -dmenu -i -l 20 || exit 1; } | cut -d' ' -f1 | xclip -sel c -r

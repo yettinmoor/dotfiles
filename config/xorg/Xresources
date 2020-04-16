@@ -3,5 +3,7 @@
 *.hintstyle: hintslight
 
 *.background: #121212
+/* *.background: #2e2e2e */
+*.alpha: .8
 Sxiv.foreground: #cecece
 Sxiv.background: #1a1a1a

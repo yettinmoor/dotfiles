@@ -1,6 +1,5 @@
 h ~/
 dc ~/docs
-pr ~/docs/prog
 lng ~/docs/lang
 eb ~/docs/ebooks
 cv ~/docs/cv
@@ -20,9 +19,10 @@ me ~/pics/memes
 ph ~/pics/photos
 wp ~/pics/wallpapers
 pd ~/podcasts
+pr ~/programming
 r ~/repos
 dt ~/repos/dotfiles
-hp ~/repos/homepage
+vv ~/vidya
 cf ~/.config
 sc ~/.local/bin
 lc ~/.local/share

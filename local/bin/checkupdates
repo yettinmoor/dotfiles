@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 ping -q -c 1 1.1.1.1 >/dev/null || exit 1
 sudo pacman -Syyuw --noconfirm
-polybar-msg hook modules/updates 1
+polybar-msg hook module/updates 1
