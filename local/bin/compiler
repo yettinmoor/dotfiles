@@ -9,19 +9,21 @@ cd "$dir" || exit 1
 
 if ls Makefile >/dev/null 2>&1; then make; exit 0; fi
 
-case "$file" in
+case "${file#*.}" in
 	# Programming
-	*\.c) CFLAGS="-std=c99 -Wall -g" make "$base" ;;
-	*\.cpp) CFLAGS="-std=c++11 -Wall -g" make "$base" ;;
-	*\.py) python "$file" ;;
-	*\.cs) mcs "$file" ;;
-	*\.js) node "$file" ;;
-	*\.scm) csi "$file" ;;
-	*\.hs) runhaskell "$file" ;;
+	c)   CFLAGS="-std=c99 -Wall -g" make "$base" ;;
+	cpp) CFLAGS="-std=c++11 -Wall -g" make "$base" ;;
+	py)  python -i "$file" ;;
+	cs)  mcs "$file" ;;
+	js)  node "$file" ;;
+	scm) csi "$file" ;;
+	hs)  runhaskell "$file" ;;
+	go)  go run "$file" ;;
+	rs)  cargo run "$file" ;;
 
 	# Document formatting
-	*\.tex) xelatex --output-directory="$dir" "$base" ;;
-	*\.md) pandoc "$file" --pdf-engine=xelatex -o "$base".pdf ;;
+	tex) xelatex --output-directory="$dir" "$base" ;;
+	md)  pandoc "$file" --pdf-engine=xelatex --template=template -o "$base".pdf ;;
 
 	# Shebang
 	*) sed -n '1{/^#!/s///p}' "$file" | xargs -r -I % "$file" ;;
