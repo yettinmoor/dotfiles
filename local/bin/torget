@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 transmission-remote -l 2>/dev/null | \
-	sed -E '1d; $d; /Seeding/s/.*/1/; /100%/s/.*/2/; /%/s/.*/3/; /(Stopped|n\/a)/s/.*/4/;' | \
+	sed -E '1d; $d; /Seeding/s/.*/1/; /100%/s/.*/2/; /(Stopped|n\/a)/s/.*/4/; /%/s/.*/3/;' | \
 	sort | uniq -c | awk 'split("   ", s) {printf "%{F#98971a}%s %{F}%s ", s[$2], $1}' | sed "s/ $//"

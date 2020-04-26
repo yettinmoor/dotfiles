@@ -15,6 +15,7 @@ picom -b --experimental-backends
 syncthing -no-browser >/dev/null &
 unclutter --timeout 3 &
 mpd &
+protonmail-bridge --noninteractive &
 
 # Some pings
 rssping &

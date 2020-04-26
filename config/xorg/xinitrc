@@ -3,5 +3,6 @@
 . "$HOME/.config/xorg/xprofile"
 
 while true; do
+	date>>~/.local/share/bspwm.log
 	bspwm 2>>~/.local/share/bspwm.log
 done

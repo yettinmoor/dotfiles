@@ -95,10 +95,12 @@ super + {_,shift +} F2
 	setbg {pick,random}
 super + F7
 	open /media
-super + F8
-	warncaps
 super + {_,shift +} F9
 	dmenu{mount,umount}
+
+# Caps Lock
+super + Escape
+	warncaps
 
 # Audio
 super + {_,shift +} BackSpace

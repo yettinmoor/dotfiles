@@ -3,6 +3,7 @@ dc ~/docs
 lng ~/docs/lang
 eb ~/docs/ebooks
 cv ~/docs/cv
+no ~/docs/notes
 wo ~/docs/work
 sk ~/docs/skola
 dl ~/dl
@@ -26,6 +27,7 @@ vv ~/vidya
 cf ~/.config
 sc ~/.local/bin
 lc ~/.local/share
+ma ~/.local/share/mail
 pn ~/phone
 dr ~/phone/Dropbox
 M /mnt
