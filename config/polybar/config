@@ -61,7 +61,7 @@ wm-restack = bspwm
 
 [module/ibus]
 type = custom/ipc
-hook-0 = ib show || echo '\n'
+hook-0 = ib show
 initial = 1
 ;;
 
