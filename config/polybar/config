@@ -90,6 +90,14 @@ format-prefix = " "
 format-underline = ${colors.red}
 ;;
 
+[module/mail]
+type = custom/ipc
+hook-0 = mailnotify
+initial = 1
+format-prefix = "  "
+format-underline = ${colors.cyan}
+;;
+
 [module/systray]
 type = custom/script
 exec = systray
