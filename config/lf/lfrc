@@ -7,15 +7,15 @@ set ifs "\n"
 set scrolloff 10
 set icons
 
-# Adjust columns on startup
-%{{
-	w=$(tput cols)
-	if [ $w -le 80 ]; then
-		lf -remote "send $id set ratios 1:2"
-	else
-		lf -remote "send $id set ratios 1:2:3"
-	fi
-}}
+# # Adjust columns on startup
+# %{{
+# 	w=$(tput cols)
+# 	if [ $w -le 80 ]; then
+# 		lf -remote "send $id set ratios 1:2"
+# 	else
+# 		lf -remote "send $id set ratios 1:2:3"
+# 	fi
+# }}
 
 # COMMANDS
 cmd open ${{

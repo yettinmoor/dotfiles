@@ -2,7 +2,7 @@
 
 # Enable colors and change prompt:
 autoload -U colors && colors
-PS1="%B %{$fg[blue]%}%~%{$reset_color%} $%b "
+PS1="%B %{$fg[blue]%}%~%{$reset_color%} λ%b "
 
 # Time
 TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
@@ -71,9 +71,9 @@ bindkey '^e' edit-command-line
 # Load aliases and shortcuts if existent.
 {
 	shortcuts
-	source "$HOME/.config/zsh/shortcutrc"
 	source "$HOME/.config/zsh/aliasrc"
-	source "$HOME/.config/zsh/colorrc"
+	source "$HOME/.config/zsh/shortcutrc"
+	source "$HOME/.config/zsh/aesthrc"
 } >/dev/null
 
 # Load zsh-syntax-highlighting; should be last.

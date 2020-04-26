@@ -49,7 +49,7 @@ font-2 = Symbola:weight=bold:size=11;1
 
 modules-left = bspwm
 modules-center = mpd
-modules-right = torrents updates rss ibus volicon volume date time
+modules-right = ibus torrents updates rss mail volicon volume date time
 
 tray-position = right
 tray-background = ${colors.modulebackground}
