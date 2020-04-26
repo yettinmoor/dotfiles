@@ -11,7 +11,8 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dkasak/gruvbox'
-" Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'vim-scripts/ReplaceWithRegister'
@@ -25,6 +26,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'godlygeek/tabular'
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'lervag/vimtex'
 Plug 'kovetskiy/sxhkd-vim'
@@ -51,7 +54,7 @@ set shiftwidth=4
 set termguicolors
 set bg=dark
 let g:gruvbox_italic='1'
-let g:gruvbox_bold='0'
+" let g:gruvbox_bold='0'
 let g:gruvbox_italicize_strings='1'
 colorscheme gruvbox
 let g:airline_theme = 'gruvbox'
@@ -120,6 +123,9 @@ au BufRead,BufNewFile *.vs,*.fs set filetype=glsl
 let g:vimwiki_ext2syntax = {'.md': 'markdown'}
 let g:instant_markdown_autostart = 0
 au BufRead,BufNewFile *.md nnoremap <leader>md :InstantMarkdownPreview<CR>
+" Pandoc
+let g:pandoc#spell#enabled = 0
+let g:pandoc#folding#level = 3
 
 " Delete trailing whitespace
 au BufWritePre * %s/\s\+$//e
