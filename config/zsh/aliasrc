@@ -34,8 +34,14 @@ alias ga='git add'
 alias gs='git status'
 alias gc='git commit'
 alias gr='git rm'
+alias gd='git diff'
 alias grc='git rm --cached'
 alias gch='git checkout'
+
+# Rust/Cargo
+alias carb='cargo build'
+alias carr='cargo run'
+alias carn='cargo new'
 
 # YouTube
 alias ytv='youtube-viewer -C'
