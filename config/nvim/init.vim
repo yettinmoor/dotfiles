@@ -28,6 +28,7 @@ Plug 'godlygeek/tabular'
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'fatih/vim-go'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'lervag/vimtex'
 Plug 'kovetskiy/sxhkd-vim'
@@ -76,7 +77,7 @@ nnoremap <leader><leader> <Esc>/<++><Enter>"_c4l
 
 " Whitespace
 set listchars=tab:▸\ ,
-set list
+" set list
 nnoremap <leader>s :set list!<CR>
 
 " Script maps
@@ -199,3 +200,6 @@ let g:haskell_enable_pattern_synonyms = 1
 let g:haskell_enable_typeroles = 1
 let g:haskell_enable_static_pointers = 1
 let g:haskell_backpack = 1
+
+" Go
+au BufWritePre *.go GoFmt
