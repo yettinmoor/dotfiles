@@ -4,9 +4,7 @@
 alias f='$FILE'
 alias v='$EDITOR'
 alias sv='sudoedit'
-alias z='setsid zathura 2>/dev/null'
 alias magit='$EDITOR -c MagitOnly'
-alias x='setsid sxivwrapper &'
 alias mpv='mpv --input-ipc-server=/tmp/mpvsoc$( date +%s )'
 alias mpva='mpvwrapper'
 alias trem='transmission-remote'
@@ -49,6 +47,10 @@ alias ytda='youtube-dl -x -f "bestaudio[ext=mp3]/best"'
 mkd()  { mkdir -v "$@"; [ $# -eq 1 ] && cd "$1" || exit 1; }
 se()   { fd -t f -L . ~/.local ~/.config -E '*/Steam/*' | fzf --reverse --color=16 | xargs -r "$EDITOR"; }
 src()  { . "$HOME/.config/profile"; echo "Reloaded profile."; }
-kr()   { killall "$1"; setsid "$1" >/dev/null 2>&1 & echo "Killed and revived $1"; }
+kr()   { killall "$1"; "$1" >/dev/null 2>&1 & disown; echo "Killed and revived $1"; }
 xw()   { xwininfo -tree -root | grep "${1:-""}"; }
 wttr() { date -d "@$(stat -c '%Y' /tmp/weatherreport)" '+%A %R' | cat - /tmp/weatherreport | less -S; }
+
+# Setsid wrappers
+z() { zathura 2>/dev/null & disown }
+x() { sxiv -at "${@:-.}" & disown }
