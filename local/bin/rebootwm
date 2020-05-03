@@ -1,4 +1,0 @@
-#!/usr/bin/env sh
-
-bspc wm -r
-pkill -SIGUSR1 picom
