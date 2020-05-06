@@ -83,7 +83,7 @@ format-underline = ${colors.green}
 
 [module/rss]
 type = custom/ipc
-hook-0 = newsboat -x print-unread | awk '!/^0/ {print $1} /^0/ {printf "\n"}'
+hook-0 = newsboat -x print-unread | awk '!/^0/ {print $1}'
 hook-1 = echo "🔄"
 initial = 1
 format-prefix = " "
