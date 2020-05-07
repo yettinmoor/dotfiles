@@ -58,5 +58,5 @@ xw()   { xwininfo -tree -root | grep "${1:-""}"; }
 wttr() { date -d "@$(stat -c '%Y' /tmp/weatherreport)" '+%A %R' | cat - /tmp/weatherreport | less -S; }
 
 # Setsid wrappers
-z() { zathura 2>/dev/null & disown }
+z() { zathura "$1" 2>/dev/null & disown }
 x() { sxiv -at "${@:-.}" & disown }

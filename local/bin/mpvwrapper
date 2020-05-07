@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-# "Play all" mpv wrapper
-setsid mpv "${@:-*}" >/dev/null &
