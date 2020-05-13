@@ -45,6 +45,7 @@ set encoding=utf-8
 set nohlsearch
 set conceallevel=2
 au FileType * setlocal formatoptions-=cro
+nnoremap <F5> :so $MYVIMRC \| echo "vimrc resourced"<CR>
 
 " Tabbing
 set so=8
@@ -90,6 +91,7 @@ nmap <leader>p :!opout <c-r>\"%"<CR>
 " Misc remaps
 nnoremap S :%s//g<Left><Left>
 nnoremap <A-S> :.s//g<Left><Left>
+xnoremap S :s//g<Left><Left>
 nnoremap c "_c
 nnoremap <leader>g :Magit<CR>
 map <leader>ff :Goyo \| set linebreak \| hi Normal guibg=NONE ctermbg=NONE<CR>
@@ -102,8 +104,8 @@ map Q <nop>
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeMinimalUI = 1
 au StdinReadPre * let s:std_in=1
-au VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" au VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Splits
 set splitbelow splitright
