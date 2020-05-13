@@ -2,7 +2,7 @@
 # Profile file. Runs on login.
 
 export SHELL=zsh
-export PATH=$HOME/.local/bin:$HOME/.local/share/sympath:$PATH
+export PATH=$HOME/.local/bin:$HOME/.local/share/sympath:$(go env GOBIN):$PATH
 export EDITOR=nvim
 export TERMINAL=st
 export BROWSER=brave

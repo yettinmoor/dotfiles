@@ -1,1 +1,2 @@
 GOPATH=/home/nico/repos/go
+GOBIN=/home/nico/repos/go/bin

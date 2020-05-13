@@ -202,4 +202,6 @@ let g:haskell_enable_static_pointers = 1
 let g:haskell_backpack = 1
 
 " Go
-au BufWritePre *.go GoFmt
+let $GOPATH = $HOME."/repos/go"
+au BufWritePre *.go GoImports
+au FileType *.go nnoremap <F2> :GoRename
