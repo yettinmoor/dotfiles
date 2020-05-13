@@ -14,3 +14,4 @@ audio/mpeg=audio.desktop;
 audio/mp4=audio.desktop;
 application/rss+xml=rss.desktop
 application/json=json.desktop;
+inode/directory=lf.desktop
