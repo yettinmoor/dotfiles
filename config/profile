@@ -17,7 +17,7 @@ export XAUTHORITY=$HOME/.config/xorg/.Xauthority
 
 export LOCATION=Ljungsbro
 export HOMEPAGE=$HOME/repos/splash/home.html
-export GIT=https://github.com/yettinmoor
+export GIT=git@github.com:yettinmoor
 
 export GTK_IM_MODULE=ibus
 export QT_IM_MODULE=ibus
