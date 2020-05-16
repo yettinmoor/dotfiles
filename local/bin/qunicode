@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-awk '/U\+/ {sub("U+[^ ]*", ""); print}' ~/.config/unicode/* \
+awk '/U\+/ {gsub(/U\+[[:xdigit:]]*[[:blank:]]/, ""); print}' ~/.config/unicode/* \
 	| rofi -dmenu -p 'Copy unicode glyph' -i -l 20 \
 	| cut -d' ' -f1 \
 	| xclip -sel c -r
