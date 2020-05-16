@@ -208,6 +208,7 @@ format-underline = ${colors.darkmagenta}
 
 [module/volume]
 type = internal/alsa
+master-soundcard = hw:1
 label-volume = %percentage%%
 label-muted = muted
 format-volume-padding = 0

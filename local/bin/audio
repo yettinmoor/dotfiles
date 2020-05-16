@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 # Volume interface for sxhkd.
 
+amixer() { /usr/bin/amixer -c 1 $@; }
+
 case $1 in
 	vol)
 		amixer get Master | grep -q '\[on\]' \
