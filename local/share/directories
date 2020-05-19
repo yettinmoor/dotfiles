@@ -24,6 +24,7 @@ pr ~/programming
 r ~/repos
 dt ~/repos/dotfiles
 gos ~/repos/go/src
+gosy ~/repos/go/src/github.com/yettinmoor
 vv ~/vidya
 cf ~/.config
 sc ~/.local/bin
