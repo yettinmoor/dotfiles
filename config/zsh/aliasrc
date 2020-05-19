@@ -37,6 +37,8 @@ alias gc='git commit'
 alias gr='git remote'
 alias gd='git diff'
 alias gch='git checkout'
+alias gps='git push'
+alias gpl='git pull'
 
 # Rust/Cargo
 alias carb='cargo build'
