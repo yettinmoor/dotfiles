@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+cd ~/music
+fd | sort | {
+	rofi -dmenu -i || kill 0
+} | {
+	cat -
+	[ "$1" = "clear" ] && mpc clear >/dev/null
+} | mpc add && mpc play

@@ -37,6 +37,8 @@ super + r
 	audio toggle
 super + t
 	tor
+super + y
+	$TERMINAL -e calcurse -D ~/.config/calcurse
 super + o
 	open
 super + p
@@ -48,7 +50,9 @@ super + a
 super + shift + a
 	anki
 super + s
-	$TERMINAL -e calcurse -D ~/.config/calcurse
+	qplay
+super + shift + s
+	qplay clear
 super + d
 	rofi -show run
 super + shift + d
