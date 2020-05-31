@@ -5,7 +5,7 @@ file="$( readlink -f "$1" )"
 dir="$( dirname "$file" )"
 base="${file%.*}"
 
-cd "$dir" || exit 1
+# cd "$dir" || exit 1
 
 if ls Makefile >/dev/null 2>&1; then make; exit 0; fi
 
@@ -24,6 +24,9 @@ case "${file#*.}" in
 	# Document formatting
 	tex) xelatex --output-directory="$dir" "$base" ;;
 	md)  pandoc "$file" --pdf-engine=xelatex --template=template -o "$base".pdf ;;
+
+	# sent
+	sent) setsid sent "$file" & ;;
 
 	# Shebang
 	*) sed -n '1{/^#!/s///p}' "$file" | xargs -r -I % "$file" ;;

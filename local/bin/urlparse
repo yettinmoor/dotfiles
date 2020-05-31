@@ -3,7 +3,7 @@
 [ -z "$1" ] && exit 1
 
 # Check URL
-echo "$1" | grep -E '^(http://|https://)?(www\.)?[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+.*$' && exit
+echo "$1" | grep -E '^(https?://)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]+\.[a-zA-Z0-9]+.*$' && exit
 
 dir=~/.local/share/urlparse
 

@@ -1,9 +1,9 @@
 appearance.calendarview=monthly
 appearance.compactpanels=yes
 appearance.defaultpanel=calendar
-appearance.layout=1
+appearance.layout=3
 appearance.notifybar=yes
-appearance.sidebarwidth=2
+appearance.sidebarwidth=1
 appearance.theme=red on default
 appearance.todoview=show-completed
 daemon.enable=no
@@ -30,3 +30,4 @@ appearance.eventseparator=yes
 appearance.dayseparator=yes
 appearance.emptyline=yes
 general.multipledays=yes
+appearance.emptyday=--

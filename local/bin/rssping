@@ -11,8 +11,8 @@ polybar-msg hook module/rss 2
 newsboat -x reload
 
 oldcount=$(cat ~/.config/newsboat/lastrun)
-newcount=$(newsboat -x print-unread | grep -o '^[0-9]*' | tee .config/newsboat/lastrun)
-[ $((newcount - oldcount)) -gt 0 ] && dunstify -u critical "$((newcount - oldcount)) new RSS item(s)"
-# echo "$newcount" > ~/.config/newsboat/lastrun
+newcount=$(newsboat -x print-unread | cut -d' ' -f1 | tee .config/newsboat/lastrun)
+delta=$((newcount - oldcount))
+[ $delta -gt 0 ] && dunstify -u critical "$delta new RSS item(s)"
 
 polybar-msg hook module/rss 1

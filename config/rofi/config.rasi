@@ -23,7 +23,7 @@ configuration {
 	/* drun-match-fields: "name,generic,exec,categories"; */
 	/* drun-show-actions: false; */
 	/* drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]"; */
-	/* disable-history: false; */
+	disable-history: true;
 	/* ignored-prefixes: ""; */
 	/* sort: false; */
 	/* sorting-method: ; */
@@ -96,8 +96,8 @@ configuration {
 	kb-row-up: "Up,Alt+k,";
 	kb-row-down: "Down,Alt+j";
 	/* kb-row-tab: "Tab"; */
-	kb-page-prev: "Page_Up,Alt+h";
-	kb-page-next: "Page_Down,Alt+l";
+	kb-page-prev: "Page_Up,Alt+u";
+	kb-page-next: "Page_Down,Alt+d";
 	/* kb-row-first: "Home,KP_Home"; */
 	/* kb-row-last: "End,KP_End"; */
 	/* kb-row-select: "Control+space"; */

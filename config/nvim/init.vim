@@ -63,6 +63,9 @@ colorscheme gruvbox
 let g:airline_theme = 'gruvbox'
 hi Normal guibg=NONE
 
+" Term
+nmap <A-CR> :vs term://zsh<CR>
+
 " Statusline
 set statusline+=%#warningmsg#
 set statusline+=%*
@@ -85,8 +88,6 @@ nnoremap <leader>s :set list!<CR>
 " Script maps
 nmap <leader>l :!sloc %<CR>
 nmap <leader>c :w! \| !compiler <c-r>\"%"<CR>
-nmap <leader>Cj :w! \| :split term://compiler %<CR>
-nmap <leader>Cl :w! \| :vsplit term://compiler %<CR>
 nmap <leader>p :!opout <c-r>\"%"<CR>
 
 " Misc remaps
@@ -174,6 +175,9 @@ so ~/.config/nvim/snippets.vim
 
 " Per-filetype syntax stuff
 
+" C
+au BufRead,BufNewFile *.h set filetype=c
+
 " Python
 let g:python_highlight_all = 1
 let g:python_highlight_space_errors = 0
@@ -207,5 +211,5 @@ let g:haskell_backpack = 1
 " Go
 let g:go_fmt_command = "goimports"
 let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
+" let g:go_highlight_functions = 1
 let g:go_highlight_function_calls = 1
