@@ -115,6 +115,14 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
+map <C-S-h> <C-w>H
+map <C-S-j> <C-w>J
+map <C-S-k> <C-w>K
+map <C-S-l> <C-w>L
+map <C-A-h> <C-w>5>
+map <C-A-j> <C-w>5-
+map <C-A-k> <C-w>5+
+map <C-A-l> <C-w>5<
 
 " Filetype detection stuff
 nmap <leader>ft :set ft=
