@@ -17,6 +17,7 @@ alias sql='mycli'
 
 # General shortcuts
 alias ls='exa -h --group-directories-first'
+alias cd..='cd ..'
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 alias ccat='highlight --out-format=ansi --force'
