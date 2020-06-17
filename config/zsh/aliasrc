@@ -17,6 +17,8 @@ alias sql='mycli'
 
 # General shortcuts
 alias ls='exa -h --group-directories-first'
+alias cp='cp -v'
+alias mv='mv -v'
 alias cd..='cd ..'
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
@@ -36,6 +38,7 @@ alias ga='git add'
 alias gs='git status'
 alias gc='git commit'
 alias gr='git remote'
+alias grm='git rm'
 alias gd='git diff'
 alias gch='git checkout'
 alias gps='git push'
@@ -53,12 +56,13 @@ alias ytdp='youtube-dl -o "%(playlist_index)s - %(title)s.%(ext)s"'
 alias ytda='youtube-dl -x -f "bestaudio[ext=mp3]/best"'
 
 # Convenience functions
-mkd()  { mkdir -v "$@"; [ $# -eq 1 ] && cd "$1" || exit 1; }
-se()   { fd -t f -L . ~/.local ~/.config -E '*/Steam/*' | fzf --reverse --color=16 | xargs -r "$EDITOR"; }
-src()  { . "$HOME/.config/profile"; echo "Reloaded profile."; }
-kr()   { killall "$1"; "$1" >/dev/null 2>&1 & disown; echo "Killed and revived $1"; }
-xw()   { xwininfo -tree -root | grep "${1:-""}"; }
+se() { fd -t f -L . ~/.local ~/.config -E '*/Steam/*' | fzf --reverse --color=16 | xargs -r "$EDITOR"; }
+mkd() { mkdir -v "$@"; if [ $# -eq 1 ]; then cd "$1" || exit 1; fi; }
+src() { . "$HOME/.config/profile"; echo "Reloaded profile."; }
+kr() { killall "$1"; "$1" >/dev/null 2>&1 & disown; echo "Killed and revived $1"; }
+xw() { xwininfo -tree -root | grep "${1:-""}"; }
 wttr() { date -d "@$(stat -c '%Y' /tmp/weatherreport)" '+%A %R' | cat - /tmp/weatherreport | less -S; }
+disks() { df -h | grep --color=none -E 'Filesystem|media|home'; }
 
 # Setsid wrappers
 z() { zathura "$1" 2>/dev/null & disown }

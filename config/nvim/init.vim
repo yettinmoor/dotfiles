@@ -32,6 +32,7 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'fatih/vim-go'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'lervag/vimtex'
+Plug 'jansedivy/jai.vim'
 Plug 'kovetskiy/sxhkd-vim'
 Plug 'sophacles/vim-processing'
 Plug 'junegunn/goyo.vim'
@@ -45,6 +46,7 @@ set wildmode=longest,list,full
 set encoding=utf-8
 set nohlsearch
 set conceallevel=2
+set smartcase
 au FileType * setlocal formatoptions-=cro
 nnoremap <F5> :so $MYVIMRC \| echo "vimrc resourced"<CR>
 
@@ -65,6 +67,7 @@ hi Normal guibg=NONE
 
 " Term
 nmap <A-CR> :vs term://zsh<CR>
+tmap <C-c> <Esc>:q!<CR>
 
 " Statusline
 set statusline+=%#warningmsg#
@@ -115,13 +118,9 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-map <C-S-h> <C-w>H
-map <C-S-j> <C-w>J
-map <C-S-k> <C-w>K
-map <C-S-l> <C-w>L
 map <C-A-h> <C-w>5>
-map <C-A-j> <C-w>5-
-map <C-A-k> <C-w>5+
+map <C-A-j> <C-w>5+
+map <C-A-k> <C-w>5-
 map <C-A-l> <C-w>5<
 
 " Filetype detection stuff
