@@ -10,9 +10,9 @@ pgrep -x newsboat && xdotool search --name newsboat key R && exit
 polybar-msg hook module/rss 2
 newsboat -x reload
 
-oldcount=$(cat ~/.config/newsboat/lastrun)
-newcount=$(newsboat -x print-unread | cut -d' ' -f1 | tee .config/newsboat/lastrun)
-delta=$((newcount - oldcount))
-[ $delta -gt 0 ] && dunstify -u critical "$delta new RSS item(s)"
+# oldcount=$(cat ~/.config/newsboat/lastrun)
+# newcount=$(newsboat -x print-unread | cut -d' ' -f1 | tee .config/newsboat/lastrun)
+# delta=$((newcount - oldcount))
+# [ $delta -gt 0 ] && dunstify -u critical "$delta new RSS item(s)"
 
 polybar-msg hook module/rss 1

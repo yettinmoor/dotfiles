@@ -41,7 +41,7 @@ alias gr='git remote'
 alias grm='git rm'
 alias gd='git diff'
 alias gch='git checkout'
-alias gps='git push'
+alias gpu='git push'
 alias gpl='git pull'
 
 # Rust/Cargo

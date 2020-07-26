@@ -10,6 +10,7 @@ if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
 endif
 call plug#begin('~/.config/nvim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dkasak/gruvbox'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-repeat'
@@ -30,6 +31,7 @@ Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'fatih/vim-go'
+Plug 'ziglang/zig.vim'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'lervag/vimtex'
 Plug 'jansedivy/jai.vim'

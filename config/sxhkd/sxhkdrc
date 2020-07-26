@@ -68,7 +68,7 @@ super + c
 super + shift + c
 	if pgrep -x picom; then killall picom; else picom -b --experimental-backends; fi
 super + v
-	$TERMINAL -e neomutt; polybar-msg hook mail 1
+	thunderbird
 super + b
 	$BROWSER $HOMEPAGE
 super + n
