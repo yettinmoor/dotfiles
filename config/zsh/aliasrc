@@ -14,6 +14,7 @@ alias csi='chicken-csi -q'
 alias oct='octave -q'
 alias la='words'
 alias sql='mycli'
+alias ju='jupyter lab >/dev/null 2>&1 & disown'
 
 # General shortcuts
 alias ls='exa -h --group-directories-first'
@@ -32,6 +33,7 @@ alias upc='sudo pacman -Syu; polybar-msg hook module/updates 1 >/dev/null'
 alias dot='git -C "$HOME/repos/dotfiles"'
 alias myip='curl ifconfig.me'
 alias cls='clear'
+alias tree='tree -C'
 
 # Git
 alias ga='git add'

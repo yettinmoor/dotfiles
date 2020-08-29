@@ -23,6 +23,8 @@ case "${file#*.}" in
 	zig) zig run "$file" ;;
 	jai) echo "Jai release never :-(" ;;
 
+	m) octave --persist -iq "$file" ;;
+
 	# Document formatting
 	tex) xelatex --output-directory="$dir" "$base" ;;
 	md)  pandoc "$file" --pdf-engine=xelatex --template=template -o "$base".pdf ;;

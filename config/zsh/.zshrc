@@ -68,6 +68,9 @@ bindkey -s '^o' 'lfcd\n'
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
+# Backwards search
+bindkey -v '^R' history-incremental-search-backward
+
 # Load aliases and shortcuts if existent.
 {
 	shortcuts

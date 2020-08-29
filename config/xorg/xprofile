@@ -12,6 +12,7 @@ xsetroot -cursor_name left_ptr
 sxhkd &
 dunst &
 picom -b --experimental-backends
+redshift &
 syncthing -no-browser >/dev/null &
 unclutter --timeout 3 &
 mpd &

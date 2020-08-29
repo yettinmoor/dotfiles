@@ -53,7 +53,6 @@ modules-right = ibus torrents updates rss mail volicon volume date time
 
 tray-position = right
 tray-background = #3e405f
-tray-transparent = false
 tray-padding = 5
 
 wm-restack = bspwm

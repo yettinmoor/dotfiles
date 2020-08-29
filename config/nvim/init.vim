@@ -46,7 +46,8 @@ set number relativenumber
 set clipboard=unnamedplus
 set wildmode=longest,list,full
 set encoding=utf-8
-set nohlsearch
+" set nohlsearch
+nnoremap <silent> <Esc> :noh<CR><Esc>
 set conceallevel=2
 set smartcase
 au FileType * setlocal formatoptions-=cro
@@ -222,3 +223,6 @@ let g:go_fmt_command = "goimports"
 let g:go_highlight_fields = 1
 " let g:go_highlight_functions = 1
 let g:go_highlight_function_calls = 1
+
+" Octave
+au BufRead,BufNewFile *.m set filetype=octave

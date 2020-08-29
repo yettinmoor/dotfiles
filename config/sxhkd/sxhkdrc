@@ -14,7 +14,7 @@ super + q
 super + f
 	bspc node -t \~fullscreen
 super + {_,shift +} {j,k}
-	bspc node {-f,-s} {next,prev}.local
+	bspc node {-f,-s} {next,prev}.local.!hidden.window
 super + {_,shift +} {h,l}
 	bspc node {@parent,@/1/parent} -r {-,+}.05
 super + space
@@ -46,7 +46,7 @@ super + p
 super + shift + p
 	pauseall
 super + a
-	$TERMINAL -e python -q
+	$TERMINAL -e python -i -c "from math import *"
 super + shift + a
 	anki
 super + s
