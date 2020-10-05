@@ -27,7 +27,7 @@ foreground = ${xrdb:color257:#ebdbb2}
 [bar/default]
 enable-ipc = true
 width = 100%
-height = 28
+height = 30
 fixed-center = true
 
 background = ${colors.background}
@@ -43,9 +43,9 @@ padding-right = 0
 ; module-margin-left = 1
 ; module-margin-right = 1
 
-font-0 = mono:pixelsize=11;1
+font-0 = mono:pixelsize=10;1
 font-1 = Noto Sans Mono CJK JP:weight=bold:size=9;1
-font-2 = Symbola:weight=bold:size=11;1
+font-2 = Symbola:weight=bold:size=10;1
 
 modules-left = bspwm
 modules-center = mpd
@@ -83,7 +83,7 @@ format-underline = ${colors.green}
 [module/rss]
 type = custom/ipc
 hook-0 = newsboat -x print-unread | awk '!/^0/ {print $1}'
-hook-1 = echo "🔄"
+hook-1 = echo "↺"
 initial = 1
 format-prefix = " "
 format-underline = ${colors.red}
@@ -280,6 +280,6 @@ format-underline = ${colors.white}
 ;;
 
 [global/wm]
-margin-top = 5
-margin-bottom = 5
+margin-top = 0
+margin-bottom = 0
 ;;

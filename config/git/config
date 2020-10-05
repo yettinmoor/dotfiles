@@ -1,13 +1,19 @@
 [user]
 	name = Nicolas Lindström
 	email = nicolas.lindstroem@protonmail.com
+	signingkey = 1590D472EC0D5D77
 [core]
 	autocrlf = input
 	safecrlf = true
 [alias]
-	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	; hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	graph = log --all --decorate --oneline --graph
 
 [credential]
 	helper = cache --timeout=3600
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+[pull]
+	rebase = false
+[commit]
+	gpgsign = true

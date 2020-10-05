@@ -58,7 +58,7 @@ super + d
 super + shift + d
 	discord
 super + {_, shift +} z
-	bspc config -d any.focused window_gap {50,0}
+	bspc config -d any.focused window_gap {30,0}
 super + x
 	lockscreen
 super + shift + x
@@ -88,7 +88,7 @@ super + {_,shift +} period
 super + {_,shift +} Insert
 	{show,qr}clip
 super + Print
-	maimpick
+	scrotpick
 super + {_,shift +} section
 	ib {toggle, power}
 

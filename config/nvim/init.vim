@@ -11,6 +11,7 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'mileszs/ack.vim'
 Plug 'dkasak/gruvbox'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-repeat'
@@ -93,7 +94,7 @@ nnoremap <leader>s :set list!<CR>
 
 " Script maps
 nmap <leader>l :!sloc %<CR>
-nmap <leader>c :w! \| !compiler <c-r>\"%"<CR>
+nmap <leader>c :w! \| :sp term://compiler %<CR>
 nmap <leader>p :!opout <c-r>\"%"<CR>
 
 " Misc remaps
@@ -206,6 +207,7 @@ au FileType processing map <leader>c :w! \| make<CR>
 
 " LaTeX
 au VimLeave *.tex !texclear %
+let g:tex_flavor = 'latex'
 
 " Haskell
 au FileType haskell setlocal expandtab

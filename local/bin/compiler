@@ -16,6 +16,7 @@ case "${file#*.}" in
 	py)  python -i "$file" ;;
 	cs)  mcs "$file" ;;
 	js)  node "$file" ;;
+	ts)  deno run "$file" ;;
 	scm) csi "$file" ;;
 	hs)  runhaskell "$file" ;;
 	go)  go run "$file" ;;

@@ -45,6 +45,9 @@ alias gd='git diff'
 alias gch='git checkout'
 alias gpu='git push'
 alias gpl='git pull'
+alias gg='git graph'
+alias gl='git log'
+alias gbr='git branch'
 
 # Rust/Cargo
 alias carb='cargo build'
@@ -64,7 +67,7 @@ src() { . "$HOME/.config/profile"; echo "Reloaded profile."; }
 kr() { killall "$1"; "$1" >/dev/null 2>&1 & disown; echo "Killed and revived $1"; }
 xw() { xwininfo -tree -root | grep "${1:-""}"; }
 wttr() { date -d "@$(stat -c '%Y' /tmp/weatherreport)" '+%A %R' | cat - /tmp/weatherreport | less -S; }
-disks() { df -h | grep --color=none -E 'Filesystem|media|home'; }
+disks() { df -h | grep --color=none -E 'Filesystem|media|home|/$'; }
 
 # Setsid wrappers
 z() { zathura "$1" 2>/dev/null & disown }

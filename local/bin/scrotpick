@@ -4,9 +4,9 @@ case "$(printf "selected area\\nselected area (float)\\ncurrent window\\nfull sc
 	"selected area (float)")
 		dest=/tmp/pic-selected-"$(date '+%y%m%d-%H%M-%S').png"
 		scrot -s $dest && sxiv $dest && rm $dest ;;
-	"current window") scrot -i "$(xdotool getactivewindow)" pic-window-"$(date '+%y%m%d-%H%M-%S').png" ;;
+	"current window") scrot -u pic-window-"$(date '+%y%m%d-%H%M-%S').png" ;;
 	"full screen") scrot pic-full-"$(date '+%y%m%d-%H%M-%S').png" ;;
 	"selected area (copy)") scrot -s | xclip -selection clipboard -t image/png ;;
-	"current window (copy)") scrot -i "$(xdotool getactivewindow)" | xclip -selection clipboard -t image/png ;;
+	"current window (copy)") scrot -u | xclip -selection clipboard -t image/png ;;
 	"full screen (copy)") scrot | xclip -selection clipboard -t image/png ;;
 esac

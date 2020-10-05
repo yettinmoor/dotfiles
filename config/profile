@@ -25,6 +25,8 @@ export XMODIFIERS=@im=ibus
 export XIM_PROGRAM=/usr/bin/ibus-daemon
 export QT_QPA_PLATFORMTHEME=qt5ct
 
+export GPG_TTY=$(tty)
+
 source $HOME/.config/zsh/.zshrc
 
 # Autorun startx
