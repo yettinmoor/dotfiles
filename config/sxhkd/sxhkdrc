@@ -22,7 +22,7 @@ super + space
 super + shift + space
 	bspc node -t floating
 super + shift + r
-	bspc node @/1/parent -R 90
+	bspc node @/1/parent -R 270
 
 # Letters
 super + shift + q

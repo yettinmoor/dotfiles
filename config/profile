@@ -1,8 +1,12 @@
 #!/usr/bin/env sh
 # Profile file. Runs on login.
 
+export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:=$HOME/.config}
+export XDG_CACHE_HOME=${XDG_CACHE_HOME:=$HOME/.cache}
+export XDG_DATA_HOME=${XDG_DATA_HOME:=$HOME/.local/share}
+
 export SHELL=zsh
-export PATH=$HOME/.local/bin:$HOME/.local/share/sympath:$(go env GOBIN):$PATH
+export PATH=$HOME/.local/bin:$HOME/.local/share/sympath:$PATH
 export EDITOR=nvim
 export TERMINAL=st
 export BROWSER=brave
@@ -14,6 +18,7 @@ export SUDO_ASKPASS=$HOME/.local/bin/dmenupass
 export INPUTRC=$HOME/.config/inputrc
 export LESSHISTFILE=/dev/null
 export XAUTHORITY=$HOME/.config/xorg/.Xauthority
+export PYTHONHISTORY=$XDG_CACHE_HOME/python
 
 export LOCATION=Ljungsbro
 export HOMEPAGE=$HOME/repos/splash/home.html

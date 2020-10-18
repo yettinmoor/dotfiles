@@ -137,7 +137,6 @@ label-empty =
 
 [module/mpd]
 type = internal/mpd
-format-online = <label-song> | <bar-progress>
 label-song =  %artist% - %title%
 label-song-maxlen = 70
 label-song-ellipsis = true
@@ -149,10 +148,6 @@ format-online-background =
 format-online-padding = 0
 ; format-playing-background =
 ; format-paused-background =
-bar-progress-width = 10
-bar-progress-indicator = |
-bar-progress-fill = ─
-bar-progress-empty = ─
 click-left = mpc toggle
 ;;
 

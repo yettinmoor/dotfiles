@@ -49,6 +49,11 @@ alias gg='git graph'
 alias gl='git log'
 alias gbr='git branch'
 
+# Zig
+alias zb='zig build'
+alias zbe='zig build-exe'
+alias zr='zig run'
+
 # Rust/Cargo
 alias carb='cargo build'
 alias carr='cargo run'
@@ -68,6 +73,7 @@ kr() { killall "$1"; "$1" >/dev/null 2>&1 & disown; echo "Killed and revived $1"
 xw() { xwininfo -tree -root | grep "${1:-""}"; }
 wttr() { date -d "@$(stat -c '%Y' /tmp/weatherreport)" '+%A %R' | cat - /tmp/weatherreport | less -S; }
 disks() { df -h | grep --color=none -E 'Filesystem|media|home|/$'; }
+room() { du -h ${1:-.} -d 1 | sort -h; }
 
 # Setsid wrappers
 z() { zathura "$1" 2>/dev/null & disown }

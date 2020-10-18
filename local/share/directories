@@ -1,8 +1,7 @@
 h ~/
 dv ~/dev
 dc ~/docs
-lng ~/docs/lang
-eb ~/docs/ebooks
+lib ~/docs/lib
 cv ~/docs/cv
 no ~/docs/notes
 wo ~/docs/work
@@ -15,7 +14,7 @@ fl ~/media/film
 tv ~/media/tv
 an ~/media/アニメ
 yt ~/media/youtube
-ae ~/media/AElib
+ae ~/media/lib/AElib
 pp ~/pics
 me ~/pics/memes
 ph ~/pics/photos
