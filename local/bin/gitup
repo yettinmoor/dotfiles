@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+cd $HOME/repos/dotfiles
+TODAY=$(date -I)
+if [ $( cat .lastautocommit ) = $TODAY ]; then
+	echo "Already autocommitted today. Commit manually."
+	exit 1;
+fi;
+
+git commit -a -m "autocommit $(date -I)"
+git push
+echo $TODAY > .lastautocommit
