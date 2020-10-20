@@ -7,6 +7,6 @@ if [ $( cat .lastautocommit ) = $TODAY ]; then
 	exit 1;
 fi;
 
-git commit -a -m "autocommit $(date -I)"
+git commit -a -m "autocommit $TODAY"
 git push
 echo $TODAY > .lastautocommit

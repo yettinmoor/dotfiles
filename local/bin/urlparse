@@ -9,7 +9,6 @@ dir=~/.local/share/urlparse
 
 # If has search string, check searchengines
 if [ -n "$2" ]; then
-	echo 2: "$2"
 	if [ -n "${se:=$( awk "/^$1 / {print \$2}" $dir/searchengines )}" ]; then
 		shift
 		printf "$se" "$*"
