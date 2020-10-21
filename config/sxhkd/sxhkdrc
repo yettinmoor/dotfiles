@@ -50,9 +50,9 @@ super + a
 super + shift + a
 	anki
 super + s
-	qplay
-super + shift + s
 	qplay clear
+super + shift + s
+	qplay
 super + d
 	rofi -show run
 super + shift + d

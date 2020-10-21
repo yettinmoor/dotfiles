@@ -2,7 +2,7 @@
 
 cd ~/music
 fd | sort | {
-	rofi -dmenu -i || kill 0
+	rofi -dmenu -i || exit 0
 } | {
 	cat -
 	[ "$1" = "clear" ] && mpc clear >/dev/null

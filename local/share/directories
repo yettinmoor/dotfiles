@@ -1,12 +1,12 @@
 h ~/
 dv ~/dev
 dc ~/docs
-lib ~/docs/lib
 cv ~/docs/cv
 no ~/docs/notes
 wo ~/docs/work
 edu ~/docs/edu
 dl ~/dl
+lib ~/lib
 mm ~/music
 md ~/media
 cm ~/media/comics
@@ -23,8 +23,6 @@ pd ~/podcasts
 pr ~/programming
 r ~/repos
 dt ~/repos/dotfiles
-gos ~/repos/go/src
-gosy ~/repos/go/src/github.com/yettinmoor
 vv ~/vidya
 cf ~/.config
 sc ~/.local/bin
