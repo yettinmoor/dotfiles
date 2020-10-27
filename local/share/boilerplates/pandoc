@@ -1,0 +1,10 @@
+---
+title:
+author:
+header-includes:
+ - \usepackage[margin=1in, top=1.2in, bottom=1.2in]{geometry}
+ - \usepackage{polyglossia}
+ > - \setmainlanguage{swedish}
+---
+
+\maketitle
