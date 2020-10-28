@@ -17,3 +17,5 @@
 	rebase = false
 [commit]
 	gpgsign = true
+[color]
+	ui = true
