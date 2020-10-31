@@ -1,9 +1,12 @@
 #!/usr/bin/env sh
-
 cd ~/music
-fd | sort | {
-	rofi -dmenu -i || exit 0
-} | {
-	cat -
-	[ "$1" = "clear" ] && mpc clear >/dev/null
-} | mpc add && mpc play
+case $1 in
+	library)
+		sel=$(fd | sort | rofi -dmenu -i) ;;
+	playlist)
+		sel=$(ls Playlists | rofi -dmenu -i -L 5 | xargs -r -I {} cat "Playlists/{}") ;;
+esac
+[ -z "$sel" ] && exit 1
+mpc clear
+echo "$sel" | mpc add
+mpc play
