@@ -76,6 +76,7 @@ xw() { xwininfo -tree -root | grep "${1:-""}"; }
 wttr() { date -d "@$(stat -c '%Y' /tmp/weatherreport)" '+%A %R' | cat - /tmp/weatherreport | less -S; }
 disks() { df -h | grep --color=none -E 'Filesystem|media|home|/$'; }
 room() { du -h ${1:-.} -d 1 | sort -h; }
+cht() { curl cht.sh/$1; }
 
 # Setsid wrappers
 z() { zathura "$1" 2>/dev/null & disown }

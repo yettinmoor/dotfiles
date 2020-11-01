@@ -6,7 +6,7 @@
 
 case "$1" in
 	random) fd 'jpg|png' ~/pics/wallpapers | shuf -n 1 ;;
-	pick)   fd 'jpg|png' ~/pics/wallpapers | shuf | sxiv -tio 2>/dev/null | sed 1q ;;
+	pick)   fd 'jpg|png' ~/pics/wallpapers | shuf | sxiv -tio | sed 1q ;;
 	*)      readlink -f "$1" ;;
 esac | xargs -r -I {} ln -sf "{}" $XDG_CACHE_HOME/wall
 

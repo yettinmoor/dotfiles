@@ -103,3 +103,5 @@ map a $lf -remote "send $id push :rename<space>${f##*/}"
 map A $lf -remote "send $id push :rename<space>${f##*/}<a-b><left>"
 map I $lf -remote "send $id push :rename<space>${f##*/}<c-a><a-f><c-f>"
 map B bulk-rename
+
+map wm $markwatched $f
