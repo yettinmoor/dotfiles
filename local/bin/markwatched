@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+rm *.last
+touch "$1".last
