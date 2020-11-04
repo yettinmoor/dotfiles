@@ -56,6 +56,7 @@ case "$( file -b --mime-type -- "$file" | tr '[:upper:]' '[:lower:]' )" in
 	# Text
 	text/*|*/xml|*/json)
 		highlight -t 4 -O ansi -- "$file" || cat -- "$file"
+		# bat -pp -- "$file"
 		exit 0 ;;
 	# Image
 	image/*)
