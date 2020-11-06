@@ -55,6 +55,7 @@ alias gbr='git branch'
 alias zb='zig build'
 alias zbe='zig build-exe'
 alias zr='zig run'
+alias zt='zig test'
 
 # Rust/Cargo
 alias carb='cargo build'
