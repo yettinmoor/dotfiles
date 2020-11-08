@@ -189,6 +189,11 @@ so ~/.config/nvim/snippets.vim
 
 " C
 au BufRead,BufNewFile *.h set filetype=c
+function! ClangFormat()
+  let l:formatdiff = 1
+  pyf /usr/share/clang/clang-format.py
+endfunction
+au BufWritePre *.h,*.c,*.cpp call ClangFormat()
 
 " Python
 let g:python_highlight_all = 1
