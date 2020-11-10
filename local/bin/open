@@ -2,7 +2,10 @@
 dir=${1:-~}
 exts='(jpg|png|gif|mkv|mp4|m4v|avi|pdf|djvu|epub|txt|md)$'
 
-fd -t f $exts $dir \
+exclude='steamapps Steam vidya'
+exclude=$(echo $exclude | awk -v RS=" " -v ORS=" " '{print "-E", $1}')
+
+fd -t f $exts $dir $exclude \
 	| sed "s:^$dir/::" \
 	| rofi -dmenu -i -l 15 -p "Read file in $dir" \
 	| xargs -r0 -I {} xdg-open "$dir/{}" &
