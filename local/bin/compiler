@@ -14,7 +14,7 @@ if [ "$base" = "zig" ] && ls build.zig; then zig build; exit 0; fi
 case "${file#*.}" in
 	# Programming
 	c)   CFLAGS="-std=c99 -Wall -g" make "$base" ;;
-	cpp) CFLAGS="-std=c++11 -Wall -g" make "$base" ;;
+	cpp) CPPFLAGS="-std=c++11 -Wall -g" make "$base" ;;
 	py)  python -i "$file" ;;
 	cs)  mcs "$file" ;;
 	js)  node "$file" ;;
