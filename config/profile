@@ -34,6 +34,8 @@ export LD_LIBARY_PATH=/usr/local/lib
 
 export GPG_TTY=$(tty)
 
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+
 source $HOME/.config/zsh/.zshrc
 
 # Autorun startx
