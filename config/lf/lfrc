@@ -29,7 +29,7 @@ cmd open ${{
 	esac
 }}
 
-cmd rename %[ -e "$*" ] && printf "File exists!" || mv "$f" "$*"
+cmd rename %[ -e "$*" ] && printf "File exists!" || mv "$f" "$@"
 
 cmd bulk-rename ${{
 	index=$( mktemp /tmp/lf-bulk-rename-index.XXXXXXXXXX )
@@ -40,7 +40,7 @@ cmd bulk-rename ${{
 	fi > $index
 	index_edit=$( mktemp /tmp/lf-bulk-rename.XXXXXXXXXX )
 	cat "$index" > "$index_edit"
-	$EDITOR "$index_edit"
+	$EDITOR +"e ++enc=utf8" "$index_edit"
 	if [ $( < "$index" wc -l ) -eq $( < "$index_edit" wc -l ) ]; then
 		max=$(( $( < "$index" wc -l ) + 1 ))
 		counter=1
