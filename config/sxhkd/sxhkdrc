@@ -39,8 +39,8 @@ super + t
 	tor
 super + y
 	$TERMINAL -e calcurse -D ~/.config/calcurse
-super + o
-	open
+super + {_,shift +} o
+	open {~,/media}
 super + p
 	mpc toggle
 super + shift + p
