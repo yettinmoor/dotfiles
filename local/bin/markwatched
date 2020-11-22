@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 
-rm *.last
+rm *.last 2>/dev/null
 touch "$1".last
