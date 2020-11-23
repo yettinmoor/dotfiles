@@ -199,6 +199,9 @@ au BufWritePre *.h,*.c,*.cpp call ClangFormat()
 let g:python_highlight_all = 1
 let g:python_highlight_space_errors = 0
 
+" C#
+au FileType cs setlocal expandtab
+
 " HTML/CSS
 au FileType html,css setlocal expandtab
 au FileType html,css setlocal tabstop=2
