@@ -1,7 +1,10 @@
 #!/usr/bin/env sh
-
-engine='anthy'
-
+engines=$(cat <<- EOF
+1. 🇸🇪 xkb:se::swe Aa
+2. 🇯🇵 anthy 文
+3. 🇬🇷 xkb:gr::ell AΩ
+EOF
+)
 case "$1" in
 	power)
 		if pgrep ibus >/dev/null; then ibus exit; else ibus-daemon -drx; fi
@@ -9,12 +12,13 @@ case "$1" in
 		polybar-msg hook module/ibus 1 ;;
 	toggle)
 		pgrep ibus >/dev/null || exit 1
-		ibus engine "$( [ "$( ibus engine )" = "${engine}" ] && echo 'xkb:se::swe' || echo "${engine}" )"
+		choice=$(echo "$engines" | cut -d ' ' -f1-3 | rofi -dmenu -L $(echo "$engines" | wc -l) | cut -d ' ' -f3)
+		ibus engine "${choice:?}"
 		dunstify -r 9191 -u critical "$( $0 show )"
 		polybar-msg hook module/ibus 1 ;;
 	show)
 		pgrep ibus >/dev/null || exit 1
-		ibus engine | sed -e "s/${engine}/文/" -e 's/xkb.*/Aa/';;
+		echo "$engines" | grep $(ibus engine) | cut -d ' ' -f4 ;;
 	config)
 		ibus-setup ;;
 	*)
