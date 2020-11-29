@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 # Shows clipboard selection as QR code.
 xclip -sel clip -o | qrencode -s 25 -o /tmp/qrclip.png || exit 1
 sxiv -pb -N 'qrclip' /tmp/qrclip.png

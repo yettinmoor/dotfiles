@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 engines=$(cat <<- EOF
-1. 🇸🇪 xkb:se::swe Aa
+1. 🇸🇪 xkb:se:nodeadkeys:swe Aa
 2. 🇯🇵 anthy 文
 3. 🇬🇷 xkb:gr::ell AΩ
 EOF
@@ -12,8 +12,9 @@ case "$1" in
 		polybar-msg hook module/ibus 1 ;;
 	toggle)
 		pgrep ibus >/dev/null || exit 1
-		choice=$(echo "$engines" | cut -d ' ' -f1-3 | rofi -dmenu -L $(echo "$engines" | wc -l) | cut -d ' ' -f3)
-		ibus engine "${choice:?}"
+		choice=$(echo "$engines" | cut -d ' ' -f1-2 | rofi -dmenu -p 'Engine' -L $(echo "$engines" | wc -l) -width 10)
+		engine=$(echo "$engines" | grep "${choice:?}" | cut -d ' ' -f3)
+		ibus engine $engine
 		dunstify -r 9191 -u critical "$( $0 show )"
 		polybar-msg hook module/ibus 1 ;;
 	show)

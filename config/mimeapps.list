@@ -16,3 +16,4 @@ application/rss+xml=rss.desktop;
 application/json=json.desktop;
 inode/directory=lf.desktop;
 application/vnd.comicbook-rar=pdf.desktop;
+x-scheme-handler/discord-402572971681644545=discord-402572971681644545.desktop
