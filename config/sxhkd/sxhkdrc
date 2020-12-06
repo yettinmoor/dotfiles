@@ -46,7 +46,7 @@ super + p
 super + shift + p
 	pauseall
 super + a
-	$TERMINAL -e python -i -c "from math import *"
+	$TERMINAL -e qalc
 super + shift + a
 	anki
 super + s
@@ -82,7 +82,9 @@ super + shift + m
 
 # Etc
 super + comma
-	qunicode
+ 	rofi -show unicode \
+		-modi 'unicode:~/.config/rofiemoji-rofiunicode/rofiunicode.sh' \
+		-theme-str '*\{columns: 4; width: 80%; lines: 20;\}'
 super + {_,shift +} period
 	{qcopy,qpass}
 super + {_,shift +} Insert

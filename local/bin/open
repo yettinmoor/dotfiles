@@ -2,7 +2,7 @@
 
 cd ${1:-~}
 exts='(jpg|png|gif|mkv|mp4|m4v|avi|pdf|djvu|epub|txt|md)$'
-exclude='steamapps Steam vidya'
+exclude='repos vidya'
 exclude=$(echo $exclude | awk -v RS=" " -v ORS=" " '{print "-E", $1}')
 fd -t f $exts $exclude \
 	| rofi -dmenu -i -l 15 -p "Read file in $(pwd)" \

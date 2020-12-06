@@ -91,8 +91,8 @@ configuration {
 	/* kb-delete-entry: "Shift+Delete"; */
 	/* kb-mode-next: "Shift+Right,Control+Tab"; */
 	/* kb-mode-previous: "Shift+Left,Control+ISO_Left_Tab"; */
-	/* kb-row-left: "Control+Page_Up"; */
-	/* kb-row-right: "Control+Page_Down"; */
+	kb-row-left: "Control+Page_Up,Alt+h";
+	kb-row-right: "Control+Page_Down,Alt+l";
 	kb-row-up: "Up,Alt+k,";
 	kb-row-down: "Down,Alt+j";
 	/* kb-row-tab: "Tab"; */

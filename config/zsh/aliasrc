@@ -79,6 +79,7 @@ wttr() { date -d "@$(stat -c '%Y' /tmp/weatherreport)" '+%A %R' | cat - /tmp/wea
 disks() { df -h | grep --color=none -E 'Filesystem|media|home|/$'; }
 room() { du -h ${1:-.} -d 1 | sort -h; }
 cht() { curl cht.sh/$1; }
+ywd() { pwd | xclip -sel c; }
 
 # Setsid wrappers
 z() { zathura "$1" 2>/dev/null & disown }
