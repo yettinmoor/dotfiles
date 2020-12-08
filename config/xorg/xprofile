@@ -11,7 +11,7 @@ xsetroot -cursor_name left_ptr
 # Daemons
 sxhkd &
 dunst &
-picom -b
+picom -b --experimental-backends
 redshift &
 syncthing -no-browser >/dev/null &
 unclutter --timeout 3 &
