@@ -24,8 +24,8 @@ export LOCATION=Ljungsbro
 export HOMEPAGE=$HOME/repos/splash/home.html
 export GIT=git@github.com:yettinmoor
 
-export GTK_IM_MODULE=ibus
-export QT_IM_MODULE=ibus
+export GTK_IM_MODULE=xim
+export QT_IM_MODULE=xim
 export XMODIFIERS=@im=ibus
 export XIM_PROGRAM=/usr/bin/ibus-daemon
 export QT_QPA_PLATFORMTHEME=qt5ct

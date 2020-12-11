@@ -83,7 +83,8 @@ super + shift + m
 # Etc
 super + comma
  	rofi -show unicode \
-		-modi 'unicode:~/.config/rofiemoji-rofiunicode/rofiunicode.sh' \
+		-modi 'unicode:~/.config/rofiemoji-rofiunicode/rofiunicode.sh,\
+				emoji:~/.config/rofiemoji-rofiunicode/rofiemoji.sh' \
 		-theme-str '*\{columns: 4; width: 80%; lines: 20;\}'
 super + {_,shift +} period
 	{qcopy,qpass}
