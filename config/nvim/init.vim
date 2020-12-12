@@ -13,6 +13,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mileszs/ack.vim'
 Plug 'dkasak/gruvbox'
+Plug 'honza/vim-snippets'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -182,6 +183,15 @@ function! s:show_documentation()
 endfunction
 
 nnoremap <leader>f :call CocAction('format')<CR>
+
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+
+inoremap <F2> <Plug>(coc-rename)
+
+let g:coc_snippet_next = '<S-Tab>'
 
 " Source snippets from separate file
 so ~/.config/nvim/snippets.vim

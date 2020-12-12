@@ -19,3 +19,5 @@
 	gpgsign = true
 [color]
 	ui = true
+[advice]
+	addIgnoredFile = false
