@@ -21,7 +21,7 @@ cmd open ${{
 	esac
 }}
 
-cmd rename %[ -e "$*" ] && printf "File exists!" || mv "$f" "$@"
+cmd rename %[ -e "$*" ] && printf "File exists!" || mv "$f" "$*"
 
 cmd bulk-rename ${{
 	index=$( mktemp /tmp/lf-bulk-rename-index.XXXXXXXXXX )

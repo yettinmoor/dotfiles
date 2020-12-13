@@ -8,6 +8,7 @@ edu ~/docs/edu
 dl ~/dl
 lib ~/lib
 eb ~/lib
+lng ~/lib/lang
 mm ~/music
 md ~/media
 cm ~/media/comics
