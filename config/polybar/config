@@ -146,8 +146,8 @@ format-paused-foreground = ${colors.gray}
 format-paused-underline =
 format-online-background =
 format-online-padding = 0
-; format-playing-background =
-; format-paused-background =
+format-playing-background = ${colors.background}
+format-paused-background = ${colors.background}
 click-left = mpc toggle
 ;;
 
