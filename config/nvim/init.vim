@@ -33,6 +33,7 @@ Plug 'tpope/vim-markdown'
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'rust-lang/rust.vim'
 Plug 'fatih/vim-go'
 Plug 'ziglang/zig.vim'
 Plug 'OmniSharp/omnisharp-vim'
@@ -245,6 +246,9 @@ let g:go_fmt_command = "goimports"
 let g:go_highlight_fields = 1
 " let g:go_highlight_functions = 1
 let g:go_highlight_function_calls = 1
+
+" Rust
+let g:rustfmt_autosave = 1
 
 " Octave
 au BufRead,BufNewFile *.m set filetype=octave
