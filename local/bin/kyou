@@ -2,5 +2,5 @@
 date '+%b %-d %w %V' |
 	awk '{
 		split("日月火水木金土", days, "");
-		printf("%c %s %d (%d)", days[$3+1], $1, $2, $4)
+		printf("%c %s %d <%d>", days[$3+1], $1, $2, $4)
 	}'
