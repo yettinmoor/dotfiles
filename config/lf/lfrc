@@ -6,7 +6,6 @@ set previewer ~/.config/lf/scope.sh
 set ifs "\n"
 set scrolloff 10
 set icons
-set color256
 set ratios 1:2:3
 
 # COMMANDS
