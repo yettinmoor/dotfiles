@@ -33,6 +33,7 @@ Plug 'tpope/vim-markdown'
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'tell-k/vim-autopep8'
 Plug 'rust-lang/rust.vim'
 Plug 'fatih/vim-go'
 Plug 'ziglang/zig.vim'
@@ -210,6 +211,8 @@ au BufWritePre *.h,*.c,*.cpp,*.ino call ClangFormat()
 " Python
 let g:python_highlight_all = 1
 let g:python_highlight_space_errors = 0
+let g:autopep8_disable_show_diff=1
+let g:autopep8_on_save = 1
 
 " C#
 au FileType cs setlocal expandtab
