@@ -23,7 +23,7 @@ case "${file#*.}" in
 	hs)  runhaskell "$file" ;;
 	go)  go run "$file" ;;
 	rs)  cargo run "$file" ;;
-	zig) zig run "$file" ;;
+	zig) if [ -f "build.zig" ]; then zig build run; else zig run "$file"; fi ;;
 	jai) echo "Jai release never :-(" ;;
 
 	m) octave --persist -iq "$file" ;;
