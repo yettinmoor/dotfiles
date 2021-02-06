@@ -25,6 +25,7 @@ case "${file#*.}" in
 	rs)  cargo run "$file" ;;
 	zig) if [ -f "build.zig" ]; then zig build run; else zig run "$file"; fi ;;
 	jai) echo "Jai release never :-(" ;;
+	nil) nil lex "$file" ;;
 
 	m) octave --persist -iq "$file" ;;
 

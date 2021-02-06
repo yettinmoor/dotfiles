@@ -63,6 +63,7 @@ nnoremap <F5> :so $MYVIMRC \| echo "vimrc resourced"<CR>
 set so=8
 set tabstop=4
 set shiftwidth=4
+set expandtab
 
 " Colorscheme
 set termguicolors
