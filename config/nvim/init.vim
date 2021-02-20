@@ -56,8 +56,9 @@ set encoding=utf-8
 nnoremap <silent> <Esc> :noh<CR><Esc>
 set conceallevel=2
 set smartcase
-au FileType * setlocal formatoptions-=cro
+au FileType * setl formatoptions-=cro
 nnoremap <F5> :so $MYVIMRC \| echo "vimrc resourced"<CR>
+let g:ctrlp_by_filename = 1
 
 " Tabbing
 set so=8
@@ -68,6 +69,7 @@ set expandtab
 " Colorscheme
 set termguicolors
 set bg=dark
+let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_italic='1'
 " let g:gruvbox_bold='0'
 let g:gruvbox_italicize_strings='1'
@@ -204,10 +206,11 @@ so ~/.config/nvim/snippets.vim
 " C
 au BufRead,BufNewFile *.h set filetype=c
 function! ClangFormat()
-  let l:formatdiff = 1
+  let l:formatdiff = 0
   pyf /usr/share/clang/clang-format.py
 endfunction
 au BufWritePre *.h,*.c,*.cpp,*.ino call ClangFormat()
+au FileType c,cpp,cs setl commentstring=//\ %s
 
 " Python
 let g:python_highlight_all = 1
@@ -216,18 +219,18 @@ let g:autopep8_disable_show_diff=1
 let g:autopep8_on_save = 1
 
 " C#
-au FileType cs setlocal expandtab
+au FileType cs setl expandtab
 
 " HTML/CSS
-au FileType html,css setlocal expandtab
-au FileType html,css setlocal tabstop=2
-au FileType html,css setlocal shiftwidth=2
+au FileType html,css setl expandtab
+au FileType html,css setl tabstop=2
+au FileType html,css setl shiftwidth=2
 
 " Assembly
 au BufRead,BufNewFile *.asm set filetype=nasm
 
 " Processing
-au FileType processing setlocal tabstop=4 shiftwidth=4
+au FileType processing setl tabstop=4 shiftwidth=4
 au FileType processing map <leader>c :w! \| make<CR>
 
 " LaTeX
@@ -235,7 +238,7 @@ au VimLeave *.tex !texclear %
 let g:tex_flavor = 'latex'
 
 " Haskell
-au FileType haskell setlocal expandtab
+au FileType haskell setl expandtab
 au FileType haskell noremap <leader>Q :%!indent<CR>
 let g:haskell_enable_quantification = 1
 let g:haskell_enable_recursivedo = 1
@@ -256,3 +259,6 @@ let g:rustfmt_autosave = 1
 
 " Octave
 au BufRead,BufNewFile *.m set filetype=octave
+
+" fonts.conf
+au BufRead,BufNewFile fonts.conf set filetype=xml

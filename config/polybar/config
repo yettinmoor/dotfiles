@@ -85,7 +85,8 @@ type = custom/ipc
 hook-0 = newsboat -x print-unread | awk '!/^0/ {print $1}'
 hook-1 = echo "↺"
 initial = 1
-format-prefix = " "
+format-prefix = "! "
+format-prefix-foreground = ${colors.blue}
 format-underline = ${colors.red}
 ;;
 
@@ -193,9 +194,8 @@ format-underline = ${colors.blue}
 
 [module/volicon]
 type = custom/ipc
-hook-0 = echo ''
-hook-1 = echo ''
-hook-2 = echo 'Muted'
+hook-0 = echo '<)'
+hook-1 = echo '()'
 initial = 1
 format-underline = ${colors.darkmagenta}
 ;;
@@ -204,7 +204,7 @@ format-underline = ${colors.darkmagenta}
 type = internal/alsa
 master-soundcard = hw:1
 label-volume = %percentage%%
-label-muted = muted
+label-muted = 0%
 format-volume-padding = 0
 label-volume-padding-right = 2px
 format-muted-padding = 0
