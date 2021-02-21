@@ -39,8 +39,10 @@ super + t
 	tor
 super + y
 	$TERMINAL -e calcurse -D ~/.config/calcurse
-super + {_,shift +} o
-	open {~,/media}
+super + o
+	open ~ 'repos vidya'
+super + shift + o
+	open /media 'steam'
 super + p
 	mpc toggle
 super + shift + p

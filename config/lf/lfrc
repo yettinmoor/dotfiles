@@ -70,7 +70,7 @@ map i $~/.config/lf/scope.sh $f | less
 
 map U clear
 
-map <bs2> set hidden!
+map <BS> set hidden!
 map V :unselect; invert
 
 map D delete
