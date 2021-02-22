@@ -4,15 +4,16 @@ let mapleader=","
 filetype plugin on
 filetype plugin indent on
 if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
-	echo "Downloading junegunn/vim-plug to manage plugins..."
-	silent !mkdir -p ~/.config/nvim/autoload/
-	silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.config/nvim/autoload/plug.vim
+    echo "Downloading junegunn/vim-plug to manage plugins..."
+    silent !mkdir -p ~/.config/nvim/autoload/
+    silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.config/nvim/autoload/plug.vim
 endif
 call plug#begin('~/.config/nvim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mileszs/ack.vim'
 Plug 'dkasak/gruvbox'
+Plug 'sainnhe/gruvbox-material'
 Plug 'honza/vim-snippets'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-repeat'
@@ -34,6 +35,7 @@ Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'tell-k/vim-autopep8'
+Plug 'rhysd/vim-clang-format'
 Plug 'rust-lang/rust.vim'
 Plug 'fatih/vim-go'
 Plug 'ziglang/zig.vim'
@@ -66,16 +68,28 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
+" " Colorscheme
+" set termguicolors
+" set bg=dark
+" let g:gruvbox_contrast_dark='hard'
+" let g:gruvbox_italic='1'
+" " let g:gruvbox_bold='0'
+" let g:gruvbox_italicize_strings='1'
+" colorscheme gruvbox
+" let g:airline_theme = 'gruvbox'
+" hi Normal guibg=NONE
+
 " Colorscheme
 set termguicolors
 set bg=dark
-let g:gruvbox_contrast_dark='hard'
-let g:gruvbox_italic='1'
+let g:gruvbox_material_background='medium'
+let g:gruvbox_material_enable_italic='1'
 " let g:gruvbox_bold='0'
-let g:gruvbox_italicize_strings='1'
-colorscheme gruvbox
-let g:airline_theme = 'gruvbox'
+colorscheme gruvbox-material
+let g:airline_theme = 'gruvbox_material'
 hi Normal guibg=NONE
+
+
 
 " Term
 nmap <A-CR> :vs term://zsh<CR>
@@ -164,14 +178,14 @@ set shortmess+=c
 " set signcolumn=yes
 inoremap <expr> <CR> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <silent><expr> <TAB>
-	\ pumvisible() ? "\<C-n>" :
-	\ <SID>check_back_space() ? "\<TAB>" :
-	\ coc#refresh()
+   \ pumvisible() ? "\<C-n>" :
+   \ <SID>check_back_space() ? "\<TAB>" :
+   \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1] =~# '\s'
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1] =~# '\s'
 endfunction
 
 nmap <silent> gd <Plug>(coc-definition)
@@ -180,11 +194,11 @@ nmap <silent> gi <Plug>(coc-implementation)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
-	if (index(['vim', 'help'], &filetype) >= 0)
-		execute 'h '.expand('<cword>')
-	else
-		call CocAction('doHover')
-	endif
+    if (index(['vim', 'help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    else
+        call CocAction('doHover')
+    endif
 endfunction
 
 nnoremap <leader>f :call CocAction('format')<CR>
@@ -205,12 +219,16 @@ so ~/.config/nvim/snippets.vim
 
 " C
 au BufRead,BufNewFile *.h set filetype=c
-function! ClangFormat()
-  let l:formatdiff = 0
-  pyf /usr/share/clang/clang-format.py
-endfunction
-au BufWritePre *.h,*.c,*.cpp,*.ino call ClangFormat()
 au FileType c,cpp,cs setl commentstring=//\ %s
+
+let g:clang_format#detect_style_file=1
+let g:clang_format#auto_format=1
+
+" function! ClangFormat()
+"   let l:formatdiff = 0
+"   pyf /usr/share/clang/clang-format.py
+" endfunction
+" au BufWritePre *.h,*.c,*.cpp,*.ino call ClangFormat()
 
 " Python
 let g:python_highlight_all = 1
