@@ -75,7 +75,7 @@ format-underline = ${colors.darkgreen}
 
 [module/updates]
 type = custom/ipc
-hook-0 = pacman -Qu | grep -cv 'ignored' | awk '!/^0/ {print $1, "updates"} /^0/ {printf "\n"}'
+hook-0 = pacman -Qu | grep -cv 'ignored' | awk '!/^0/ {print "↓", $1} /^0/ {printf "\n"}'
 initial = 1
 format-foreground = ${colors.green}
 format-underline = ${colors.green}
