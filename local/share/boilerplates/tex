@@ -19,6 +19,8 @@
 \usepackage{parskip}
 \renewcommand{\arraystretch}{1.2}
 \usepackage{xcolor, colortbl}
+\usepackage[symbol]{footmisc}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
 
 %% Tables, figures, etc.
 \usepackage{graphicx}
