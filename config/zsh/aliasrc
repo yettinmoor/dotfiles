@@ -15,7 +15,7 @@ alias oct='octave -q'
 alias la='words'
 alias sql='mycli'
 alias ju='jupyter lab >/dev/null 2>&1 & disown'
-alias potp='pass otp -c'
+alias otp='pass otp -c'
 
 # General shortcuts
 alias ls='exa -h --group-directories-first'
