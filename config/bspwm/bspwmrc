@@ -36,3 +36,6 @@ while pgrep -x polybar >/dev/null; do sleep .1; done
 for i in $( polybar -m | awk -F: '{print $1}' ); do
 	MONITOR=$i polybar default 2>/home/nico/.local/share/polybar.log &
 done
+
+# bspswallow
+pgrep bspswallow || bspswallow &
