@@ -10,6 +10,7 @@ if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
 endif
 call plug#begin('~/.config/nvim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'vimwiki/vimwiki'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mileszs/ack.vim'
 Plug 'dkasak/gruvbox'
@@ -158,6 +159,7 @@ au BufRead,BufNewFile *.rasi set filetype=css
 au BufRead,BufNewFile *.vs,*.fs set filetype=glsl
 
 " Markdown
+let g:vimwiki_list = [{'path': '~/wiki/', 'path_html': '~/wiki/html'}]
 let g:vimwiki_ext2syntax = {'.md': 'markdown'}
 let g:instant_markdown_autostart = 0
 au BufRead,BufNewFile *.md nnoremap <leader>md :InstantMarkdownPreview<CR>
@@ -280,3 +282,6 @@ au BufRead,BufNewFile *.m set filetype=octave
 
 " fonts.conf
 au BufRead,BufNewFile fonts.conf set filetype=xml
+
+" wiki
+au BufWritePost *.wiki silent! :Vimwiki2HTML
