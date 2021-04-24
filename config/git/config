@@ -21,3 +21,5 @@
 	ui = true
 [advice]
 	addIgnoredFile = false
+[init]
+	defaultBranch = master

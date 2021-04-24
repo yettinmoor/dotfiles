@@ -214,9 +214,6 @@ inoremap <F2> <Plug>(coc-rename)
 
 let g:coc_snippet_next = '<S-Tab>'
 
-" Source snippets from separate file
-so ~/.config/nvim/snippets.vim
-
 " Per-filetype syntax stuff
 
 " C
