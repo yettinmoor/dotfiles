@@ -1,10 +1,10 @@
 #!/usr/bin/env sh
 
-target="$1"
-dir="$(dirname "$target")"
+file="$1"
+dir="$(dirname "$file")"
 
 fd '.*(jpe?g|bmp|png|gif)$' "$dir" -l -d 1 \
     | nl \
-    | grep "$target" \
+    | grep "$file" \
     | cut -f1 \
     | xargs -I{} sxiv -a -n {} "$dir"
