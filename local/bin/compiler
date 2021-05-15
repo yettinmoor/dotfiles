@@ -12,6 +12,9 @@ if ls Makefile >/dev/null 2>&1; then make; exit 0; fi
 if [ "$base" = "zig" ] && ls build.zig; then zig build; exit 0; fi
 
 case "${file#*.}" in
+    # Shell
+    sh) sh "$file" ;;
+
 	# Programming
 	c) cc "$file" -o "$base" && "$base" ;;
 	cpp) g++ "$file" -o "$base" && "$base" ;;

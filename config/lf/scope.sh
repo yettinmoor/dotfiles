@@ -58,13 +58,17 @@ case "$( file -b --mime-type -- "$file" | tr '[:upper:]' '[:lower:]' )" in
 		highlight -t 4 -O ansi -- "$file" || cat -- "$file"
 		# bat -pp -- "$file"
 		exit 0 ;;
+
 	# Image
-	image/*)
+    image/vnd.djvu)
+        exit 0 ;;
+    image/*)
 		# Preview as text conversion
 		# img2txt --gamma=0.6 -- "$file" && exit 0
 		# exiftool "$file"
 		chafa --fill=block --symbols=block -c 240 -s $(($(tput cols) / 2))x$(tput lines) "${file}"
 		exit 0 ;;
+
 	# Video and audio
 	video/*|audio/*)
 		mediainfo "$file"

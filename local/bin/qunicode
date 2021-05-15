@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
-awk '/U\+/ {gsub(/U\+[[:xdigit:]]*[[:blank:]]/, ""); print}' ~/.config/unicode/* \
-	| rofi -dmenu -p 'Copy unicode glyph' -i -l 20 \
+DIR=~/.config/unicode
+cat $DIR/unicode.txt $DIR/emoji.txt \
+    | rofi -dmenu -i -l 20 -p 'unicode' \
 	| cut -d' ' -f1 \
 	| xclip -sel c -r
