@@ -1,16 +1,19 @@
 let mapleader=","
+let g:coc_snippet_next = '<S-Tab>'
 
 " Plugins
 filetype plugin on
 filetype plugin indent on
+
 if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
     echo "Downloading junegunn/vim-plug to manage plugins..."
     silent !mkdir -p ~/.config/nvim/autoload/
     silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.config/nvim/autoload/plug.vim
 endif
+
 call plug#begin('~/.config/nvim/plugged')
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vimwiki/vimwiki'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mileszs/ack.vim'
 Plug 'dkasak/gruvbox'
@@ -59,11 +62,12 @@ nnoremap <silent> <Esc> :noh<CR><Esc>
 set conceallevel=2
 set smartcase
 setl formatoptions-=cro
-nnoremap <F5> :so $MYVIMRC \| echo "vimrc resourced"<CR>
+" nnoremap <F5> :so $MYVIMRC \| echo "vimrc resourced"<CR>
 
 " CtrlP
 let g:ctrlp_by_filename = 1
 let g:ctrlp_regexp = 0
+let g:ctrlp_show_hidden = 1
 
 " Compile & show scripts
 nmap <leader>c :w! \| :sp term://compiler %<CR>
@@ -127,9 +131,9 @@ map <C-A-l> <C-w>5<
 
 " VimWiki
 let g:vimwiki_list = [{
-            \ 'path': '~/docs/wiki/text',
-            \ 'path_html': '~/docs/wiki/html',
-            \ 'template_path': '~/docs/wiki/templates',
+            \ 'path': '~/docs/wiki',
+            \ 'path_html': '~/docs/wiki/.html/html',
+            \ 'template_path': '~/docs/wiki/.html/templates',
             \ 'template_default': 'template',
             \ 'template_ext': '.html'
             \}]
@@ -174,8 +178,6 @@ xmap af <Plug>(coc-funcobj-a)
 omap af <Plug>(coc-funcobj-a)
 
 inoremap <F2> <Plug>(coc-rename)
-
-let g:coc_snippet_next = '<S-Tab>'
 
 """ Misc filetype stuff
 

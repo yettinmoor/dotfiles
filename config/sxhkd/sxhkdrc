@@ -30,7 +30,7 @@ super + shift + q
 super + w
 	urlgoto
 super + shift + w
-	rofi -show window -theme sidebar
+	compiler ~/docs/wiki/index.wiki && $BROWSER --new-window ~/docs/wiki/.html/html/index.html
 super + e
 	$TERMINAL -e $FILE
 super + r

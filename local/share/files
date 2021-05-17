@@ -2,6 +2,7 @@ bf ~/.local/share/files
 bd ~/.local/share/directories
 bm ~/.local/share/urlparse/bookmarks
 bse ~/.local/share/urlparse/searchengines
+wii ~/docs/wiki/index.wiki
 cfz ~/.config/zsh/.zshrc
 cfp ~/.config/profile
 cfk ~/.config/sxhkd/sxhkdrc

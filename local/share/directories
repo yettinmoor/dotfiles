@@ -1,9 +1,8 @@
 dv ~/dev
 dc ~/docs
 cv ~/docs/cv
-no ~/docs/notes
-wo ~/docs/work
 edu ~/docs/edu
+wi ~/docs/wiki
 dl ~/dl
 lib ~/lib
 eb ~/lib
