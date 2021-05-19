@@ -2,7 +2,9 @@
 
 . "$HOME/.config/xorg/xprofile"
 
+WM=dwm
+
 while true; do
-	date >>~/.local/share/bspwm.log
-	bspwm 2>>~/.local/share/bspwm.log
+	date >>~/.local/share/$WM.log
+	$WM 2>>~/.local/share/$WM.log
 done
