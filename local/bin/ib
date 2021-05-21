@@ -1,27 +1,33 @@
 #!/usr/bin/env sh
+
+# This script is buggy as hell and I want to kill myself
+
 engines=$(cat <<- EOF
 1. 🇸🇪 xkb:se:nodeadkeys:swe Aa
 2. 🇯🇵 anthy 文
 3. 🇬🇷 xkb:gr::ell AΩ
 EOF
 )
+
+show() {
+    icon=$(echo "$engines" | grep $(ibus engine) | cut -d ' ' -f4)
+    dunstify -r 9191 -u critical "$icon"
+    dwmbar ib "$icon"
+}
+
+is_running() {
+    pgrep ibus >/dev/null
+}
+
 case "$1" in
-	power)
-		if pgrep ibus >/dev/null; then ibus exit; else ibus-daemon -drx; fi
-		sleep .5
-		polybar-msg hook module/ibus 1 ;;
-	toggle)
-		pgrep ibus >/dev/null || exit 1
-		choice=$(echo "$engines" | cut -d ' ' -f1-2 | rofi -dmenu -p 'Engine' -L $(echo "$engines" | wc -l) -width 10)
-		engine=$(echo "$engines" | grep "${choice:?}" | cut -d ' ' -f3)
-		ibus engine $engine
-		dunstify -r 9191 -u critical "$( $0 show )"
-		polybar-msg hook module/ibus 1 ;;
-	show)
-		pgrep ibus >/dev/null || exit 1
-		echo "$engines" | grep $(ibus engine) | cut -d ' ' -f4 ;;
-	config)
-		ibus-setup ;;
-	*)
-		ibus "$@" ;;
+    power)
+        if is_running; then ibus exit; else ibus-daemon -drx; fi
+        sleep .5
+        show ;;
+    toggle)
+        is_running || exit 1
+        choice=$(echo "$engines" | cut -d ' ' -f1-2 | rofi -dmenu -p 'Engine' -L $(echo "$engines" | wc -l) -width 10)
+        engine=$(echo "$engines" | grep "${choice:?}" | cut -d ' ' -f3)
+        ibus engine $engine
+        show ;;
 esac 2>/dev/null

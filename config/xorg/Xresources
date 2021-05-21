@@ -1,4 +1,4 @@
-*.font:	Monospace:pixelsize=18
+*.font:	Monospace:pixelsize=17
 *.hinting: true
 *.hintstyle: hintslight
 

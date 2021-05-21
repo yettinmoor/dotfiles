@@ -7,6 +7,7 @@ kbset &
 setbg &
 xrdb ~/.config/xorg/Xresources
 xsetroot -cursor_name left_ptr
+dwmbar
 
 # Daemons
 sxhkd &
@@ -16,7 +17,7 @@ redshift &
 syncthing -no-browser >/dev/null &
 unclutter --timeout 3 &
 mpd &
-protonmail-bridge --noninteractive &
+mpdnot &
 
 # Some pings
 rssping &

@@ -252,7 +252,7 @@ song_columns_list_format = (3f)[yellow]{: } (25)[yellow]{a} (35)[16]{t|f:Title} 
 ## Note: Custom command that will be executed each time song changes. Useful for
 ## notifications etc.
 ##
-#execute_on_song_change = ""
+# execute_on_song_change = ""
 #
 ##
 ## Note: Custom command that will be executed each time player state
