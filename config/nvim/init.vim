@@ -132,8 +132,8 @@ map <C-A-l> <C-w>5<
 " VimWiki
 let g:vimwiki_list = [{
             \ 'path': '~/docs/wiki',
-            \ 'path_html': '~/docs/wiki/.html/html',
-            \ 'template_path': '~/docs/wiki/.html/templates',
+            \ 'path_html': '~/docs/wiki/.html',
+            \ 'template_path': '~/docs/wiki/.html/.templates',
             \ 'template_default': 'template',
             \ 'template_ext': '.html'
             \}]

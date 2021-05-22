@@ -3,10 +3,11 @@ set statusbar-v-padding 0
 set selection-clipboard clipboard
 set guioptions none
 set statusbar-home-tilde true
+set window-title-home-tilde true
 set page-padding 1
 set font "mono 14"
-set recolor-lightcolor "rgba(0, 0, 0, 0.6)"
-set recolor-darkcolor "rgba(255, 230, 220, 0.8)"
+set recolor-lightcolor "rgba(40, 40, 40, 0.6)"
+set recolor-darkcolor "rgba(255, 230, 220, 1.0)"
 
 map u scroll half-up
 map d scroll half-down
