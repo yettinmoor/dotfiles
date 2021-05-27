@@ -42,7 +42,7 @@ super + t
 super + y
 	$TERMINAL -e calcurse -D ~/.config/calcurse
 super + o
-	open ~ 'repos vidya'
+	open ~ 'repos vidya zig-cache'
 super + shift + o
 	open /media 'steam'
 super + p

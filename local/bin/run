@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+
+file="$( readlink -f "$1" )"
+base="${file%.*}"
+
+cd "$( dirname "$file" )" || exit 1
+
+case "$file" in
+    *.tex|*.md|*.rmd|*.ms|*.me|*.mom)
+        setsid zathura "$base".pdf >/dev/null ;;
+
+    *.html) setsid "$BROWSER" --new-window "$base".html >/dev/null 2>&1 & ;;
+
+    *.sent) setsid sent "$file" >/dev/null 2>&1 & ;;
+
+    *.wiki) echo "$base" \
+        | sed 's:wiki:wiki/.html:' \
+        | xargs -r -I {} setsid $BROWSER "{}.html" ;;
+
+    *) [ -x "$base" ] && "$base" ;;
+esac

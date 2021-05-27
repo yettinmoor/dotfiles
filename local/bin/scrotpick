@@ -1,12 +1,32 @@
 #!/usr/bin/env sh
-case "$(printf "selected area\\nselected area (float)\\ncurrent window\\nfull screen\\nselected area (copy)\\ncurrent window (copy)\\nfull screen (copy)" | dmenu -l 6 -i -p "Screenshot which area?")" in
-	"selected area") scrot -s pic-selected-"$(date '+%y%m%d-%H%M-%S').png" ;;
-	"selected area (float)")
-		dest=/tmp/pic-selected-"$(date '+%y%m%d-%H%M-%S').png"
-		scrot -s $dest && sxiv $dest && rm $dest ;;
-	"current window") scrot -u pic-window-"$(date '+%y%m%d-%H%M-%S').png" ;;
-	"full screen") scrot pic-full-"$(date '+%y%m%d-%H%M-%S').png" ;;
-	"selected area (copy)") scrot -s | xclip -selection clipboard -t image/png ;;
-	"current window (copy)") scrot -u | xclip -selection clipboard -t image/png ;;
-	"full screen (copy)") scrot | xclip -selection clipboard -t image/png ;;
+
+choices="$(cat << EOF
+area
+window
+screen
+area (copy)
+window (copy)
+screen (copy)
+EOF
+)"
+
+choice="$(echo "$choices" | rofi -dmenu -l $(echo "$choices" | wc -l) -p 'scrotpick')" || exit 1
+
+case "$choice" in
+    a*) cmd='-s' ;;
+    w*) cmd='-u' ;;
+    s*) cmd='' ;;
+esac
+
+# get rofi outta the way
+sleep .2
+
+case "$choice" in
+    *copy*)
+        scrot $cmd -e 'xclip -sel c -t image/png -i $f'
+        notify-send 'scrotpick' 'Copied screenshot' ;;
+    *)
+        filename="$HOME/pics/scrotpick-$(date '+%y%m%d-%H%M-%S').png"
+        scrot $cmd "$filename"
+        notify-send 'scrotpick' "$filename" ;;
 esac

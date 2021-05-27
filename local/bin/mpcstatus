@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+song=$(mpc current)
+[ -n "$song" ] || exit 1
+
+mpc | grep -q '\[playing\]' && echo -n '' || echo -n ''
+echo -n " $song"
