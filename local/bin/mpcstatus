@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-song=$(mpc current)
+song=$(mpc current -f '%artist% :: %title%')
 [ -n "$song" ] || exit 1
 
 mpc | grep -q '\[playing\]' && echo -n '' || echo -n ''
