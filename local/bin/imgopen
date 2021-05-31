@@ -1,10 +1,6 @@
 #!/usr/bin/env sh
 
 file="$1"
-dir="$(dirname "$file")"
+imgs() { fd '(jpe?g|bmp|png|gif)$' "$(dirname "$file")" -d 1 | sort; }
 
-fd '.*(jpe?g|bmp|png|gif)$' "$dir" -l -d 1 \
-    | nl \
-    | grep "$file" \
-    | cut -f1 \
-    | xargs -I{} sxiv -a -n {} "$dir"
+imgs | sxiv -ai -n $(imgs | grep -sn "$file" | cut -d ':' -f1)
