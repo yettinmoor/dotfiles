@@ -22,12 +22,12 @@ is_running() {
 case "$1" in
     power)
         if is_running; then ibus exit; else ibus-daemon -drx; fi
-        sleep .5
-        show ;;
+        sleep .5 ;;
     toggle)
         is_running || exit 1
         choice=$(echo "$engines" | cut -d ' ' -f1-2 | rofi -dmenu -p 'Engine' -L $(echo "$engines" | wc -l) -width 10)
         engine=$(echo "$engines" | grep "${choice:?}" | cut -d ' ' -f3)
-        ibus engine $engine
-        show ;;
+        ibus engine $engine ;;
 esac 2>/dev/null
+
+show

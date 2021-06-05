@@ -74,7 +74,7 @@ super + v
 super + b
 	$BROWSER $HOMEPAGE
 super + n
-	$TERMINAL -e newsboat && polybar-msg hook module/rss 1
+	$TERMINAL -e newsboat && dwmbar rss
 super + shift + n
 	rssping
 super + m
