@@ -3,9 +3,9 @@
 # This script is buggy as hell and I want to kill myself
 
 engines=$(cat <<- EOF
-1. 🇸🇪 xkb:se:nodeadkeys:swe Aa
-2. 🇯🇵 anthy 文
-3. 🇬🇷 xkb:gr::ell AΩ
+1 🇸🇪 xkb:se:nodeadkeys:swe Aa
+2 🇯🇵 anthy 文
+3 🇬🇷 xkb:gr::ell AΩ
 EOF
 )
 
