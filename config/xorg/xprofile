@@ -17,7 +17,7 @@ redshift &
 syncthing -no-browser >/dev/null &
 unclutter --timeout 3 &
 mpd &
-mpdnot &
+( sleep 1; mpdnot ) &
 
 # Some pings
 rssping &
