@@ -3,7 +3,7 @@
 cd ${1:-~}
 exclude=$2 # pass ignored dirs as second arg (should be quoted)
 
-exts='(jpg|png|gif|mkv|mp4|m4v|avi|webm|pdf|djvu|epub|txt|md|sent)$'
+exts='(jpg|png|gif|mkv|mp4|m4v|avi|webm|pdf|djvu|epub|txt|md|sent|wiki)$'
 [ -n "$exclude" ] && exclude=$(echo $exclude | awk -v RS=" " -v ORS=" " '{print "-E", $1}')
 
 fd -t f $exts $exclude \
