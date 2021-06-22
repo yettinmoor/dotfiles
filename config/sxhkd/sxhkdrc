@@ -31,8 +31,6 @@ super + shift + q
 	prompt "Exit X?" "killall Xorg"
 super + w
 	urlgoto
-super + shift + w
-	compiler ~/docs/wiki/index.wiki && $BROWSER --new-window ~/docs/wiki/.html/html/index.html
 super + e
 	$TERMINAL -e $FILE
 super + r
@@ -42,7 +40,7 @@ super + t
 super + y
 	$TERMINAL -e calcurse -D ~/.config/calcurse
 super + o
-	open ~ 'repos vidya zig-cache'
+	open ~ 'repos vidya zig-cache WhatsApp'
 super + shift + o
 	open /media 'steam'
 super + p
