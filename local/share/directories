@@ -4,6 +4,7 @@ cv ~/docs/cv
 edu ~/docs/edu
 wi ~/docs/wiki
 dl ~/dl
+ki ~/kino
 lib ~/lib
 eb ~/lib
 lng ~/lib/lang
@@ -13,7 +14,6 @@ cm ~/media/comics
 fl ~/media/film
 tv ~/media/tv
 an ~/media/アニメ
-yt ~/media/youtube
 ae ~/media/lib
 mng ~/media/lib/manga
 pp ~/pics
