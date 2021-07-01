@@ -16,3 +16,7 @@ application/rss+xml=rss.desktop;
 application/json=json.desktop;
 inode/directory=lf.desktop;
 application/vnd.comicbook-rar=pdf.desktop;
+x-scheme-handler/tg=userapp-Telegram Desktop-2YMU50.desktop
+
+[Added Associations]
+x-scheme-handler/tg=userapp-Telegram Desktop-2YMU50.desktop;
