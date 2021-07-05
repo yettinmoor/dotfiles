@@ -6,7 +6,7 @@
 
 cd ~/phone || exit 1
 fd '(jpe?g|png)$' \
-	--exclude 'WallPaper' --exclude 'Sent' \
+	--exclude 'WhatsApp' \
 	-x sh -c 'jhead -autorot "{}"; mv -vf "{}" ~/pics/phone'
 
 cd ~/pics/phone || exit 1
