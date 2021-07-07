@@ -1,6 +1,5 @@
 # vim: filetype=sh
 
-# Programs
 alias f='$FILE'
 alias v='$EDITOR'
 alias sv='sudoedit'
@@ -16,8 +15,6 @@ alias la='words'
 alias sql='mycli'
 alias ju='jupyter lab >/dev/null 2>&1 & disown'
 alias otp='pass otp -c'
-
-# General shortcuts
 alias ls='exa -h --group-directories-first'
 alias cp='cp -v'
 alias mv='mv -v'
@@ -36,6 +33,9 @@ alias dot='git -C "$HOME/repos/dotfiles"'
 alias myip='curl ifconfig.me'
 alias cls='clear'
 alias tree='tree -C'
+alias ci='xclip -sel c -i'
+alias co='xclip -sel c -i'
+alias z='zathura'
 
 # Git
 alias ga='git add'
@@ -48,8 +48,7 @@ alias gch='git checkout'
 alias gpu='git push'
 alias gpl='git pull --recurse-submodules'
 alias gg='git graph'
-# alias gl='git log'
-alias gl="git log --graph --abbrev-commit --decorate --date=format:'%Y-%m-%d %R' --format=format:'%C(bold brightyellow)%h%C(reset) | %C(green)%ad%C(reset) %C(auto)%d%C(reset)%n        | %s %C(brightblue)%an%C(reset)' --all"
+alias gl='git log'
 alias gbr='git branch'
 
 # Zig
@@ -71,6 +70,7 @@ alias ytdp='youtube-dl -o "%(playlist_index)s - %(title)s.%(ext)s"'
 alias ytda='youtube-dl -x -f "bestaudio[ext=mp3]/best"'
 
 # Convenience functions
+x() { [ -n "$@" ] && sxiv -a "$@" || sxiv -at . ; }
 se() { fd -t f -L . ~/.local ~/.config -E '*/Steam/*' | fzf --reverse --color=16 | xargs -r "$EDITOR"; }
 mkd() { mkdir -v "$@"; if [ $# -eq 1 ]; then cd "$1" || exit 1; fi; }
 src() { . "$HOME/.config/profile"; echo "Reloaded profile."; }
@@ -82,7 +82,3 @@ room() { du -h ${1:-.} -d 1 | sort -h; }
 cht() { curl cht.sh/$1; }
 ywd() { pwd | xclip -sel c; }
 upc() { sudo pacman -Syu $*; dwmbar updates }
-
-# Setsid wrappers
-z() { zathura "$1" 2>/dev/null & disown }
-x() { sxiv -at "${@:-.}" & disown }

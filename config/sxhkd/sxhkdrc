@@ -97,8 +97,6 @@ super + F1
 	manview
 super + {_,shift +} F2
 	setbg {pick,random}
-super + F7
-	open /media
 super + {_,shift +} F9
 	dmenu{mount,umount}
 

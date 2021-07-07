@@ -33,6 +33,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'jpalardy/vim-slime'
 Plug 'godlygeek/tabular'
 Plug 'tpope/vim-markdown'
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
@@ -41,6 +42,7 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'tell-k/vim-autopep8'
 Plug 'rhysd/vim-clang-format'
 Plug 'rust-lang/rust.vim'
+Plug 'wlangstroth/vim-racket'
 Plug 'fatih/vim-go'
 Plug 'ziglang/zig.vim'
 Plug 'OmniSharp/omnisharp-vim'
@@ -88,6 +90,7 @@ let g:gruvbox_material_enable_italic='1'
 let g:airline_theme = 'gruvbox_material'
 colo gruvbox-material
 hi Normal guibg=NONE ctermbg=NONE
+hi EndOfBuffer guibg=NONE ctermbg=NONE
 
 " Term
 nmap <A-CR> :vs term://zsh<CR>
@@ -121,14 +124,18 @@ au StdinReadPre * let s:std_in=1
 
 " Splits
 set splitbelow splitright
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
-map <C-A-h> <C-w>5>
-map <C-A-j> <C-w>5+
-map <C-A-k> <C-w>5-
-map <C-A-l> <C-w>5<
+tnoremap <A-h> <C-\><C-N><C-w>h
+tnoremap <A-j> <C-\><C-N><C-w>j
+tnoremap <A-k> <C-\><C-N><C-w>k
+tnoremap <A-l> <C-\><C-N><C-w>l
+inoremap <A-h> <C-\><C-N><C-w>h
+inoremap <A-j> <C-\><C-N><C-w>j
+inoremap <A-k> <C-\><C-N><C-w>k
+inoremap <A-l> <C-\><C-N><C-w>l
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
 
 " VimWiki
 let g:vimwiki_list = [{
@@ -193,3 +200,5 @@ au BufRead,BufNewFile *.vs,*.fs set filetype=glsl
 au BufRead,BufNewFile *.asm set filetype=nasm
 
 au BufRead,BufNewFile fonts.conf set filetype=xml
+
+let g:slime_target = "neovim"
