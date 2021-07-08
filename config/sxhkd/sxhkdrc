@@ -39,6 +39,8 @@ super + t
 	tor
 super + y
 	$TERMINAL -e calcurse -D ~/.config/calcurse
+super + u
+	$TERMINAL -e $EDITOR ~/docs/wiki/scratch.wiki
 super + o
 	open ~ 'repos vidya zig-cache WhatsApp'
 super + shift + o
