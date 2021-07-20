@@ -59,8 +59,6 @@ super + shift + s
 	qplay playlist
 super + d
 	rofi -show run
-super + shift + d
-	discord
 super + x
 	lockscreen
 super + shift + x
