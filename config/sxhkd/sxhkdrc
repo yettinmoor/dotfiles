@@ -69,8 +69,8 @@ super + shift + c
 	if pgrep -x picom; then killall picom; else picom -b --experimental-backends; fi
 super + v
 	thunderbird
-super + b
-	$BROWSER $HOMEPAGE
+super + {_, shift +} b
+	$BROWSER {$HOMEPAGE, --new-window $HOMEPAGE}
 super + n
 	$TERMINAL -e newsboat && dwmbar rss
 super + shift + n
