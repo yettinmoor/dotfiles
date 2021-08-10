@@ -4,7 +4,8 @@ case $1 in
 	library)
 		sel=$(fd | sort | rofi -dmenu -i) ;;
 	playlist)
-		sel=$(ls Playlists | rofi -dmenu -i -L 5 | xargs -r -I {} cat "Playlists/{}") ;;
+        cd Playlists
+		sel=$(ls | rofi -dmenu -i -L 5 | xargs -r cat) ;;
 esac
 [ -z "$sel" ] && exit 1
 mpc clear

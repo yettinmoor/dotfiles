@@ -202,3 +202,9 @@ au BufRead,BufNewFile *.asm set filetype=nasm
 au BufRead,BufNewFile fonts.conf set filetype=xml
 
 let g:slime_target = "neovim"
+
+let g:instant_markdown_autostart = 0
+
+""" Misc
+
+au BufWritePost *dwmbar.cfg !dwmbar
