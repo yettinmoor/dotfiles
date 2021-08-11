@@ -24,7 +24,6 @@ pd ~/podcasts
 pr ~/programming
 r ~/repos
 dt ~/repos/dotfiles
-vv ~/vidya
 cf ~/.config
 sc ~/.local/bin
 lc ~/.local/share
