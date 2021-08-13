@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 date '+%w %b %-d %V %R' |
-	awk '{
-		split("日月火水木金土", days, "");
-		printf("%c %s %d [%d] %s", days[$1+1], $2, $3, $4, $5)
-	}'
+    awk '{
+        split("日月火水木金土", days, "");
+        printf("%c %s %d / w%d / %s", days[$1+1], $2, $3, $4, $5)
+    }'

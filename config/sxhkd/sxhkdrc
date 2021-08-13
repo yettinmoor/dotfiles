@@ -40,7 +40,7 @@ super + t
 super + y
 	$TERMINAL -e calcurse -D ~/.config/calcurse
 super + u
-	$TERMINAL -e $EDITOR -O ~/docs/wiki/scratch.wiki ~/docs/wiki/backlog.wiki
+	$TERMINAL -e $EDITOR ~/docs/wiki/scratch.wiki
 super + o
 	open ~ 'repos vidya zig-cache WhatsApp'
 super + shift + o
@@ -89,7 +89,7 @@ super + {_,shift +} Insert
 	{show,qr}clip
 super + Print
 	scrotpick
-super + {_,shift +} section
+super + {_, shift +} grave
 	ib {toggle, power}
 
 # Function keys
