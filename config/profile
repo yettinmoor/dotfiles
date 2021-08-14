@@ -20,7 +20,6 @@ export LESSHISTFILE=/dev/null
 export XAUTHORITY=$HOME/.config/xorg/.Xauthority
 export PYTHONHISTORY=$XDG_CACHE_HOME/python
 
-export LOCATION=Ljungsbro
 export HOMEPAGE=$HOME/repos/splash/home.html
 export GIT=git@github.com:yettinmoor
 
