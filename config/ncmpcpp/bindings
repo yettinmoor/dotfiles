@@ -465,7 +465,7 @@ def_key "s"
   show_search_engine
 def_key "f"
   find
-def_key "f"
+def_key "/"
   find_item_forward
 def_key "x"
   delete_playlist_items

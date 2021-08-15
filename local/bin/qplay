@@ -1,13 +1,19 @@
 #!/usr/bin/env sh
+
 cd ~/music
+
 case $1 in
 	library)
-		sel=$(fd | sort | rofi -dmenu -i) ;;
+        sel=$(fd | sort | echo "$(cat -)" '\nSTOP' | rofi -dmenu -i) ;;
 	playlist)
         cd Playlists
 		sel=$(ls | rofi -dmenu -i -L 5 | xargs -r cat) ;;
 esac
+
 [ -z "$sel" ] && exit 1
+
 mpc clear
-echo "$sel" | mpc add
-mpc play
+if ! [ "$sel" -eq 'STOP' ]; then
+    echo "$sel" | mpc add
+    mpc play
+fi
