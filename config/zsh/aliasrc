@@ -36,6 +36,7 @@ alias tree='tree -C'
 alias ci='xclip -sel c -i'
 alias co='xclip -sel c -i'
 alias z='zathura'
+alias wk='date +%V'
 
 # Git
 alias ga='git add'
