@@ -1,7 +1,16 @@
 #!/usr/bin/env sh
-# Updates weather forecast of $1, or $LOCATION by default
 
-ping -q -c 1 1.1.1.1 >/dev/null || exit 1
-report=$( curl -s "wttr.in/${1:-$LOCATION}" )
-echo "$report" | grep "Sorry" && exit 1 # Exit if wttr server overload
-echo "$report" >/tmp/weatherreport
+file="${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport"
+
+fetch() {
+    ping -q -c 1 1.1.1.1 >/dev/null || exit 1
+    report=$(curl -s "wttr.in/$1")
+    echo "$report" | grep "Sorry" && exit 1 # Exit if wttr server overload
+    echo "$report" > "$file";
+}
+
+display() {
+    sed -nE '4s/.*([+-][0-9]+).*/\1°/p' "$file" | tr -d '+';
+}
+
+[ -n "$1" ] && $1 "$2"
