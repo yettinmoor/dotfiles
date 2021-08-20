@@ -92,4 +92,4 @@ map r push :rename<space>
 map R $lf -remote "send $id push :rename<space>.${f##*.}\"<c-a><a-f><c-f>\""
 map B bulk-rename
 
-map wm $markwatched $f
+map ww $watched $f
