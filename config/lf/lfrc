@@ -88,7 +88,7 @@ map x &sxiv -at .
 
 map P &mpv .
 
-map r push :rename<space>
+map r push :rename<space>""<left>
 map R $lf -remote "send $id push :rename<space>.${f##*.}\"<c-a><a-f><c-f>\""
 map B bulk-rename
 
