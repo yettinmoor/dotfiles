@@ -2,10 +2,10 @@
 
 [ -z "$1" ] && exit 1
 
-# Check URL
+# If $1 is URL, just open it
 echo "$1" | grep -E '^(https?://)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]+\.[a-zA-Z0-9]+.*$' && exit
 
-dir=~/.local/share/urlparse
+dir=~/.config/urlparse
 
 # If has search string, check searchengines
 if [ -n "$2" ]; then
