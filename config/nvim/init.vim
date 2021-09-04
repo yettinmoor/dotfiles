@@ -16,6 +16,7 @@ Plug 'vimwiki/vimwiki'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mileszs/ack.vim'
+Plug 'dense-analysis/ale'
 Plug 'dkasak/gruvbox'
 Plug 'sainnhe/gruvbox-material'
 Plug 'honza/vim-snippets'
@@ -27,6 +28,7 @@ Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'christoomey/vim-sort-motion'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'jiangmiao/auto-pairs'
+Plug 'calebsmith/vim-lambdify'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'jreybert/vimagit'
 Plug 'scrooloose/nerdtree'
@@ -45,6 +47,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'wlangstroth/vim-racket'
 Plug 'fatih/vim-go'
 Plug 'ziglang/zig.vim'
+Plug 'zah/nim.vim'
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'prettier/vim-prettier'
 Plug 'neovimhaskell/haskell-vim'
@@ -186,6 +189,22 @@ xmap af <Plug>(coc-funcobj-a)
 omap af <Plug>(coc-funcobj-a)
 
 inoremap <F2> <Plug>(coc-rename)
+
+""" Ale
+
+let g:ale_sign_error                  = '✘'
+let g:ale_sign_warning                = '⚠'
+highlight ALEErrorSign ctermbg        =NONE ctermfg=red
+highlight ALEWarningSign ctermbg      =NONE ctermfg=yellow
+let g:ale_linters_explicit            = 1
+let g:ale_lint_on_text_changed        = 'never'
+let g:ale_lint_on_enter               = 0
+let g:ale_lint_on_save                = 1
+let g:ale_fix_on_save                 = 1
+
+let g:ale_linters = { 'nim': ['nimlsp'], }
+
+let g:ale_fixers = { 'nim': ['nimpretty'], '*':  ['remove_trailing_lines'], }
 
 """ Misc filetype stuff
 
