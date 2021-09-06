@@ -73,7 +73,7 @@ alias ytda='youtube-dl -x -f "bestaudio[ext=mp3]/best"'
 # Convenience functions
 x() { [ -n "$@" ] && sxiv -a "$@" || sxiv -at . ; }
 se() { fd -t f -L . ~/.local ~/.config -E '*/Steam/*' | fzf --reverse --color=16 | xargs -r "$EDITOR"; }
-mkd() { mkdir -v "$@"; if [ $# -eq 1 ]; then cd "$1" || exit 1; fi; }
+mkd() { mkdir -v "$@"; [ $# -eq 1 ] && cd "$1"; }
 src() { . "$HOME/.config/profile"; echo "Reloaded profile."; }
 kr() { killall "$1"; "$1" >/dev/null 2>&1 & disown; echo "Killed and revived $1"; }
 xw() { xwininfo -tree -root | grep "${1:-""}"; }
