@@ -202,9 +202,15 @@ let g:ale_lint_on_enter               = 0
 let g:ale_lint_on_save                = 1
 let g:ale_fix_on_save                 = 1
 
-let g:ale_linters = { 'nim': ['nimlsp'], }
+let g:ale_linters = {}
+let g:ale_fixers = {}
 
-let g:ale_fixers = { 'nim': ['nimpretty'], '*':  ['remove_trailing_lines'], }
+let g:ale_linters['nim'] = ['nimlsp']
+let g:ale_linters['haskell'] = ['hlint', 'hfmt']
+
+let g:ale_fixers['*'] = ['remove_trailing_lines']
+let g:ale_fixers['nim'] = ['nimpretty']
+
 
 """ Misc filetype stuff
 
