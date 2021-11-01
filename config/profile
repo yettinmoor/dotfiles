@@ -23,6 +23,8 @@ export PYTHONHISTORY=$XDG_CACHE_HOME/python
 export HOMEPAGE=$HOME/repos/splash/home.html
 export GIT=git@github.com:yettinmoor
 
+export MAKEFLAGS="-j $(grep -c ^processor /proc/cpuinfo)"
+
 export GTK_IM_MODULE=xim
 export QT_IM_MODULE=xim
 export XMODIFIERS=@im=ibus

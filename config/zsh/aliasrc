@@ -51,6 +51,7 @@ alias gpl='git pull --recurse-submodules'
 alias gg='git graph'
 alias gl='git log'
 alias gbr='git branch'
+alias gcf='git config'
 
 # Zig
 alias zb='zig build'

@@ -56,9 +56,11 @@ super + shift + a
 super + s
 	qplay library
 super + shift + s
-	qplay playlist
+	slack
 super + d
 	rofi -show run
+super + shift + d
+	discord
 super + x
 	lockscreen
 super + shift + x
