@@ -2,7 +2,7 @@
 *.hinting: true
 *.hintstyle: hintslight
 
-/* st.background: #1c1c1c */
+st.background: #1c1c1c
 st.alpha: 1
 
 Sxiv.foreground: #cecece
