@@ -21,7 +21,7 @@ case "${file#*.}" in
 	py)  python "$file" ;;
 	cs)  mcs "$file" ;;
 	js)  node "$file" ;;
-	ts)  deno run "$file" ;;
+	ts)  deno run --allow-read "$file" ;;
 	scm) racket "$file" ;;
 	rkt) racket "$file" ;;
 	hs)  runhaskell "$file" ;;

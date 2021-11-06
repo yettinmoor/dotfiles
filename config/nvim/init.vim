@@ -206,10 +206,12 @@ let g:ale_linters = {}
 let g:ale_fixers = {}
 
 let g:ale_linters['nim'] = ['nimlsp']
-let g:ale_linters['haskell'] = ['hlint', 'hfmt']
+let g:ale_linters['haskell'] = ['hlint']
 
 let g:ale_fixers['*'] = ['remove_trailing_lines']
 let g:ale_fixers['nim'] = ['nimpretty']
+let g:ale_fixers['typescript'] = ['deno']
+let g:ale_fixers['haskell'] = ['hfmt']
 
 
 """ Misc filetype stuff

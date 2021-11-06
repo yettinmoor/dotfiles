@@ -17,7 +17,9 @@ case "$file" in
         | sed 's:wiki:wiki/.html:' \
         | xargs -r -I {} setsid $BROWSER "{}.html" ;;
 
-    *.hs) ghci "$base" ;;
+    *.hs) ghci "$file" ;;
+
+    *.py) python -qi "$file" ;;
 
     *) [ -x "$base" ] && "$base" ;;
 esac
