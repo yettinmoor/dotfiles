@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 cd ~/music
-sel=$(fd | sort | echo "$(cat -)" '\nSTOP' | rofi -dmenu -i) || exit 1
+sel=$(fd | sort | echo "$(cat -)" '\nSTOP' | rofi -dmenu -i -p 'play') || exit 1
 mpc clear
 if ! [ "$sel" -eq 'STOP' ]; then
     echo "$sel" | mpc add

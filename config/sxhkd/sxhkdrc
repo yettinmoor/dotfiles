@@ -70,7 +70,7 @@ super + c
 super + shift + c
 	if pgrep -x picom; then killall picom; else picom -b --experimental-backends; fi
 super + v
-	thunderbird
+	$TERMINAL -e ncmpcpp -s visualizer
 super + {_, shift +} b
 	$BROWSER {$HOMEPAGE, --new-window $HOMEPAGE}
 super + n

@@ -3,16 +3,12 @@
 alias f='$FILE'
 alias v='$EDITOR'
 alias sv='sudoedit'
-alias magit='$EDITOR -c MagitOnly'
 alias mpv='mpv --input-ipc-server=/tmp/mpvsoc$( date +%s )'
 alias mpva='mpvwrapper'
 alias trem='transmission-remote'
 alias calcurse='calcurse -D ~/.config/calcurse'
 alias pw='pass -c'
-alias csi='chicken-csi -q'
-alias oct='octave -q'
 alias la='words'
-alias sql='mycli'
 alias ju='jupyter lab >/dev/null 2>&1 & disown'
 alias otp='pass otp -c'
 alias ls='exa -h --group-directories-first'
@@ -83,4 +79,3 @@ disks() { df -h | grep '^/dev' | grep -v 'boot' | awk '{print $6, $4, $5}' | tab
 room() { du -h ${1:-.} -d 1 | sort -h; }
 cht() { curl cht.sh/$1; }
 ywd() { pwd | xclip -sel c; }
-upc() { sudo pacman -Syu $*; dwmbar updates }
