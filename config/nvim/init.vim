@@ -154,7 +154,7 @@ let g:ale_linters['haskell'] = ['hlint']
 
 let g:ale_fixers['nim'] = ['nimpretty']
 let g:ale_fixers['typescript'] = ['deno']
-let g:ale_fixers['haskell'] = ['hindent']   
+let g:ale_fixers['haskell'] = ['hfmt']
 let g:ale_fixers['python'] = ['autopep8']
 
 
@@ -167,5 +167,3 @@ au BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
 au BufRead,BufNewFile *.vs,*.fs set filetype=glsl
 au BufRead,BufNewFile *.asm set filetype=nasm
 au BufRead,BufNewFile fonts.conf set filetype=xml
-
-let g:instant_markdown_autostart = 0
