@@ -44,7 +44,7 @@ super + u
 super + o
 	open ~ 'repos vidya zig-cache WhatsApp'
 super + shift + o
-	open /media 'steam'
+	open /media 'steam gsil'
 super + p
 	mpc toggle
 super + shift + p
