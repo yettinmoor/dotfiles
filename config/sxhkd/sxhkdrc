@@ -65,10 +65,8 @@ super + x
 	lockscreen
 super + shift + x
 	prompt "Shutdown computer?" "sudo -A shutdown -h now"
-super + c
-	plumb
-super + shift + c
-	if pgrep -x picom; then killall picom; else picom -b --experimental-backends; fi
+super + {_,shift +} c
+	{show,qr}clip
 super + v
 	$TERMINAL -e ncmpcpp -s visualizer
 super + {_, shift +} b
@@ -87,8 +85,6 @@ super + comma
 	qunicode
 super + {_,shift +} period
 	{qcopy,qpass}
-super + {_,shift +} Insert
-	{show,qr}clip
 super + Print
 	scrotpick
 super + {_, shift +} grave
