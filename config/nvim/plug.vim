@@ -16,7 +16,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'prettier/vim-prettier'
 
 " Languages/filetypes
-Plug 'vimwiki/vimwiki', { 'for': 'vimwiki' }
+Plug 'vimwiki/vimwiki'
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
 Plug 'vim-pandoc/vim-pandoc', { 'for': 'pandoc' }
