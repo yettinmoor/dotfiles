@@ -10,4 +10,4 @@ cfa ~/.config/zsh/aliasrc
 cfv ~/.config/nvim/init.vim
 cff ~/.config/lf/lfrc
 cfw ~/.config/bspwm/bspwmrc
-cfb ~/.config/polybar/config
+cfb ~/.config/dwmbar.cfg
