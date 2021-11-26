@@ -5,7 +5,6 @@
 
 case "$1" in
     "down")
-        ping -q -c 1 1.1.1.1 >/dev/null || exit 1
         sudo pacman -Syyuw --noconfirm
         nvim +'PlugUpdate --sync' +qa
         ;;

@@ -156,6 +156,7 @@ let g:ale_fixers['nim'] = ['nimpretty']
 let g:ale_fixers['typescript'] = ['deno']
 let g:ale_fixers['haskell'] = ['hfmt']
 let g:ale_fixers['python'] = ['autopep8']
+let g:ale_fixers['rust'] = ['rustfmt']
 
 
 """ Misc filetype stuff
