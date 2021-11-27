@@ -30,7 +30,7 @@ Plug 'zah/nim.vim', { 'for': 'nim' }
 Plug 'OmniSharp/omnisharp-vim', { 'for': 'csharp' }
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 Plug 'JuliaEditorSupport/julia-vim', { 'for': 'julia' }
-Plug 'lervag/vimtex', { 'for': 'latex' }
+Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'kovetskiy/sxhkd-vim', { 'for': 'sxhkd' }
 
 " Small utilities

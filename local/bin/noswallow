@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 touch /tmp/noswallow
-setsid $* &
+setsid "$@" &
 rm /tmp/noswallow

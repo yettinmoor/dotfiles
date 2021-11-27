@@ -6,8 +6,9 @@ set statusbar-home-tilde true
 set window-title-home-tilde true
 set page-padding 1
 set font "mono 14"
-set recolor-lightcolor "rgba(40, 40, 40, 0.6)"
+set recolor-lightcolor "rgba(40, 40, 40, 1.0)"
 set recolor-darkcolor "rgba(255, 230, 220, 1.0)"
+set page-right-to-left false
 
 map u scroll half-up
 map d scroll half-down
@@ -21,6 +22,7 @@ map p print
 map f toggle_fullscreen
 map F follow
 map b toggle_statusbar
+map ` set page-right-to-left
 
 map [fullscreen] u scroll half-up
 map [fullscreen] d scroll half-down
@@ -34,3 +36,4 @@ map [fullscreen] p print
 map [fullscreen] f toggle_fullscreen
 map [fullscreen] F follow
 map [fullscreen] b toggle_statusbar
+map [fullscreen] ` set page-right-to-left
