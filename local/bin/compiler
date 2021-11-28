@@ -44,3 +44,5 @@ case "${file#*.}" in
 	# Shebang
 	*) sed -n '1{/^#!/s///p}' "$file" | xargs -r -I % "$file" ;;
 esac
+
+exit $?
