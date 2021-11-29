@@ -6,7 +6,7 @@ BOIL=~/.local/share/boilerplates/$EXT
 
 FILE=$2
 
-if [ -f "$BOIL" -a "$EXT" != "sh" ]; then DEST="$FILE.$BOIL"; else DEST="$FILE"; fi
+if [ -f "$BOIL" -a "$EXT" != "sh" ]; then DEST="$FILE.$EXT"; else DEST="$FILE"; fi
 
 [ -f "$DEST" ] && echo "File '$DEST' exists!" && exit 1
 

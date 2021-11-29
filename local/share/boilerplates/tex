@@ -13,6 +13,7 @@
 %% Font/encoding
 \usepackage{fontspec}
 \usepackage{sourcecodepro}
+\usepackage{libertine}
 
 %% Aesthetics
 \usepackage[margin=1in, top=1.2in, bottom=1.2in]{geometry}
