@@ -19,8 +19,8 @@ Plug 'prettier/vim-prettier'
 Plug 'vimwiki/vimwiki'
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
-Plug 'vim-pandoc/vim-pandoc', { 'for': 'pandoc' }
-Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'pandoc' }
+" Plug 'vim-pandoc/vim-pandoc', { 'for': 'pandoc' }
+" Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'pandoc' }
 Plug 'rhysd/vim-clang-format', { 'for': 'c' }
 " Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'wlangstroth/vim-racket', { 'for': 'racket' }
