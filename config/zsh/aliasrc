@@ -62,10 +62,10 @@ alias carr='cargo run'
 alias carn='cargo new'
 
 # YouTube
-alias ytv='youtube-viewer -C'
-alias ytd='youtube-dl'
-alias ytdp='youtube-dl -o "%(playlist_index)s - %(title)s.%(ext)s"'
-alias ytda='youtube-dl -x -f "bestaudio[ext=mp3]/best"'
+alias ytd='yt-dlp --config "$HOME/.config/youtube-dl/config"'
+alias ytda='ytd -x -f "bestaudio[ext=mp3]/best"'
+alias ytdp='ytd -o "%(title)s.%(ext)s"'
+alias ytdp1='ytd -o "%(playlist_index)s - %(title)s.%(ext)s"'
 
 # Convenience functions
 x() { [ -n "$@" ] && sxiv -a "$@" || sxiv -at . ; }
