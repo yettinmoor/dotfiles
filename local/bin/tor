@@ -6,7 +6,8 @@ if ! pgrep -x transmission-da >/dev/null; then
     notify-send "Starting torrent daemon..."
     transmission-daemon
     while ! pgrep -x transmission-da >/dev/null; do true; done
+    sleep 1
 fi
 
-transmission-remote -a "$@" && notify-send " $# torrent(s) added."
+[ -n "$1" ] && transmission-remote -a "$@" && notify-send " $# torrent(s) added."
 xwininfo -tree -root | grep '"tremc"' >/dev/null || $TERMINAL -e tremc

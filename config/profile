@@ -20,7 +20,7 @@ export LESSHISTFILE=/dev/null
 export XAUTHORITY=$HOME/.config/xorg/.Xauthority
 export PYTHONHISTORY=$XDG_CACHE_HOME/python
 
-export HOMEPAGE=$HOME/repos/splash/home.html
+export HOMEPAGE=$HOME/.local/share/splash/index.html
 export GIT=git@github.com:yettinmoor
 
 export MAKEFLAGS="-j $(grep -c ^processor /proc/cpuinfo)"
