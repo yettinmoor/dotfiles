@@ -7,5 +7,6 @@ exts='(jpg|png|gif|mkv|mp4|m4v|avi|webm|pdf|djvu|epub|txt|md|sent|wiki|svg)$'
 exclude=$(echo -n "$exclude" | awk -v RS=" " -v ORS=" " '{print "-E", $1}')
 
 fd -t f $exts $exclude \
+    | sed 's/^\.\///' \
 	| rofi -dmenu -i -p "Read file in $(pwd)" -width 70 \
-	| xargs -r0 -I {} xdg-open "{}" &
+	| xargs -r -I {} xdg-open "{}" &
