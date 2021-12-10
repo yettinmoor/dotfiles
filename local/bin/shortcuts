@@ -4,7 +4,7 @@ lf_file="$HOME/.config/lf/lfshortcuts"
 
 # Directories
 awk '{printf "alias %s=\"cd %s && ls\"\n", $1, $2}' $HOME/.local/share/directories > "$sh_file"
-awk '{printf "map g%1$s cd %2$s\nmap M%1$s $mv -v $fx %2$s\nmap Y%1$s cp -rv $fx %2$s\n", $1, $2}' $HOME/.local/share/directories > "$lf_file"
+awk '{printf "map g%1$s cd %2$s\nmap M%1$s $mv -v $fx %2$s\nmap Y%1$s $cp -rv $fx %2$s\n", $1, $2}' $HOME/.local/share/directories > "$lf_file"
 
 # Files
 awk '{printf "alias %s=\"$EDITOR %s\"\n", $1, $2}' $HOME/.local/share/files >> "$sh_file"
