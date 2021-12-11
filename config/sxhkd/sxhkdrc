@@ -72,7 +72,7 @@ super + v
 super + {_, shift +} b
 	$BROWSER {$HOMEPAGE, --new-window $HOMEPAGE}
 super + n
-	$TERMINAL -e newsboat && dwmbar rss
+	! pgrep newsboat && $TERMINAL -e newsboat && dwmbar rss
 super + shift + n
 	rssping
 super + m
