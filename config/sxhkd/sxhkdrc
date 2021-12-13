@@ -114,4 +114,4 @@ XF86Audio{Lower,Raise}Volume
 XF86Audio{Play,Stop,Next,Prev}
 	mpc {toggle,pause,next,prev}
 XF86MonBrightness{Down,Up}
-	xbacklight {-dec,-inc} 15
+	brightnessctl set 20%{-,+}
