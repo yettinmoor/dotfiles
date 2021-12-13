@@ -15,6 +15,10 @@ case $1 in
 		pamixer --unmute
 		pamixer --decrease "$2"
 		;;
+    set)
+		pamixer --unmute
+		pamixer --set-volume "$2"
+		;;
 esac
 
 dunstify -u low -r $DUNSTID -t 1000 "$(pamixer --get-volume-human)"
