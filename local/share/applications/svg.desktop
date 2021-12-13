@@ -1,0 +1,4 @@
+[Desktop Entry]
+Type=Application
+Name=SVG image viewer
+Exec=inkview %u
