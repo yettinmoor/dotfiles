@@ -1,24 +1,20 @@
 #!/usr/bin/env sh
 # Volume interface for sxhkd.
 
-amixer() { /usr/bin/amixer -c 1 $@; }
+DUNSTID=54321
 
 case $1 in
-	vol)
-		amixer get Master | grep -q '\[on\]' \
-			&& amixer sset Master $2 \
-			|| amixer scontrols | cut -d \' -f 2 | xargs -I % amixer sset % unmute
-
-		amixer get Master | grep -q '\[on\]' \
-			&& dunstify -u low -r 54321 -t 1000 "$( amixer get Master | grep -o '[0-9]*%' )" \
-			|| dunstify -u low -r 54321 -t 1000 'Muted'
+	mute)
+		pamixer --toggle-mute
+        ;;
+    inc)
+		pamixer --unmute
+		pamixer --increase "$2"
 		;;
-
-	toggle)
-		amixer sget Front | grep -q '\[0%\]' \
-			&& { FRONT=100; HOOK=1; } \
-			|| { FRONT=0;   HOOK=2; }
-		amixer sset Front $FRONT
-		amixer sset Headphone $(( 100 - FRONT ))
-		polybar-msg hook volicon $HOOK ;;
+    dec)
+		pamixer --unmute
+		pamixer --decrease "$2"
+		;;
 esac
+
+dunstify -u low -r $DUNSTID -t 1000 "$(pamixer --get-volume-human)"

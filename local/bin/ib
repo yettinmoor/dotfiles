@@ -3,30 +3,40 @@
 # This script is buggy as hell and I want to kill myself
 
 engines=$(cat <<- EOF
-1 US xkb:en::us Aa
+1 US xkb:us:altgr-intl:eng Aa
 2 JA anthy 文
 3 GR xkb:gr::ell AΩ
 EOF
 )
 
 show() {
-    icon=$(echo "$engines" | grep $(ibus engine) | cut -d ' ' -f4)
-    dunstify -r 9191 -u critical "$icon"
-    dwmbar ib "$icon"
+    if running; then
+        icon=$(echo "$engines" | grep $(ibus engine) | cut -d ' ' -f4)
+        dwmbar ib "$icon"
+        dunstify -r 9191 -u critical "$icon"
+    else
+        dwmbar ib ""
+        dunstify -C 9191
+    fi
 }
 
-is_running() {
+running() {
     pgrep ibus >/dev/null
 }
 
 case "$1" in
     power)
-        if is_running; then ibus exit; else ibus-daemon -drx; fi
-        sleep .5 ;;
+        if running; then
+            ibus exit
+        else
+            ibus-daemon -drx
+            sleep .5
+        fi ;;
     toggle)
-        is_running || exit 1
+        running || exit 1
         choice=$(echo "$engines" | cut -d ' ' -f1-2 | rofi -dmenu -p 'Engine' -L $(echo "$engines" | wc -l) -width 10)
         engine=$(echo "$engines" | grep "${choice:?}" | cut -d ' ' -f3)
+        echo $choice >/dev/stderr
         ibus engine $engine ;;
 esac 2>/dev/null
 
