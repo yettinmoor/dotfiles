@@ -75,7 +75,7 @@ super + shift + n
 	rssping
 super + m
 	$TERMINAL -e ncmpcpp
-super + m
+super + shift + m
 	audio mute
 
 # Etc
