@@ -21,6 +21,7 @@ set encoding=utf-8
 nnoremap <silent> <Esc> :noh<CR><Esc>
 set conceallevel=2
 set smartcase
+set wildignore+=*/.git/*
 setl formatoptions-=cro
 
 """ Compile & show scripts

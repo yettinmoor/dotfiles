@@ -70,7 +70,7 @@ alias ytdp1='ytd -o "%(playlist_index)s - %(title)s.%(ext)s"'
 # Convenience functions
 x() { [ -n "$@" ] && sxiv -a "$@" || sxiv -at . ; }
 se() { fd -t f -L . ~/.local ~/.config -E '*/Steam/*' | fzf --reverse --color=16 | xargs -r "$EDITOR"; }
-mkd() { mkdir -v "$@"; [ $# -eq 1 ] && cd "$1"; }
+mkd() { mkdir -pv "$@"; [ $# -eq 1 ] && cd "$1"; }
 src() { . "$HOME/.config/profile"; echo "Reloaded profile."; }
 kr() { killall "$1"; "$1" >/dev/null 2>&1 & disown; echo "Killed and revived $1"; }
 xw() { xwininfo -tree -root | grep "${1:-""}"; }
