@@ -32,12 +32,17 @@ case "$1" in
             ibus-daemon -drx
             sleep .5
         fi ;;
+
     toggle)
         running || exit 1
-        choice=$(echo "$engines" | cut -d ' ' -f1-2 | rofi -dmenu -p 'Engine' -L $(echo "$engines" | wc -l) -width 10)
+        choice=$(echo "$engines" | cut -d ' ' -f1-2 | rofi -dmenu -p 'Engine' -L $(echo "$engines" | wc -l) -width 10) || exit
         engine=$(echo "$engines" | grep "${choice:?}" | cut -d ' ' -f3)
         echo $choice >/dev/stderr
         ibus engine $engine ;;
+
+    *)
+        exit ;;
+
 esac 2>/dev/null
 
 show

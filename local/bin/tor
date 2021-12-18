@@ -10,4 +10,4 @@ if ! pgrep -x transmission-da >/dev/null; then
 fi
 
 [ -n "$1" ] && transmission-remote -a "$@" && notify-send " $# torrent(s) added."
-xwininfo -tree -root | grep '"tremc"' >/dev/null || $TERMINAL -e tremc
+isopen tremc >/dev/null || $TERMINAL -e tremc

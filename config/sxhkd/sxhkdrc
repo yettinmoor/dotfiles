@@ -74,7 +74,7 @@ super + n
 super + shift + n
 	rssping
 super + m
-	$TERMINAL -e ncmpcpp
+	isopen ncmpcpp || $TERMINAL -e ncmpcpp
 super + shift + m
 	audio mute
 
