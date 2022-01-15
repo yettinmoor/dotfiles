@@ -33,6 +33,7 @@ alias ci='xclip -sel c -i'
 alias co='xclip -sel c -i'
 alias z='zathura'
 alias wk='date +%V'
+alias wi='cd ~/docs/wiki && nvim index.wiki'
 
 # Git
 alias ga='git add'
