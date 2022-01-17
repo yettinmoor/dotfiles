@@ -1,7 +1,6 @@
 dv ~/dev
 dc ~/docs
 cv ~/docs/cv
-edu ~/docs/edu
 dl ~/dl
 ki ~/kino
 lib ~/lib
@@ -10,11 +9,12 @@ lng ~/lib/lang
 mm ~/music
 md ~/media
 cm ~/media/comics
+edu ~/media/edu
 fl ~/media/film
 tv ~/media/tv
-an ~/media/アニメ
 ae ~/media/lib
 mng ~/media/lib/manga
+an ~/media/アニメ
 pp ~/pics
 mp ~/pics/maps
 me ~/pics/memes
