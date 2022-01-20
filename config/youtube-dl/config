@@ -1,6 +1,6 @@
 -i
 -f "bestvideo[height<=1080]+bestaudio/best"
--o "%(upload_date)s - %(title)s.%(ext)s"
+-o "%(title)s.%(ext)s"
 
 --add-metadata
 
