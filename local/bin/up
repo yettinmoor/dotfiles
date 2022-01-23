@@ -4,11 +4,11 @@
 # `up`      - install updates.
 
 case "$1" in
-    "down")
+    'down')
         sudo pacman -Syyuw --noconfirm
         nvim +'PlugUpdate --sync' +qa
         ;;
-    "")
+    '')
         sudo pacman -Syu
         ;;
     *)
