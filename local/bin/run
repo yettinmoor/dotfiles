@@ -14,6 +14,6 @@ case "$file" in
     *.hs) ghci "$file" ;;
     *.py) python -qi "$file" ;;
     *.wiki) echo "$base" \
-        | sed 's:wiki:wiki/.html:' \
+        | sed 's:wiki:wiki/html:' \
         | xargs -r -I {} setsid $BROWSER --new-window "{}.html" ;;
 esac
