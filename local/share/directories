@@ -1,6 +1,7 @@
 dv ~/dev
 dc ~/docs
 cv ~/docs/cv
+dr ~/docs/dropbox
 dl ~/dl
 ki ~/kino
 lib ~/lib
@@ -29,6 +30,5 @@ sc ~/.local/bin
 lc ~/.local/share
 ma ~/.local/share/mail
 pn ~/phone
-dr ~/phone/Dropbox
 M /mnt
 T /tmp
