@@ -76,7 +76,7 @@ src() { . "$HOME/.config/profile"; echo "Reloaded profile."; }
 kr() { killall "$1"; "$1" >/dev/null 2>&1 & disown; echo "Killed and revived $1"; }
 xw() { xwininfo -tree -root | grep "${1:-""}"; }
 wttr() { less -S $HOME/.local/share/weatherreport; }
-disks() { df -h | grep '^/dev' | grep -v 'boot' | awk '{print $6, $4, $5}' | tabulate; }
+disks() { df -h | awk '/^\/dev/{print $6, $4, $5}' | grep -v 'boot' | tabulate; }
 room() { du -h ${1:-.} -d 1 | sort -h; }
-cht() { curl cht.sh/$1; }
+cht() { curl cht.sh/$1 2>/dev/null | less; }
 ywd() { pwd | xclip -sel c; }
