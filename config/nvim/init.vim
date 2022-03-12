@@ -98,7 +98,7 @@ let g:vimwiki_list = [{
 let g:vimwiki_global_ext = 0
 
 """ Recompile files when edited
-au BufWritePost *local/share/files,*local/share/directories !shortcuts
+au BufWritePost *shortcuts/* !shortcuts
 au BufWritePost *dwmbar.cfg !dwmbar
 
 """ CoC

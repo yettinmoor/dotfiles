@@ -2,11 +2,13 @@
 
 set shell sh
 set shellopts '-eu'
-set previewer ~/.config/lf/scope.sh
 set ifs "\n"
 set scrolloff 10
 set icons
 set ratios 1:2:3
+set period 1
+set cleaner '~/.config/lf/cleaner.sh'
+set previewer '~/.config/lf/scope.sh'
 
 # COMMANDS
 cmd open ${{
@@ -16,80 +18,44 @@ cmd open ${{
 		*)
 			[ -x "$f" ] \
 				&& lf -remote "send $id !$f" \
-				|| setsid $OPENER "$f" >/dev/null 2>/dev/null & ;;
+				|| setsid $OPENER "$f" >/dev/null 2>&1 ;;
 	esac
 }}
 
-cmd rename %[ -e "$*" ] && printf "File exists!" || mv "$f" "$*"
-
-cmd bulk-rename ${{
-	index=$( mktemp /tmp/lf-bulk-rename-index.XXXXXXXXXX )
-	if [ -n "${fs}" ]; then
-		echo "$fs"
-	else
-		echo "$( fd -d 1 )"
-	fi > $index
-	index_edit=$( mktemp /tmp/lf-bulk-rename.XXXXXXXXXX )
-	cat "$index" > "$index_edit"
-	$EDITOR +"e ++enc=utf8" "$index_edit"
-	if [ $( < "$index" wc -l ) -eq $( < "$index_edit" wc -l ) ]; then
-		max=$(( $( < "$index" wc -l ) + 1 ))
-		counter=1
-		while [ $counter -le $max ]; do
-			a="$( sed "${counter}q;d" "$index" )"
-			b="$( sed "${counter}q;d" "$index_edit" )"
-			counter=$(( $counter + 1 ))
-			[ "$a" = "$b" ] && continue
-			[ -e "$b" ] && echo "File exists: $b" && continue
-			mv "$a" "$b"
-		done
-	else
-		echo "Number of lines must stay the same."
-	fi
-	rm "$index" "$index_edit"
-}}
+cmd bulk-rename $vidir
 
 cmd delete ${{
 	set -f
 	printf "%s\n" "$fx"
 	printf "Delete? [y/n] "
 	read ans
-	[ $ans = "y" ] && rm -rf $fx
+	[ $ans = "y" ] && rm -rf -- $fx
 }}
 
-# MAPPINGS
-map c
-map w
-map m
+cmd mkdir %mkdir "$@"
+cmd mkfile %touch "$@"
 
-source ~/.config/lf/lfshortcuts
-
+map <c-f> $lf -remote "send $id select '$(fzf)'"
+map J $lf -remote "send $id cd $(awk '/^[^#]/ {print $2}' ${XDG_CONFIG_HOME}/shortcuts/directories | fzf)"
 map <enter> shell
 map s $$SHELL
-map i $~/.config/lf/scope.sh $f | less
-
 map U clear
-
 map <backspace2> set hidden!
 map V :unselect; invert
-
 map D delete
-
-cmd mkdir %mkdir "$@"
 map mkd push :mkdir<space>
-
-cmd mkfile %touch "$@"
 map mkf push :mkfile<space>
-
 map o &mimeopen $f
 map O $mimeopen --ask $f
-
 map x &sxiv -at .
-
 map P &mpv .
 
-map r push :rename<space>""<left>
-map R $lf -remote "send $id push :rename<space>.${f##*.}\"<c-a><a-f><c-f>\""
+map a rename # at the very end
+map r push a<c-u> # new rename
+map R push a<a-b><a-b><a-f><c-u> # keep ext
+map i push a<c-a> # at the very beginning
 map B bulk-rename
 
 map ww $watched $f
+
+source ~/.config/lf/lfshortcuts
