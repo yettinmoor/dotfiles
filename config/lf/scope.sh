@@ -53,6 +53,11 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
 			epub-thumbnailer "$1" "$CACHE" 1024
 		image "$CACHE" "$2" "$3" "$4" "$5"
 		;;
+	*.djvu)
+		[ ! -f "$CACHE" ] && \
+			ddjvu -format=tif -quality=50 -page=1 "$1" "$CACHE"
+		image "$CACHE" "$2" "$3" "$4" "$5"
+        ;;
 	*.cbz|*.cbr|*.cbt)
 		[ ! -f "$CACHE" ] && \
 			comicthumb "$1" "$CACHE" 1024
@@ -65,7 +70,8 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
 		;;
 	*.avi|*.mp4|*.wmv|*.dat|*.3gp|*.ogv|*.mkv|*.mpg|*.mpeg|*.vob|*.fl[icv]|*.m2v|*.mov|*.webm|*.ts|*.mts|*.m4v|*.r[am]|*.qt|*.divx)
 		[ ! -f "${CACHE}.jpg" ] && \
-			ffmpegthumbnailer -i "$1" -o "${CACHE}.jpg" -s 0 -q 5
+			# ffmpegthumbnailer -i "$1" -o "${CACHE}.jpg" -s 0 -q 5
+			thumbnailer "$1" "${CACHE}.jpg"
 		image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
 		;;
 	*.bmp|*.jpg|*.jpeg|*.png|*.xpm|*.webp|*.gif|*.jfif)

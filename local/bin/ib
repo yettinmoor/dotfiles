@@ -1,19 +1,24 @@
 #!/usr/bin/env sh
 
-# This script is buggy as hell and I want to kill myself
-
 engines=$(cat <<- EOF
-1 US xkb:us:altgr-intl:eng Aa
-2 JA anthy 文
-3 GR xkb:gr::ell AΩ
+1 🇬🇧 xkb:us:altgr-intl:eng Aa
+2 🇯🇵 anthy 文
+3 🇬🇷 xkb:gr::ell AΩ
+4 🇷🇺 xkb:ru::rus АЯ
+? 🎹 help
 EOF
 )
 
+CONFIG_DIR="$XDG_CONFIG_HOME/ib"
+
+icon() {
+    echo "$engines" | grep $(ibus engine) | cut -d ' ' -f4
+}
+
 show() {
     if running; then
-        icon=$(echo "$engines" | grep $(ibus engine) | cut -d ' ' -f4)
-        dwmbar ib "$icon"
-        dunstify -r 9191 -u critical "$icon"
+        dwmbar ib "$(icon)"
+        dunstify -r 9191 -u critical "$(icon)"
     else
         dwmbar ib ""
         dunstify -C 9191
@@ -31,18 +36,28 @@ case "$1" in
         else
             ibus-daemon -drx
             sleep .5
-        fi ;;
+        fi
+        show
+        ;;
 
     toggle)
         running || exit 1
         choice=$(echo "$engines" | cut -d ' ' -f1-2 | rofi -dmenu -p 'Engine' -L $(echo "$engines" | wc -l) -width 10) || exit
         engine=$(echo "$engines" | grep "${choice:?}" | cut -d ' ' -f3)
-        echo $choice >/dev/stderr
-        ibus engine $engine ;;
+        if [ "$engine" = "help" ]; then
+            kbimg="$CONFIG_DIR/$(icon).png"
+            if [ -f "$kbimg" ]; then
+                sxiv "$kbimg"
+            else
+                dunstify -r 9191 -u critical "No keyboard image found for '$(icon)'"
+            fi
+        else
+            ibus engine $engine
+            show
+        fi
+        ;;
 
     *)
         exit ;;
 
 esac 2>/dev/null
-
-show
