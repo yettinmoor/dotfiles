@@ -42,7 +42,7 @@ case "$1" in
 
     toggle)
         running || exit 1
-        choice=$(echo "$engines" | cut -d ' ' -f1-2 | rofi -dmenu -p 'Engine' -L $(echo "$engines" | wc -l) -width 10) || exit
+        choice=$(echo "$engines" | cut -d ' ' -f1-2 | rofi -dmenu -p 'Keyboard layout' -L $(echo "$engines" | wc -l) -width 10) || exit
         engine=$(echo "$engines" | grep "${choice:?}" | cut -d ' ' -f3)
         if [ "$engine" = "help" ]; then
             kbimg="$CONFIG_DIR/$(icon).png"

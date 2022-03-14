@@ -4,8 +4,8 @@
 img="${1?no input}"
 out="${2?no output}"
 
-for i in $(seq 1 9); do
-    ffmpegthumbnailer -i "$img" -o "${out}_${i}" -s 256 -q 5 -t "$((10 * i))%"
+for i in $(seq 10 10 90); do
+    ffmpegthumbnailer -i "$img" -o "${out}_${i}" -s 256 -q 5 -t "${i}%"
 done
 
 montage -geometry +0+0 "$out"_* "$out"
