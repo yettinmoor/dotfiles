@@ -27,6 +27,7 @@ case "${file#*.}" in
 	hs)  runhaskell "$file" ;;
 	go)  go run "$file" ;;
 	rs)  cargo run "$file" ;;
+	pl)  perl "$file" ;;
     zig) if [ -f "build.zig" ]; then zig build run; else zig run $(grep -q "cImport" "$file" && echo "-lc") "$file"; fi ;;
     nim) if [ -f *.nimble ]; then nimble build -r; else nim r --verbosity:0 "$file"; fi ;;
 	jai) echo "Jai release never :-(" ;;

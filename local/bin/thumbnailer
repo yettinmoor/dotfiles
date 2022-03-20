@@ -1,12 +1,14 @@
 #!/usr/bin/env sh
 # Creates a nice 3x3 collage thumbnail from a video file.
 
-img="${1?no input}"
-out="${2?no output}"
+img="${1?no input file}"
+out="${2?no output path}"
 
 for i in $(seq 10 10 90); do
-    ffmpegthumbnailer -i "$img" -o "${out}_${i}" -s 256 -q 5 -t "${i}%"
+    ffmpegthumbnailer -i "$img" -o "${out}_$i" -s 300 -q 5 -t "${i}%" &
 done
+
+wait
 
 montage -geometry +0+0 "$out"_* "$out"
 rm "$out"_*
