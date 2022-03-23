@@ -1,19 +1,25 @@
 #!/usr/bin/env sh
 
-# `up down` - download updates (cronjob).
-# `up`      - install updates.
+# `up down` | download updates (cronjob).
+# `up`      | install updates.
+
+down() {
+    runjob() {
+        echo "running job \`$@\`"
+        $@ >/dev/null 2>&1 &
+    }
+    runjob sudo pacman -Syyuw --noconfirm
+    runjob nvim +'PlugUpdate --sync' +qa
+    runjob nvim +'PlugUpgrade --sync' +qa
+    [ -n "$LOCATION" ] && runjob forecast fetch "$LOCATION"
+    runjob qalc -e # Updates currency exchange.
+    wait
+}
 
 case "$1" in
-    'down')
-        sudo pacman -Syyuw --noconfirm
-        nvim +'PlugUpdate --sync' +qa
-        ;;
-    '')
-        sudo pacman -Syu
-        ;;
-    *)
-        exit 1
-        ;;
+    'down') down ;;
+    '')     sudo pacman -Syu ;;
+    *)      exit 1 ;;
 esac
 
 dwmbar updates

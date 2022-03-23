@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-rofi -dmenu -p "${1:-askpass}" -password -l 0 | sed 's/$/\n/'
+dmenu -p "${1:-askpass}" -password -l 0 | sed 's/$/\n/'

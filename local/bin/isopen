@@ -1,2 +1,0 @@
-#!/usr/bin/env sh
-xwininfo -tree -root | grep $1

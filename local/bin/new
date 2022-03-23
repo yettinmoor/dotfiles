@@ -1,18 +1,27 @@
 #!/usr/bin/env sh
-[ $# -lt 2 ] && echo "Usage: new <type> <name>\nAborted" && exit 1
 
-EXT=$1
-BOIL=~/.local/share/boilerplates/$EXT
+[ $# -lt 2 ] && echo 'Usage: new <boilerplate> <name>' && exit 1
 
-FILE=$2
+BOILDIR="$HOME/.local/share/boilerplates"
 
-if [ -f "$BOIL" -a "$EXT" != "sh" ]; then DEST="$FILE.$EXT"; else DEST="$FILE"; fi
+ext="$1"
+output="$2"
+boil="$BOILDIR/$ext"
 
-[ -f "$DEST" ] && echo "File '$DEST' exists!" && exit 1
+# Check that boilerplate exists.
+! [ -f "$boil" ] && echo "No boilerplate \`$ext\` found in $BOILDIR." && exit 1
 
-cp -rn $BOIL $DEST || echo "Error: '$1' not found."
+# Set output to `output` and append extension, unless extension is `sh`.
+if [ -f "$boil" -a "$ext" != "sh" ]; then dest="${output}.$ext"; else dest="$output"; fi
 
-if [ -d "$FILE" ]; then
-    ./new.sh $FILE
+# Check that `output` doesn't already exist.
+[ -f "$dest" ] && echo "File '$dest' exists!" && exit 1
+
+# Copy.
+cp -rn "$boil" "$dest"
+
+# Run `new.sh` if output is a directory.
+if [ -d "$output" ]; then
+    "$output/new.sh" "$output"
     rm new.sh
 fi

@@ -77,7 +77,8 @@ bindkey -v '^R' history-incremental-search-backward
 	source "$HOME/.config/zsh/aliasrc"
 	source "$HOME/.config/zsh/shortcutrc"
 	source "$HOME/.config/zsh/aesthrc"
-} >/dev/null
+	source "$HOME/.config/zsh/privaterc"
+} 2>/dev/null
 
 # Load zsh-syntax-highlighting; should be last.
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null

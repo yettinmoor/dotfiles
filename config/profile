@@ -1,46 +1,57 @@
 #!/usr/bin/env sh
 # Profile file. Runs on login.
 
+# Path.
+path() {
+    echo $HOME/.local/bin
+    echo $HOME/.cargo/bin
+    echo $HOME/.nimble/bin
+    echo $HOME/.ghcup/bin
+    command -v go && /usr/bin/go env GOBIN
+}
+export PATH=$(path | xargs -I {} sh -c '[ -d "{}" ] && echo "{}"' | tr '\n' ':')$PATH
+unset -f path
+
+# XDG.
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:=$HOME/.config}
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:=$HOME/.cache}
 export XDG_DATA_HOME=${XDG_DATA_HOME:=$HOME/.local/share}
 
+# Defaults.
 export SHELL=zsh
-export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$(go env GOBIN):$HOME/.nimble/bin:$HOME/.ghcup/bin:$HOME/.cabal/bin:$PATH
 export EDITOR=nvim
-export TERMINAL=st
+export TERM=st
+export TERMINAL=$TERM
 export BROWSER=brave
 export READER=zathura
 export FILE=lf
-export ZDOTDIR=$HOME/.config/zsh
+export ZDOTDIR=$XDG_CONFIG_HOME/zsh
+export HOMEPAGE=$XDG_DATA_HOME/splash/index.html
+export GPG_TTY=$(tty)
 
+# Misc program stuff.
 export SUDO_ASKPASS=$HOME/.local/bin/dmenupass
-export INPUTRC=$HOME/.config/inputrc
+export INPUTRC=$XDG_CONFIG_HOME/inputrc
 export LESS=-R
 export LESSHISTFILE=/dev/null
-export XAUTHORITY=$HOME/.config/xorg/.Xauthority
+export XAUTHORITY=$XDG_CONFIG_HOME/xorg/.Xauthority
 export PYTHONHISTORY=$XDG_CACHE_HOME/python
+export MAKEFLAGS="-j $(nproc)"
+export LD_LIBARY_PATH=/usr/local/lib
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
-export HOMEPAGE=$HOME/.local/share/splash/index.html
-
-export MAKEFLAGS="-j $(grep -c ^processor /proc/cpuinfo)"
-
+# Ibus stuff.
 export GTK_IM_MODULE=xim
 export QT_IM_MODULE=xim
 export XMODIFIERS=@im=ibus
 export XIM_PROGRAM=/usr/bin/ibus-daemon
 export QT_QPA_PLATFORMTHEME=qt5ct
 
-export LD_LIBARY_PATH=/usr/local/lib
+# Source zshrc.
+source $XDG_CONFIG_HOME/zsh/.zshrc
 
-export GPG_TTY=$(tty)
-
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
-
-source $HOME/.config/zsh/.zshrc
-
-# Autorun startx
+# Autorun startx.
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x Xorg >/dev/null && exec startx
 
-# Switch escape and caps if tty:
+# Switch escape and caps if tty.
 sudo -n loadkeys ~/.local/share/ttymaps.kmap 2>/dev/null

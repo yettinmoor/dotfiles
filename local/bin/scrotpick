@@ -10,7 +10,7 @@ screen (copy)
 EOF
 )"
 
-choice="$(echo "$choices" | rofi -dmenu -l $(echo "$choices" | wc -l) -p 'scrotpick')" || exit 1
+choice="$(echo "$choices" | dmenu -l $(echo "$choices" | wc -l) -p 'scrotpick')" || exit 1
 
 case "$choice" in
     a*) cmd='-s' ;;
@@ -18,7 +18,7 @@ case "$choice" in
     s*) cmd='' ;;
 esac
 
-# get rofi outta the way
+# Get dmenu/rofi outta the way
 sleep .2
 
 case "$choice" in

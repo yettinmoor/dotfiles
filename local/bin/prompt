@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-[ "$( echo 'No\nYes' | rofi -dmenu -i -p "$1" -l 2 )" = "Yes" ] && $2
+[ "$( echo 'No\nYes' | dmenu -i -p "$1" -l 2 )" = "Yes" ] && $2

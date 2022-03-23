@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-setsid urlparse $( rofi -dmenu -l 0 -p $BROWSER ) | xargs -r0 -I {} $BROWSER "{}" &
+setsid urlparse $( dmenu -l 0 -p $BROWSER ) | xargs -r0 -I {} $BROWSER "{}" &
