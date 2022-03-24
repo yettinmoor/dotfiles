@@ -18,7 +18,7 @@ super + y
 super + u
 	$TERMINAL -e $EDITOR ~/docs/wiki/scratch.wiki
 super + o
-	open ~ 'repos vidya zig-cache WhatsApp'
+	open ~ 'repos vidya zig-cache'
 super + shift + o
 	open /media 'steam gsil'
 super + p
@@ -31,8 +31,6 @@ super + shift + a
 	anki
 super + s
 	qplay library
-super + shift + s
-	slack
 super + d
 	rofi -show run
 super + shift + d
