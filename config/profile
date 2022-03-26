@@ -47,8 +47,8 @@ export XMODIFIERS=@im=ibus
 export XIM_PROGRAM=/usr/bin/ibus-daemon
 export QT_QPA_PLATFORMTHEME=qt5ct
 
-# Source zshrc.
-source $XDG_CONFIG_HOME/zsh/.zshrc
+# zshrc.
+source $ZDOTDIR/.zshrc
 
 # Autorun startx.
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x Xorg >/dev/null && exec startx

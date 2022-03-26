@@ -1,11 +1,37 @@
 #!/usr/bin/env sh
 # Creates a nice 3x3 collage thumbnail from a video file.
 
-img="${1?no input file}"
-out="${2?no output path}"
+DEFAULT_QUAL=5
+DEFAULT_SIZE=300
+
+usage() {
+    exit_code=$1
+    echo 'Usage: thumbnailer [options] infile'
+    echo '  -o [outfile]  Set outfile path (default: `infile`.jpg)'
+    echo "  -s [size]     Set size of images (default: $DEFAULT_SIZE)"
+    echo "  -q [quality]  Set quality (default: $DEFAULT_QUAL)"
+    echo '  -h            Print usage'
+    exit $exit_code;
+}
+
+while getopts :ho:q:s: o; do
+    case "$o" in
+        o) out=$OPTARG ;;
+        q) qual=$OPTARG ;;
+        s) size=$OPTARG ;;
+        h) usage 0 ;;
+        ?) usage 1 ;;
+    esac
+done
+shift $((OPTIND-1))
+
+img="$1"
+out="${out:-${img}.jpg}"
+
+[ -z "$img" ] && usage 1
 
 for i in $(seq 10 10 90); do
-    ffmpegthumbnailer -i "$img" -o "${out}_$i" -s 300 -q 5 -t "${i}%" &
+    ffmpegthumbnailer -i "$img" -o "${out}_$i" -s ${size:-$DEFAULT_SIZE} -q ${qual:-$DEFAULT_QUAL} -t "${i}%" &
 done
 
 wait
