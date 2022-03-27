@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+PWR=/sys/class/power_supply
+
+[ -d $PWR/BAT0 ] || exit 1
+
+cat $PWR/AC/online | grep -q '^1$' \
+    && printf " " \
+    || printf "🗲 "
+
+fd BAT $PWR -x cat "{}/capacity" | tr '\n' ' '

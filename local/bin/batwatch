@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+PWR=/sys/class/power_supply
+
+[ -d $PWR/BAT0 ] || exit 1
+
+while true; do
+    inotifywait $PWR/AC 2>/dev/null | grep uevent \
+        && dwmbar bat
+done
