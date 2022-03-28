@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 # Creates a nice 3x3 collage thumbnail from a video file.
 
-DEFAULT_QUAL=5
+DEFAULT_QUAL=7
 DEFAULT_SIZE=300
 
 usage() {
