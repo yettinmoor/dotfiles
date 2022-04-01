@@ -6,17 +6,19 @@ DEFAULT_SIZE=300
 
 usage() {
     exit_code=$1
-    echo 'Usage: thumbnailer [options] infile'
-    echo '  -o [outfile]  Set outfile path (default: `infile`.jpg)'
-    echo "  -s [size]     Set size of images (default: $DEFAULT_SIZE)"
-    echo "  -q [quality]  Set quality (default: $DEFAULT_QUAL)"
-    echo '  -h            Print usage'
+    cat << EOF
+Usage: thumbnailer [options] infile
+  -o [outfile]  Set outfile path (default: [infile].jpg)
+  -s [size]     Set size of images (default: $DEFAULT_SIZE)
+  -q [quality]  Set quality (default: $DEFAULT_QUAL)
+  -h            Print usage
+EOF
     exit $exit_code;
 }
 
 while getopts :ho:q:s: o; do
     case "$o" in
-        o) out=$OPTARG ;;
+        o) outfile=$OPTARG ;;
         q) qual=$OPTARG ;;
         s) size=$OPTARG ;;
         h) usage 0 ;;
@@ -25,16 +27,13 @@ while getopts :ho:q:s: o; do
 done
 shift $((OPTIND-1))
 
-img="$1"
-out="${out:-${img}.jpg}"
+infile="$1"
+outfile="${outfile:-${infile}.jpg}"
 
-[ -z "$img" ] && usage 1
+[ -z "$infile" ] && usage 1
 
-for i in $(seq 10 10 90); do
-    ffmpegthumbnailer -i "$img" -o "${out}_$i" -s ${size:-$DEFAULT_SIZE} -q ${qual:-$DEFAULT_QUAL} -t "${i}%" &
-done
+seq 10 10 90 | xargs -P 0 -I {} ffmpegthumbnailer -i "$infile" -o "${outfile}_{}" -s ${size:-$DEFAULT_SIZE} -q ${qual:-$DEFAULT_QUAL} -t "{}%"
 
-wait
+montage -geometry +0+0 $(seq 10 10 90 | awk 'ORS=" " {print "'$outfile'_" $1}') "$outfile"
 
-montage -geometry +0+0 "$out"_* "$out"
-rm "$out"_*
+seq 10 10 90 | xargs -P 0 -I {} rm "${outfile}_{}"
