@@ -25,8 +25,8 @@ set wildignore+=*/.git/*
 setl formatoptions-=cro
 
 """ Compile & show scripts
-nmap <leader>c :w! \| :sp term://compiler %<CR>
-nmap <leader>p :w! \| :sp term://run %<CR>
+nmap <leader>c :w! \| :sp term://compiler \"%\"<CR>
+nmap <leader>p :w! \| :sp term://run \"%\"<CR>
 
 """ Delete trailing whitespace
 au BufWritePre * %s/\s\+$//e
