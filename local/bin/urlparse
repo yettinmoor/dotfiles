@@ -8,8 +8,8 @@ echo "$1" | grep -E '^(https?://)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]+\.[a-zA-Z0-9]+.
 dir=~/.config/urlparse
 
 # If has search string, check searchengines
-if [ -n "$2" ]; then
-	if [ -n "${se:=$( awk "/^$1 / {print \$2}" $dir/searchengines )}" ]; then
+if [ $# -gt 1 ]; then
+	if [ -n "${se:=$(awk "/^$1 / {print \$2}" $dir/searchengines)}" ]; then
 		shift
 		printf "$se" "$*"
 		exit
@@ -17,10 +17,10 @@ if [ -n "$2" ]; then
 fi
 
 # Check bookmarks
-if [ -n "${bm:=$( awk "/^$1 / {print \$2}" $dir/bookmarks )}" ]; then
+if [ -n "${bm:=$(awk "/^$1 / {print \$2}" $dir/bookmarks)}" ]; then
 	echo "$bm"
 	exit
 fi
 
 # Default to 1st search engine
-printf "$( awk 'NR==1 {print $2}' $dir/searchengines )" "$*"
+printf "$(awk 'NR==1 {print $2}' $dir/searchengines)" "$*"

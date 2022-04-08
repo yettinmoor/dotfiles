@@ -37,50 +37,34 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
 	*.odt|*.ods|*.odp|*.sxw) odt2txt "$1" ;;
 	*.doc) catdoc "$1" ;;
 	*.docx) docx2txt "$1" - ;;
-	*.xls|*.xlsx)
-		ssconvert --export-type=Gnumeric_stf:stf_csv "$1" "fd://1" | batorcat --language=csv
-		;;
-	*.wav|*.mp3|*.flac|*.m4a|*.wma|*.ape|*.ac3|*.og[agx]|*.spx|*.opus|*.as[fx]|*.mka)
-		exiftool "$1"
-		;;
+	*.xls|*.xlsx) ssconvert --export-type=Gnumeric_stf:stf_csv "$1" "fd://1" | batorcat --language=csv ;;
+	*.wav|*.mp3|*.flac|*.m4a|*.wma|*.ape|*.ac3|*.og[agx]|*.spx|*.opus|*.as[fx]|*.mka) exiftool "$1" ;;
+	*.ino) batorcat --language=cpp "$1" ;;
+	*.bmp|*.jpg|*.jpeg|*.png|*.xpm|*.webp|*.gif|*.jfif) image "$1" "$2" "$3" "$4" "$5" ;;
 	*.pdf)
-		[ ! -f "${CACHE}.jpg" ] && \
-			pdftoppm -jpeg -f 1 -singlefile "$1" "$CACHE"
+		[ ! -f "${CACHE}.jpg" ] && pdftoppm -jpeg -f 1 -singlefile "$1" "$CACHE"
 		image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
 		;;
 	*.epub)
-		[ ! -f "$CACHE" ] && \
-			epub-thumbnailer "$1" "$CACHE" 1024
+		[ ! -f "$CACHE" ] && epub-thumbnailer "$1" "$CACHE" 1024
 		image "$CACHE" "$2" "$3" "$4" "$5"
 		;;
 	*.djvu)
-		[ ! -f "$CACHE" ] && \
-			ddjvu -format=tif -quality=50 -page=1 "$1" "$CACHE"
+		[ ! -f "$CACHE" ] && ddjvu -format=tif -quality=50 -page=1 "$1" "$CACHE"
 		image "$CACHE" "$2" "$3" "$4" "$5"
         ;;
 	*.cbz|*.cbr|*.cbt)
-		[ ! -f "$CACHE" ] && \
-			comicthumb "$1" "$CACHE" 1024
+		[ ! -f "$CACHE" ] && comicthumb "$1" "$CACHE" 1024
 		image "$CACHE" "$2" "$3" "$4" "$5"
 		;;
 	*.html)
-		[ ! -f "$CACHE" ] && \
-			wkhtmltopdf "$1" - | pdftoppm -jpeg -f 1 -singlefile - "$CACHE"
+		[ ! -f "$CACHE" ] && wkhtmltopdf "$1" - | pdftoppm -jpeg -f 1 -singlefile - "$CACHE"
 		image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
 		;;
 	*.avi|*.mp4|*.wmv|*.dat|*.3gp|*.ogv|*.mkv|*.mpg|*.mpeg|*.vob|*.fl[icv]|*.m2v|*.mov|*.webm|*.ts|*.mts|*.m4v|*.r[am]|*.qt|*.divx)
-		[ ! -f "${CACHE}.jpg" ] && \
-			thumbnailer -o "${CACHE}.jpg" "$1"
+		[ ! -f "${CACHE}.jpg" ] && thumbnailer -o "${CACHE}.jpg" "$1"
 		image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
 		;;
-	*.bmp|*.jpg|*.jpeg|*.png|*.xpm|*.webp|*.gif|*.jfif)
-		image "$1" "$2" "$3" "$4" "$5"
-		;;
-	*.ino)
-		batorcat --language=cpp "$1"
-		;;
-	*)
-		batorcat "$1"
-		;;
+	*) batorcat "$1" ;;
 esac
 exit 0
