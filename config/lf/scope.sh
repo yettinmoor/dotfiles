@@ -41,6 +41,10 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
 	*.wav|*.mp3|*.flac|*.m4a|*.wma|*.ape|*.ac3|*.og[agx]|*.spx|*.opus|*.as[fx]|*.mka) exiftool "$1" ;;
 	*.ino) batorcat --language=cpp "$1" ;;
 	*.bmp|*.jpg|*.jpeg|*.png|*.xpm|*.webp|*.gif|*.jfif) image "$1" "$2" "$3" "$4" "$5" ;;
+	*.svg)
+		[ ! -f "${CACHE}.png" ] && convert "$1" "$CACHE.png"
+		image "${CACHE}.png" "$2" "$3" "$4" "$5"
+		;;
 	*.pdf)
 		[ ! -f "${CACHE}.jpg" ] && pdftoppm -jpeg -f 1 -singlefile "$1" "$CACHE"
 		image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
