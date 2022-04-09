@@ -74,10 +74,10 @@ bindkey -v '^R' history-incremental-search-backward
 # Load aliases and shortcuts if existent.
 {
 	shortcuts
-	source "$HOME/.config/zsh/aliasrc"
-	source "$HOME/.config/zsh/shortcutrc"
-	source "$HOME/.config/zsh/aesthrc"
-	source "$HOME/.config/zsh/privaterc"
+	source "$HOME/.config/shell/aliasrc"
+	source "$HOME/.config/shell/shortcutrc"
+	source "$HOME/.config/shell/aesthrc"
+	source "$HOME/.config/shell/privaterc"
 } 2>/dev/null
 
 # Load zsh-syntax-highlighting; should be last.
