@@ -32,6 +32,7 @@ Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 Plug 'JuliaEditorSupport/julia-vim', { 'for': 'julia' }
 Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'kovetskiy/sxhkd-vim', { 'for': 'sxhkd' }
+Plug 'kalekundert/vim-nestedtext', {'for': 'nt' }
 
 " Small utilities
 Plug 'tpope/vim-repeat'
