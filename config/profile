@@ -1,21 +1,12 @@
 #!/usr/bin/env sh
 # Profile file. Runs on login.
 
-# Path.
-path() {
-    echo $HOME/.local/bin
-    echo $HOME/.cargo/bin
-    echo $HOME/.nimble/bin
-    echo $HOME/.ghcup/bin
-    command -v go && /usr/bin/go env GOBIN
-}
-export PATH=$(path | xargs -I {} sh -c '[ -d "{}" ] && echo "{}"' | tr '\n' ':')$PATH
-unset -f path
-
 # XDG.
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:=$HOME/.config}
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:=$HOME/.cache}
 export XDG_DATA_HOME=${XDG_DATA_HOME:=$HOME/.local/share}
+
+source $XDG_CONFIG_HOME/shell/pathrc
 
 # Defaults.
 export SHELL=zsh
@@ -54,4 +45,4 @@ source $ZDOTDIR/.zshrc
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x Xorg >/dev/null && exec startx
 
 # Switch escape and caps if tty.
-sudo -n loadkeys ~/.local/share/ttymaps.kmap 2>/dev/null
+sudo -n loadkeys $XDG_DATA_HOME/ttymaps.kmap 2>/dev/null
