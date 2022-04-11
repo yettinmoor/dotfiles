@@ -7,10 +7,10 @@ kbset &
 setbg &
 xrdb ~/.config/xorg/Xresources
 xsetroot -cursor_name left_ptr
-dwmbar
 
 # Daemons
 sxhkd &
+bard init >> $XDG_CACHE_HOME/bard.log 2>&1 &
 dunst &
 picom -b --experimental-backends
 redshift &

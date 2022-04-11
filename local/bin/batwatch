@@ -6,5 +6,5 @@ PWR=/sys/class/power_supply
 
 while true; do
     inotifywait $PWR/AC 2>/dev/null | grep uevent \
-        && dwmbar batt
+        && bard update batt
 done

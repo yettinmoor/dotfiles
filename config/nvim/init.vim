@@ -152,12 +152,14 @@ let g:ale_fixers = {}
 
 let g:ale_linters['nim'] = ['nimlsp']
 let g:ale_linters['haskell'] = ['hlint']
+let g:ale_linters['python'] = ['pylint --disable=C0111']
 
 let g:ale_fixers['nim'] = ['nimpretty']
 let g:ale_fixers['typescript'] = ['deno']
 let g:ale_fixers['haskell'] = ['hfmt']
 let g:ale_fixers['python'] = ['autopep8']
 let g:ale_fixers['rust'] = ['rustfmt']
+let g:ale_fixers['json'] = ['jq']
 
 
 """ Misc filetype stuff

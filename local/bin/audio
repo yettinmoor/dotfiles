@@ -22,4 +22,4 @@ case $1 in
 esac
 
 # dunstify -u low -r $DUNSTID -t 1000 "$(pamixer --get-volume-human)"
-dwmbar vol
+bard update vol

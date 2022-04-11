@@ -9,6 +9,6 @@ path() {
     echo /usr/local/bin
 }
 
-PATH=$(path | /usr/bin/xargs -I {} sh -c '[ -d "{}" ] && echo "{}"' | tr '\n' ':')$PATH
+export PATH=$(path | /usr/bin/xargs -I {} sh -c '[ -d "{}" ] && echo "{}"' | tr '\n' ':')$PATH
 
 unset -f path

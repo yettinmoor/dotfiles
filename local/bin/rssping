@@ -7,8 +7,6 @@ ping -q -c 1 1.1.1.1 >/dev/null || exit 1
 
 pgrep -x newsboat && xdotool search --name newsboat key R && exit
 
-# echo "🔁" > /tmp/dwmbar.rss
-dwmbar rss 🔁
+bard update rss 🔁
 newsboat -x reload
-# rm /tmp/dwmbar.rss
-dwmbar rss
+bard update rss
