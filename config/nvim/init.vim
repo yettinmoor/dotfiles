@@ -100,6 +100,7 @@ let g:vimwiki_global_ext = 0
 """ Recompile files when edited
 au BufWritePost *shortcuts/* !shortcuts
 au BufWritePost *dwmbar.cfg !dwmbar
+au BufWritePost *bard.yaml !bard restart
 
 """ CoC
 let g:coc_snippet_next = '<S-Tab>'
@@ -153,6 +154,7 @@ let g:ale_fixers = {}
 let g:ale_linters['nim'] = ['nimlsp']
 let g:ale_linters['haskell'] = ['hlint']
 let g:ale_linters['python'] = ['pylint --disable=C0111']
+let g:ale_linters['rust'] = ['cargo clippy']
 
 let g:ale_fixers['nim'] = ['nimpretty']
 let g:ale_fixers['typescript'] = ['deno']

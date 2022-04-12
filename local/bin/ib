@@ -17,10 +17,10 @@ icon() {
 
 show() {
     if running; then
-        bard update ib "$(icon)"
+        bard update "ib:$(icon)"
         dunstify -r 9191 -u critical "$(icon)"
     else
-        bard update ib ""
+        bard update ib:
         dunstify -C 9191
     fi
 }

@@ -7,6 +7,6 @@ ping -q -c 1 1.1.1.1 >/dev/null || exit 1
 
 pgrep -x newsboat && xdotool search --name newsboat key R && exit
 
-bard update rss 🔁
+bard update rss:🔁
 newsboat -x reload
 bard update rss
