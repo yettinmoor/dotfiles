@@ -36,6 +36,7 @@ cmd mkdir %mkdir "$@"
 cmd mkfile %touch "$@"
 
 map m
+map w
 
 map <c-f> $lf -remote "send $id select '$(fzf)'"
 map J $lf -remote "send $id cd $(awk '/^[^#]/ {print $2}' ${XDG_CONFIG_HOME}/shortcuts/directories | fzf)"
