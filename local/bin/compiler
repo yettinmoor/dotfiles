@@ -1,22 +1,18 @@
 #!/usr/bin/env sh
 # All-in-one file compiler.
 
-file="$( readlink -f "$1" )"
-dir="$( dirname "$file" )"
+file="$(readlink -f "$1")"
+dir="$(dirname "$file")"
 base="${file%.*}"
 
-# cd "$dir" || exit 1
-
-if ls Makefile >/dev/null 2>&1; then make; exit 0; fi
-
-# if [ "$base" = "zig" ] && ls build.zig; then zig build; exit 0; fi
+if [ -f Makefile ]; then make; exit 0; fi
 
 case "${file#*.}" in
     # Shell
     sh) sh "$file" ;;
 
 	# Programming
-	c) cc "$file" -o "$base" && "$base" ;;
+	c)   cc "$file" -o "$base" && "$base" ;;
 	cpp) g++ "$file" -o "$base" && "$base" ;;
 	py)  python "$file" ;;
 	cs)  mcs "$file" ;;
@@ -30,10 +26,7 @@ case "${file#*.}" in
 	pl)  perl "$file" ;;
     zig) if [ -f "build.zig" ]; then zig build run; else zig run $(grep -q "cImport" "$file" && echo "-lc") "$file"; fi ;;
     nim) if [ -f *.nimble ]; then nimble build -r; else nim r --verbosity:0 "$file"; fi ;;
-	jai) echo "Jai release never :-(" ;;
 	nil) nil lex "$file" ;;
-
-	m) octave --persist -iq "$file" ;;
 
 	# Document formatting
 	tex) xelatex --output-directory="$dir" "$base" ;;
