@@ -23,7 +23,7 @@ sleep .2
 
 case "$choice" in
     *copy*)
-        scrot $cmd -e 'xclip -sel c -t image/png -i $f' \
+        scrot $cmd -e 'xclip -sel c -t image/png -i $f && rm $f' \
             && notify-send 'scrotpick' 'Copied screenshot' ;;
     *)
         filename="$HOME/pics/scrotpick-$(date '+%y%m%d-%H%M-%S').png"
