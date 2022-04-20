@@ -7,19 +7,18 @@ kbset &
 setbg &
 xrdb ~/.config/xorg/Xresources
 xsetroot -cursor_name left_ptr
+picom -b --experimental-backends &
+redshift &
+unclutter --timeout 3 &
 
 # Daemons
 sxhkd &
-bard init >> $XDG_CACHE_HOME/bard.log 2>&1 &
 dunst &
-picom -b --experimental-backends
-redshift &
-syncthing -no-browser >/dev/null &
-unclutter --timeout 3 &
-mpd &
-( sleep 1; mpdnot ) &
+bard init >> $XDG_CACHE_HOME/bard.log 2>&1 &
+syncthing --no-browser &
+mpd && mpdnot &
+batwatch &
 
-# Some pings
+# Pings
 rssping &
 forecast &
-batwatch &
