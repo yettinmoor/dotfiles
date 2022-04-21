@@ -1,18 +1,18 @@
 #!/usr/bin/env sh
 
-outfile="${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport"
+outfile="$XDG_DATA_HOME/weatherreport"
 
 fetch() {
-    ping -q -c 1 1.1.1.1 >/dev/null || exit 1
+    ping -q -c 1 1.1.1.1 > /dev/null || exit 1
     report=$(curl -s "wttr.in/$1")
     echo "$report" | grep "Sorry" && exit 1 # Exit if wttr server overload
-    echo "$report" > "$outfile";
+    echo "$report" > "$outfile"
 }
 
 display() {
-    sed -nE '4s/.*([+-][0-9]+).*/\1°/p' "$outfile" | tr -d '+';
+    sed -nE '4s/.*([+-][0-9]+).*/\1°/p' "$outfile" | tr -d '+'
 }
 
 cmd="$1"
 arg="$2"
-[ -n "cmd" ] && $cmd "$arg"
+[ -n "$cmd" ] && $cmd "$arg"

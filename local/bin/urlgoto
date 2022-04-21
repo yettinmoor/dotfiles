@@ -1,2 +1,3 @@
 #!/usr/bin/env sh
-urlparse $(dmenu -l 0 -p $BROWSER) | xargs -r0 -I {} $BROWSER $@ "{}"
+# shellcheck disable=SC2046
+urlparse $(dmenu -l 0 -p "$BROWSER") | xargs -r0 -I {} "$BROWSER" "$@" "{}"

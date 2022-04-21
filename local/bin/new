@@ -12,7 +12,7 @@ boil="$BOILDIR/$ext"
 ! [ -f "$boil" ] && echo "No boilerplate \`$ext\` found in $BOILDIR." && exit 1
 
 # Set output to `output` and append extension, unless extension is `sh`.
-if [ -f "$boil" -a "$ext" != "sh" ]; then dest="${output}.$ext"; else dest="$output"; fi
+if [ -f "$boil" ] && [ "$ext" != "sh" ]; then dest="${output}.$ext"; else dest="$output"; fi
 
 # Check that `output` doesn't already exist.
 [ -f "$dest" ] && echo "File '$dest' exists!" && exit 1

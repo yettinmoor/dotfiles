@@ -1,6 +1,0 @@
-#!/usr/bin/env sh
-# Pause mpc and all mpv instances.
-mpc pause >/dev/null
-ls /tmp/mpvsoc* | while read -r mpvsoc; do
-	echo '{ "command": ["set_property", "pause", true] }' | socat - "$mpvsoc"
-done

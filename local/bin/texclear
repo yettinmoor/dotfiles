@@ -1,6 +1,10 @@
 #!/usr/bin/env sh
 # Clears LaTeX build files.
 
-file=$( readlink -f "$1" )
+file="$(readlink -f "$1")"
+base="$(basename "${file%.tex}")"
+dir="$(dirname "$file")"
 
-fd -d 1 -t f "^$( basename ${file%.tex} )\\.(4tc|xref|tmp|pyc|pyo|fls|vrb|fdb_latexmk|bak|swp|aux|log|synctex\\(busy\\)|lof|lot|maf|idx|mtc|mtc0|nav|out|snm|toc|bcf|run\\.xml|synctex\\.gz|blg|bbl)" "$( dirname $file )" -x rm
+EXTS='(4tc|xref|tmp|pyc|pyo|fls|vrb|fdb_latexmk|bak|swp|aux|log|synctex\\(busy\\)|lof|lot|maf|idx|mtc|mtc0|nav|out|snm|toc|bcf|run\\.xml|synctex\\.gz|blg|bbl)'
+
+fd -d 1 -t f "^${base}\\.$EXTS" "$dir" -x rm

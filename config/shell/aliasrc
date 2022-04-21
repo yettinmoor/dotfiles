@@ -39,6 +39,7 @@ alias cli='xclip -sel c -i'
 alias clo='xclip -sel c -i'
 alias z='zathura'
 alias wi='cd ~/docs/wiki && nvim index.wiki'
+alias se='dotedit'
 
 # git
 alias ga='git add'
@@ -69,12 +70,27 @@ alias ytda='ytd -x -f "bestaudio[ext=mp3]/best"'
 alias ytdp='ytd -o "%(playlist_index)s - %(title)s.%(ext)s"'
 
 # Convenience functions
-x() { [ -n "$@" ] && sxiv -a "$@" || sxiv -at . ; }
-se() { fd -t f -L . ~/.local ~/.config -E '*/Steam/*' | fzf --reverse --color=16 | xargs -r "$EDITOR"; }
-mkd() { mkdir -pv "$@"; [ $# -eq 1 ] && cd "$1"; }
-src() { . "$HOME/.config/profile"; echo "Reloaded profile."; }
-xw() { xwininfo -tree -root | grep "${1:-""}"; }
-wttr() { less -S $HOME/.local/share/weatherreport; }
-disks() { df -h | awk '/^\/dev/{print $6, $4, $5}' | grep -v 'boot' | tabulate; }
-room() { du -h ${1:-.} -d 1 | sort -h; }
-cht() { curl cht.sh/$1 2>/dev/null | less; }
+mkd() {
+    mkdir -pv "$@"
+    [ $# -eq 1 ] && { cd "$1" || exit; }
+}
+
+src() {
+    # shellcheck source=../profile
+    . "$XDG_CONFIG_HOME/profile"
+    echo "Reloaded profile."
+}
+
+x() {
+    if [ "$#" -ge 1 ]; then
+        sxiv -a "$@"
+    else
+        sxiv -at .
+    fi
+}
+
+wttr() { less -S "$HOME/.local/share/weatherreport"; }
+
+room() { du -h "${1:-.}" -d 1 | sort -h; }
+
+cht() { curl "cht.sh/$1" 2> /dev/null | less; }

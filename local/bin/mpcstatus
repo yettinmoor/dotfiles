@@ -3,5 +3,5 @@
 song=$(mpc current -f '%artist% :: %title%')
 [ -n "$song" ] || exit 0
 
-mpc | grep -q '\[playing\]' && echo -n '' || echo -n ''
-echo -n " $song"
+mpc | grep -q '\[playing\]' && echo '' || echo ''
+echo "$song"

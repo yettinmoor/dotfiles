@@ -14,7 +14,7 @@ unclutter --timeout 3 &
 # Daemons
 sxhkd &
 dunst &
-bard init >> $XDG_CACHE_HOME/bard.log 2>&1 &
+bard init >> "$XDG_CACHE_HOME/bard.log" 2>&1 &
 syncthing --no-browser &
 mpd && mpdnot &
 batwatch &

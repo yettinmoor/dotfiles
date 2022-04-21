@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+# Display fzf menu of
+#   1) all scripts in .local/bin,
+#   2) all git-tracked dotfiles
+# and open in editor.
+
+fifo=$(mktemp)
+git -C ~/repos/dotfiles ls-tree -r --name-only HEAD >> "$fifo" &
+fd . --base-directory ~/repos/dotfiles local/bin >> "$fifo" &
+wait
+
+sort "$fifo" \
+    | uniq \
+    | fzf --reverse --color=16 \
+    | xargs -r -I {} "$EDITOR" "$HOME/repos/dotfiles/{}"
+
+rm "$fifo"

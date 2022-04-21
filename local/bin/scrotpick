@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 
-choices="$(cat << EOF
+choices="$(
+    cat << EOF
 area
 window
 screen
@@ -10,7 +11,7 @@ screen (copy)
 EOF
 )"
 
-choice="$(echo "$choices" | dmenu -l $(echo "$choices" | wc -l) -p 'scrotpick')" || exit 1
+choice="$(echo "$choices" | dmenu -l "$(echo "$choices" | wc -l)" -p 'scrotpick')" || exit 1
 
 case "$choice" in
     a*) cmd='-s' ;;
@@ -23,10 +24,13 @@ sleep .2
 
 case "$choice" in
     *copy*)
-        scrot $cmd -e 'xclip -sel c -t image/png -i $f && rm $f' \
-            && notify-send 'scrotpick' 'Copied screenshot' ;;
+        # shellcheck disable=SC2016
+        scrot "$cmd" -e 'xclip -sel c -t image/png -i $f && rm $f' \
+            && notify-send 'scrotpick' 'Copied screenshot'
+        ;;
     *)
         filename="$HOME/pics/scrotpick-$(date '+%y%m%d-%H%M-%S').png"
-        scrot $cmd "$filename" \
-            && notify-send 'scrotpick' "$filename" ;;
+        scrot "$cmd" "$filename" \
+            && notify-send 'scrotpick' "$filename"
+        ;;
 esac

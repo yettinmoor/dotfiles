@@ -9,18 +9,20 @@ dir=~/.config/urlparse
 
 # If has search string, check searchengines
 if [ $# -gt 1 ]; then
-	if [ -n "${se:=$(awk "/^$1 / {print \$2}" $dir/searchengines)}" ]; then
-		shift
-		printf "$se" "$*"
-		exit
-	fi
+    if [ -n "${se:=$(awk "/^$1 / {print \$2}" $dir/searchengines)}" ]; then
+        shift
+        # shellcheck disable=SC2059
+        printf "$se" "$*"
+        exit
+    fi
 fi
 
 # Check bookmarks
 if [ -n "${bm:=$(awk "/^$1 / {print \$2}" $dir/bookmarks)}" ]; then
-	echo "$bm"
-	exit
+    echo "$bm"
+    exit
 fi
 
 # Default to 1st search engine
+# shellcheck disable=SC2059
 printf "$(awk 'NR==1 {print $2}' $dir/searchengines)" "$*"

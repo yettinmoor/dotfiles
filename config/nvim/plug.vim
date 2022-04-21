@@ -12,17 +12,13 @@ call plug#begin('~/.config/nvim/plugged')
 " LSP
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
-" Plug 'sheerun/vim-polyglot'
 Plug 'prettier/vim-prettier'
 
 " Languages/filetypes
 Plug 'vimwiki/vimwiki'
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
-" Plug 'vim-pandoc/vim-pandoc', { 'for': 'pandoc' }
-" Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'pandoc' }
 Plug 'rhysd/vim-clang-format', { 'for': 'c' }
-" Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'wlangstroth/vim-racket', { 'for': 'racket' }
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'ziglang/zig.vim', { 'for': 'zig' }

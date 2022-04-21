@@ -1,10 +1,10 @@
 #!/usr/bin/env sh
 
 focused_pid() {
-	focused=$(xprop -root | awk '/^_NET_ACTIVE/{print $NF}')
-	xprop -id $focused _NET_WM_PID | cut -d ' ' -f 3
+    focused=$(xprop -root | awk '/^_NET_ACTIVE/{print $NF}')
+    xprop -id "$focused" _NET_WM_PID | cut -d ' ' -f 3
 }
 
-PID=$(pstree -lpA $(focused_pid) | sed -n '1s/.*sh(\([0-9]*\)).*/\1/p')
-cd $(readlink /proc/$PID/cwd) || exit 1
+PID="$(pstree -lpA "$(focused_pid)" | sed -n '1s/.*sh(\([0-9]*\)).*/\1/p')"
+cd "$(readlink "/proc/$PID/cwd")" || exit 1
 exec $TERMINAL

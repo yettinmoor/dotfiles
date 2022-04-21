@@ -1,11 +1,11 @@
 #!/usr/bin/env sh
 SH_FILE="$HOME/.config/shell/shortcutrc"
 LF_FILE="$HOME/.config/lf/lfshortcuts"
-SHORTCUT_DIR="$HOME/.config/shortcuts"
+SHORTCUT_DIR="$HOME/.config/shell/shortcuts"
 
 # Directories
-awk '{printf "alias %s=\"cd %s && ls\"\n", $1, $2}' $SHORTCUT_DIR/directories > "$SH_FILE"
-awk '{printf "map g%1$s cd %2$s\nmap M%1$s $mv -v $fx %2$s\nmap Y%1$s $cp -rv $fx %2$s\n", $1, $2}' $SHORTCUT_DIR/directories > "$LF_FILE"
+awk '{printf "alias %s=\"cd %s && ls\"\n", $1, $2}' "$SHORTCUT_DIR/directories" > "$SH_FILE"
+awk '{printf "map g%1$s cd %2$s\nmap M%1$s $mv -v $fx %2$s\nmap Y%1$s $cp -rv $fx %2$s\n", $1, $2}' "$SHORTCUT_DIR/directories" > "$LF_FILE"
 
 # Files
-awk '{printf "alias %s=\"$EDITOR %s\"\n", $1, $2}' $SHORTCUT_DIR/files >> "$SH_FILE"
+awk '{printf "alias %s=\"$EDITOR %s\"\n", $1, $2}' "$SHORTCUT_DIR/files" >> "$SH_FILE"

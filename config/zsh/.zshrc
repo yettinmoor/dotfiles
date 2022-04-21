@@ -72,13 +72,7 @@ bindkey '^e' edit-command-line
 bindkey -v '^R' history-incremental-search-backward
 
 # Load aliases and shortcuts if existent.
-{
-	shortcuts
-	source "$HOME/.config/shell/aliasrc"
-	source "$HOME/.config/shell/shortcutrc"
-	source "$HOME/.config/shell/aesthrc"
-	source "$HOME/.config/shell/privaterc"
-} 2>/dev/null
+. $HOME/.config/shell/allrc 2> /dev/null
 
 # Load zsh-syntax-highlighting; should be last.
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null

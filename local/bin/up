@@ -5,14 +5,20 @@
 
 down() {
     runjob() {
-        echo "running job \`$@\`"
-        $@ >/dev/null 2>&1 &
+        echo "running job \`$*\`..." >&2
+        {
+            "$@" > /dev/null 2>&1
+            echo "completed job \`$*\`" >&2
+        } &
     }
+
     runjob sudo pacman -Syyuw --noconfirm
     runjob nvim +'PlugUpdate --sync' +qa
     runjob nvim +'PlugUpgrade --sync' +qa
+    runjob rustup update
     [ -n "$LOCATION" ] && runjob forecast fetch "$LOCATION"
-    runjob qalc -e # Updates currency exchange.
+    runjob qalc -e
+
     wait
 }
 
@@ -22,4 +28,4 @@ case "$1" in
     *)      exit 1 ;;
 esac
 
-bard update updates 2>/dev/null
+bard update updates 2> /dev/null

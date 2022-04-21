@@ -1,3 +1,3 @@
 #!/usr/bin/env sh
 # Copies common inputs e.g. email addresses to clipboard
-cat ~/.local/share/commoninput | dmenu -p 'Copy' -i -l $( wc -l ~/.local/share/commoninput ) | xclip -sel clip -r
+dmenu -i -p 'copy' < ~/.local/share/commoninput | xclip -sel clip -r

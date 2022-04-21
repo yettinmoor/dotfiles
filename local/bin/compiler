@@ -5,38 +5,40 @@ file="$(readlink -f "$1")"
 dir="$(dirname "$file")"
 base="${file%.*}"
 
-if [ -f Makefile ]; then make; exit 0; fi
+if [ -f Makefile ]; then
+    make
+    exit 0
+fi
 
 case "${file#*.}" in
     # Shell
     sh) sh "$file" ;;
 
-	# Programming
-	c)   cc "$file" -o "$base" && "$base" ;;
-	cpp) g++ "$file" -o "$base" && "$base" ;;
-	py)  python "$file" ;;
-	cs)  mcs "$file" ;;
-	js)  node "$file" ;;
-	ts)  deno run --allow-read "$file" ;;
-	scm) chicken-csi -q "$file" ;;
-	rkt) racket "$file" ;;
-	hs)  runhaskell "$file" ;;
-	go)  go run "$file" ;;
-	rs)  cargo run "$file" ;;
-	pl)  perl "$file" ;;
-    zig) if [ -f "build.zig" ]; then zig build run; else zig run $(grep -q "cImport" "$file" && echo "-lc") "$file"; fi ;;
-    nim) if [ -f *.nimble ]; then nimble build -r; else nim r --verbosity:0 "$file"; fi ;;
-	nil) nil lex "$file" ;;
+    # Programming
+    c) cc "$file" -o "$base" && "$base" ;;
+    cpp) g++ "$file" -o "$base" && "$base" ;;
+    cs) mcs "$file" ;;
+    go) go run "$file" ;;
+    hs) runhaskell "$file" ;;
+    js) node "$file" ;;
+    nim) if fd -q -e nimble; then nimble build -r; else nim r --verbosity:0 "$file"; fi ;;
+    pl) perl "$file" ;;
+    py) python "$file" ;;
+    rkt) racket "$file" ;;
+    rs) cargo run "$file" ;;
+    scm) chicken-csi -q "$file" ;;
+    ts) deno run --allow-read "$file" ;;
+    zig) if [ -f "build.zig" ]; then zig build run; else zig run "$(grep -q "cImport" "$file" && echo "-lc")" "$file"; fi ;;
 
-	# Document formatting
-	tex) xelatex --output-directory="$dir" "$base" ;;
-	md)  pandoc "$file" --pdf-engine=xelatex --template=template -o "$base".pdf ;;
+    # Document formatting
+    tex) xelatex --output-directory="$dir" "$base" ;;
+    md) pandoc "$file" --pdf-engine=xelatex --template=template -o "$base".pdf ;;
 
-	# sent
-	sent) setsid sent "$file" & ;;
+    # sent
+    sent) setsid sent "$file" & ;;
 
-	# Shebang
-	*) sed -n '1{/^#!/s///p}' "$file" | xargs -r -I {} "$file" ;;
+    # Shebang
+    *) sed -n '1{/^#!/s///p}' "$file" | xargs -r -I {} "$file" ;;
 esac
 
 exit $?

@@ -8,4 +8,4 @@ cat $PWR/AC/online | grep -q '^1$' \
     && printf " " \
     || printf "🗲 "
 
-fd BAT $PWR -x cat "{}/capacity" | tr '\n' ' '
+fd BAT $PWR -x cat "{}/capacity"

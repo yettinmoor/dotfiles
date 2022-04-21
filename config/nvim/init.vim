@@ -143,26 +143,33 @@ let g:ale_sign_warning                = '⚠'
 highlight ALEErrorSign ctermbg        =NONE ctermfg=red
 highlight ALEWarningSign ctermbg      =NONE ctermfg=yellow
 let g:ale_linters_explicit            = 1
-let g:ale_lint_on_text_changed        = 'never'
-let g:ale_lint_on_enter               = 0
+let g:ale_lint_on_text_changed        = 'always'
+let g:ale_lint_on_enter               = 1
 let g:ale_lint_on_save                = 1
 let g:ale_fix_on_save                 = 1
 
 let g:ale_linters = {}
 let g:ale_fixers = {}
 
+function! FormatSh(buffer)
+    return { 'command': 'shfmt -i 4 -bn -ci -kp -sr' }
+endfunction
+execute ale#fix#registry#Add('shfmt', 'FormatSh', ['sh'], 'shfmt for sh')
+
 let g:ale_linters['haskell'] = ['hlint']
 let g:ale_linters['nim'] = ['nimlsp']
 let g:ale_linters['python'] = ['pylint --disable=C0111']
 let g:ale_linters['rust'] = ['cargo clippy']
+let g:ale_linters['sh'] = ['shellcheck']
 
 let g:ale_fixers['css'] = ['prettier']
-let g:ale_fixers['haskell'] = ['hfmt']
+let g:ale_fixers['haskell'] = ['hindent']
 let g:ale_fixers['html'] = ['prettier']
 let g:ale_fixers['json'] = ['jq']
 let g:ale_fixers['nim'] = ['nimpretty']
 let g:ale_fixers['python'] = ['autopep8']
 let g:ale_fixers['rust'] = ['rustfmt']
+let g:ale_fixers['sh'] = ['shfmt']
 let g:ale_fixers['typescript'] = ['deno']
 
 

@@ -1,11 +1,10 @@
 #!/usr/bin/env sh
 
-[ -d "$1" ] || exit 1
-cd "$1"
+cd "$1" || exit 1
 
 TODAY=$(date -I)
 [ "$(cat .lastautocommit)" = "$TODAY" ] && exit 1
 
 git commit -a -m "autocommit $TODAY"
 git push
-echo $TODAY > .lastautocommit
+echo "$TODAY" >.lastautocommit

@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+shortcuts
+
+# shellcheck source=/dev/null
+{
+    . ~/.config/shell/aliasrc
+    . ~/.config/shell/shortcutrc
+    . ~/.config/shell/aesthrc
+    . ~/.config/shell/privaterc
+}

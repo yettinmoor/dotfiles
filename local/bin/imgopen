@@ -3,4 +3,4 @@
 file="$1"
 imgs() { fd '(jpe?g|bmp|png|gif)$' "$(dirname "$file")" -d 1 | sort; }
 
-imgs | sxiv -ai -n $(imgs | grep -sn "$file" | cut -d ':' -f1)
+imgs | sxiv -ai -n "$(imgs | grep -sn "$file" | cut -d ':' -f1)"

@@ -7,18 +7,26 @@
 # otherwise it opens link in browser.
 
 # If no url given. Opens browser. For using script as $BROWSER.
-[ -z "$1" ] && { "$BROWSER"; exit; }
+[ -z "$1" ] && {
+    "$BROWSER"
+    exit
+}
 
 case "$1" in
-	*mkv|*webm|*mp4|*youtube.com*|*youtu.be*|*hooktube.com*|*bitchute.com*|*twitch.tv*)
-		setsid mpv "$1" >/dev/null 2>&1 & ;;
-	*png|*jpg|*jpe|*jpeg|*gif)
+    *mkv | *webm | *mp4 | *youtube.com* | *youtu.be* | *hooktube.com* | *bitchute.com* | *twitch.tv*)
+        setsid mpv "$1" > /dev/null 2>&1 &
+        ;;
+    *png | *jpg | *jpe | *jpeg | *gif)
         file="$(basename "$1")"
-		curl -sLO && sxiv -a "$file" >/dev/null 2>&1 & ;;
-	*mp3|*flac|*opus|*mp3?source*)
-        cd $HOME/dl
-		setsid tsp curl -LO "$1" >/dev/null 2>&1 & ;;
-	*)
-		if [ -f "$1" ]; then "$TERMINAL" -e "$EDITOR $1"
-		else setsid "$BROWSER" "$1" >/dev/null 2>&1 & fi ;;
+        curl -sLO && sxiv -a "$file" > /dev/null 2>&1 &
+        ;;
+    *mp3 | *flac | *opus | *mp3?source*)
+        cd "$HOME/dl" || exit 1
+        setsid tsp curl -LO "$1" > /dev/null 2>&1 &
+        ;;
+    *)
+        if [ -f "$1" ]; then
+            "$TERMINAL" -e "$EDITOR $1"
+        else setsid "$BROWSER" "$1" > /dev/null 2>&1 & fi
+        ;;
 esac

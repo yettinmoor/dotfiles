@@ -1,25 +1,22 @@
 #!/usr/bin/env sh
 # Volume interface for sxhkd.
 
-DUNSTID=54321
-
 case $1 in
-	mute)
-		pamixer --toggle-mute
+    mute)
+        pamixer --toggle-mute
         ;;
     inc)
-		pamixer --unmute
-		pamixer --increase "$2"
-		;;
+        pamixer --unmute
+        pamixer --increase "$2"
+        ;;
     dec)
-		pamixer --unmute
-		pamixer --decrease "$2"
-		;;
+        pamixer --unmute
+        pamixer --decrease "$2"
+        ;;
     set)
-		pamixer --unmute
-		pamixer --set-volume "$2"
-		;;
+        pamixer --unmute
+        pamixer --set-volume "$2"
+        ;;
 esac
 
-# dunstify -u low -r $DUNSTID -t 1000 "$(pamixer --get-volume-human)"
 bard update vol

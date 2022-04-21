@@ -1,19 +1,16 @@
 # vim: filetype=sh
 
-ifhas() {
-    command -v $1 >/dev/null 2>&1 && echo $2
-}
-
 path() {
-    echo $HOME/.local/bin
-    ifhas cargo $HOME/.cargo/bin
-    ifhas nim $HOME/.nimble/bin
-    ifhas ghc $HOME/.ghcup/bin
-    ifhas go "$(go env GOBIN)"
-    echo /usr/local/bin
+    ifhas() { [ -d "$1" ] && echo "$1"; }
+    ifhas "$HOME/.local/bin"
+    ifhas "$HOME/.cargo/bin"
+    ifhas "$HOME/.nimble/bin"
+    ifhas "$HOME/.ghcup/bin"
+    ifhas "$(go env GOBIN)"
+    ifhas /usr/local/bin
 }
 
-export PATH=$(path | tr '\n' ':')$PATH
+PATH="$(path | paste -s -d ':'):$PATH"
+export PATH
 
 unset -f path
-unset -f ifhas

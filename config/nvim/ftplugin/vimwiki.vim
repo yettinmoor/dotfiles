@@ -1,3 +1,5 @@
+au BufWritePost <buffer> silent Vimwiki2HTML
+
 nmap <leader>c :w! \| :VimwikiAll2HTML<CR>
 
 nmap gd    <Plug>VimwikiFollowLink

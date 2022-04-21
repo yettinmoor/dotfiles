@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 
-engines=$(cat <<- EOF
+engines=$(
+    cat <<- EOF
 1 🇬🇧 xkb:us:altgr-intl:eng Aa
 2 🇯🇵 anthy 文
 3 🇬🇷 xkb:gr::ell AΩ
@@ -12,7 +13,7 @@ EOF
 CONFIG_DIR="$XDG_CONFIG_HOME/ib"
 
 icon() {
-    echo "$engines" | grep $(ibus engine) | cut -d ' ' -f4
+    echo "$engines" | grep "$(ibus engine)" | cut -d ' ' -f4
 }
 
 show() {
@@ -26,7 +27,7 @@ show() {
 }
 
 running() {
-    pgrep ibus >/dev/null
+    pgrep ibus > /dev/null
 }
 
 case "$1" in
@@ -42,7 +43,7 @@ case "$1" in
 
     toggle)
         running || exit 1
-        choice=$(echo "$engines" | cut -d ' ' -f1-2 | dmenu -p 'Keyboard layout' -L $(echo "$engines" | wc -l) -width 10) || exit
+        choice="$(echo "$engines" | cut -d ' ' -f1-2 | dmenu -p 'Keyboard layout' -L "$(echo "$engines" | wc -l)" -width 10)" || exit
         engine=$(echo "$engines" | grep "${choice:?}" | cut -d ' ' -f3)
         if [ "$engine" = "help" ]; then
             kbimg="$CONFIG_DIR/$(icon).png"
@@ -52,12 +53,13 @@ case "$1" in
                 dunstify -r 9191 -u critical "No keyboard image found for '$(icon)'"
             fi
         else
-            ibus engine $engine
+            ibus engine "$engine"
             show
         fi
         ;;
 
     *)
-        exit ;;
+        exit
+        ;;
 
-esac 2>/dev/null
+esac 2> /dev/null

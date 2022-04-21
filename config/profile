@@ -2,34 +2,38 @@
 # Profile file. Runs on login.
 
 # XDG.
-export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:=$HOME/.config}
-export XDG_CACHE_HOME=${XDG_CACHE_HOME:=$HOME/.cache}
-export XDG_DATA_HOME=${XDG_DATA_HOME:=$HOME/.local/share}
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:=$HOME/.config}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:=$HOME/.cache}"
+export XDG_DATA_HOME="${XDG_DATA_HOME:=$HOME/.local/share}"
 
-. $XDG_CONFIG_HOME/shell/pathrc
+. "$XDG_CONFIG_HOME/shell/pathrc"
 
 # Defaults.
 export SHELL=zsh
 export EDITOR=nvim
-export TERM=st
+export TERM=alacritty
 export TERMINAL=$TERM
 export BROWSER=brave
 export READER=zathura
 export FILE=lf
-export ZDOTDIR=$XDG_CONFIG_HOME/zsh
-export HOMEPAGE=$XDG_DATA_HOME/splash/index.html
-export GPG_TTY=$(tty)
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+export HOMEPAGE="$XDG_DATA_HOME/splash/index.html"
+
+GPG_TTY="$(tty)"
+export GPG_TTY
 
 # Misc program stuff.
-export SUDO_ASKPASS=$HOME/.local/bin/dmenupass
-export INPUTRC=$XDG_CONFIG_HOME/inputrc
+export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
+export INPUTRC="$XDG_CONFIG_HOME/inputrc"
 export LESS=-R
 export LESSHISTFILE=/dev/null
-export XAUTHORITY=$XDG_CONFIG_HOME/xorg/.Xauthority
-export PYTHONHISTORY=$XDG_CACHE_HOME/python
-export MAKEFLAGS="-j $(nproc)"
+export XAUTHORITY="$XDG_CONFIG_HOME/xorg/.Xauthority"
+export PYTHONHISTORY="$XDG_CACHE_HOME/python"
 export LD_LIBARY_PATH=/usr/local/lib
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
+
+MAKEFLAGS="-j $(nproc)"
+export MAKEFLAGS
 
 # Ibus stuff.
 export GTK_IM_MODULE=xim
@@ -39,10 +43,14 @@ export XIM_PROGRAM=/usr/bin/ibus-daemon
 export QT_QPA_PLATFORMTHEME=qt5ct
 
 # zshrc.
-source $ZDOTDIR/.zshrc
+# shellcheck disable=SC1091
+case "$0" in
+    *zsh) . "$ZDOTDIR/.zshrc" ;;
+    *sh)  . "$XDG_CONFIG_HOME/shell/allrc" ;;
+esac
 
 # Autorun startx.
-[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x Xorg >/dev/null && exec startx
+[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x Xorg > /dev/null && exec startx
 
 # Switch escape and caps if tty.
-sudo -n loadkeys $XDG_DATA_HOME/ttymaps.kmap 2>/dev/null
+sudo -n loadkeys "$XDG_DATA_HOME/ttymaps.kmap" 2> /dev/null
