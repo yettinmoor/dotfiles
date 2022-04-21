@@ -171,6 +171,7 @@ let g:ale_fixers['python'] = ['autopep8']
 let g:ale_fixers['rust'] = ['rustfmt']
 let g:ale_fixers['sh'] = ['shfmt']
 let g:ale_fixers['typescript'] = ['deno']
+let g:ale_fixers['yaml'] = ['prettier']
 
 
 """ Misc filetype stuff
