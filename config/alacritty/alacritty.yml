@@ -4,14 +4,13 @@ window:
     y: 10
   dynamic_padding: true
   opacity: 0.8
-  dynamic_title: true
 
 font:
   size: 13
 
 colors:
   primary:
-    background: "#0a0a03"
+    background: "#131313"
     foreground: "#ebdbb2"
 
   normal:
@@ -39,12 +38,6 @@ colors:
 selection:
   save_to_clipboard: true
 
-# `- { key: V, mods: Control|Shift, action: Paste }`
-#
-#    The `command` field must be a map containing a `program` string and an
-#    `args` array of command line parameter strings. For example:
-#       `{ program: "alacritty", args: ["-e", "vttest"] }`
-
 key_bindings:
   - { key: V, mods: Alt, action: Paste }
   - { key: C, mods: Alt, action: Copy }
@@ -60,10 +53,6 @@ key_bindings:
   - { key: G, mods: Alt, action: ScrollToTop }
   - { key: G, mods: Alt|Shift, action: ScrollToBottom }
 
-# Regex hints
-#
-# Terminal hints can be used to find text in the visible part of the terminal
-# and pipe it to other applications.
 hints:
   alphabet: "jfkdls;ahgurieowpq"
   enabled:

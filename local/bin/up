@@ -16,8 +16,8 @@ down() {
     runjob nvim +'PlugUpdate --sync' +qa
     runjob nvim +'PlugUpgrade --sync' +qa
     runjob rustup update
-    [ -n "$LOCATION" ] && runjob forecast fetch "$LOCATION"
     runjob qalc -e
+    [ -n "$LOCATION" ] && runjob forecast fetch "$LOCATION"
 
     wait
 }

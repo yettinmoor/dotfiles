@@ -15,24 +15,24 @@ case "${file#*.}" in
     sh) sh "$file" ;;
 
     # Programming
-    c) cc "$file" -o "$base" && "$base" ;;
+    c)   cc "$file" -o "$base" && "$base" ;;
     cpp) g++ "$file" -o "$base" && "$base" ;;
-    cs) mcs "$file" ;;
-    go) go run "$file" ;;
-    hs) runhaskell "$file" ;;
-    js) node "$file" ;;
+    cs)  mcs "$file" ;;
+    go)  go run "$file" ;;
+    hs)  runhaskell "$file" ;;
+    js)  node "$file" ;;
     nim) if fd -q -e nimble; then nimble build -r; else nim r --verbosity:0 "$file"; fi ;;
-    pl) perl "$file" ;;
-    py) python "$file" ;;
+    pl)  perl "$file" ;;
+    py)  python "$file" ;;
     rkt) racket "$file" ;;
-    rs) cargo run "$file" ;;
+    rs)  cargo run "$file" ;;
     scm) chicken-csi -q "$file" ;;
-    ts) deno run --allow-read "$file" ;;
+    ts)  deno run --allow-read "$file" ;;
     zig) if [ -f "build.zig" ]; then zig build run; else zig run "$(grep -q "cImport" "$file" && echo "-lc")" "$file"; fi ;;
 
     # Document formatting
     tex) xelatex --output-directory="$dir" "$base" ;;
-    md) pandoc "$file" --pdf-engine=xelatex --template=template -o "$base".pdf ;;
+    md)  pandoc "$file" --pdf-engine=xelatex --template=template -o "$base".pdf ;;
 
     # sent
     sent) setsid sent "$file" & ;;

@@ -11,7 +11,7 @@ export XDG_DATA_HOME="${XDG_DATA_HOME:=$HOME/.local/share}"
 # Defaults.
 export SHELL=zsh
 export EDITOR=nvim
-export TERM=alacritty
+export TERM=st
 export TERMINAL=$TERM
 export BROWSER=brave
 export READER=zathura
