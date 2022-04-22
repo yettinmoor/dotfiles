@@ -3,8 +3,8 @@
 outfile="$XDG_DATA_HOME/weatherreport"
 
 fetch() {
-    ping -q -c 1 1.1.1.1 > /dev/null || exit 1
-    report=$(curl -s "wttr.in/$1")
+    checkconn || exit 1
+    report=$(curl -s "wttr.in/${1:-$LOCATION}")
     echo "$report" | grep "Sorry" && exit 1 # Exit if wttr server overload
     echo "$report" > "$outfile"
 }
@@ -13,6 +13,11 @@ display() {
     sed -nE '4s/.*([+-][0-9]+).*/\1°/p' "$outfile" | tr -d '+'
 }
 
-cmd="$1"
-arg="$2"
-[ -n "$cmd" ] && $cmd "$arg"
+case "$1" in
+    display) display "$2" ;;
+    fetch)   fetch "$2" ;;
+    *)
+        echo 'forecast [fetch|display]' >&2
+        exit 1
+        ;;
+esac
