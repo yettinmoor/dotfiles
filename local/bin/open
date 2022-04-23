@@ -1,11 +1,12 @@
 #!/usr/bin/env sh
 
-cd ${1:-~}
-exclude=$2 # pass ignored dirs as second arg (should be quoted)
+if [ -n "$1" ]; then
+    cd "$1" || exit 1
+    shift
+fi
 
-exts='(jpg|png|gif|mkv|mp4|m4v|avi|webm|pdf|djvu|epub|txt|md|sent|svg|html)$'
-exclude=$(echo -n "$exclude" | awk -v RS=" " -v ORS=" " '{print "-E", $1}')
+exts='(jpg|png|gif|mkv|mp4|m4v|avi|webm|pdf|djvu|epub|txt|md|sent|svg|html|cbr|cbz)$'
 
-fd --strip-cwd-prefix -t f $exts $exclude \
-	| dmenu -i -p "Read file in $(pwd)" -width 70 \
-	| xargs -r -I {} xdg-open "{}" &
+fd --strip-cwd-prefix -t f $exts "$@" \
+    | dmenu -i -p "Read file in $(pwd)" -theme-str 'window {width: 80%;}' \
+    | xargs -r -I {} xdg-open "{}" &

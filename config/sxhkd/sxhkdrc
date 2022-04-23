@@ -18,9 +18,9 @@ super + y
 super + u
 	$TERMINAL -e $EDITOR ~/docs/wiki/scratch.wiki
 super + o
-	open ~ 'repos vidya zig-cache'
+	open ~ -E repos -E vidya -E zig-cache
 super + shift + o
-	open /media 'steam gsil'
+	open /media -E steam -E gsil
 super + p
 	mpc toggle
 super + shift + p
@@ -80,13 +80,13 @@ super + Escape
 super + {_,shift +} BackSpace
 	mpc {prev,next}
 super + {minus,plus}
-	audio {dec,inc} 5
+	audio {dec,inc} 2
 
 # XF86 keys
 XF86AudioMute
 	audio mute
 XF86Audio{Lower,Raise}Volume
-	audio {dec,inc} 5
+	audio {dec,inc} 2
 XF86Audio{Play,Stop,Next,Prev}
 	mpc {toggle,pause,next,prev}
 XF86MonBrightness{Down,Up}
