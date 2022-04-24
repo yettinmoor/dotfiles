@@ -5,8 +5,8 @@ if [ -n "$1" ]; then
     shift
 fi
 
-exts='(jpg|png|gif|mkv|mp4|m4v|avi|webm|pdf|djvu|epub|txt|md|sent|svg|html|cbr|cbz)$'
+exts='\.(jpe?g|png|gif|mkv|mp4|m4v|avi|webm|pdf|djvu|epub|txt|md|sent|svg|html|cbr|cbz)$'
 
-fd --strip-cwd-prefix -t f $exts "$@" \
-    | dmenu -i -p "Read file in $(pwd)" -theme-str 'window {width: 80%;}' \
-    | xargs -r -I {} xdg-open "{}" &
+fd --strip-cwd-prefix -t f "$exts" "$@" \
+    | dmenu -i -p "open $(pwd)" -theme-str 'window {width: 80%;}' \
+    | xargs -r -I {} sh -c 'setsid xdg-open "{}" &'

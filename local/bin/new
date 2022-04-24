@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-[ $# -lt 2 ] && echo 'Usage: new <boilerplate> <name>' && exit 1
+! [ $# -eq 2 ] && echo 'Usage: new <boilerplate> <name>' && exit 1
 
 BOILDIR="$HOME/.local/share/boilerplates"
 
