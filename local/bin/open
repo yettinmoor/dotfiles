@@ -5,7 +5,9 @@ browser() { fzf; }
 while getopts :d o; do
     case "$o" in
         d)
-            browser() { dmenu -i -p "open $(pwd)" -theme-str 'window {width: 80%;}'; }
+            if [ -n "$DISPLAY" ]; then
+                browser() { dmenu -i -p "open $(pwd)" -theme-str 'window {width: 80%;}'; }
+            fi
             ;;
         ?)
             echo 'usage: open [-d] dir [fd flags]'
