@@ -18,9 +18,9 @@ super + y
 super + u
 	$TERMINAL -e $EDITOR ~/docs/wiki/scratch.wiki
 super + o
-	open ~ -E repos -E vidya -E zig-cache
+	open -d ~ -E repos -E vidya -E zig-cache
 super + shift + o
-	open /media -E steam -E gsil
+	open -d /media -E steam -E gsil
 super + p
 	mpc toggle
 super + shift + p
