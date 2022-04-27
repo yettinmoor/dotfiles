@@ -7,6 +7,7 @@
 fifo=$(mktemp)
 git -C ~/repos/dotfiles ls-tree -r --name-only HEAD >> "$fifo" &
 fd . --base-directory ~/repos/dotfiles local/bin >> "$fifo" &
+fd . --base-directory ~/repos/dotfiles config/shell >> "$fifo" &
 wait
 
 sort "$fifo" \
