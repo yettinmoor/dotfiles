@@ -12,4 +12,4 @@ if ! pgrep -x transmission-da > /dev/null; then
 fi
 
 [ -n "$1" ] && transmission-remote -a "$@" && notify-send " $# torrent(s) added."
-isopen tremc > /dev/null || $TERMINAL -e tremc
+pgrep -f 'python3 /usr/bin/tremc' > /dev/null || $TERMINAL -e tremc
