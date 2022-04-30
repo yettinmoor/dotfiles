@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
-cd ~/music
-sel="$(fd | sort | sed -e 's/^\.\///' -e '1iSTOP' | dmenu -i -p 'play')" || exit 1
+cd ~/music || exit 1
+sel="$(fd --strip-cwd-prefix | sort | sed '1iSTOP' | dmenu -i -p 'play')" || exit 1
 mpc clear
-[ "$sel" = 'STOP' ] || { echo "$sel" | mpc add; mpc play; }
+if ! [ "$sel" = 'STOP' ]; then
+    echo "$sel" | mpc add
+    mpc play
+fi
