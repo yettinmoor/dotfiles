@@ -5,9 +5,14 @@ file="$(readlink -f "$1")"
 dir="$(dirname "$file")"
 base="${file%.*}"
 
+if [ -f .compiler ]; then
+    sh .compiler
+    exit $?
+fi
+
 if [ -f Makefile ]; then
     make
-    exit 0
+    exit $?
 fi
 
 case "${file#*.}" in
