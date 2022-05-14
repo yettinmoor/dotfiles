@@ -40,6 +40,7 @@ alias clo='xclip -sel c -i'
 alias z='zathura'
 alias wi='cd ~/docs/wiki && nvim index.wiki'
 alias se='dotedit'
+alias magit='vim -c MagitOnly'
 
 # git
 alias ga='git add'

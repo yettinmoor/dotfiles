@@ -8,7 +8,7 @@ down() {
         echo "running job \`$*\`..." >&2
         {
             "$@" > /dev/null 2>&1
-            echo "completed job \`$*\`" >&2
+            echo "completed job \`$*\` [$?]" >&2
         } &
     }
 
