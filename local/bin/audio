@@ -17,6 +17,10 @@ case $1 in
         pamixer --unmute
         pamixer --set-volume "$2"
         ;;
+    *)
+        echo 'audio [mute|inc x|dec x|set x]'
+        exit 1
+        ;;
 esac
 
 bard update vol
