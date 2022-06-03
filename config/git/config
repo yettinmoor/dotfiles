@@ -5,12 +5,15 @@
 [core]
 	autocrlf = input
 	safecrlf = true
+	excludesFile = ~/.config/git/ignore
 [alias]
 	graph = log --all --decorate --oneline --graph
 [credential]
 	helper = cache --timeout=3600
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+[url "git@git.actia.se:"]
+	insteadOf = https://git.actia.se/
 [pull]
 	rebase = false
 [color]
