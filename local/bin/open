@@ -1,12 +1,14 @@
 #!/usr/bin/env sh
 
 browser() { fzf; }
+opener="$EDITOR \"{}\""
 
 while getopts :d o; do
     case "$o" in
         d)
             if [ -n "$DISPLAY" ]; then
                 browser() { dmenu -i -p "open $(pwd)" -theme-str 'window {width: 80%;}'; }
+                opener='setsid xdg-open "{}" &'
             fi
             ;;
         ?)
@@ -27,4 +29,4 @@ exts='\.(jpe?g|png|gif|mkv|mp4|m4v|avi|webm|mp3|pdf|djvu|epub|txt|md|sent|svg|ht
 
 fd --strip-cwd-prefix -t f "$exts" "$@" \
     | browser \
-    | xargs -r -I {} sh -c 'setsid xdg-open "{}" &'
+    | xargs -r -I {} sh -c "$opener"
