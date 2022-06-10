@@ -27,4 +27,4 @@ exts='\.(jpe?g|png|gif|mkv|mp4|m4v|avi|webm|mp3|pdf|djvu|epub|txt|md|sent|svg|ht
 
 fd --strip-cwd-prefix -t f "$exts" "$@" \
     | browser \
-    | xargs -r -I {} sh -c 'setsid xdg-open "{}" &'
+    | xargs -r0 -I {} sh -c 'setsid xdg-open "{}" &'
