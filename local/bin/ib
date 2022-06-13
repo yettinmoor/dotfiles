@@ -10,7 +10,7 @@ engines=$(
 EOF
 )
 
-CONFIG_DIR="$XDG_CONFIG_HOME/ib"
+DATA_DIR="$XDG_DATA_HOME/ib"
 
 icon() {
     echo "$engines" | grep "$(ibus engine)" | cut -d ' ' -f4
@@ -46,7 +46,7 @@ case "$1" in
         choice="$(echo "$engines" | cut -d ' ' -f1-2 | dmenu -p 'Keyboard layout' -L "$(echo "$engines" | wc -l)" -width 10)" || exit
         engine=$(echo "$engines" | grep "${choice:?}" | cut -d ' ' -f3)
         if [ "$engine" = "help" ]; then
-            kbimg="$CONFIG_DIR/$(icon).png"
+            kbimg="$DATA_DIR/$(icon).png"
             if [ -f "$kbimg" ]; then
                 sxiv "$kbimg"
             else
