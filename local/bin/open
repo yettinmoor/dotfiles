@@ -1,18 +1,23 @@
 #!/usr/bin/env sh
 
-browser() { fzf; }
-opener="$EDITOR \"{}\""
+browser() {
+    if [ -n "$OPEN_XORG" ]; then
+        dmenu -i -p "open $(pwd)" -theme-str 'window {width: 80%;}'
+    else
+        fzf
+    fi
+}
 
-while getopts :d o; do
+while getopts dc: o; do
     case "$o" in
         d)
-            if [ -n "$DISPLAY" ]; then
-                browser() { dmenu -i -p "open $(pwd)" -theme-str 'window {width: 80%;}'; }
-                opener='setsid xdg-open "{}" &'
-            fi
+            [ -n "$DISPLAY" ] && export OPEN_XORG=1
+            ;;
+        c)
+            cd "$OPTARG" || exit 1
             ;;
         ?)
-            echo 'usage: open [-d] dir [fd flags]'
+            echo 'usage: open [-d] [-c dir] -- [fd flags]'
             exit 1
             ;;
     esac
@@ -20,13 +25,9 @@ done
 
 shift $((OPTIND - 1))
 
-if [ -n "$1" ]; then
-    cd "$1" || exit 1
-    shift
-fi
-
 exts='\.(jpe?g|png|gif|mkv|mp4|m4v|avi|webm|mp3|pdf|djvu|epub|txt|md|sent|svg|html|cbr|cbz)$'
 
+# shellcheck disable=SC2016
 fd --strip-cwd-prefix -t f "$exts" "$@" \
     | browser \
-    | xargs -r -I {} sh -c "$opener"
+    | xargs -r -I {} sh -c 'if [ -n "$OPEN_XORG" ]; then setsid xdg-open '\'{}\'' & else $EDITOR '\'{}\''; fi;'
