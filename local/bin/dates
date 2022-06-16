@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+showdate() {
+    printf  '%s\t' "$(echo "${1#*/}" | sed 's/_/ /g')"
+    TZ="$1" date '+%R'
+}
+
+{
+    showdate US/Pacific
+    showdate US/Eastern
+    showdate Europe/London
+    showdate Europe/Stockholm
+    showdate Europe/Moscow
+    showdate Asia/Tokyo
+} | tabulate -s '\t'
