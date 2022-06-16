@@ -20,9 +20,9 @@ super + y
 super + u
 	$TERMINAL -e $EDITOR ~/docs/wiki/scratch.wiki
 super + o
-	open -d ~ -E repos -E vidya -E zig-cache
+	open -d -c $HOME -- -E repos -E vidya -E zig-cache
 super + shift + o
-	open -d /media -E steam -E gsil
+	open -d -c /media -- -E steam -E gsil
 super + p
 	mpc toggle
 super + shift + p
@@ -52,7 +52,7 @@ super + n
 super + shift + n
 	rssping
 super + m
-	isopen ncmpcpp || $TERMINAL -e ncmpcpp
+	$TERMINAL -e ncmpcpp
 super + shift + m
 	audio mute
 
