@@ -8,4 +8,5 @@ cat $PWR/AC/online | grep -q '^1$' \
     && printf " " \
     || printf "🗲 "
 
-fd BAT $PWR | sort | xargs -I {} cat "{}/capacity"
+fd BAT $PWR | sort | xargs -I {} cat "{}/capacity" | tr '\n' ' '
+echo

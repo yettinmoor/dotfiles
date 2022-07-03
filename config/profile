@@ -17,7 +17,7 @@ export BROWSER=brave
 export READER=zathura
 export FILE=lf
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-export HOMEPAGE="$XDG_DATA_HOME/splash/index.html"
+export HOMEPAGE="$HOME/docs/splash/index.html"
 
 GPG_TTY="$(tty)"
 export GPG_TTY
