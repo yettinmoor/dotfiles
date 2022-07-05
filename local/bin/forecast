@@ -3,7 +3,7 @@
 outfile="$XDG_DATA_HOME/weatherreport"
 
 fetch() {
-    checkconn || exit 1
+    isconnected || exit 1
     report=$(curl -s "wttr.in/${1:-$LOCATION}")
     echo "$report" | grep "Sorry" && exit 1 # Exit if wttr server overload
     echo "$report" > "$outfile"

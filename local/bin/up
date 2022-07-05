@@ -3,29 +3,33 @@
 # `up down` | download updates (cronjob).
 # `up`      | install updates.
 
-down() {
-    runjob() {
-        echo "running job \`$*\`..." >&2
-        {
-            "$@" > /dev/null 2>&1
-            echo "completed job \`$*\` [$?]" >&2
-        } &
-    }
-
-    runjob sudo pacman -Syyuw --noconfirm
-    runjob nvim +'PlugUpdate --sync' +qa
-    runjob nvim +'PlugUpgrade --sync' +qa
-    runjob rustup update
-    runjob qalc -e
-    [ -n "$LOCATION" ] && runjob forecast fetch "$LOCATION"
-
-    wait
+runjob() {
+    echo "running job \`$*\`..." >&2
+    {
+        "$@" > /dev/null 2>&1
+        echo "completed job \`$*\` [$?]" >&2
+    } &
 }
 
 case "$1" in
-    'down') down ;;
-    '')     sudo pacman -Syu ;;
-    *)      exit 1 ;;
+    down)
+        isconnected || exit 1
+        runjob sudo pacman -Syyuw --noconfirm
+        runjob nvim +'PlugUpdate --sync' +qa
+        runjob nvim +'PlugUpgrade --sync' +qa
+        runjob rustup update
+        runjob qalc -e
+        [ -n "$LOCATION" ] && runjob forecast fetch "$LOCATION"
+        wait
+        ;;
+    '')
+        isconnected || exit 1
+        sudo pacman -Syu
+        ;;
+    *)
+        echo 'usage: up [down]'
+        exit 1
+        ;;
 esac
 
 bard update updates 2> /dev/null

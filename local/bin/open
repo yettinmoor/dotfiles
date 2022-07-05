@@ -1,10 +1,12 @@
 #!/usr/bin/env sh
 
+EXTS='\.(jpe?g|png|gif|mkv|mp4|m4v|avi|webm|mp3|pdf|djvu|epub|txt|md|sent|svg|html|cbr|cbz)$'
+
 browser() {
     if [ -n "$OPEN_XORG" ]; then
         dmenu -i -p "open $(pwd)" -theme-str 'window {width: 80%;}'
     else
-        fzf
+        fzf --reverse --color=16
     fi
 }
 
@@ -22,12 +24,9 @@ while getopts dc: o; do
             ;;
     esac
 done
-
 shift $((OPTIND - 1))
 
-exts='\.(jpe?g|png|gif|mkv|mp4|m4v|avi|webm|mp3|pdf|djvu|epub|txt|md|sent|svg|html|cbr|cbz)$'
-
 # shellcheck disable=SC2016
-fd --strip-cwd-prefix -t f "$exts" "$@" \
+fd --strip-cwd-prefix -t f "$EXTS" "$@" \
     | browser \
-    | xargs -r -I {} sh -c 'if [ -n "$OPEN_XORG" ]; then setsid xdg-open '\'{}\'' & else $EDITOR '\'{}\''; fi;'
+    | xargs -r -I {} sh -c "if [ -n '$OPEN_XORG' ]; then setsid xdg-open '{}' & else $EDITOR '{}'; fi;"

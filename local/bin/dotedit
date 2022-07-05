@@ -3,7 +3,7 @@
 #   all git-tracked dotfiles,
 #   all scripts in .local/bin,
 #   all items in .config/shell,
-# and open in editor.
+# and open selected item in editor.
 
 dir=$(mktemp -d)
 fifo="$dir/se.fifo"
