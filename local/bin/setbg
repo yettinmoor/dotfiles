@@ -1,13 +1,15 @@
 #!/usr/bin/env sh
 # Sets the background with xwallpaper.
 # If given a file as argument, will set that file as background.
-# "setbg pick" lets me pick from wp dir with sxiv.
-# "setbg random" picks a random wallpaper.
+# `setbg pick`   lets me pick from wp dir with sxiv.
+# `setbg random` picks a random wallpaper.
+
+WALL="$XDG_CACHE_HOME/wall"
 
 case "$1" in
     random) fd 'jpe?g|png' ~/pics/wallpapers | shuf -n 1 ;;
     pick)   fd 'jpe?g|png' ~/pics/wallpapers | shuf | sxiv -tio | sed 1q ;;
     *)      readlink -f "$1" ;;
-esac | xargs -r -I {} ln -sfT "{}" "$XDG_CACHE_HOME/wall"
+esac | xargs -r -I {} ln -sfT "{}" "$WALL"
 
-xwallpaper --zoom "$XDG_CACHE_HOME/wall"
+xwallpaper --zoom "$WALL"
