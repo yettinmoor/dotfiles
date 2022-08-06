@@ -5,15 +5,14 @@ DEFAULT_QUAL=7
 DEFAULT_SIZE=300
 
 usage() {
-    exit_code=$1
     cat << EOF
 Usage: thumbnailer [options] infile
-  -o [outfile]  Set outfile path (default: [infile].jpg)
-  -s [size]     Set size of images (default: $DEFAULT_SIZE)
-  -q [quality]  Set quality (default: $DEFAULT_QUAL)
+  -o [outfile]  Outfile path (default: [infile].jpg)
+  -s [size]     Tile width in pixels (default: $DEFAULT_SIZE)
+  -q [quality]  Quality (1-10, default: $DEFAULT_QUAL)
   -h            Print usage
 EOF
-    exit "$exit_code"
+    exit "$1"
 }
 
 while getopts :ho:q:s: o; do
