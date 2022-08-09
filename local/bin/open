@@ -26,7 +26,6 @@ while getopts dc: o; do
 done
 shift $((OPTIND - 1))
 
-# shellcheck disable=SC2016
-fd --strip-cwd-prefix -t f "$EXTS" "$@" \
-    | browser \
-    | xargs -r -I {} sh -c "if [ -n '$OPEN_XORG' ]; then setsid xdg-open '{}' & else $EDITOR '{}'; fi;"
+file="$(fd --strip-cwd-prefix -t f "$EXTS" "$@" | browser)"
+
+if [ -n "$OPEN_XORG" ]; then setsid xdg-open "$file" & else $EDITOR "$file"; fi
