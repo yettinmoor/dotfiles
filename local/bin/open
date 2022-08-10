@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-EXTS='\.(jpe?g|png|gif|mkv|mp4|m4v|avi|webm|mp3|pdf|djvu|epub|txt|md|sent|svg|html|cbr|cbz)$'
+EXTS='\.(jpe?g|png|gif|mkv|mp4|m4v|avi|webm|mp3|pdf|djvu|epub|txt|md|sent|svg|html|cbr|cbz|wiki)$'
 
 browser() {
     if [ -n "$OPEN_XORG" ]; then
