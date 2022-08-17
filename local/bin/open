@@ -26,6 +26,7 @@ while getopts dc: o; do
 done
 shift $((OPTIND - 1))
 
-file="$(fd --strip-cwd-prefix -t f "$EXTS" "$@" | browser)"
+file="$(fd -t f "$EXTS" "$@" | sed 's/^.\///' | browser)"
+[ -z "$file" ] && exit 1
 
 if [ -n "$OPEN_XORG" ]; then setsid xdg-open "$file" & else $EDITOR "$file"; fi

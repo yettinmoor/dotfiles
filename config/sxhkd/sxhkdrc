@@ -8,7 +8,7 @@ super + shift + Return
 super + shift + q
 	prompt "Exit X?" "killall Xorg"
 super + {_,shift +} w
-	urlgoto { ,--new-window}
+	urlparse $(dmenu -l 0 -p "$BROWSER") | xargs -r0 "$BROWSER" { ,--new-window}
 super + e
 	$TERMINAL -e $FILE
 super + t
