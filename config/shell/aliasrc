@@ -41,6 +41,7 @@ alias z='zathura'
 alias wi='cd ~/docs/wiki && nvim index.wiki'
 alias se='dotedit'
 alias magit='vim -c MagitOnly'
+# alias ps='ps ax -o pid,ppid,etime,cmd'
 
 # git
 alias ga='git add'
@@ -77,9 +78,13 @@ mkd() {
 }
 
 src() {
-    # shellcheck source=../profile
+    # shellcheck disable=SC1091
     . "$XDG_CONFIG_HOME/profile"
     echo "Reloaded profile."
+}
+
+ps() {
+    /usr/bin/ps ax -o pid,ppid,etime,cmd | awk "\$4 ~ /$1/"
 }
 
 x() {
