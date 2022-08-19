@@ -98,7 +98,7 @@ let g:vimwiki_list = [{
 let g:vimwiki_global_ext = 0
 
 """ Recompile files when edited
-au BufWritePost *shortcuts/* !shortcuts
+au BufWritePost *shortcuts/* !mkshortcuts
 au BufWritePost *dwmbar.cfg !dwmbar
 au BufWritePost *bard.yaml !bard restart
 
