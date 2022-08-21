@@ -1,2 +1,11 @@
 #!/usr/bin/env sh
-df -h | awk '/^\/dev/{print $6, $4, $5}' | grep -v 'boot' | tabulate
+df -h \
+    | awk \
+        'BEGIN {
+            print "DISK FREE USED%"
+            print "---- ---- -----"
+        }
+        /^\/dev/{print $6, $4, $5}
+    ' \
+    | grep -v 'boot' \
+    | tabulate
