@@ -1,10 +1,11 @@
 #!/usr/bin/env sh
 
+# shellcheck disable=SC1091
 . "$HOME/.config/xorg/xprofile"
 
-WM=dwm
+WM=bspwm
 
 while true; do
-	date >>~/.local/share/$WM.log
-	$WM 2>>~/.local/share/$WM.log
+    date >> ~/.local/share/$WM.log
+    $WM 2>> ~/.local/share/$WM.log
 done

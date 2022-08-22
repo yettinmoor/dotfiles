@@ -4,6 +4,28 @@ super + Return
 super + shift + Return
 	samedir
 
+# bspwm
+super + F5
+     bspc wm -r; pkill -SIGUSR1 picom
+super + {_,shift + } {1,2,3,4,5,6,7,8,9,0}
+     bspc {desktop -f,node -d} ^{1,2,3,4,5,6,7,8,9,0}
+super + q
+     bspc node -c
+super + f
+     bspc node -t \~fullscreen
+super + {_,shift +} {j,k}
+     bspc node {-f,-s} {next,prev}.local.!hidden.window
+super + {_,shift +} {h,l}
+     bspc node {@parent,@/1/parent} -r {-,+}.05
+super + space
+     bspc node -t tiled; bspc node -s @/1
+super + shift + space
+     bspc node -t floating
+super + shift + r
+     bspc node @/1/parent -R 270
+super + {_, shift +} z
+     bspc config -d any.focused window_gap {30,0}
+
 # Letters
 super + shift + q
 	prompt "Exit X?" "killall Xorg"
