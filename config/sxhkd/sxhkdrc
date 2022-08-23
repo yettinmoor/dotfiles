@@ -70,7 +70,7 @@ super + v
 super + {_, shift +} b
 	$BROWSER {$HOMEPAGE, --new-window $HOMEPAGE}
 super + n
-	! pgrep newsboat && $TERMINAL -e newsboat && bard update rss
+	! pgrep newsboat && $TERMINAL -e newsboat && polybar-msg action '#rss.hook.0'
 super + shift + n
 	rssping
 super + m

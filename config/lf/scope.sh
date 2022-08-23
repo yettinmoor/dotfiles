@@ -21,53 +21,47 @@ batorcat() {
 
 CACHE="$HOME/.cache/lf/thumbnail.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$1")" | sha256sum | awk '{print $1}'))"
 
-case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
-    *.tgz | *.tar.gz) tar tzf "$1" ;;
-    *.tar.bz2 | *.tbz2) tar tjf "$1" ;;
-    *.tar.txz | *.txz) xz --list "$1" ;;
-    *.tar) tar tf "$1" ;;
-    *.zip | *.jar | *.war | *.ear | *.oxt) unzip -l "$1" ;;
-    *.rar) unrar l "$1" ;;
-    *.7z) 7z l "$1" ;;
-    *.[1-8]) man "$1" | col -b ;;
-    *.o) nm "$1" ;;
-    *.torrent) transmission-show "$1" ;;
-    *.iso) iso-info --no-header -l "$1" ;;
-    *.odt | *.ods | *.odp | *.sxw) odt2txt "$1" ;;
-    *.doc) catdoc "$1" ;;
-    *.docx) docx2txt "$1" - ;;
-    *.xls | *.xlsx) ssconvert --export-type=Gnumeric_stf:stf_csv "$1" "fd://1" | batorcat --language=csv ;;
-    *.wav | *.mp3 | *.flac | *.m4a | *.wma | *.ape | *.ac3 | *.og[agx] | *.spx | *.opus | *.as[fx] | *.mka) exiftool "$1" ;;
-    *.ino) batorcat --language=cpp "$1" ;;
-    *.bmp | *.jpg | *.jpeg | *.png | *.xpm | *.webp | *.gif | *.jfif) image "$1" "$2" "$3" "$4" "$5" ;;
-    *.svg)
-        [ ! -f "${CACHE}.png" ] && convert "$1" "$CACHE.png"
-        image "${CACHE}.png" "$2" "$3" "$4" "$5"
-        ;;
-    *.pdf)
-        [ ! -f "${CACHE}.jpg" ] && pdftoppm -jpeg -f 1 -singlefile "$1" "$CACHE"
-        image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
-        ;;
-    *.epub)
-        [ ! -f "$CACHE" ] && epub-thumbnailer "$1" "$CACHE" 1024
-        image "$CACHE" "$2" "$3" "$4" "$5"
-        ;;
-    *.djvu)
-        [ ! -f "$CACHE" ] && ddjvu -format=tif -quality=50 -page=1 "$1" "$CACHE"
-        image "$CACHE" "$2" "$3" "$4" "$5"
-        ;;
-    # *.cbz|*.cbr|*.cbt)
-    # 	[ ! -f "$CACHE" ] && comicthumb "$1" "$CACHE" 1024
-    # 	image "$CACHE" "$2" "$3" "$4" "$5"
-    # 	;;
-    *.html)
-        [ ! -f "$CACHE" ] && wkhtmltopdf "$1" - | pdftoppm -jpeg -f 1 -singlefile - "$CACHE"
-        image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
-        ;;
-    *.avi | *.mp4 | *.wmv | *.dat | *.3gp | *.ogv | *.mkv | *.mpg | *.mpeg | *.vob | *.fl[icv] | *.m2v | *.mov | *.webm | *.ts | *.mts | *.m4v | *.r[am] | *.qt | *.divx)
+case "$(file --mime-type "$1" -bL)" in
+    video/*)
         [ ! -f "${CACHE}.jpg" ] && thumbnailer -o "${CACHE}.jpg" "$1"
         image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
         ;;
-    *) batorcat "$1" ;;
+    application/pdf)
+        [ ! -f "${CACHE}.jpg" ] && pdftoppm -jpeg -f 1 -singlefile "$1" "$CACHE"
+        image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
+        ;;
+    application/epub+zip)
+        [ ! -f "$CACHE" ] && epub-thumbnailer "$1" "$CACHE" 1024
+        image "$CACHE" "$2" "$3" "$4" "$5"
+        ;;
+    image/vnd.djvu)
+        [ ! -f "$CACHE" ] && ddjvu -format=tif -quality=50 -page=1 "$1" "$CACHE"
+        image "$CACHE" "$2" "$3" "$4" "$5"
+        ;;
+    image/svg+xml)
+        [ ! -f "${CACHE}.png" ] && convert "$1" "$CACHE.png"
+        image "${CACHE}.png" "$2" "$3" "$4" "$5"
+        ;;
+    image/*)
+        image "$1" "$2" "$3" "$4" "$5"
+        ;;
+    audio/*)
+        exiftool "$1"
+        ;;
+    application/x-bittorrent)
+        transmission-show "$1"
+        ;;
+    text/html)
+        [ ! -f "$CACHE" ] && wkhtmltopdf "$1" - | pdftoppm -jpeg -f 1 -singlefile - "$CACHE"
+        image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
+        ;;
+    application/x-object)
+         nm "$1"
+        ;;
+    application/zip | application/x-rar)
+        als "$1"
+        ;;
+    *)
+        batorcat "$1"
+        ;;
 esac
-exit 0

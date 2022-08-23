@@ -10,18 +10,6 @@ set period 1
 set cleaner '~/.config/lf/cleaner.sh'
 set previewer '~/.config/lf/scope.sh'
 
-# COMMANDS
-cmd open ${{
-	case $(file --mime-type "$f" -b) in
-		text/*)
-			$EDITOR "$f";;
-		*)
-			[ -x "$f" ] \
-				&& lf -remote "send $id !$f" \
-				|| setsid $OPENER "$f" >/dev/null 2>&1 ;;
-	esac
-}}
-
 cmd bulk-rename $vidir
 
 cmd delete ${{
@@ -38,6 +26,8 @@ cmd mkfile %touch "$@"
 map m
 map w
 
+# map L &$OPENER -n $fx
+
 map <c-f> $lf -remote "send $id select '$(fzf)'"
 map J $lf -remote "send $id cd $(awk '/^[^#]/ {print $2}' ${XDG_CONFIG_HOME}/shortcuts/directories | fzf)"
 map <enter> shell
@@ -48,8 +38,6 @@ map V :unselect; invert
 map D delete
 map mkd push :mkdir<space>
 map mkf push :mkfile<space>
-map o &mimeopen $f
-map O $mimeopen --ask $f
 map x &sxiv -at .
 map P &mpv .
 

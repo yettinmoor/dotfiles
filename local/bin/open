@@ -29,4 +29,4 @@ shift $((OPTIND - 1))
 file="$(fd -t f "$EXTS" "$@" | sed 's/^.\///' | browser)"
 [ -z "$file" ] && exit 1
 
-if [ -n "$OPEN_XORG" ]; then setsid xdg-open "$file" & else $EDITOR "$file"; fi
+if [ -n "$OPEN_XORG" ]; then setsid opener "$file" & else $EDITOR "$file"; fi

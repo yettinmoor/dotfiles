@@ -17,7 +17,7 @@ bspc monitor "$mainmonitor" -d 1 2 3 4 5 6 7 8 9 0
 bspc config focus_follows_pointer true
 
 # aesthics
-bspc config bottom_padding $BAR_PADDING
+bspc config top_padding $BAR_PADDING
 bspc config border_width 2
 bspc config focused_border_color '#d79921'
 bspc config window_gap 30
@@ -36,18 +36,8 @@ bspc rule -a '*:*' node=@/1
 bspc rule -a Zathura state=tiled
 bspc rule -a Surf state=tiled
 
-killall dzen2
-pgrep -f 'bspwm/bar.py' | xargs kill
-
-xdpyinfo \
-    | grep dimensions \
-    | awk '{print $2}' \
-    | awk -Fx '{print $1, $2}' \
-    | {
-        read -r _ h
-        python ~/.config/bspwm/bar.py \
-            | SHELL=/bin/sh dzen2 \
-                -y "$h" -fg '#ffeeee' -bg '#111111' -ta left -h $BAR_PADDING
-    } &
+killall polybar
+polybar -r top &
+polybar -r bottom &
 
 wait

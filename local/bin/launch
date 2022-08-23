@@ -1,0 +1,37 @@
+#!/usr/bin/env sh
+
+# [ -n "$NOSWALLOW" ] && devour() { "$@"; }
+
+while getopts n o; do
+    case $o in
+        n) devour() { "$@"; } ;;
+        *) echo 'devour [-n] ...' ;;
+    esac
+done
+
+shift $((OPTIND - 1))
+
+case "$(file --mime-type "$@" -bL)" in
+    video/* | audio/*)
+        devour mpv "$@"
+        ;;
+    application/pdf | \
+        application/postscript | \
+        application/epub+zip | \
+        application/x-rar | \
+        image/vnd.djvu)
+        devour zathura "$@"
+        ;;
+    image/*)
+        devour sxiv "$@"
+        ;;
+    application/x-bittorrent)
+        devour tor "$@"
+        ;;
+    text/html)
+        devour "$BROWSER" "$@"
+        ;;
+    *)
+        devour "$EDITOR" "$@"
+        ;;
+esac
