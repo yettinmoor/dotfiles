@@ -9,6 +9,11 @@ done
 
 shift $((OPTIND - 1))
 
+[ $# -eq 0 ] && {
+    echo 'launch [args]'
+    exit 1
+}
+
 case "$(file --mime-type "$@" -bL)" in
     video/* | audio/*)
         devour mpv "$@"
