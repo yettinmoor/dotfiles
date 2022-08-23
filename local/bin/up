@@ -32,4 +32,4 @@ case "$1" in
         ;;
 esac
 
-bard update updates 2> /dev/null
+polybar-msg action '#updates.hook.0'

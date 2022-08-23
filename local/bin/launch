@@ -1,7 +1,5 @@
 #!/usr/bin/env sh
 
-# [ -n "$NOSWALLOW" ] && devour() { "$@"; }
-
 while getopts n o; do
     case $o in
         n) devour() { "$@"; } ;;

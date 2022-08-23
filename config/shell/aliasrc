@@ -83,7 +83,7 @@ src() {
 }
 
 ps() {
-    /usr/bin/ps ax -o pid,ppid,etime,cmd --sort=pid | awk "\$4 ~ /$1/"
+    /usr/bin/ps ax -o pid,ppid,etime,user,cmd --sort=pid | awk "\$5 ~ /$1/"
 }
 
 x() {
