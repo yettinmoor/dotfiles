@@ -14,6 +14,8 @@ shift $((OPTIND - 1))
     exit 1
 }
 
+command -v devour > /dev/null 2>&1 || devour() { "$@"; }
+
 case "$(file --mime-type "$@" -bL)" in
     video/* | audio/*)
         devour mpv "$@"
