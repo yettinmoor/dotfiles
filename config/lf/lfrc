@@ -10,6 +10,8 @@ set period 1
 set cleaner '~/.config/lf/cleaner.sh'
 set previewer '~/.config/lf/scope.sh'
 
+cmd open $$OPENER $fx
+
 cmd bulk-rename $vidir
 
 cmd delete ${{
@@ -26,7 +28,7 @@ cmd mkfile %touch "$@"
 map m
 map w
 
-# map L &$OPENER -n $fx
+map L &$OPENER -n $fx
 
 map <c-f> $lf -remote "send $id select '$(fzf)'"
 map J $lf -remote "send $id cd $(awk '/^[^#]/ {print $2}' ${XDG_CONFIG_HOME}/shortcuts/directories | fzf)"
