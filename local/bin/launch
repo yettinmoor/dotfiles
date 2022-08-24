@@ -37,6 +37,6 @@ case "$(file --mime-type "$@" -bL)" in
         devour "$BROWSER" "$@"
         ;;
     *)
-        devour "$EDITOR" "$@"
+        "$EDITOR" "$@"
         ;;
 esac

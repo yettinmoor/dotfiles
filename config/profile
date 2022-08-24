@@ -15,6 +15,7 @@ export EDITOR=nvim
 export OPENER=launch
 export TERM=st
 export TERMINAL=$TERM
+export PAGER=bat
 export BROWSER=brave
 export READER=zathura
 export FILE=lf

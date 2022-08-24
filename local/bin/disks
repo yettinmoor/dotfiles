@@ -2,7 +2,7 @@
 df -h \
     | awk \
         'BEGIN { print "DISK FREE USED%" }
-        /^\/dev/{print $6, $4, $5}
+        /^\/dev|:/{print $6, $4, $5}
     ' \
     | grep -v 'boot' \
     | tabulate -1 -f grid
