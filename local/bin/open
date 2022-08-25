@@ -16,7 +16,10 @@ while getopts dc: o; do
             [ -n "$DISPLAY" ] && export OPEN_XORG=1
             ;;
         c)
-            cd "$OPTARG" || exit 1
+            if ! cd "$OPTARG"; then
+                echo could not cd to dir: "$OPTARG"
+                exit 1
+            fi
             ;;
         ?)
             echo 'usage: open [-d] [-c dir] -- [fd flags]'
@@ -29,4 +32,4 @@ shift $((OPTIND - 1))
 file="$(fd -t f "$EXTS" "$@" | sed 's/^.\///' | browser)"
 [ -z "$file" ] && exit 1
 
-if [ -n "$OPEN_XORG" ]; then setsid opener "$file" & else $EDITOR "$file"; fi
+if [ -n "$OPEN_XORG" ]; then setsid launch "$file" & else $EDITOR "$file"; fi

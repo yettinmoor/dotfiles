@@ -2,9 +2,11 @@
 
 cd "$1" || exit 1
 
-TODAY=$(date -I)
-[ "$(cat .lastautocommit)" = "$TODAY" ] && exit 1
+today=$(date -I)
+[ "$(cat .lastautocommit)" = "$today" ] && exit 1
 
-git commit -a -m "autocommit $TODAY"
+set -e
+git pull
+git commit -a -m "autocommit $(hostname) $today"
 git push
-echo "$TODAY" >.lastautocommit
+echo "$today" > .lastautocommit

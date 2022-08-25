@@ -42,9 +42,9 @@ super + y
 super + {_,shift +} u
 	$TERMINAL -e $EDITOR ~/docs/wiki/{index,scratch}.wiki
 super + o
-	open -d -c $HOME -- -E media -E music -E repos -E vidya -E zig-cache
+	open -d -c $HOME -- -E '\{media,music,repos,vidya,zig-cache,dev/actia/net\}'
 super + shift + o
-	open -d -c ~/media -- -E steam -E gsil
+	open -d -c ~/media -- -E '\{steam,gsil\}'
 super + p
 	mpc toggle
 super + shift + p
@@ -62,7 +62,7 @@ super + shift + d
 super + x
 	lockscreen
 super + shift + x
-	prompt "Shutdown computer?" "sudo -A shutdown -h now"
+	prompt 'Shutdown computer?' 'sudo -A shutdown -h now'
 super + {_,shift +} c
 	{show,qr}clip
 super + v

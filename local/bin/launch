@@ -1,9 +1,15 @@
 #!/usr/bin/env sh
 
-while getopts n o; do
+wrap() { "$@"; }
+
+while getopts s o; do
     case $o in
-        n) devour() { "$@"; } ;;
-        *) echo 'devour [-n] ...' ;;
+        s)
+            if command -v devour > /dev/null 2>&1; then
+                wrap() { devour "$@"; }
+            fi
+            ;;
+        *) echo 'launch [-s] ...' ;;
     esac
 done
 
@@ -14,27 +20,25 @@ shift $((OPTIND - 1))
     exit 1
 }
 
-command -v devour > /dev/null 2>&1 || devour() { "$@"; }
-
 case "$(file --mime-type "$@" -bL)" in
     video/* | audio/*)
-        devour mpv "$@"
+        wrap mpv "$@"
         ;;
     application/pdf | \
         application/postscript | \
         application/epub+zip | \
         application/x-rar | \
         image/vnd.djvu)
-        devour zathura "$@"
+        wrap zathura "$@"
         ;;
     image/*)
-        devour sxiv "$@"
+        wrap sxiv "$@"
         ;;
     application/x-bittorrent)
-        devour tor "$@"
+        wrap tor "$@"
         ;;
     text/html)
-        devour "$BROWSER" "$@"
+        wrap "$BROWSER" "$@"
         ;;
     *)
         "$EDITOR" "$@"
