@@ -29,7 +29,7 @@ while getopts dc: o; do
 done
 shift $((OPTIND - 1))
 
-file="$(fd -t f "$EXTS" "$@" | sed 's/^.\///' | browser)"
+file="$(fd -t f --mount "$EXTS" "$@" | sed 's/^.\///' | browser)"
 [ -z "$file" ] && exit 1
 
 if [ -n "$OPEN_XORG" ]; then setsid launch "$file" & else $EDITOR "$file"; fi

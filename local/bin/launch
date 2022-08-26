@@ -41,6 +41,6 @@ case "$(file --mime-type "$@" -bL)" in
         wrap "$BROWSER" "$@"
         ;;
     *)
-        "$EDITOR" "$@"
+        wrap "$TERMINAL" -e "$EDITOR $*"
         ;;
 esac
