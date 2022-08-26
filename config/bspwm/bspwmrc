@@ -39,7 +39,7 @@ bspc rule -a Zathura state=tiled
 bspc rule -a Surf state=tiled
 
 killall polybar
-polybar -r top &
-polybar -r bottom &
+polybar -r top >> "$XDG_DATA_HOME/polybar-top.log" 2>&1 &
+polybar -r bottom >> "$XDG_DATA_HOME/polybar-bottom.log" 2>&1 &
 
 wait
