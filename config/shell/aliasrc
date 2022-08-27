@@ -11,6 +11,7 @@ alias diff='diff --color=auto'
 alias ka='killall'
 alias wk='date +%V'
 alias cls='clear'
+alias less='${PAGER:-less}'
 
 # arch
 alias p='sudo pacman'
@@ -84,6 +85,11 @@ src() {
 
 ps() {
     /usr/bin/ps ax -o pid,ppid,etime,user,cmd --sort=pid | awk "\$5 ~ /$1/"
+}
+
+kr() {
+    killall "$1"
+    setsid "$@" > /dev/null 2>&1 &
 }
 
 x() {

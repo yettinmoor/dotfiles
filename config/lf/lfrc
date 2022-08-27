@@ -5,23 +5,16 @@ set shellopts '-eu'
 set ifs "\n"
 set scrolloff 10
 set icons
+set drawbox
 set ratios 1:2:3
 set period 1
-set cleaner '~/.config/lf/cleaner.sh'
-set previewer '~/.config/lf/scope.sh'
+set previewer '~/.local/bin/preview'
+set cleaner '~/.local/bin/preview-clean'
 
-cmd open $launch -s $fx
+cmd open $launch -se $fx
 map L &launch $fx
 
 cmd bulk-rename $vidir
-
-cmd delete ${{
-	set -f
-	printf "%s\n" "$fx"
-	printf "Delete? [y/n] "
-	read ans
-	[ $ans = "y" ] && rm -rf -- $fx
-}}
 
 cmd mkdir %mkdir "$@"
 cmd mkfile %touch "$@"

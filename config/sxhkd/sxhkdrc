@@ -14,7 +14,7 @@ super + q
 super + f
      bspc node -t \~fullscreen
 super + {_,shift +} {j,k}
-     bspc node {-f,-s} {next,prev}.local.!hidden.window
+     bspc node {-f,-s} '{next,prev}.local.!hidden.window'
 super + {_,shift +} {h,l}
      bspc node {@parent,@/1/parent} -r {-,+}.05
 super + space
@@ -87,6 +87,8 @@ super + Print
 	scrotpick
 super + {_, shift +} grave
 	ib {toggle, power}
+ctrl + space
+	dunstctl close-all
 
 # Function keys
 super + F1
