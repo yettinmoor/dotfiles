@@ -82,26 +82,3 @@ src() {
     . "$XDG_CONFIG_HOME/profile"
     echo "Reloaded profile."
 }
-
-ps() {
-    /usr/bin/ps ax -o pid,ppid,etime,user,cmd --sort=pid | awk "\$5 ~ /$1/"
-}
-
-kr() {
-    killall "$1"
-    setsid "$@" > /dev/null 2>&1 &
-}
-
-x() {
-    if [ "$#" -ge 1 ]; then
-        sxiv -a "$@"
-    else
-        sxiv -at .
-    fi
-}
-
-wttr() { less -S "$HOME/.local/share/weatherreport"; }
-
-room() { du -h "${1:-.}" -d 1 | sort -h; }
-
-cht() { curl "cht.sh/$1" 2> /dev/null | less; }

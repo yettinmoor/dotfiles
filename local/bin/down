@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+if [ -n "$2" ]; then
+    curl "$1" -o "$2"
+else
+    curl -O "$1"
+fi
