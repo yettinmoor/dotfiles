@@ -11,6 +11,9 @@ EOF
 )
 
 DATA_DIR="$XDG_DATA_HOME/ib"
+DUNST_ID=9191
+
+notify() { dunstify -r $DUNST_ID "ib" "$@"; }
 
 icon() {
     echo "$engines" | grep "$(ibus engine)" | cut -d ' ' -f4
@@ -18,9 +21,9 @@ icon() {
 
 show() {
     if running; then
-        dunstify -r 9191 -u critical "$(icon)"
+        notify "$(icon)"
     else
-        dunstify -C 9191
+        dunstify -C $DUNST_ID
     fi
 }
 
@@ -32,11 +35,11 @@ case "$1" in
     power)
         if running; then
             ibus exit
+            notify stopped.
         else
             ibus-daemon -drx
-            sleep .5
+            notify started.
         fi
-        show
         ;;
 
     toggle)
@@ -48,7 +51,7 @@ case "$1" in
             if [ -f "$kbimg" ]; then
                 sxiv "$kbimg"
             else
-                dunstify -r 9191 -u critical "No keyboard image found for '$(icon)'"
+                notify "no keyboard image found for '$(icon)'"
             fi
         else
             ibus engine "$engine"
