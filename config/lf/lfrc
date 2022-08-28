@@ -22,8 +22,8 @@ cmd mkfile %touch "$@"
 map m
 map w
 
-map <c-f> $lf -remote "send $id select '$(fzf)'"
-map J $lf -remote "send $id cd $(awk '/^[^#]/ {print $2}' ${XDG_CONFIG_HOME}/shortcuts/directories | fzf)"
+map <c-f> $lf -remote "send $id cd '$(fd -t d --strip-cwd-prefix | fzf)'"
+map J $lf -remote "send $id cd $(awk '/^[^#]/ {print $2}' $SHORTCUT_DIR/directories | fzf)"
 map <enter> shell
 map s $$SHELL
 map U clear
@@ -32,7 +32,7 @@ map V :unselect; invert
 map D delete
 map mkd push :mkdir<space>
 map mkf push :mkfile<space>
-map x &sxiv -at .
+map x &devour sxiv -at .
 map P &mpv .
 
 map a rename # at the very end

@@ -51,8 +51,6 @@ super + shift + p
 	pauseall
 super + a
 	$TERMINAL -e qalc
-super + shift + a
-	anki
 super + s
 	qplay library
 super + d

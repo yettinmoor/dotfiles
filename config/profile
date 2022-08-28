@@ -13,7 +13,7 @@ export XDG_DATA_HOME="${XDG_DATA_HOME:=$HOME/.local/share}"
 export SHELL=zsh
 export EDITOR=nvim
 export OPENER=launch
-export TERM=st
+export TERM=alacritty
 export TERMINAL=$TERM
 export PAGER=bat
 export BROWSER=brave
@@ -39,11 +39,10 @@ MAKEFLAGS="-j $(nproc)"
 export MAKEFLAGS
 
 # Ibus stuff.
-export GTK_IM_MODULE=xim
-export QT_IM_MODULE=xim
-export XMODIFIERS=@im=ibus
-export XIM_PROGRAM=/usr/bin/ibus-daemon
-export QT_QPA_PLATFORMTHEME=qt5ct
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export SDL_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
 
 # zshrc.
 # shellcheck disable=SC1091

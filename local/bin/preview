@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 image() {
     if [ -n "$DISPLAY" ] && [ -z "$WAYLAND_DISPLAY" ]; then
@@ -20,11 +20,11 @@ batorcat() {
     fi
 }
 
-CACHE="$XDG_CACHE_HOME/lf/thumbnail.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$1")" | sha256sum | awk '{print $1}'))"
+CACHE="$XDG_CACHE_HOME/lf/thumbnail.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$1")" | sha256sum | awk '{print $1}')"
 
 case "$(file --mime-type "$1" -bL)" in
     video/*)
-        [ ! -f "${CACHE}" ] && thumbnailer -o "${CACHE}" "$1"
+        [ ! -f "${CACHE}.jpg" ] && thumbnailer -o "${CACHE}.jpg" "$1"
         image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
         ;;
     application/pdf)
