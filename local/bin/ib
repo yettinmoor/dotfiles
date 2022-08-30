@@ -2,10 +2,8 @@
 
 engines=$(
     cat <<- EOF
-1 🇬🇧 xkb:us:altgr-intl:eng Aa
-2 🇯🇵 anthy 文
-3 🇬🇷 xkb:gr::ell AΩ
-4 🇷🇺 xkb:ru::rus АЯ
+1 🇯🇵 anthy 文
+2 🇬🇷 fcitx-keyboard-gr AΩ
 ? 🎹 help
 EOF
 )
@@ -19,44 +17,34 @@ icon() {
     echo "$engines" | grep "$(ibus engine)" | cut -d ' ' -f4
 }
 
-show() {
-    if running; then
-        notify "$(icon)"
-    else
-        dunstify -C $DUNST_ID
-    fi
-}
-
-running() {
-    pgrep ibus > /dev/null
-}
-
 case "$1" in
-    power)
-        if running; then
-            ibus exit
-            notify stopped.
-        else
-            ibus-daemon -drx
-            notify started.
-        fi
+    toggle)
+        case "$(fcitx-remote)" in
+            1) fcitx-remote -t ;;
+            2) fcitx-remote -T ;;
+            *) ;;
+        esac
         ;;
 
-    toggle)
-        running || exit 1
-        choice="$(echo "$engines" | cut -d ' ' -f1-2 | dmenu -p 'Keyboard layout' -L "$(echo "$engines" | wc -l)" -width 10)" || exit
-        engine=$(echo "$engines" | grep "${choice:?}" | cut -d ' ' -f3)
-        if [ "$engine" = "help" ]; then
-            kbimg="$DATA_DIR/$(icon).png"
-            if [ -f "$kbimg" ]; then
-                sxiv "$kbimg"
-            else
-                notify "no keyboard image found for '$(icon)'"
-            fi
-        else
-            ibus engine "$engine"
-            show
-        fi
+    select)
+        echo "$engines" \
+            | cut -d ' ' -f1-2 \
+            | dmenu -p 'Keyboard layout' -L "$(echo "$engines" | wc -l)" -width 10 \
+            | {
+                read -r choice
+                choice=$(echo "$engines" | grep "${choice:?}")
+                engine=$(echo "$choice" | cut -d ' ' -f3)
+                if [ "$engine" = "help" ]; then
+                    kbimg="$DATA_DIR/$(icon).png"
+                    if [ -f "$kbimg" ]; then
+                        sxiv "$kbimg"
+                    else
+                        notify "no keyboard image found for '$(icon)'"
+                    fi
+                else
+                    fcitx-remote -s "$engine"
+                fi
+            }
         ;;
 
     *)

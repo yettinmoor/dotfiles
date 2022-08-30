@@ -8,7 +8,7 @@ echo "$1" | grep -E '^(https?://)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]+\.[a-zA-Z0-9]+.
 dir=~/.config/urlparse
 
 # If has search string, check searchengines
-if [ $# -gt 1 ] && [ -n "${se:=$(awk "/^$1 / {print \$2}" $dir/searchengines)}" ]; then
+if [ $# -gt 1 ] && [ -n "${se:=$(awk "\$1 !~ /#/ && \$1 == \"$1\" {print \$2}" $dir/searchengines)}" ]; then
     shift
     # shellcheck disable=SC2059
     printf "$se" "$*"
@@ -16,7 +16,7 @@ if [ $# -gt 1 ] && [ -n "${se:=$(awk "/^$1 / {print \$2}" $dir/searchengines)}" 
 fi
 
 # Check bookmarks
-if [ -n "${bm:=$(awk "/^$1 / {print \$2}" $dir/bookmarks)}" ]; then
+if [ -n "${bm:=$(awk "\$1 !~ /#/ && \$1 == \"$1\" {print \$2}" $dir/bookmarks)}" ]; then
     echo "$bm"
     exit
 fi

@@ -84,7 +84,7 @@ super + {_,shift +} period
 super + Print
 	scrotpick
 super + {_, shift +} grave
-	ib {toggle, power}
+	ib {toggle, select}
 ctrl + space
 	dunstctl close-all
 
