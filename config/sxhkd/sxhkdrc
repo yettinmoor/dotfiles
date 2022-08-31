@@ -30,7 +30,7 @@ super + {_, shift +} z
 super + shift + q
 	prompt "Exit X?" "killall Xorg"
 super + {_,shift +} w
-	urlparse $(dmenu -l 0 -p "$BROWSER") | xargs -r0 "$BROWSER" { ,--new-window}
+	urlparse $(dmenu -l 0 -p "$BROWSER") | xargs -r0 "$BROWSER" { ,--target window}
 super + e
 	$TERMINAL -e $FILE
 super + t
@@ -52,7 +52,7 @@ super + shift + p
 super + a
 	$TERMINAL -e qalc
 super + s
-	qplay library
+	qplay
 super + d
 	rofi -show run
 super + shift + d
@@ -66,7 +66,7 @@ super + {_,shift +} c
 super + v
 	$TERMINAL -e ncmpcpp -s visualizer
 super + {_, shift +} b
-	$BROWSER {$HOMEPAGE, --new-window $HOMEPAGE}
+	$BROWSER { ,--target window} $HOMEPAGE
 super + n
 	! pgrep newsboat && $TERMINAL -e newsboat && polybar-msg action '#rss.hook.0'
 super + shift + n

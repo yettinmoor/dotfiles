@@ -1,8 +1,10 @@
 #!/usr/bin/env sh
 # Display contents of selection via dunst.
 
-clip=$(xclip -sel clip -o)
-prim=$(xclip -sel prim -o)
+show() {
+    contents=$(xclip -sel "$1" -o)
+    [ -n "$contents" ] && notify-send "$1" "$contents"
+}
 
-[ -n "$clip" ] && notify-send "Clipboard:" "$clip"
-[ -n "$prim" ] && notify-send "Primary:" "$prim"
+show clip
+show prim

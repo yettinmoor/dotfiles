@@ -99,8 +99,6 @@ let g:vimwiki_global_ext = 0
 
 """ Recompile files when edited
 au BufWritePost *shortcuts/* !mkshortcuts
-au BufWritePost *dwmbar.cfg !dwmbar
-au BufWritePost *bard.yaml !bard restart
 
 """ CoC
 let g:coc_snippet_next = '<S-Tab>'

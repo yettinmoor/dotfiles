@@ -37,7 +37,7 @@ alias otp='pass otp -c'
 alias myip='curl ifconfig.me'
 alias tree='tree -C'
 alias cli='xclip -sel c -i'
-alias clo='xclip -sel c -i'
+alias clo='xclip -sel c -o'
 alias z='zathura'
 alias wi='cd ~/docs/wiki && nvim index.wiki'
 alias se='dotedit'
@@ -81,4 +81,8 @@ src() {
     # shellcheck disable=SC1091
     . "$XDG_CONFIG_HOME/profile"
     echo "Reloaded profile."
+}
+
+spawn() {
+    setsid "$@" > /dev/null 2>&1 &
 }

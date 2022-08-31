@@ -3,7 +3,7 @@ SH_FILE="$HOME/.config/shell/shortcutrc"
 LF_FILE="$HOME/.config/lf/lfshortcuts"
 SHORTCUT_DIR="$HOME/.config/shell/shortcuts"
 
-echo "export SHORTCUR_DIR=$SHORTCUT_DIR" > "$SH_FILE"
+echo "export SHORTCUT_DIR=$SHORTCUT_DIR" > "$SH_FILE"
 
 # Directories
 awk '{printf "alias %s=\"cd %s && ls\"\n", $1, $2}' "$SHORTCUT_DIR/directories" >> "$SH_FILE"
