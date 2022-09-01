@@ -9,11 +9,11 @@ set -x
 
 case "$file" in
     *.tex | *.pandoc) noswallow zathura "$base".pdf ;;
-    *.html) setsid "$BROWSER" --new-window "$file" & ;;
+    *.html) setsid "$BROWSER" --target window "$file" & ;;
     *.sent) setsid sent "$file" > /dev/null 2>&1 & ;;
     *.hs) ghci "$file" ;;
     *.py) python -qi "$file" ;;
     *.wiki) echo "$base" \
         | sed 's:wiki:wiki/html:' \
-        | xargs -r -I {} setsid "$BROWSER" --new-window "{}.html" ;;
+        | xargs -r -I {} setsid "$BROWSER" --target window "{}.html" ;;
 esac
