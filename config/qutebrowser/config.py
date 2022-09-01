@@ -10,6 +10,25 @@ EDITOR = os.getenv('EDITOR')
 
 config.load_autoconfig(False)
 
+c.content.blocking.adblock.lists = [
+    "https://easylist.to/easylist/easylist.txt",
+    "https://easylist.to/easylist/easyprivacy.txt",
+    "https://secure.fanboy.co.nz/fanboy-cookiemonster.txt",
+    "https://easylist.to/easylist/fanboy-annoyance.txt",
+    "https://secure.fanboy.co.nz/fanboy-annoyance.txt",
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/annoyances.txt",
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2020.txt",
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/unbreak.txt",
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/resource-abuse.txt",
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/privacy.txt",
+    "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters.txt"
+]
+
+c.content.blocking.enabled = True
+c.content.blocking.hosts.lists = [
+    'https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts']
+c.content.blocking.method = 'both'
+
 config.bind('<tab>', 'nop')
 config.bind('gh', 'set-cmd-text -s :help -t')
 

@@ -1,0 +1,31 @@
+#!/usr/bin/env sh
+
+while getopts t: o; do
+    case "$o" in
+        t) dir=$OPTARG ;;
+        *) exit 1 ;;
+    esac
+done
+
+shift $((OPTIND - 1))
+
+set -e
+
+if [ -n "$dir" ]; then
+    echo "$dir"
+else
+    awk '{print $2}' "$SHORTCUT_DIR/directories" \
+        | sed "s:^~:$HOME:" \
+        | fzf --bind 'tab:replace-query+reload(echo {}; fd -t d . {})+unbind(tab)'
+fi | {
+    read -r dir
+
+    for file in "$@"; do
+        ext="${file##*.}"
+        outfile="$(sha256sum "$file" | cut -c 1-10).$ext"
+        ! [ "$dir" = "$(readlink -f "$(dirname "$file")")" ] && {
+            mkdir -p "$dir"
+            mv "$file" "$dir/$outfile"
+        }
+    done
+}

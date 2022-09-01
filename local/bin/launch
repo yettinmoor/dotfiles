@@ -35,7 +35,7 @@ case "$(file --mime-type "$@" -bL)" in
         wrap zathura "$@"
         ;;
     image/*)
-        wrap sxiv -a "$@"
+        wrap imgopen "$@"
         ;;
     application/x-bittorrent)
         wrap tor "$@"

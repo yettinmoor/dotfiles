@@ -18,7 +18,7 @@ echo "dl: downloading $QUTE_URL"
 curl -LO "$QUTE_URL"
 
 if [ -n "$BASE64" ]; then
-    store "$HOME/dl/$file" "$dir"
+    store -t "$dir" "$HOME/dl/$file"
 else
     mv "$file" "$dir"
 fi
