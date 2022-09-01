@@ -15,7 +15,7 @@ export EDITOR=nvim
 export OPENER=launch
 export TERM=alacritty
 export TERMINAL=$TERM
-export PAGER=bat
+export PAGER='bat -p'
 export BROWSER=qutebrowser
 export READER=zathura
 export FILE=lf
@@ -35,10 +35,12 @@ export PYTHONHISTORY="$XDG_CACHE_HOME/python"
 export LD_LIBARY_PATH=/usr/local/lib
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
+export AOC_INPUT_DIR="$HOME/docs/aoc-input"
+
 MAKEFLAGS="-j $(nproc)"
 export MAKEFLAGS
 
-# Ibus stuff.
+# fcitx stuff.
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export SDL_IM_MODULE=fcitx

@@ -9,18 +9,16 @@ done
 
 shift $((OPTIND - 1))
 
+cd "$HOME/dl" || exit 1
+
 file="$(basename "$QUTE_URL")"
-ext="${file##*.}"
-dir="$(echo "${1:?}" | sed "s:^~:$HOME:")"
+dir="$(echo "${1:-$HOME/dl}" | sed "s:^~:$HOME:")"
+
+echo "dl: downloading $QUTE_URL"
+curl -LO "$QUTE_URL"
 
 if [ -n "$BASE64" ]; then
-    outfile="$dir/$(echo "$QUTE_URL" | base64 -w 10 | head -n 1).$ext"
+    store "$HOME/dl/$file" "$dir"
 else
-    outfile="$dir/$file"
+    mv "$file" "$dir"
 fi
-
-set -e
-mkdir -p "$dir"
-curl "$QUTE_URL" -o "$outfile"
-
-echo "$outfile"
