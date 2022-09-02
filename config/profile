@@ -9,7 +9,7 @@ export XDG_DATA_HOME="${XDG_DATA_HOME:=$HOME/.local/share}"
 # shellcheck disable=SC1091
 . "$XDG_CONFIG_HOME/shell/pathrc"
 
-# Defaults.
+# defaults.
 export SHELL=zsh
 export EDITOR=nvim
 export OPENER=launch
@@ -25,18 +25,20 @@ export HOMEPAGE="$HOME/docs/splash/index.html"
 GPG_TTY="$(tty)"
 export GPG_TTY
 
-# Misc program stuff.
-export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
+# misc program stuff.
+export BAT_THEME=gruvbox-dark
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export INPUTRC="$XDG_CONFIG_HOME/inputrc"
+export LD_LIBARY_PATH=/usr/local/lib
 export LESS=-R
 export LESSHISTFILE=/dev/null
-export BAT_THEME=gruvbox-dark
-export XAUTHORITY="$XDG_CONFIG_HOME/xorg/.Xauthority"
 export PYTHONHISTORY="$XDG_CACHE_HOME/python"
-export LD_LIBARY_PATH=/usr/local/lib
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
+export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
+export XAUTHORITY="$XDG_CONFIG_HOME/xorg/.Xauthority"
 
+# dirs.
 export AOC_INPUT_DIR="$HOME/docs/aoc-input"
+export WIKI_DIR="$HOME/docs/wiki"
 
 MAKEFLAGS="-j $(nproc)"
 export MAKEFLAGS

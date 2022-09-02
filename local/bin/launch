@@ -2,7 +2,7 @@
 
 wrap() { setsid "$@" > /dev/null 2>&1 & }
 
-while getopts se o; do
+while getopts sec: o; do
     case $o in
         s)
             if command -v devour > /dev/null 2>&1; then
@@ -11,6 +11,9 @@ while getopts se o; do
             ;;
         e)
             LAUNCH_EDITOR_INLINE=1
+            ;;
+        c)
+            cmd="$OPTARG"
             ;;
         *) echo 'launch [-se] ...' ;;
     esac
@@ -22,6 +25,12 @@ shift $((OPTIND - 1))
     echo 'launch [args]'
     exit 1
 }
+
+if [ -n "$cmd" ]; then
+    # shellcheck disable=SC2086
+    wrap $cmd "$@"
+    exit
+fi
 
 case "$1" in
     http://* | https://*)
@@ -41,6 +50,9 @@ case "$1" in
                 wrap "$BROWSER" "$1"
                 ;;
         esac
+        ;;
+    magnet:*)
+        tor "$1"
         ;;
     *)
         case "$(file --mime-type "$@" -bL)" in
