@@ -1,4 +1,10 @@
 #!/usr/bin/env sh
-convert -background lightyellow -font kanjistrokeorders -pointsize 300 label:"$1" /tmp/stroke.gif
-sxiv /tmp/stroke.gif
-rm /tmp/stroke.gif
+OUT=/tmp/stroke.gif
+convert \
+    -background lightyellow \
+    -font kanjistrokeorders \
+    -pointsize 300 \
+    label:"$1" \
+    $OUT
+sxiv $OUT
+rm $OUT

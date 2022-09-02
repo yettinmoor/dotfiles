@@ -1,13 +1,21 @@
 #!/usr/bin/env sh
 
-while getopts t: o; do
+usage() {
+    echo 'store [-h] [-t dir] file(s)'
+    exit "$1"
+}
+
+while getopts t:h o; do
     case "$o" in
         t) dir=$OPTARG ;;
-        *) exit 1 ;;
+        h) usage 0 ;;
+        *) usage 1 ;;
     esac
 done
 
 shift $((OPTIND - 1))
+
+[ $# -eq 0 ] && usage 1
 
 set -e
 

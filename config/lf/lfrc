@@ -1,5 +1,6 @@
 # vim: filetype=conf
 
+# settings
 set shell sh
 set shellopts '-eu'
 set ifs "\n"
@@ -11,41 +12,55 @@ set period 1
 set previewer '~/.local/bin/preview'
 set cleaner '~/.local/bin/preview-clean'
 
-cmd open $launch -se $fx
+# no tags
+map m
+
+# opening
+cmd open $launch -se $fx # map o
 map L &launch $fx
+map w $echo entering shell session && $SHELL
+map <enter> shell
 
-cmd bulk-rename $vidir
-
+# mk
 cmd mkdir %mkdir "$@"
 cmd mkfile %touch "$@"
-
-map m
-map w
-
-cmd imgs &{{
-    # sxiv -oat . | while read -r img; do lf -remote "send $id toggle $img" done
-    devour sxiv -oat .
-}}
-
-map <c-f> $lf -remote "send $id cd '$(fd -t d --strip-cwd-prefix | fzf)'"
-map J $lf -remote "send $id cd $(awk '/^[^#]/ {print $2}' $SHORTCUT_DIR/directories | fzf)"
-map <enter> shell
-map s $$SHELL
-map U clear
-map <backspace2> set hidden!
-map V :unselect; invert
-map D delete
 map mkd push :mkdir<space>
 map mkf push :mkfile<space>
-map x :imgs
-map P &mpv .
 
+# cd
+map <c-f> $lf -remote "send $id cd '$(fd -t d --strip-cwd-prefix | fzf)'"
+map J     $lf -remote "send $id cd '$(awk '/^[^#]/ {print $2}' $SHORTCUT_DIR/directories | fzf)'"
+
+# files
+map U            clear
+map D            delete
+map <c-y>        $echo "$fx" | xclip -sel c -i
+map <backspace2> set hidden!
+
+# renaming
 map a rename # at the very end
 map r push a<c-u> # new rename
 map R push a<a-b><a-b><a-f><c-u> # keep ext
 map i push a<c-a> # at the very beginning
-map B bulk-rename
+map B $vidir
 
+# media
+map x &{{
+    devour sxiv -abto . \
+        | while read -r img; do
+            lf -remote "send $id toggle $img"
+            lf -remote "send $id select $img"
+        done
+}}
+map X &{{
+    devour sxiv -abtor . \
+        | while read -r img; do
+            lf -remote "send $id toggle $img"
+            lf -remote "send $id select $img"
+        done
+}}
+map P &devour mpv .
 map ww $watched $f
 
+# lfshortcuts
 source ~/.config/lf/lfshortcuts

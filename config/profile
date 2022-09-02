@@ -30,6 +30,7 @@ export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 export INPUTRC="$XDG_CONFIG_HOME/inputrc"
 export LESS=-R
 export LESSHISTFILE=/dev/null
+export BAT_THEME=gruvbox-dark
 export XAUTHORITY="$XDG_CONFIG_HOME/xorg/.Xauthority"
 export PYTHONHISTORY="$XDG_CACHE_HOME/python"
 export LD_LIBARY_PATH=/usr/local/lib

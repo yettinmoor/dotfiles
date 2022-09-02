@@ -11,10 +11,10 @@ image() {
 }
 
 batorcat() {
-    file="$1"
+    file="${1:--}"
     shift
     if command -v bat > /dev/null 2>&1; then
-        /usr/bin/bat --color=always --pager=never "$file" "$@"
+        bat --color=always -p "$file" "$@"
     else
         cat "$file"
     fi
@@ -53,11 +53,17 @@ case "$(file --mime-type "$1" -bL)" in
         transmission-show "$1"
         ;;
     text/html)
-        [ ! -f "$CACHE" ] && wkhtmltopdf "$1" - | pdftoppm -jpeg -f 1 -singlefile - "$CACHE"
+        [ ! -f "${CACHE}.jpg" ] && wkhtmltopdf "$1" - | pdftoppm -jpeg -f 1 -singlefile - "$CACHE"
         image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
         ;;
     application/x-object)
-         nm "$1"
+        nm "$1"
+        ;;
+    application/x-pie-executable)
+        {
+            echo '<binary file>'
+            readelf -h "$1"
+        } | batorcat
         ;;
     application/zip | application/x-rar)
         als "$1"

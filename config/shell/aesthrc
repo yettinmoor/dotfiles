@@ -199,7 +199,7 @@
     echo 'fi='
     echo 'ln='
     echo 'or='
-    echo 'ex='
+    echo 'ex='
     echo '*.c='
     echo '*.cc='
     echo '*.clj='

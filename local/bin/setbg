@@ -7,8 +7,8 @@
 WALL="$XDG_CACHE_HOME/wall"
 
 case "$1" in
-    random) fd 'jpe?g|png' ~/pics/wallpapers | shuf -n 1 ;;
-    pick)   fd 'jpe?g|png' ~/pics/wallpapers | shuf | sxiv -tio | sed 1q ;;
+    random) fd . ~/pics/wallpapers | shuf -n 1 ;;
+    pick)   fd . ~/pics/wallpapers | shuf | sxiv -tio | sed 1q ;;
     *)      readlink -f "$1" ;;
 esac | xargs -r -I {} ln -sfT "{}" "$WALL"
 

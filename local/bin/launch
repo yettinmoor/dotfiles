@@ -35,7 +35,11 @@ case "$(file --mime-type "$@" -bL)" in
         wrap zathura "$@"
         ;;
     image/*)
-        wrap imgopen "$@"
+        imgs() {
+            fd '(jpe?g|bmp|png|gif)$' "$(dirname "$1")" -d 1 | sort
+        }
+        imgs "$1" \
+            | wrap sxiv -abi -n "$(imgs "$1" | grep -sn "$1" | cut -d ':' -f1)"
         ;;
     application/x-bittorrent)
         wrap tor "$@"
