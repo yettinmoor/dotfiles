@@ -13,7 +13,7 @@
 }
 
 case "$1" in
-    *mkv | *webm | *mp4 | *youtube.com* | *youtu.be* | *hooktube.com* | *bitchute.com* | *twitch.tv*)
+    *mkv | *webm | *mp4 | *youtube.com* | *youtu.be* | *hooktube.com* | *bitchute.com* | *twitch.tv* | *nebula.app*)
         setsid mpv "$1" > /dev/null 2>&1 &
         ;;
     *png | *jpg | *jpe | *jpeg | *gif)
@@ -27,6 +27,8 @@ case "$1" in
     *)
         if [ -f "$1" ]; then
             "$TERMINAL" -e "$EDITOR $1"
-        else setsid "$BROWSER" "$1" > /dev/null 2>&1 & fi
+        else
+            setsid "$BROWSER" "$1" > /dev/null 2>&1 &
+        fi
         ;;
 esac

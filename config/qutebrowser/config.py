@@ -34,8 +34,8 @@ config.bind('gh', 'set-cmd-text -s :help -t')
 
 config.bind('gw', 'tab-give')
 
-config.bind('u', 'scroll-page 0 -0.7')
-config.bind('d', 'scroll-page 0 0.7')
+config.bind('u', 'scroll-page 0 -0.6')
+config.bind('d', 'scroll-page 0 0.6')
 
 config.bind('x', 'tab-close')
 config.bind('X', 'undo')

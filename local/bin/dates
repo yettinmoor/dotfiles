@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 
 showdate() {
-    printf  '%s\t' "$(echo "${1#*/}" | sed 's/_/ /g')"
-    TZ="$1" date '+%R'
+    printf '%s\t' "$(echo "${1#*/}" | sed 's/_/ /g')"
+    TZ="$1" date +%R
 }
 
 {

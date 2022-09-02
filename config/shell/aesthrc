@@ -151,6 +151,7 @@
     echo "*.ini=00;$DOC_COLOR"
     echo "*.json=00;$DOC_COLOR"
     echo "*.pdf=00;$DOC_COLOR"
+    echo "*.toml=00;$DOC_COLOR"
     echo "*.wiki=00;$DOC_COLOR"
     echo "*.yaml=00;$DOC_COLOR"
     echo "*.yml=00;$DOC_COLOR"

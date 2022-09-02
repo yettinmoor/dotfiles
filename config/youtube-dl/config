@@ -6,3 +6,6 @@
 
 --sub-lang en
 --embed-subs
+
+--netrc
+--netrc-location ~/.config/netrc

@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-wrap() { "$@"; }
+wrap() { setsid "$@" > /dev/null 2>&1 & }
 
 while getopts se o; do
     case $o in
@@ -23,35 +23,57 @@ shift $((OPTIND - 1))
     exit 1
 }
 
-case "$(file --mime-type "$@" -bL)" in
-    video/* | audio/*)
-        wrap mpv "$@"
-        ;;
-    application/pdf | \
-        application/postscript | \
-        application/epub+zip | \
-        application/x-rar | \
-        image/vnd.djvu)
-        wrap zathura "$@"
-        ;;
-    image/*)
-        imgs() {
-            fd '(jpe?g|bmp|png|gif)$' "$(dirname "$1")" -d 1 | sort
-        }
-        imgs "$1" \
-            | wrap sxiv -abi -n "$(imgs "$1" | grep -sn "$1" | cut -d ':' -f1)"
-        ;;
-    application/x-bittorrent)
-        wrap tor "$@"
-        ;;
-    text/html)
-        wrap "$BROWSER" "$@"
+case "$1" in
+    http://* | https://*)
+        case "$1" in
+            *mkv | *webm | *mp4 | *youtube.com* | *youtu.be* | *hooktube.com* | *bitchute.com* | *twitch.tv* | *nebula.app*)
+                wrap mpv "$1"
+                ;;
+            *png | *jpg | *jpe | *jpeg | *gif)
+                file="$(basename "$1")"
+                curl -sLO && wrap sxiv -a "$file"
+                ;;
+            *mp3 | *flac | *opus | *mp3?source*)
+                cd "$HOME/dl" || exit 1
+                wrap tsp curl -LO "$1"
+                ;;
+            *)
+                wrap "$BROWSER" "$1"
+                ;;
+        esac
         ;;
     *)
-        if [ -n "$LAUNCH_EDITOR_INLINE" ]; then
-            "$EDITOR" "$@"
-        else
-            wrap "$TERMINAL" -e "$EDITOR" "$@"
-        fi
+        case "$(file --mime-type "$@" -bL)" in
+            video/* | audio/*)
+                wrap mpv "$@"
+                ;;
+            application/pdf | \
+                application/postscript | \
+                application/epub+zip | \
+                application/x-rar | \
+                image/vnd.djvu)
+                wrap zathura "$@"
+                ;;
+            image/*)
+                imgs() {
+                    fd '(jpe?g|bmp|png|gif)$' "$(dirname "$1")" -d 1 | sort
+                }
+                imgs "$1" \
+                    | wrap sxiv -abi -n "$(imgs "$1" | grep -sn "$1" | cut -d ':' -f1)"
+                ;;
+            application/x-bittorrent)
+                wrap tor "$@"
+                ;;
+            text/html)
+                wrap "$BROWSER" "$@"
+                ;;
+            *)
+                if [ -n "$LAUNCH_EDITOR_INLINE" ]; then
+                    "$EDITOR" "$@"
+                else
+                    wrap "$TERMINAL" -e "$EDITOR" "$@"
+                fi
+                ;;
+        esac
         ;;
 esac
