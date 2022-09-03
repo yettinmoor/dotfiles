@@ -1,91 +1,120 @@
 #!/usr/bin/env sh
 
+# shellcheck disable=SC2016
+usage() {
+    echo 'launch [-dexh] <file|cmd>'
+    echo
+    echo 'a general URI opener.'
+    echo 'wraps opener in `setsid`.'
+    echo
+    echo 'options:'
+    echo '  -d | wrap with `devour` if available.'
+    echo '  -e | don'\''t wrap $EDITOR.'
+    echo '  -x | interpret args as shell command.'
+    echo '  -h | print help and exit.'
+    exit "$1"
+}
+
 wrap() { setsid "$@" > /dev/null 2>&1 & }
 
-while getopts sec: o; do
+while getopts dexh o; do
     case $o in
-        s)
-            if command -v devour > /dev/null 2>&1; then
-                wrap() { devour "$@"; }
-            fi
+        d)
+            command -v devour > /dev/null 2>&1 && wrap() { devour "$@"; }
             ;;
         e)
             LAUNCH_EDITOR_INLINE=1
             ;;
-        c)
-            cmd="$OPTARG"
+        x)
+            LITERAL=1
             ;;
-        *) echo 'launch [-se] ...' ;;
+        h)
+            usage 0
+            ;;
+        *)
+            usage 1
+            ;;
     esac
 done
 
 shift $((OPTIND - 1))
 
 [ $# -eq 0 ] && {
-    echo 'launch [args]'
-    exit 1
+    usage 1
 }
 
-if [ -n "$cmd" ]; then
-    # shellcheck disable=SC2086
-    wrap $cmd "$@"
+[ -n "$LITERAL" ] && {
+    wrap "$@"
     exit
-fi
+}
 
-case "$1" in
-    http://* | https://*)
-        case "$1" in
-            *mkv | *webm | *mp4 | *youtube.com* | *youtu.be* | *hooktube.com* | *bitchute.com* | *twitch.tv* | *nebula.app*)
-                wrap mpv "$1"
-                ;;
-            *png | *jpg | *jpe | *jpeg | *gif)
-                file="$(basename "$1")"
-                curl -sLO && wrap sxiv -a "$file"
-                ;;
-            *mp3 | *flac | *opus | *mp3?source*)
-                cd "$HOME/dl" || exit 1
-                wrap tsp curl -LO "$1"
-                ;;
-            *)
-                wrap "$BROWSER" "$1"
-                ;;
-        esac
-        ;;
-    magnet:*)
-        tor "$1"
-        ;;
-    *)
-        case "$(file --mime-type "$@" -bL)" in
-            video/* | audio/*)
-                wrap mpv "$@"
-                ;;
-            application/pdf | \
-                application/postscript | \
-                application/epub+zip | \
-                application/x-rar | \
-                image/vnd.djvu)
-                wrap zathura "$@"
-                ;;
-            image/*)
-                imgs() {
-                    fd '(jpe?g|bmp|png|gif)$' "$(dirname "$1")" -d 1 | sort
-                }
-                imgs "$1" \
-                    | wrap sxiv -abi -n "$(imgs "$1" | grep -sn "$1" | cut -d ':' -f1)"
-                ;;
-            application/x-bittorrent)
-                wrap tor "$@"
-                ;;
-            text/html)
-                wrap "$BROWSER" "$@"
-                ;;
-            *)
-                if [ -n "$LAUNCH_EDITOR_INLINE" ]; then
-                    "$EDITOR" "$@"
-                else
-                    wrap "$TERMINAL" -e "$EDITOR" "$@"
-                fi
-                ;;
-        esac
-        ;;
-esac
+for file in "$@"; do
+    case "$file" in
+        http://* | https://*)
+            case "$file" in
+                *mkv | \
+                    *webm | \
+                    *mov | \
+                    *mp4 | \
+                    *youtube.com* | \
+                    *youtu.be* | \
+                    *bitchute.com* | \
+                    *twitch.tv* | \
+                    *nebula.app*)
+                    wrap mpv "$file"
+                    ;;
+                *png | *jpg | *jpeg | *gif)
+                    curl -sLO "$file" && wrap sxiv -a "$(basename "$file")"
+                    ;;
+                *mp3 | *flac | *opus | *mp3?source*)
+                    cd "$HOME/dl" || exit 1
+                    wrap tsp curl -LO "$file"
+                    ;;
+                *)
+                    wrap "$BROWSER" "$file"
+                    ;;
+            esac
+            ;;
+        magnet:*)
+            tor "$file"
+            ;;
+        *)
+            file="$(readlink -f "$file")"
+            [ -f "$file" ] || {
+                echo "error: non-existent file: $1"
+                exit 1
+            }
+            case "$(file --mime-type "$file" -bL)" in
+                video/* | audio/*)
+                    wrap mpv "$file"
+                    ;;
+                application/pdf | \
+                    application/postscript | \
+                    application/epub+zip | \
+                    application/x-rar | \
+                    image/vnd.djvu)
+                    wrap zathura "$file"
+                    ;;
+                image/svg+xml)
+                    wrap inkview "$1"
+                    ;;
+                image/*)
+                    wrap imgopen "$1"
+                    ;;
+                application/x-bittorrent)
+                    wrap tor "$file"
+                    ;;
+                text/html)
+                    wrap "$BROWSER" "$file"
+                    ;;
+                *)
+                    if [ -n "$LAUNCH_EDITOR_INLINE" ]; then
+                        "$EDITOR" "$file"
+                    else
+                        wrap "$TERMINAL" -e "$EDITOR" "$file"
+                    fi
+                    ;;
+            esac
+            ;;
+    esac
+done

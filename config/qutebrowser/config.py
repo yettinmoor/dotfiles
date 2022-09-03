@@ -36,15 +36,15 @@ config.bind('u', 'scroll-page 0 -0.6')
 config.bind('d', 'scroll-page 0 0.6')
 config.bind('x', 'tab-close')
 config.bind('X', 'undo')
+config.bind('cf', 'fake-key f')
 
-# img
-config.bind(';i', 'hint images tab')
-config.bind(';I', 'hint images download')
-
-# video
+# media
 config.set('content.autoplay', False)
-config.bind(',v', 'hint media spawn launch -c mpv {hint-url}')
-config.bind(',V', 'spawn launch -c mpv {url}')
+config.bind(';i', 'hint images tab')
+config.bind(';v', 'hint media download')
+config.bind(',v', 'hint media spawn launch -x mpv {hint-url}')
+config.bind(',V', 'spawn launch -x mpv {url}')
+config.bind(',yt', 'spawn yt-dlp {url}')
 
 # downloading
 c.aliases['dl'] = 'spawn --userscript dl'

@@ -24,7 +24,7 @@ if [ -n "$dir" ]; then
 else
     awk '{print $2}' "$SHORTCUT_DIR/directories" \
         | sed "s:^~:$HOME:" \
-        | fzf --bind 'tab:replace-query+reload(echo {}; fd -t d . {})+unbind(tab)'
+        | fzf --bind 'tab:replace-query+reload(echo {}/; fd -t d . {})'
 fi | {
     read -r dir
 

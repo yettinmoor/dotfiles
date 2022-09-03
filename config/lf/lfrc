@@ -16,10 +16,11 @@ set cleaner '~/.local/bin/preview-clean'
 map m
 
 # opening
-cmd open $launch -se $fx # map o
+cmd open $launch -de $fx # map o
 map L &launch $fx
 map w $echo entering shell session && $SHELL
 map <enter> shell
+map gui &launch -dx thunar $fx
 
 # mk
 cmd mkdir %mkdir "$@"
@@ -46,20 +47,20 @@ map B $vidir
 
 # media
 map x &{{
-    devour sxiv -abto . \
+    launch -dx sxiv -abto . \
         | while read -r img; do
             lf -remote "send $id toggle $img"
             lf -remote "send $id select $img"
         done
 }}
 map X &{{
-    devour sxiv -abtor . \
+    launch -dx sxiv -abtor . \
         | while read -r img; do
             lf -remote "send $id toggle $img"
             lf -remote "send $id select $img"
         done
 }}
-map P &devour mpv .
+map P &launch -dx mpv .
 map ww $watched $f
 
 # lfshortcuts
