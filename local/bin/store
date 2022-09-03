@@ -30,6 +30,7 @@ fi | {
 
     for file in "$@"; do
         ext="${file##*.}"
+        [ "$ext" = jpeg ] && ext=jpg
         outfile="$(sha256sum "$file" | cut -c 1-10).$ext"
         ! [ "$dir" = "$(readlink -f "$(dirname "$file")")" ] && {
             mkdir -p "$dir"
