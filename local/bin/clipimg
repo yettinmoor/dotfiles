@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+file="$(readlink -f "${1:?}")"
+
+# sigh
+case "$(file --mime-type -bL "$file")" in
+    image/jpeg) convert "$file" png:- ;;
+    image/png) cat "$file" ;;
+    *) exit 1 ;;
+esac | xclip -sel c -t image/png -i
+
+notify-send clipimg "$(basename "$file")" -i "$file"

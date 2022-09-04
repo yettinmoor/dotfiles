@@ -1,13 +1,14 @@
 #!/usr/bin/env sh
 
 usage() {
-    echo 'store [-h] [-t dir] file(s)'
+    echo 'store [-h] [-p] [-t dir] file(s)'
     exit "$1"
 }
 
-while getopts t:h o; do
+while getopts t:ph o; do
     case "$o" in
         t) dir=$OPTARG ;;
+        p) PRINT=1 ;;
         h) usage 0 ;;
         *) usage 1 ;;
     esac
@@ -17,14 +18,12 @@ shift $((OPTIND - 1))
 
 [ $# -eq 0 ] && usage 1
 
-set -e
+set -ex
 
 if [ -n "$dir" ]; then
     echo "$dir"
 else
-    awk '{print $2}' "$SHORTCUT_DIR/directories" \
-        | sed "s:^~:$HOME:" \
-        | fzf --bind 'tab:replace-query+reload(echo {}/; fd -t d . {})'
+    dirpick || exit 1
 fi | {
     read -r dir
 
@@ -32,9 +31,15 @@ fi | {
         ext="${file##*.}"
         [ "$ext" = jpeg ] && ext=jpg
         outfile="$(sha256sum "$file" | cut -c 1-10).$ext"
-        ! [ "$dir" = "$(readlink -f "$(dirname "$file")")" ] && {
-            mkdir -p "$dir"
+        mkdir -p "$dir"
+        if [ -n "$PRINT" ]; then
+            # print to stdout
+            # used by qutedl
             mv "$file" "$dir/$outfile"
-        }
+            echo "$outfile"
+        else
+            # print to stderr
+            mv -v "$file" "$dir/$outfile"
+        fi
     done
 }

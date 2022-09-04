@@ -65,8 +65,8 @@ super + {_,shift +} c
 	{show,qr}clip
 super + v
 	$TERMINAL -e ncmpcpp -s visualizer
-super + {_, shift +} b
-	$BROWSER { ,--target window} $HOMEPAGE
+super + b
+	$BROWSER --target window $HOMEPAGE
 super + n
 	! pgrep newsboat && $TERMINAL -e newsboat && polybar-msg action '#rss.hook.0'
 super + shift + n

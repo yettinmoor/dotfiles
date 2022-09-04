@@ -12,15 +12,16 @@ set period 1
 set previewer '~/.local/bin/preview'
 set cleaner '~/.local/bin/preview-clean'
 
-# no tags
+# unmaps
 map m
+map ,
 
 # opening
-cmd open $launch -de $fx # map o
-map L &launch $fx
+cmd open $launch -de "$fx" # map o
+map L &launch "$fx"
 map w $echo entering shell session && $SHELL
 map <enter> shell
-map gui &launch -dx thunar $fx
+map gui &launch -dx thunar "$fx"
 
 # mk
 cmd mkdir %mkdir "$@"
@@ -30,13 +31,16 @@ map mkf push :mkfile<space>
 
 # cd
 map <c-f> $lf -remote "send $id cd '$(fd -t d --strip-cwd-prefix | fzf)'"
-map J     $lf -remote "send $id cd '$(awk '/^[^#]/ {print $2}' $SHORTCUT_DIR/directories | fzf)'"
+map J     $lf -remote "send $id cd '$(dirpick)'"
 
 # files
 map U            clear
 map D            delete
 map <c-y>        $echo "$fx" | xclip -sel c -i
 map <backspace2> set hidden!
+
+map ,yy $echo "$fx" | xclip -sel c -i
+map ,yc $clipimg "$f"
 
 # renaming
 map a rename # at the very end

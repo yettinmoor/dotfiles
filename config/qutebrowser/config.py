@@ -13,45 +13,50 @@ TERM = os.getenv('TERM')
 ####
 
 config.load_autoconfig(False)
+config.bind('<ctrl-e>', 'config-edit')
+config.bind('<ctrl-r>', 'config-source')
 
-# misc
+# basic settings
 config.set('url.default_page', os.getenv('HOMEPAGE'))
 config.set('content.netrc_file', CONFIG + '/netrc')
 config.set('content.notifications.enabled', False)
 config.set('editor.command', [TERM, '-e', EDITOR, '{file}'])
-config.set('tabs.show', 'multiple')
 config.set('statusbar.show', 'in-mode')
 config.set('content.notifications.enabled', False)
-try:
-    c.completion.favorite_paths = [os.path.join(os.getenv('WIKI_DIR'), 'html')]
-except:
-    pass
+c.completion.favorite_paths = [os.path.join(os.getenv('WIKI_DIR'), 'html')]
 
 # basic rebinds
 config.bind('<tab>', 'nop')
 config.bind('gh', 'set-cmd-text -s :help -t')
-config.bind('gw', 'tab-give')
 config.bind('u', 'scroll-page 0 -0.6')
 config.bind('d', 'scroll-page 0 0.6')
+config.bind('cf', 'fake-key f')
+
+# tabs
+config.set('tabs.show', 'multiple')
+config.bind('gw', 'tab-give')
 config.bind('x', 'tab-close')
 config.bind('X', 'undo')
-config.bind('cf', 'fake-key f')
-config.bind('<ctrl-e>', 'config-edit')
-config.bind('<ctrl-r>', 'config-source')
+config.bind('<', 'tab-move -')
+config.bind('>', 'tab-move +')
 
 # media
 config.set('content.autoplay', False)
-config.bind(';i', 'hint images tab')
-config.bind(';v', 'hint media download')
-config.bind(',v', 'hint media spawn launch -x mpv {hint-url}')
-config.bind(',V', 'spawn launch -x mpv {url}')
-config.bind(',yt', 'spawn yt-dlp {url}')
+config.bind('gm', 'spawn launch -dx mpv --profile=720p {url}')
+config.bind(',m', 'hint links spawn launch -dx mpv --profile=720p {hint-url}')
 
 # downloading
 c.aliases['dl'] = 'spawn --userscript dl'
-c.aliases['dlb'] = 'spawn --userscript dl -b'
 config.bind('gd', 'set-cmd-text :dl ~/dl')
-config.bind('gD', 'set-cmd-text :dlb ~/dl')
+config.bind('gD', 'set-cmd-text :dl -b ~/dl')
+config.bind('gv', 'set-cmd-text :dl -v ~/dl')
+config.bind('gV', 'set-cmd-text :dl -bv ~/dl')
+config.bind(',d', 'hint links fill :dl -u {hint-url} ~/dl')
+config.bind(',D', 'hint links fill :dl -b -u {hint-url} ~/dl')
+config.bind(',v', 'hint links fill :dl -v -u {hint-url} ~/dl')
+config.bind(',V', 'hint links fill :dl -bv -u {hint-url} ~/dl')
+config.bind(',i', 'hint images fill :dl -u {hint-url} ~/dl')
+config.bind(',I', 'hint images fill :dl -b -u {hint-url} ~/dl')
 config.set('downloads.location.directory', os.path.join(HOME, 'dl'))
 config.set('downloads.location.prompt', False)
 config.set('downloads.location.remember', False)

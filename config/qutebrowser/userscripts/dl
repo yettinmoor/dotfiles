@@ -1,24 +1,53 @@
 #!/usr/bin/env sh
 
-while getopts b o; do
+# shellcheck disable=SC2016
+usage() {
+    echo 'dl [-bv] [-u url] <dir>'
+    echo 'download manager for qutebrowser.'
+    echo 'options:'
+    echo ' -b     | rename file according to its SHA256 sum (see `store`).'
+    echo ' -v     | use yt-dlp instead of curl.'
+    echo ' -u url | download `url` instead of $QUTE_URL.'
+    exit "$1"
+}
+
+url="$QUTE_URL"
+
+while getopts bvu:h o; do
     case "$o" in
         b) BASE64=1 ;;
-        *) exit 1 ;;
+        v) YTDL=1 ;;
+        u) url="$OPTARG" ;;
+        h) usage 0 ;;
+        *) usage 1 ;;
     esac
 done
 
 shift $((OPTIND - 1))
 
-cd "$HOME/dl" || exit 1
+[ -z "$1" ] && usage 1
 
-file="$(basename "$QUTE_URL")"
-dir="$(echo "${1:-$HOME/dl}" | sed "s:^~:$HOME:")"
+file="$(basename "$url")"
+dir="$(echo "$1" | sed "s:^~:$HOME:")"
 
-echo "dl: downloading $QUTE_URL"
-curl -LO "$QUTE_URL"
+set -e
+
+mkdir -p "$dir"
+cd "$dir"
+
+if [ -n "$YTDL" ]; then
+    echo "dl: downloading $url (ytdl)"
+    file="$(yt-dlp --get-filename "$url")"
+    yt-dlp "$url"
+else
+    echo "dl: downloading $url"
+    curl -LO "$url"
+fi
 
 if [ -n "$BASE64" ]; then
-    store -t "$dir" "$HOME/dl/$file"
-else
-    mv "$file" "$dir"
+    file=$(store -p -t "$dir" "$file")
 fi
+
+notify-send qutedl \
+    "$(realpath "$file" | sed "s:^$HOME:~:")" \
+    -i "$(realpath "$file")"

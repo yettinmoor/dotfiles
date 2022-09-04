@@ -5,6 +5,6 @@ fd 'mnemo$' ~/docs/mnemo -x mnemo -i \
     | bc \
     | awk '/^[1-9]/ {print $1, "cards due"}'
 
-# shellcheck disable=SC2016
-fd 'mnemo$' ~/docs/mnemo -x \
-    sh -c 'echo {/.}: "$(mnemo -i {} | awk "/old/ {print \$1}")"'
+# # shellcheck disable=SC2016
+# fd 'mnemo$' ~/docs/mnemo -x \
+#     sh -c 'echo {/.}: "$(mnemo -i {} | awk "/old/ {print \$1}")"'

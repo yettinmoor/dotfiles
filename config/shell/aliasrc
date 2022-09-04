@@ -67,7 +67,7 @@ alias zt='zig test'
 alias szb='sudo zig build -p /usr/local'
 
 # ytdl
-alias ytd='yt-dlp --config "$HOME/.config/youtube-dl/config"'
+alias ytd='yt-dlp'
 alias ytda='ytd -x -f "bestaudio[ext=mp3]/best"'
 alias ytdp='ytd -o "%(playlist_index)s - %(title)s.%(ext)s"'
 
