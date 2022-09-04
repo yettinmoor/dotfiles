@@ -22,7 +22,6 @@ config.set('editor.command', [TERM, '-e', EDITOR, '{file}'])
 config.set('tabs.show', 'multiple')
 config.set('statusbar.show', 'in-mode')
 config.set('content.notifications.enabled', False)
-
 try:
     c.completion.favorite_paths = [os.path.join(os.getenv('WIKI_DIR'), 'html')]
 except:
@@ -37,6 +36,8 @@ config.bind('d', 'scroll-page 0 0.6')
 config.bind('x', 'tab-close')
 config.bind('X', 'undo')
 config.bind('cf', 'fake-key f')
+config.bind('<ctrl-e>', 'config-edit')
+config.bind('<ctrl-r>', 'config-source')
 
 # media
 config.set('content.autoplay', False)
