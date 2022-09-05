@@ -21,16 +21,24 @@ config.set('url.default_page', os.getenv('HOMEPAGE'))
 config.set('content.netrc_file', CONFIG + '/netrc')
 config.set('content.notifications.enabled', False)
 config.set('editor.command', [TERM, '-e', EDITOR, '{file}'])
-config.set('statusbar.show', 'in-mode')
 config.set('content.notifications.enabled', False)
 c.completion.favorite_paths = [os.path.join(os.getenv('WIKI_DIR'), 'html')]
 
 # basic rebinds
 config.bind('<tab>', 'nop')
 config.bind('gh', 'set-cmd-text -s :help -t')
-config.bind('u', 'scroll-page 0 -0.6')
-config.bind('d', 'scroll-page 0 0.6')
+config.bind('u', 'scroll-page 0 -0.5')
+config.bind('d', 'scroll-page 0 0.5')
 config.bind('cf', 'fake-key f')
+
+# statusbar shenanigans
+# config.bind('<ctrl-b>', 'config-cycle statusbar.show always in-mode')
+config.bind(':', 'set statusbar.show always;; set-cmd-text :')
+config.bind('/', 'set statusbar.show always;; set-cmd-text /')
+config.bind(
+    '<Escape>', 'mode-enter normal;; set statusbar.show in-mode', mode='command')
+config.bind(
+    '<Return>', 'command-accept;; set statusbar.show in-mode', mode='command')
 
 # tabs
 config.set('tabs.show', 'multiple')
@@ -46,7 +54,7 @@ config.bind('gm', 'spawn launch -dx mpv --profile=720p {url}')
 config.bind(',m', 'hint links spawn launch -dx mpv --profile=720p {hint-url}')
 
 # downloading
-c.aliases['dl'] = 'spawn --userscript dl'
+c.aliases['dl'] = 'spawn --userscript qutedl'
 config.bind('gd', 'set-cmd-text :dl ~/dl')
 config.bind('gD', 'set-cmd-text :dl -b ~/dl')
 config.bind('gv', 'set-cmd-text :dl -v ~/dl')

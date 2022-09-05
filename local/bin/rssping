@@ -7,6 +7,6 @@ isconnected || exit 1
 
 pgrep -x newsboat && xdotool search --name newsboat key R && exit
 
-polybar-msg action '#rss.hook.1'
+polybar-msg action '#rss.send.?'
 newsboat -x reload
-polybar-msg action '#rss.hook.0'
+polybar-msg action '#rss.reset'

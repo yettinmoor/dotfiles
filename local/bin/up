@@ -14,6 +14,7 @@ runjob() {
 case "$1" in
     down)
         isconnected || exit 1
+        polybar-msg action '#updates.send.?'
         runjob sudo pacman -Syyuw --noconfirm
         runjob nvim +'PlugUpdate --sync' +qa
         runjob nvim +'PlugUpgrade --sync' +qa
@@ -32,4 +33,4 @@ case "$1" in
         ;;
 esac
 
-polybar-msg action '#updates.hook.0'
+polybar-msg action '#updates.reset'
