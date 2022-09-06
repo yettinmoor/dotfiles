@@ -9,6 +9,13 @@ CONFIG = os.getenv('XDG_CONFIG_HOME')
 EDITOR = os.getenv('EDITOR')
 HOME = os.getenv('HOME')
 TERM = os.getenv('TERM')
+WIKI_DIR = os.getenv('WIKI_DIR')
+
+assert CONFIG is not None
+assert EDITOR is not None
+assert HOME is not None
+assert TERM is not None
+assert WIKI_DIR is not None
 
 ####
 
@@ -22,7 +29,7 @@ config.set('content.netrc_file', CONFIG + '/netrc')
 config.set('content.notifications.enabled', False)
 config.set('editor.command', [TERM, '-e', EDITOR, '{file}'])
 config.set('content.notifications.enabled', False)
-c.completion.favorite_paths = [os.path.join(os.getenv('WIKI_DIR'), 'html')]
+c.completion.favorite_paths = [os.path.join(WIKI_DIR, 'html')]
 
 # basic rebinds
 config.bind('<tab>', 'nop')
@@ -69,7 +76,7 @@ config.set('downloads.location.directory', os.path.join(HOME, 'dl'))
 config.set('downloads.location.prompt', False)
 config.set('downloads.location.remember', False)
 config.set('downloads.position', 'bottom')
-config.set('downloads.remove_finished', 3)
+config.set('downloads.remove_finished', 2000)
 
 # file picker
 select_cmd = [TERM, '-e', 'lf', '-selection-path={}']

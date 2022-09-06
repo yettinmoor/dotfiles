@@ -69,6 +69,7 @@
     echo "*.swm=00;$ARCHIVE_COLOR"
     echo "*.dwm=00;$ARCHIVE_COLOR"
     echo "*.esd=00;$ARCHIVE_COLOR"
+    echo "*.torrent=00;$ARCHIVE_COLOR"
 
     # media
     MEDIA_COLOR=35
