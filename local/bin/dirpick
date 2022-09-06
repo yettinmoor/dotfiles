@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+awk '{print $2}' "$SHORTCUT_DIR/directories" \
+    | sed "s:^~:$HOME:" \
+    | fzf --bind 'tab:replace-query+reload(echo {}; fd -t d . {} | sed s:/$::)'
