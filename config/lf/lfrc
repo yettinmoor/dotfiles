@@ -39,8 +39,10 @@ map D            delete
 map <c-y>        $echo "$fx" | xclip -sel c -i
 map <backspace2> set hidden!
 
+# misc commands
 map ,yy $echo "$fx" | xclip -sel c -i
 map ,yc $clipimg "$f"
+map ,t $montage -geometry +0+0 "$fx" "$(echo \"$fx\" | commonprefix).jpg"
 
 # renaming
 map a rename # at the very end

@@ -20,9 +20,7 @@ wrap() { setsid "$@" > /dev/null 2>&1 & }
 while getopts dexh o; do
     case $o in
         d)
-            if command -v devour > /dev/null 2>&1; then
-                wrap() { devour "$@"; }
-            fi
+            [ -n "$DISPLAY" ] && wrap() { devour "$@"; }
             ;;
         e)
             LAUNCH_EDITOR_INLINE=1
