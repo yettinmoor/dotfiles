@@ -41,6 +41,8 @@ super + y
 	$TERMINAL -e calcurse -D ~/.config/calcurse
 super + {_,shift +} u
 	$TERMINAL -e $EDITOR ~/docs/wiki/{index,scratch}.wiki
+super + i
+	cd ~/pics && fd --strip-cwd-prefix '(jpe?g|png)' | dmenu -p clipimg | xargs -r clipimg
 super + o
 	open -d -c $HOME -- -E '\{media,music,repos,vidya,zig-cache\}'
 super + shift + o

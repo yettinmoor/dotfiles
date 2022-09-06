@@ -2,8 +2,17 @@
 # Display contents of selection via dunst.
 
 show() {
-    contents=$(xclip -sel "$1" -o)
-    [ -n "$contents" ] && notify-send "$1" "$contents"
+    clip="$1"
+    cl() { timeout .2s xclip -sel "$clip" -o "$@"; }
+    if cl -t TARGETS | grep image/png; then
+        set -e
+        cl -t image/png > /tmp/clipimg
+        notify-send "$clip" -i /tmp/clipimg
+        rm /tmp/clipimg
+    else
+        out=$(cl || echo '<img>')
+        [ -n "$out" ] && notify-send "$1" "$out"
+    fi
 }
 
 show clip

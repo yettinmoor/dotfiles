@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+node=$(bspc query -n -N)
+bspc node "$node" -g hidden=on
+"$@"
+bspc node "$node" -g hidden=off

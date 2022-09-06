@@ -4,7 +4,7 @@ EXTS='\.(jpe?g|png|gif|mkv|mp4|m4v|avi|webm|mp3|pdf|djvu|epub|txt|md|sent|svg|ht
 
 browser() {
     if [ -n "$OPEN_XORG" ]; then
-        dmenu -i -p "open $(pwd)" -theme-str 'window {width: 80%;}'
+        dmenu -p "open $(pwd)"
     else
         fzf --reverse --color=16
     fi
@@ -29,7 +29,11 @@ while getopts dc: o; do
 done
 shift $((OPTIND - 1))
 
-file="$(fd -t f --mount "$EXTS" "$@" | sed 's/^.\///' | browser)"
-[ -z "$file" ] && exit 1
-
-if [ -n "$OPEN_XORG" ]; then launch "$file" & else $EDITOR "$file"; fi
+fd -t f --mount "$EXTS" "$@" \
+    | sed 's:^./::' \
+    | browser \
+    | {
+        read -r file
+        [ -z "$file" ] && exit 1
+        if [ -n "$OPEN_XORG" ]; then launch "$file"; else $EDITOR "$file"; fi
+    }

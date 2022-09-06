@@ -18,8 +18,6 @@ shift $((OPTIND - 1))
 
 [ $# -eq 0 ] && usage 1
 
-set -ex
-
 if [ -n "$dir" ]; then
     echo "$dir"
 else
