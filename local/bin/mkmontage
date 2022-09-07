@@ -1,0 +1,32 @@
+#!/usr/bin/env python
+
+import subprocess
+import sys
+
+from itertools import takewhile
+
+if len(sys.argv) == 1:
+    files = [s.rstrip() for s in sys.stdin.readlines()]
+else:
+    files = sys.argv[1:]
+
+if not files:
+    print('no files given')
+    exit(1)
+
+outfile = ''.join(cs.pop()
+                  for cs in takewhile(lambda cs: len(cs) == 1,
+                                      map(set, zip(*files))))
+
+if outfile:
+    # remove timestamp
+    outfile = outfile.rstrip('0123456789:')
+    outfile = outfile.rstrip('-')
+else:
+    outfile = 'mkmontage'
+
+outfile += '.jpg'
+
+print(outfile)
+
+subprocess.call(['montage', '-geometry', '+0+0', *files, outfile])

@@ -17,11 +17,11 @@ map m
 map ,
 
 # opening
-cmd open $launch -de "$fx" # map o
-map L &launch "$fx"
+cmd open $launch -de "$f" # map o
+map L &launch "$f"
 map w $echo entering shell session && $SHELL
 map <enter> shell
-map gui &launch -dx thunar "$fx"
+map gui &launch -dx thunar "$f"
 
 # mk
 cmd mkdir %mkdir "$@"
@@ -34,15 +34,14 @@ map <c-f> $lf -remote "send $id cd '$(fd -t d --strip-cwd-prefix | fzf)'"
 map J     $lf -remote "send $id cd '$(dirpick)'"
 
 # files
-map U            clear
-map D            delete
-map <c-y>        $echo "$fx" | xclip -sel c -i
+map U clear
+map D delete
 map <backspace2> set hidden!
 
 # misc commands
-map ,yy $echo "$fx" | xclip -sel c -i
+map ,yy $echo "$f" | xclip -sel c -i
 map ,yc $clipimg "$f"
-map ,t $montage -geometry +0+0 "$fx" "$(echo \"$fx\" | commonprefix).jpg"
+map ,tt $echo "$fs" | mkmontage
 
 # renaming
 map a rename # at the very end

@@ -1,5 +1,21 @@
 #!/usr/bin/env sh
 
-awk '{print $2}' "$SHORTCUT_DIR/directories" \
-    | sed "s:^~:$HOME:" \
-    | fzf --bind 'tab:replace-query+reload(echo {}; fd -t d . {} | sed s:/$::)'
+pick() {
+    awk '{print $2}' "$SHORTCUT_DIR/directories" \
+        | sed "s:^~:$HOME:" \
+        | fzf --bind 'tab:replace-query+reload(echo {}; fd -t d . {} | sed s:/$::)'
+}
+
+cmd="$1"
+if [ -z "$cmd" ]; then
+    pick
+    exit
+fi
+
+shift
+
+case "$cmd" in
+    mv) mv -v  -t "$(pick)" "$@" ;;
+    cp) cp -rv -t "$(pick)" "$@" ;;
+    *) pick ;;
+esac

@@ -8,7 +8,7 @@ usage() {
     echo 'wraps opener in `setsid`.'
     echo
     echo 'options:'
-    echo '  -d | wrap with `devour` if available.'
+    echo '  -d | wrap with `devour`.'
     echo '  -e | don'\''t wrap $EDITOR.'
     echo '  -x | interpret args as shell command.'
     echo '  -h | print help and exit.'
@@ -20,7 +20,7 @@ wrap() { setsid "$@" > /dev/null 2>&1 & }
 while getopts dexh o; do
     case $o in
         d)
-            [ -n "$DISPLAY" ] && wrap() { devour "$@"; }
+            wrap() { devour "$@"; }
             ;;
         e)
             LAUNCH_EDITOR_INLINE=1
@@ -64,14 +64,15 @@ for file in "$@"; do
                     wrap mpv "$file"
                     ;;
                 *png | *jpg | *jpeg | *gif)
+                    cd "$HOME/dl" || exit 1
                     curl -sLO "$file" && wrap sxiv -a "$(basename "$file")"
                     ;;
                 *mp3 | *flac | *opus | *mp3?source*)
                     cd "$HOME/dl" || exit 1
-                    wrap tsp curl -LO "$file"
+                    tsp curl -LO "$file"
                     ;;
                 *)
-                    wrap "$BROWSER" "$file"
+                    wrap browser "$file"
                     ;;
             esac
             ;;
@@ -96,16 +97,16 @@ for file in "$@"; do
                     wrap zathura "$file"
                     ;;
                 image/svg+xml)
-                    wrap inkview "$1"
+                    wrap inkview "$file"
                     ;;
                 image/*)
-                    wrap imgopen "$1"
+                    wrap imgopen "$file"
                     ;;
                 application/x-bittorrent)
                     wrap tor "$file"
                     ;;
                 text/html)
-                    wrap "$BROWSER" "$file"
+                    wrap browser "$file"
                     ;;
                 *)
                     if [ -n "$LAUNCH_EDITOR_INLINE" ]; then

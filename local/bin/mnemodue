@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-fd 'mnemo$' ~/docs/mnemo -x mnemo -i \
+fd -e mnemo . ~/docs/mnemo -x mnemo -i \
     | awk '/old/ {print $1}' \
     | paste -sd '+' \
     | bc \

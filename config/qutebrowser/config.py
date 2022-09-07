@@ -39,7 +39,7 @@ config.bind('d', 'scroll-page 0 0.5')
 config.bind('cf', 'fake-key f')
 
 # statusbar shenanigans
-# config.bind('<ctrl-b>', 'config-cycle statusbar.show always in-mode')
+config.bind('<ctrl-b>', 'config-cycle statusbar.show always in-mode')
 config.bind(':', 'set statusbar.show always;; set-cmd-text :')
 config.bind('/', 'set statusbar.show always;; set-cmd-text /')
 config.bind(
@@ -57,8 +57,8 @@ config.bind('>', 'tab-move +')
 
 # media
 config.set('content.autoplay', False)
-config.bind('gm', 'spawn launch -dx mpv --profile=720p {url}')
-config.bind(',m', 'hint links spawn launch -dx mpv --profile=720p {hint-url}')
+config.bind('gm', 'spawn launch -dx mpv --profile=ytdl {url}')
+config.bind(',m', 'hint links spawn launch -dx mpv --profile=ytdl {hint-url}')
 
 # downloading
 c.aliases['dl'] = 'spawn --userscript qutedl'

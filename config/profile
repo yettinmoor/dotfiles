@@ -13,7 +13,7 @@ export XDG_DATA_HOME="${XDG_DATA_HOME:=$HOME/.local/share}"
 export SHELL=zsh
 export EDITOR=nvim
 export OPENER=launch
-export TERM=alacritty
+export TERM=st
 export TERMINAL=$TERM
 export PAGER='bat -p'
 export BROWSER=qutebrowser
@@ -38,6 +38,7 @@ export XAUTHORITY="$XDG_CONFIG_HOME/xorg/.Xauthority"
 
 # dirs.
 export AOC_INPUT_DIR="$HOME/docs/aoc-input"
+export MNEMO_DIR="$HOME/docs/mnemo"
 export WIKI_DIR="$HOME/docs/wiki"
 
 MAKEFLAGS="-j $(nproc)"
@@ -47,6 +48,7 @@ export MAKEFLAGS
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export SDL_IM_MODULE=fcitx
+export GLFW_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
 # zshrc.
