@@ -11,5 +11,24 @@ if ! pgrep -x transmission-da > /dev/null; then
     sleep 1
 fi
 
-[ -n "$1" ] && transmission-remote -a "$@" && notify-send " $# torrent(s) added."
-pgrep -f 'python3 /usr/bin/tremc' > /dev/null || setsid "$TERMINAL" -e tremc &
+while getopts w: o; do
+    case "$o" in
+        w) dir="$OPTARG" ;;
+        *) exit 1 ;;
+    esac
+done
+
+shift $((OPTIND - 1))
+
+# shellcheck disable=SC2086
+for file in "$@"; do
+    echo adding \`"$file"\`
+    transmission-remote -a "$file" -w "${dir:-$HOME/dl}" \
+        && rm -v "$file"
+done
+
+[ -n "$DISPLAY" ] \
+    && [ "$#" -gt 0 ] \
+    && notify-send " $# torrent(s) added."
+
+tremc
