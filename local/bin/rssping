@@ -9,4 +9,4 @@ pgrep -x newsboat && xdotool search --name newsboat key R && exit
 
 polybar-msg action '#rss.send.?'
 timeout 5s newsboat -x reload
-polybar-msg action '#rss.reset'
+polybar-msg action '#rss.hook.0'

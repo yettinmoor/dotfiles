@@ -11,11 +11,16 @@ runjob() {
     } &
 }
 
+packages() {
+    sudo pacman -S --noconfirm archlinux-keyrings
+    sudo pacman -Syyuw --noconfirm
+}
+
 case "$1" in
     down)
         isconnected || exit 1
         polybar-msg action '#updates.send.?'
-        runjob sudo pacman -Syyuw --noconfirm
+        runjob packages
         runjob nvim +'PlugUpdate --sync' +qa
         runjob nvim +'PlugUpgrade --sync' +qa
         runjob rustup update
@@ -33,4 +38,4 @@ case "$1" in
         ;;
 esac
 
-polybar-msg action '#updates.reset'
+polybar-msg action '#updates.hook.0'
