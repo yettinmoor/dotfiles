@@ -17,7 +17,7 @@ map m
 map ,
 
 # opening
-cmd open $launch -de "$f" # map o
+cmd open $launch -d "$f" # map o
 map L &launch "$f"
 map w $echo entering shell session && $SHELL
 map <enter> shell

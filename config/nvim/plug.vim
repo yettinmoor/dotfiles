@@ -44,6 +44,7 @@ Plug 'christoomey/vim-sort-motion'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mileszs/ack.vim'
+Plug 'mg979/vim-visual-multi'
 Plug 'junegunn/goyo.vim'
 
 " Aesthetics

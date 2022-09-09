@@ -13,7 +13,7 @@ fi
 
 while getopts w: o; do
     case "$o" in
-        w) dir="$OPTARG" ;;
+        w) dir="$(readlink -f "$OPTARG")" ;;
         *) exit 1 ;;
     esac
 done
@@ -24,11 +24,15 @@ shift $((OPTIND - 1))
 for file in "$@"; do
     echo adding \`"$file"\`
     transmission-remote -a "$file" -w "${dir:-$HOME/dl}" \
-        && rm -v "$file"
+        && rm -fv "$file"
 done
 
 [ -n "$DISPLAY" ] \
     && [ "$#" -gt 0 ] \
     && notify-send " $# torrent(s) added."
 
-tremc
+if [ -t 0 ]; then
+    tremc
+else
+    $TERMINAL -e tremc
+fi

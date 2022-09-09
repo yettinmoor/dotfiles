@@ -4,18 +4,12 @@ engines=$(
     cat <<- EOF
 1 🇯🇵 anthy 文
 2 🇬🇷 fcitx-keyboard-gr AΩ
-? 🎹 help
 EOF
 )
 
-DATA_DIR="$XDG_DATA_HOME/ib"
 DUNST_ID=9191
 
 notify() { dunstify -r $DUNST_ID "ib" "$@"; }
-
-icon() {
-    echo "$engines" | grep "$(ibus engine)" | cut -d ' ' -f4
-}
 
 case "$1" in
     toggle)
@@ -34,16 +28,7 @@ case "$1" in
                 read -r choice
                 choice=$(echo "$engines" | grep "${choice:?}")
                 engine=$(echo "$choice" | cut -d ' ' -f3)
-                if [ "$engine" = "help" ]; then
-                    kbimg="$DATA_DIR/$(icon).png"
-                    if [ -f "$kbimg" ]; then
-                        sxiv "$kbimg"
-                    else
-                        notify "no keyboard image found for '$(icon)'"
-                    fi
-                else
-                    fcitx-remote -s "$engine"
-                fi
+                fcitx-remote -s "$engine"
             }
         ;;
 
