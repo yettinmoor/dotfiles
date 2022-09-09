@@ -1,4 +1,4 @@
-# vim: filetype=sh
+#!/usr/bin/env sh
 
 {
     # filetypes
@@ -191,9 +191,9 @@
     echo "*.sh=00;$SRC_COLOR"
     echo "*.ts=00;$SRC_COLOR"
 
-} | tr '\n' ':' | {
+} | paste -sd : | {
     read -r input
-    export LS_COLORS=$input
+    export LS_COLORS="$input"
 }
 
 {
@@ -287,7 +287,7 @@
     echo '*.djvu='
     echo '*.epub='
 
-} | tr '\n' ':' | {
+} | paste -sd : | {
     read -r input
-    export LF_ICONS=$input
+    export LF_ICONS="$input"
 }

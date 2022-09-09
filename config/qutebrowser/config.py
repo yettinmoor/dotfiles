@@ -61,17 +61,17 @@ config.bind('gm', 'spawn launch -dx mpv --profile=ytdl {url}')
 config.bind(',m', 'hint links spawn launch -dx mpv --profile=ytdl {hint-url}')
 
 # downloading
-c.aliases['dl'] = 'spawn --userscript qutedl'
-config.bind('gd', 'set-cmd-text :dl ~/dl')
-config.bind('gD', 'set-cmd-text :dl -b ~/dl')
-config.bind('gv', 'set-cmd-text :dl -v ~/dl')
-config.bind('gV', 'set-cmd-text :dl -bv ~/dl')
-config.bind(',d', 'hint links fill :dl -u {hint-url} ~/dl')
-config.bind(',D', 'hint links fill :dl -b -u {hint-url} ~/dl')
-config.bind(',v', 'hint links fill :dl -v -u {hint-url} ~/dl')
-config.bind(',V', 'hint links fill :dl -bv -u {hint-url} ~/dl')
-config.bind(',i', 'hint images fill :dl -u {hint-url} ~/dl')
-config.bind(',I', 'hint images fill :dl -b -u {hint-url} ~/dl')
+config.bind('gd', 'spawn qdl {url:pretty}')
+config.bind('gD', 'spawn qdl -b {url:pretty}')
+config.bind('gv', 'spawn qdl -v {url:pretty}')
+config.bind('gV', 'spawn qdl -bv {url:pretty}')
+config.bind(',d', 'hint links spawn qdl {hint-url}')
+config.bind(',D', 'hint links spawn qdl -b {hint-url}')
+config.bind(',v', 'hint links spawn qdl -v {hint-url}')
+config.bind(',V', 'hint links spawn qdl -bv {hint-url}')
+config.bind(',i', 'hint images spawn qdl {hint-url}')
+config.bind(',I', 'hint images spawn qdl -b {hint-url}')
+
 config.set('downloads.location.directory', os.path.join(HOME, 'dl'))
 config.set('downloads.location.prompt', False)
 config.set('downloads.location.remember', False)
@@ -79,11 +79,12 @@ config.set('downloads.position', 'bottom')
 config.set('downloads.remove_finished', 2000)
 
 # file picker
-select_cmd = [TERM, '-e', 'lf', '-selection-path={}']
+select_file_cmd = [TERM, '-e', 'lf', '-selection-path={}']
+select_dir_cmd = [TERM, '-c', 'Dirpick', '-e', 'sh', '-c', 'dirpick > {}']
 config.set('fileselect.handler', 'external')
-config.set('fileselect.folder.command', select_cmd)
-config.set('fileselect.single_file.command', select_cmd)
-config.set('fileselect.multiple_files.command', select_cmd)
+config.set('fileselect.folder.command', select_dir_cmd)
+config.set('fileselect.single_file.command', select_file_cmd)
+config.set('fileselect.multiple_files.command', select_file_cmd)
 
 # adblock
 c.content.blocking.adblock.lists = [

@@ -2,22 +2,20 @@
 
 # shellcheck disable=SC2016
 usage() {
-    echo 'dl [-bv] [-u url] <dir>'
-    echo 'download manager for qutebrowser.'
+    echo 'dl [-bv] <url>'
+    echo 'download manager.'
+    echo 'spawns `dirpick` for destination selection.'
     echo 'options:'
     echo ' -b     | rename file according to its SHA256 sum (see `store`).'
     echo ' -v     | use yt-dlp instead of curl.'
-    echo ' -u url | download `url` instead of $QUTE_URL.'
+    echo ' -u url | download `url` instead of $QUTE_[HINT_]URL.'
     exit "$1"
 }
 
-url="$QUTE_URL"
-
-while getopts bvu:h o; do
+while getopts bvh o; do
     case "$o" in
         b) BASE64=1 ;;
         v) YTDL=1 ;;
-        u) url="$OPTARG" ;;
         h) usage 0 ;;
         *) usage 1 ;;
     esac
@@ -25,15 +23,16 @@ done
 
 shift $((OPTIND - 1))
 
-[ -z "$1" ] && usage 1
+url="$1"
+[ -z "$url" ] && usage 1
 
 file="$(basename "$url")"
-dir="$(echo "$1" | sed "s:^~:$HOME:")"
+dir="$(dirpick)"
 
-set -e
+[ -z "$dir" ] && exit
 
 mkdir -p "$dir"
-cd "$dir"
+cd "$dir" || exit 1
 
 if [ -n "$YTDL" ]; then
     echo "dl: downloading $url (ytdl)"
