@@ -34,6 +34,8 @@ dir="$(dirpick)"
 mkdir -p "$dir"
 cd "$dir" || exit 1
 
+set -e
+
 if [ -n "$YTDL" ]; then
     echo "dl: downloading $url (ytdl)"
     file="$(yt-dlp --get-filename "$url")"
@@ -47,6 +49,6 @@ if [ -n "$BASE64" ]; then
     file=$(store -p -t "$dir" "$file")
 fi
 
-notify-send qutedl \
+notify-send qdl \
     "$(realpath "$file" | sed "s:^$HOME:~:")" \
     -i "$(realpath "$file")"

@@ -5,14 +5,24 @@ file="$(readlink -f "$1")"
 dir="$(dirname "$file")"
 base="${file%.*}"
 
+[ -z "$file" ] && exit 1
+
+head -n 1 "$file" | rg -o 'compiler: (.+)' -r '$1' | {
+    read -r cmd
+    [ -n "$cmd" ] && {
+        $cmd "$file"
+        exit
+    }
+}
+
 if [ -f .compiler ]; then
     sh .compiler
-    exit $?
+    exit
 fi
 
 if [ -f Makefile ]; then
     make
-    exit $?
+    exit
 fi
 
 case "${file#*.}" in
@@ -45,5 +55,3 @@ case "${file#*.}" in
     # Shebang
     *) sed -n '1{/^#!/s///p}' "$file" | xargs -r -I {} "$file" ;;
 esac
-
-exit $?

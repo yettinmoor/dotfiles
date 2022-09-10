@@ -28,7 +28,7 @@ fi | {
     for file in "$@"; do
         ext="${file##*.}"
         [ "$ext" = jpeg ] && ext=jpg
-        outfile="$(sha256sum "$file" | cut -c 1-10).$ext"
+        outfile="$(head -c 1000 "$file" | sha256sum | cut -c 1-10).$ext"
         mkdir -p "$dir"
         if [ -n "$PRINT" ]; then
             # print to stdout

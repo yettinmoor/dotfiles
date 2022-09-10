@@ -21,6 +21,7 @@ cmd open $launch -d "$f" # map o
 map L &launch "$f"
 map w $echo entering shell session && $SHELL
 map <enter> shell
+map ,r push $$fx<c-b><c-b><c-b><c-b><c-b><space><c-b>
 map gui &launch -dx thunar "$f"
 
 # mk
@@ -42,6 +43,7 @@ map <backspace2> set hidden!
 map ,yy $echo "$f" | xclip -sel c -i
 map ,yc $clipimg "$f"
 map ,tt $echo "$fs" | mkmontage
+map ,st $echo "$fx" | tr '\n' '\0' | xargs -0 store
 
 # renaming
 map a rename # at the very end

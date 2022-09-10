@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+SQLCMD='SELECT url FROM History ORDER BY atime DESC'
+cmd="sqlite3 \"$XDG_DATA_HOME/qutebrowser/history.sqlite\" '$SQLCMD' \
+    | fzf \
+    | sed 's/^/open /' \
+    > $QUTE_FIFO"
+
+"$TERMINAL" -c Dirpick -o - -e sh -c "$cmd"
