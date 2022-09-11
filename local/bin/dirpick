@@ -1,9 +1,15 @@
 #!/usr/bin/env sh
 
+# shellcheck disable=SC2016
 pick() {
     awk '{print $2}' "$SHORTCUT_DIR/directories" \
         | sed "s:^~:$HOME:" \
-        | fzf --bind 'tab:replace-query+reload(echo {}; fd -t d . {} | sed s:/$::)'
+        | fzf \
+            --bind 'tab:replace-query' \
+            --bind 'tab:+reload[echo {}; fd -t d . {} | sed s:/$::]' \
+            --bind 'alt-bs:reload[echo $(dirname {}); fd -t d . "$(dirname {})" | sed s:/$::]' \
+            --bind 'alt-bs:+clear-query' \
+            --bind 'alt-bs:+first'
 }
 
 [ -t 0 ] || pick() {

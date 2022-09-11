@@ -2,18 +2,20 @@
 
 # shellcheck disable=SC2016
 usage() {
-    echo 'dl [-vs] <url>'
+    echo 'dl [-vps] <url>'
     echo 'download manager.'
     echo 'options:'
-    echo ' -v | use yt-dlp instead of curl.'
-    echo ' -s | invoke `store` on downloaded file.'
+    echo ' -v       | use yt-dlp instead of curl.'
+    echo ' -s       | invoke `store` on downloaded file.'
+    echo ' -t <dir> | store to `dir`.'
     exit "$1"
 }
 
-while getopts svh o; do
+while getopts vst:h o; do
     case "$o" in
-        s) STORE=1 ;;
         v) YTDL=1 ;;
+        s) STORE=1 ;;
+        t) dir=$OPTARG ;;
         h) usage 0 ;;
         *) usage 1 ;;
     esac
@@ -26,14 +28,13 @@ url="$1"
 
 file="$(basename "$url")"
 
-cd ~/dl || exit 1
-
 set -e
 
-if [ -n "$STORE" ]; then
+if [ -z "$dir" ]; then
     dir=$(dirpick)
-    [ -z "$dir" ] && exit
 fi
+
+cd "$dir"
 
 id="$(awk "BEGIN { srand($(date +%N)); print int(65535 * rand()); }")"
 
@@ -47,7 +48,7 @@ else
 fi
 
 if [ -n "$STORE" ]; then
-    file=$(store -t "$dir" -p "$file")
+    file=$(store -t . -p "$file")
 fi
 
 dunstify -r "$id" qdl \

@@ -26,10 +26,10 @@ if [ -f Makefile ]; then
 fi
 
 case "${file#*.}" in
-    # Shell
+    # shell
     sh) sh "$file" ;;
 
-    # Programming
+    # programming
     c)   cc "$file" -o "$base" && "$base" ;;
     cpp) g++ "$file" -o "$base" && "$base" ;;
     cs)  mcs "$file" ;;
@@ -45,13 +45,17 @@ case "${file#*.}" in
     ts)  deno run --allow-read "$file" ;;
     zig) if [ -f "build.zig" ]; then zig build run; else zig run "$(grep -q "cImport" "$file" && echo "-lc")" "$file"; fi ;;
 
-    # Document formatting
+    # document formatting
     tex) xelatex --output-directory="$dir" "$base" ;;
     md)  pandoc "$file" --pdf-engine=xelatex --template=template -o "$base".pdf ;;
 
     # sent
     sent) setsid sent "$file" & ;;
 
-    # Shebang
+    # custom formats
+    mnemo) mnemo -i "$file" ;;
+    sentences) mnemo "${base}.mnemo" -a "$file" && echo > "$file" ;;
+
+    # shebang
     *) sed -n '1{/^#!/s///p}' "$file" | xargs -r -I {} "$file" ;;
 esac
