@@ -44,9 +44,9 @@ super + {_,shift +} u
 super + i
 	cd ~/pics && fd --strip-cwd-prefix '(jpe?g|png)' | dmenu -p clipimg | xargs -r clipimg
 super + o
-	open -d -c $HOME -- -E '\{media,music,repos,vidya,zig-cache\}'
+	open -d -c $HOME
 super + shift + o
-	open -d -c ~/media -- -E '\{steam,gsil\}'
+	open -d -c ~/media
 super + p
 	mpc toggle
 super + shift + p

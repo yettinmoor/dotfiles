@@ -34,7 +34,7 @@ fi | {
             # print to stdout
             # used by qutedl
             mv "$file" "$dir/$outfile"
-            echo "$outfile"
+            echo "$dir/$outfile"
         else
             # print to stderr
             mv -v "$file" "$dir/$outfile"

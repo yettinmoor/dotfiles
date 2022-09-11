@@ -2,19 +2,17 @@
 
 # shellcheck disable=SC2016
 usage() {
-    echo 'dl [-bv] <url>'
+    echo 'dl [-vs] <url>'
     echo 'download manager.'
-    echo 'spawns `dirpick` for destination selection.'
     echo 'options:'
-    echo ' -b     | rename file according to its SHA256 sum (see `store`).'
-    echo ' -v     | use yt-dlp instead of curl.'
-    echo ' -u url | download `url` instead of $QUTE_[HINT_]URL.'
+    echo ' -v | use yt-dlp instead of curl.'
+    echo ' -s | invoke `store` on downloaded file.'
     exit "$1"
 }
 
-while getopts bvh o; do
+while getopts svh o; do
     case "$o" in
-        b) BASE64=1 ;;
+        s) STORE=1 ;;
         v) YTDL=1 ;;
         h) usage 0 ;;
         *) usage 1 ;;
@@ -27,28 +25,31 @@ url="$1"
 [ -z "$url" ] && usage 1
 
 file="$(basename "$url")"
-dir="$(dirpick)"
 
-[ -z "$dir" ] && exit
-
-mkdir -p "$dir"
-cd "$dir" || exit 1
+cd ~/dl || exit 1
 
 set -e
 
+if [ -n "$STORE" ]; then
+    dir=$(dirpick)
+    [ -z "$dir" ] && exit
+fi
+
+id="$(awk "BEGIN { srand($(date +%N)); print int(65535 * rand()); }")"
+
 if [ -n "$YTDL" ]; then
-    echo "dl: downloading $url (ytdl)"
+    dunstify -r "$id" qdl "downloading $url (ytdl)"
     file="$(yt-dlp --get-filename "$url")"
     yt-dlp "$url"
 else
-    echo "dl: downloading $url"
+    dunstify -r "$id" qdl "downloading $url"
     curl -LO "$url"
 fi
 
-if [ -n "$BASE64" ]; then
-    file=$(store -p -t "$dir" "$file")
+if [ -n "$STORE" ]; then
+    file=$(store -t "$dir" -p "$file")
 fi
 
-notify-send qdl \
+dunstify -r "$id" qdl \
     "$(realpath "$file" | sed "s:^$HOME:~:")" \
     -i "$(realpath "$file")"

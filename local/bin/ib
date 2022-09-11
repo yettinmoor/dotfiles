@@ -9,13 +9,17 @@ EOF
 
 DUNST_ID=9191
 
-notify() { dunstify -r $DUNST_ID "ib" "$@"; }
-
 case "$1" in
     toggle)
         case "$(fcitx-remote)" in
-            1) fcitx-remote -t ;;
-            2) fcitx-remote -T ;;
+            1)
+                fcitx-remote -t
+                dunstify -r $DUNST_ID ib -t 0
+                ;;
+            2)
+                fcitx-remote -T
+                dunstify -C $DUNST_ID
+                ;;
             *) ;;
         esac
         ;;

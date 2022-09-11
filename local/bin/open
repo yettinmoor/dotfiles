@@ -6,7 +6,7 @@ browser() {
     if [ -n "$OPEN_XORG" ]; then
         dmenu -p "open $(pwd)"
     else
-        fzf --reverse --color=16
+        fzf
     fi
 }
 
@@ -29,8 +29,9 @@ while getopts dc: o; do
 done
 shift $((OPTIND - 1))
 
-fd -t f --mount "$EXTS" "$@" \
-    | sed 's:^./::' \
+exclude="{$(paste -sd , .openignore)}"
+
+fd --strip-cwd-prefix -t f --mount "$EXTS" -E "$exclude" \
     | browser \
     | {
         read -r file

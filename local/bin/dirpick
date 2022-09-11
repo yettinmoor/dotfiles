@@ -17,4 +17,14 @@ pick() {
     rm -r "$tmp"
 }
 
-pick
+case "$1" in
+    '') pick ;;
+    mv)
+        shift
+        mv -v -t "$(pick)" "$@"
+        ;;
+    cp)
+        shift
+        cp -vr -t "$(pick)" "$@"
+        ;;
+esac

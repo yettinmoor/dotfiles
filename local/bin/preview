@@ -47,7 +47,7 @@ case "$(file --mime-type "$1" -bL)" in
         image "$1" "$2" "$3" "$4" "$5"
         ;;
     audio/*)
-        exiftool "$1"
+        mediainfo "$1" | tabulate -f plain -s :
         ;;
     application/x-bittorrent)
         transmission-show "$1"

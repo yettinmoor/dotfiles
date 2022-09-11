@@ -20,6 +20,7 @@ set wildmode=longest,list,full
 set encoding=utf-8
 nnoremap <silent> <Esc> :noh<CR><Esc>
 set conceallevel=2
+set ignorecase
 set smartcase
 set wildignore+=*/.git/*
 setl formatoptions-=cro
@@ -187,3 +188,7 @@ au BufRead,BufNewFile *.vs,*.fs set filetype=glsl
 au BufRead,BufNewFile *.asm set filetype=nasm
 au BufRead,BufNewFile fonts.conf set filetype=xml
 au BufRead,BufNewFile *.mnemo set filetype=mnemo
+
+au BufWritePre *.sentences %!./sentences %
+au BufWritePre *.sentences :Tabularize /|/
+au BufRead,BufNewFile *.sentences let b:surround_113 = "「\r」"

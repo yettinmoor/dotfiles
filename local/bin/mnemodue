@@ -3,8 +3,8 @@ fd -e mnemo . ~/docs/mnemo -x mnemo -i \
     | awk '/old/ {print $1}' \
     | paste -sd '+' \
     | bc \
-    | awk '/^[1-9]/ {print $1, "cards due"}'
+    | awk '{print $1, "cards due"}'
 
-# # shellcheck disable=SC2016
-# fd 'mnemo$' ~/docs/mnemo -x \
-#     sh -c 'echo {/.}: "$(mnemo -i {} | awk "/old/ {print \$1}")"'
+for deck in $(fd 'mnemo$' ~/docs/mnemo); do
+    echo "$(basename "$deck"): $(mnemo -i "$deck" | awk "/old/ {print \$1}")"
+done
