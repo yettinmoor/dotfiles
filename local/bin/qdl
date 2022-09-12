@@ -30,9 +30,8 @@ file="$(basename "$url")"
 
 set -e
 
-if [ -z "$dir" ]; then
-    dir=$(dirpick)
-fi
+[ -z "$dir" ] && dir=$(dirpick)
+[ -z "$dir" ] && exit
 
 cd "$dir"
 

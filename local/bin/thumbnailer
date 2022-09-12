@@ -5,13 +5,11 @@ DEFAULT_QUAL=7
 DEFAULT_SIZE=300
 
 usage() {
-    cat << EOF
-Usage: thumbnailer [options] infile
-  -o [outfile]  Outfile path (default: [infile].jpg)
-  -s [size]     Tile width in pixels (default: $DEFAULT_SIZE)
-  -q [quality]  Quality (1-10, default: $DEFAULT_QUAL)
-  -h            Print usage
-EOF
+    echo 'Usage: thumbnailer [options] infile'
+    echo '  -o [outfile]  Outfile path (default: [infile].jpg)'
+    echo "  -s [size]     Tile width in pixels (default: $DEFAULT_SIZE)"
+    echo "  -q [quality]  Quality (1-10, default: $DEFAULT_QUAL)"
+    echo '  -h            Print usage'
     exit "$1"
 }
 
@@ -31,9 +29,14 @@ outfile="${outfile:-${infile}.jpg}"
 
 [ -z "$infile" ] && usage 1
 
-seq 10 10 90 | xargs -P 0 -I {} ffmpegthumbnailer -i "$infile" -o "${outfile}_{}" -s "${size:-$DEFAULT_SIZE}" -q "${qual:-$DEFAULT_QUAL}" -t "{}%"
+seq 10 10 90 \
+    | xargs -P 0 -I {} \
+        ffmpegthumbnailer \
+        -i "$infile" \
+        -o "${outfile}_{}" \
+        -s "${size:-$DEFAULT_SIZE}" \
+        -q "${qual:-$DEFAULT_QUAL}" \
+        -t "{}%"
 
-# shellcheck disable=SC2086
-montage -geometry +0+0 ${outfile}_* "$outfile"
-
-seq 10 10 90 | xargs -P 0 -I {} rm "${outfile}_{}"
+fd -u --prune "$(basename "$outfile")_" "$(dirname "$outfile")" -X \
+    montage -geometry +0+0 {} "$outfile" \; -X rm

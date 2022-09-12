@@ -29,7 +29,7 @@ config.set('content.netrc_file', CONFIG + '/netrc')
 config.set('content.notifications.enabled', False)
 config.set('editor.command', [TERM, '-e', EDITOR, '{file}'])
 config.set('content.notifications.enabled', False)
-config.set('colors.webpage.darkmode.enabled', True)
+# config.set('colors.webpage.darkmode.enabled', True)
 c.completion.favorite_paths = [os.path.join(WIKI_DIR, 'html')]
 
 # basic rebinds

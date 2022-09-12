@@ -1,10 +1,10 @@
 #!/usr/bin/env sh
-fd -e mnemo . ~/docs/mnemo -x mnemo -i \
+fd -e mnemo . ~/docs/mnemo -x mnemo -i 2> /dev/null \
     | awk '/old/ {print $1}' \
     | paste -sd '+' \
     | bc \
     | awk '{print $1, "cards due"}'
 
 for deck in $(fd 'mnemo$' ~/docs/mnemo); do
-    echo "$(basename "$deck"): $(mnemo -i "$deck" | awk "/old/ {print \$1}")"
+    echo "$(basename "$deck"): $(mnemo -i "$deck" 2> /dev/null | awk "/old/ {print \$1}")"
 done
