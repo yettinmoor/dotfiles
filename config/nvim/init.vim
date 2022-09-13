@@ -45,7 +45,6 @@ let g:ctrlp_show_hidden = 1
 
 """ Term
 nmap <A-CR> :vs term://zsh<CR>
-tmap <C-c> <Esc>:q!<CR>
 
 """ Statusline
 set statusline+=%#warningmsg#
@@ -176,6 +175,7 @@ let g:ale_fixers['python'] = ['autopep8']
 let g:ale_fixers['rust'] = ['rustfmt']
 let g:ale_fixers['sh'] = ['shfmt']
 let g:ale_fixers['typescript'] = ['deno']
+let g:ale_fixers['xml'] = ['prettier']
 let g:ale_fixers['yaml'] = ['prettier']
 
 

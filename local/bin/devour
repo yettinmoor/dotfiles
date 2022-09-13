@@ -1,5 +1,11 @@
 #!/usr/bin/env sh
-node=$(bspc query -n -N)
+
+node="$(bspc query -n -N)"
+desk="$(bspc query -n "$node" -D)"
+
 bspc node "$node" -g hidden=on
+
 "$@"
+
 bspc node "$node" -g hidden=off
+[ "$desk" = "$(bspc query -d -D)" ] && bspc node -f "$node"
