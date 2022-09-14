@@ -42,13 +42,13 @@ config.bind('gH', 'spawn -u his')
 config.bind('<alt-v>', 'set-cmd-text --append -- {clipboard}', mode='command')
 
 # statusbar shenanigans
-config.bind('<ctrl-b>', 'config-cycle statusbar.show always in-mode')
-config.bind(':', 'set statusbar.show always;; set-cmd-text :')
-config.bind('/', 'set statusbar.show always;; set-cmd-text /')
-config.bind(
-    '<Escape>', 'mode-enter normal;; set statusbar.show in-mode', mode='command')
-config.bind(
-    '<Return>', 'command-accept;; set statusbar.show in-mode', mode='command')
+# config.bind('<ctrl-b>', 'config-cycle statusbar.show always in-mode')
+# config.bind(':', 'set statusbar.show always;; set-cmd-text :')
+# config.bind('/', 'set statusbar.show always;; set-cmd-text /')
+# config.bind(
+#     '<Escape>', 'mode-enter normal;; set statusbar.show in-mode', mode='command')
+# config.bind(
+#     '<Return>', 'command-accept;; set statusbar.show in-mode', mode='command')
 
 # tabs
 config.set('tabs.show', 'multiple')

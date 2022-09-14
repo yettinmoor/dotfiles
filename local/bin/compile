@@ -5,9 +5,7 @@ file="$(readlink -f "$1")"
 dir="$(dirname "$file")"
 base="${file%.*}"
 
-[ -z "$file" ] && exit 1
-
-head -n 1 "$file" | rg -o 'compiler: (.+)' -r '$1' | {
+[ -n "$file" ] && head -n 1 "$file" | rg -o 'compiler: (.+)' -r '$1' | {
     read -r cmd
     [ -n "$cmd" ] && {
         $cmd "$file"
@@ -15,8 +13,8 @@ head -n 1 "$file" | rg -o 'compiler: (.+)' -r '$1' | {
     }
 }
 
-if [ -f .compiler ]; then
-    sh .compiler
+if [ -f .compile ]; then
+    sh .compile
     exit
 fi
 
@@ -24,6 +22,8 @@ if [ -f Makefile ]; then
     make
     exit
 fi
+
+[ -z "$file" ] && exit 1
 
 case "${file#*.}" in
     # shell
@@ -45,15 +45,13 @@ case "${file#*.}" in
     ts)  deno run --allow-read "$file" ;;
     zig) if [ -f "build.zig" ]; then zig build run; else zig run "$(grep -q "cImport" "$file" && echo "-lc")" "$file"; fi ;;
 
-    # document formatting
-    tex) xelatex --output-directory="$dir" "$base" ;;
-    md)  pandoc "$file" --pdf-engine=xelatex --template=template -o "$base".pdf ;;
-
-    # sent
+    # documents
+    tex)  xelatex --output-directory="$dir" "$base" ;;
+    md)   pandoc "$file" --pdf-engine=xelatex --template=template -o "$base".pdf ;;
     sent) setsid sent "$file" & ;;
 
     # custom formats
-    mnemo) mnemo -i "$file" ;;
+    mnemo)     mnemo -i "$file" ;;
     sentences) mnemo "${base}.mnemo" -a "$file" && echo > "$file" ;;
 
     # shebang
