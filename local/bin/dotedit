@@ -9,13 +9,15 @@ dir=$(mktemp -d)
 fifo="$dir/se.fifo"
 mkfifo "$fifo"
 
-git -C ~/repos/dotfiles ls-tree -r --name-only HEAD >> "$fifo" &
-fd . --base-directory ~/repos/dotfiles local/bin >> "$fifo" &
-fd . --base-directory ~/repos/dotfiles config/shell >> "$fifo" &
+dot=~/repos/dotfiles
+
+git -C $dot ls-tree -r --name-only HEAD >> "$fifo" &
+fd . --base-directory $dot local/bin >> "$fifo" &
+fd . --base-directory $dot config/shell >> "$fifo" &
 
 sort "$fifo" \
     | uniq \
-    | fzf --reverse --color=16 \
+    | fzf --preview="bat -p --color always $dot/{}" \
     | xargs -r -I {} "$EDITOR" "$HOME/repos/dotfiles/{}"
 
 rm -r "$dir"

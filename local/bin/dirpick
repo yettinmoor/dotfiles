@@ -7,9 +7,10 @@ pick() {
         | fzf \
             --bind 'tab:replace-query' \
             --bind 'tab:+reload[echo {}; fd -t d . {} | sed s:/$::]' \
-            --bind 'alt-bs:reload[echo $(dirname {}); fd -t d . "$(dirname {})" | sed s:/$::]' \
-            --bind 'alt-bs:+clear-query' \
-            --bind 'alt-bs:+first'
+            --bind 'alt-bs:backward-kill-word' \
+            --bind 'alt-bs:+reload[echo {q}; fd -t d . {q} | sed s:/$::]' \
+            --bind 'alt-n:reload[echo {q}]' \
+            --bind 'alt-n:+execute[mkdir -p {q}]'
 }
 
 [ -t 0 ] || pick() {
