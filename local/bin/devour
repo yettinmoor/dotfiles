@@ -5,7 +5,25 @@ desk="$(bspc query -n "$node" -D)"
 
 bspc node "$node" -g hidden=on
 
+# tmp=$(mktemp -d)
+# fifo="$tmp/fifo"
+# mkfifo "$fifo"
+
+# bspc subscribe -c 1 node_add | cut -d ' ' -f 5 > "$fifo" &
+
 "$@"
+# pid=$!
+
+# new_node="$(cat "$fifo")"
+
+# bspc subscribe node_transfer \
+#     | stdbuf -i0 -o0 awk "\$4 == \"$new_node\" {print \$6}" > log &
+    # | stdbuf -i0 -o0 xargs -I {} sh -c "echo $node > log; bspc node \"$node\" -d {}" &
+
+# subpid=$!
+
+# wait "$pid"
+# kill "$subpid"
 
 bspc node "$node" -g hidden=off
 [ "$desk" = "$(bspc query -d -D)" ] && bspc node -f "$node"

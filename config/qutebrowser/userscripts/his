@@ -3,7 +3,7 @@
 SQLCMD='SELECT title,url FROM History ORDER BY atime DESC'
 cmd="sqlite3 \"$XDG_DATA_HOME/qutebrowser/history.sqlite\" '$SQLCMD' \
     | fzf -d '\\|' --with-nth 1 \
-    | awk -v FS='|' '{ print \"open \" $1 }' \
+    | awk -v FS='|' '{ print \"open\", \$2 }' \
     > $QUTE_FIFO"
 
 "$TERMINAL" -c Dirpick -o - -e sh -c "$cmd"
