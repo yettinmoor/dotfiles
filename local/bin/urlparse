@@ -3,13 +3,13 @@ use v5.36;
 
 chomp($_ = <STDIN>);
 
-my $URL = "";
+my $URL = "^(https?://)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]+\.[a-zA-Z0-9]+.*\$";
 if (/"$URL"/) { print; exit; }
 
 my @args = split / +/, $_;
 my $key = shift @args;
 
-my $DIR="$ENV{HOME}/.config/urlparse";
+my $DIR = "$ENV{HOME}/.config/urlparse";
 my $find = "rg '^$key (.*)' -r '\$1'";
 
 if (my $url = `$find "$DIR/searchengines"`) { printf "$url", (join ' ', @args); exit; }
