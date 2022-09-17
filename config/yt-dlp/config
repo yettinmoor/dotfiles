@@ -9,3 +9,5 @@
 
 --netrc
 --netrc-location ~/.config/netrc
+
+--mark-watched

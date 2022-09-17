@@ -29,8 +29,8 @@ super + {_, shift +} z
 # Letters
 super + shift + q
 	prompt "Exit X?" "killall Xorg"
-super + w
-	urlparse $(dmenu -l 0 -p "$BROWSER") | xargs -r0 "$BROWSER" --target window
+super + {_,shift +} w
+	dmenu -l 0 -p "$BROWSER" | urlparse | xargs -r0 "$BROWSER" { ,--target window}
 super + e
 	$TERMINAL -e $FILE
 super + t

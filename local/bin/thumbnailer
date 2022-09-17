@@ -38,5 +38,5 @@ seq 10 10 90 \
         -q "${qual:-$DEFAULT_QUAL}" \
         -t "{}%"
 
-fd -u --prune "$(basename "$outfile")_" "$(dirname "$outfile")" -X \
-    montage -geometry +0+0 {} "$outfile" \; -X rm
+montage -geometry +0+0 "${outfile}_"* "$outfile"
+rm "${outfile}_"*

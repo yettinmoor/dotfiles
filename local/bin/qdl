@@ -50,6 +50,21 @@ if [ -n "$STORE" ]; then
     file=$(store -t . -p "$file")
 fi
 
-dunstify -r "$id" qdl \
-    "$(realpath "$file" | sed "s:^$HOME:~:")" \
-    -i "$(realpath "$file")"
+case "$(file --mime-type "$file" -bL)" in
+    image/*)
+        dunstify -r "$id" qdl \
+            "$(realpath "$file" | sed "s:^$HOME:~:")" \
+            -i "$(realpath "$file")"
+        ;;
+    video/*)
+        tmp="$(mktemp)"
+        ffmpegthumbnailer -i "$file" -o "$tmp" -s 300
+        dunstify -r "$id" qdl \
+            "$(realpath "$file" | sed "s:^$HOME:~:")" \
+            -i "$tmp"
+        rm "$tmp"
+        ;;
+    *)
+        dunstify -r "$id" qdl "$(realpath "$file" | sed "s:^$HOME:~:")"
+        ;;
+esac

@@ -1,27 +1,19 @@
-#!/usr/bin/env sh
+#!/usr/bin/env perl
+use v5.36;
 
-[ -z "$1" ] && exit 1
+chomp($_ = <STDIN>);
 
-# If $1 is URL, just open it
-echo "$1" | grep -E '^(https?://)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]+\.[a-zA-Z0-9]+.*$' && exit
+my $URL = "";
+if (/"$URL"/) { print; exit; }
 
-dir=~/.config/urlparse
+my @args = split / +/, $_;
+my $key = shift @args;
 
-# If has search string, check searchengines
-if [ $# -gt 1 ] \
-    && [ -n "${se:=$(awk "!/^#/ && \$1 == \"$1\" {print \$2}" $dir/searchengines)}" ]; then
-    shift
-    # shellcheck disable=SC2059
-    printf "$se" "$*"
-    exit
-fi
+my $DIR="$ENV{HOME}/.config/urlparse";
+my $find = "rg '^$key (.*)' -r '\$1'";
 
-# Check bookmarks
-if [ -n "${bm:=$(awk "!/#/ && \$1 == \"$1\" {print \$2}" $dir/bookmarks)}" ]; then
-    echo "$bm"
-    exit
-fi
+if (my $url = `$find "$DIR/searchengines"`) { printf "$url", (join ' ', @args); exit; }
+if (my $url = `$find "$DIR/bookmarks"`)     { print  "$url"; exit; }
 
-# Default to 1st search engine
-# shellcheck disable=SC2059
-printf "$(awk 'NR==1 {print $2}' $dir/searchengines)" "$*"
+unshift @args, $key;
+printf `awk 'NR==1 { print \$2 }'`, join(' ', @args);

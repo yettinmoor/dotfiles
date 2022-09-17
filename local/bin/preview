@@ -75,8 +75,10 @@ case "$(file --mime-type "$1" -bL)" in
         else
             [ ! -f "${CACHE}" ] \
                 && unzip -lqq "$1" 2> /dev/null \
-                    | awk -F ' +' '/(jpg|png)/ {$1=$2=$3=$4=""; print}' \
+                    | rg -i '(jpe?g|png)$' \
+                    | awk -F ' +' '{$1=$2=$3=$4=""; print}' \
                     | sed 's/^ \+//; s/\(\[\|\]\|\*\)/\\\1/g' \
+                    | sort -n \
                     | head -n 1 \
                     | {
                         read -r extract

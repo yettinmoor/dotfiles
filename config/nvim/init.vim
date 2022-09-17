@@ -187,8 +187,6 @@ au BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
 au BufRead,BufNewFile *.vs,*.fs set filetype=glsl
 au BufRead,BufNewFile *.asm set filetype=nasm
 au BufRead,BufNewFile fonts.conf set filetype=xml
-au BufRead,BufNewFile *.mnemo set filetype=mnemo
 
-au BufWritePre *.sentences %!./sentences %
-au BufWritePre *.sentences :Tabularize /|/
-au BufRead,BufNewFile *.sentences let b:surround_113 = "「\r」"
+au BufRead,BufNewFile *.mnemo set filetype=mnemo
+au BufRead,BufNewFile *.sentences set filetype=sentences

@@ -85,7 +85,7 @@ for file in "$@"; do
                     wrap zathura "$file"
                     ;;
                 application/x-rar | application/zip)
-                    if als -qq "$file" | grep -Ev '(jp?g|png)'; then
+                    if als -qq "$file" | grep -Eiv '(jpe?g|png|/)$'; then
                         wraptty "$EDITOR" "$file"
                     else
                         wrap zathura "$file"
