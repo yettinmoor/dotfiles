@@ -3,8 +3,8 @@
 # core
 alias ls='exa -h --group-directories-first'
 alias ll='ls -l'
-alias cp='cp -v'
-alias mv='mv -v'
+alias cp='cp -iv'
+alias mv='mv -iv'
 alias cd..='cd ..'
 alias grep='rg -S'
 alias diff='diff --color=auto'
@@ -42,6 +42,7 @@ alias trem='transmission-remote'
 alias v='$EDITOR'
 alias wi='cd ~/docs/wiki && nvim index.wiki'
 alias z='zathura'
+alias じしょ='jisho'
 
 # git
 alias ga='git add'

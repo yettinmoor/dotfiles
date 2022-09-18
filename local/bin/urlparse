@@ -12,8 +12,11 @@ my $key = shift @args;
 my $DIR = "$ENV{HOME}/.config/urlparse";
 my $find = "rg '^$key (.*)' -r '\$1'";
 
-if (my $url = `$find "$DIR/searchengines"`) { printf "$url", (join ' ', @args); exit; }
-if (my $url = `$find "$DIR/bookmarks"`)     { print  "$url"; exit; }
-
-unshift @args, $key;
-printf `awk 'NR==1 { print \$2 }'`, join(' ', @args);
+if (my $url = `$find "$DIR/searchengines"`) {
+    printf "$url", (join ' ', @args);
+} elsif ($url = `$find "$DIR/bookmarks"`) {
+    print "$url";
+} else {
+    unshift @args, $key;
+    printf `awk 'NR==1 { print \$2 }'`, join(' ', @args);
+}
