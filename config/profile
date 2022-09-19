@@ -27,7 +27,7 @@ export GPG_TTY
 
 # misc program stuff.
 export BAT_THEME=gruvbox-dark
-export FZF_DEFAULT_OPTS='--border --multi'
+export FZF_DEFAULT_OPTS='--border --multi --reverse'
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export INPUTRC="$XDG_CONFIG_HOME/inputrc"
 export LD_LIBARY_PATH=/usr/local/lib

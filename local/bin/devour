@@ -15,22 +15,19 @@ bspc subscribe -c 1 node_add | cut -d ' ' -f 5 > "$fifo" &
 pid=$!
 
 new_node="$(cat "$fifo")"
-echo "new node: $new_node"
 
 rm -r "$tmp"
 
 bspc subscribe node_transfer \
-    | while read -r _ _ _ src_node _ desktop _; do
+    | while read -r _ _ _ src_node _ new_desk _; do
         if [ "$new_node" = "$src_node" ]; then
             bspc node "$node" -g hidden=off
-            bspc node "$node" -d "$desktop"
+            bspc node "$node" -d "$new_desk"
             bspc node "$node" -g hidden=on
         fi
     done &
 
 subpid=$!
-
-echo "here... $!"
 
 wait "$pid"
 kill "$subpid"

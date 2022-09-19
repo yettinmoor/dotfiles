@@ -6,31 +6,35 @@ super + shift + Return
 
 # bspwm
 super + F5
-     bspc wm -r; pkill -SIGUSR1 picom
+    bspc wm -r; pkill -SIGUSR1 picom
 super + {_,shift + } {1,2,3,4,5,6,7,8,9,0}
-     bspc {desktop -f,node -d} ^{1,2,3,4,5,6,7,8,9,0}
+    bspc {desktop -f,node -d} ^{1,2,3,4,5,6,7,8,9,0}
 super + q
-     bspc node -c
+    bspc node -c
 super + f
-     bspc node -t \~fullscreen
+    bspc node -t \~fullscreen
 super + {_,shift +} {j,k}
-     bspc node {-f,-s} '{next,prev}.local.!hidden.window'
+    bspc node {-f,-s} '{next,prev}.local.!hidden.window'
 super + {_,shift +} {h,l}
-     bspc node {@parent,@/1/parent} -r {-,+}.05
+    bspc node {@parent,@/1/parent} -r {-,+}.05
 super + space
-     bspc node -t tiled; bspc node -s @/1
+    bspc node -t tiled; bspc node -s @/1
 super + shift + space
-     bspc node -t floating
+    bspc node -t floating
 super + shift + r
-     bspc node @/1/parent -R 270
+    bspc node @/1/parent -R 270
 super + {_, shift +} z
-     bspc config -d any.focused window_gap {30,0}
+    bspc config -d any.focused window_gap {30,0}
+super + Tab
+	bspc desktop -f last
+super + Escape
+	bspc monitor -f next
 
 # Letters
 super + shift + q
 	prompt "Exit X?" "killall Xorg"
 super + {_,shift +} w
-	dmenu -l 0 -p "$BROWSER" | urlparse | xargs -r0 "$BROWSER" { ,--target window}
+	dmenu -l 0 -p "$BROWSER" | urlparse | xargs -r0 "$BROWSER" {--target window, }
 super + e
 	$TERMINAL -e $FILE
 super + t
@@ -55,6 +59,8 @@ super + a
 	$TERMINAL -e qalc
 super + s
 	qplay
+super + shift + s
+	warncaps
 super + d
 	rofi -show run
 super + shift + d
@@ -97,10 +103,6 @@ super + {_,shift +} F2
 	setbg {pick,random}
 super + {_,shift +} F9
 	dmenu{mount,umount}
-
-# Caps Lock
-super + Escape
-	warncaps
 
 # Audio
 super + {_,shift +} BackSpace

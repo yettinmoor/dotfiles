@@ -2,7 +2,7 @@
 
 # shellcheck disable=SC2016
 usage() {
-    echo 'dl [-vps] <url>'
+    echo 'qdl [-vps] <url>'
     echo 'download manager.'
     echo 'options:'
     echo ' -v       | use yt-dlp instead of curl.'
