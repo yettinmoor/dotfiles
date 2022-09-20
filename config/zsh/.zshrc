@@ -71,6 +71,9 @@ bindkey '^e' edit-command-line
 # Backwards search
 bindkey -v '^R' history-incremental-search-backward
 
+# comments.
+setopt interactivecomments
+
 # Load aliases and shortcuts if existent.
 . $HOME/.config/shell/allrc 2> /dev/null
 
