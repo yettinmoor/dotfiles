@@ -22,6 +22,7 @@ alias smic='sudo make install clean'
 alias sni='sudo ninja install'
 
 # misc
+alias br='spawn browser'
 alias calcurse='calcurse -D ~/.config/calcurse'
 alias cli='xclip -sel c -i'
 alias clo='xclip -sel c -o'
