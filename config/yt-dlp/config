@@ -4,7 +4,7 @@
 
 --add-metadata
 
---sub-lang en
+--sub-lang en,ja
 --embed-subs
 
 --netrc
