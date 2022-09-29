@@ -52,7 +52,7 @@ case "${file#*.}" in
 
     # custom formats
     mnemo)     mnemo -i "$file" ;;
-    sentences) mnemo "${base}.mnemo" -a "$file" && echo > "$file" ;;
+    sentences) mnemo "${dir}/../$(basename "$base")/sen.mnemo" -a "$file" && echo > "$file" ;;
 
     # shebang
     *) sed -n '1{/^#!/s///p}' "$file" | xargs -r -I {} "$file" ;;

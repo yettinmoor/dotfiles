@@ -188,5 +188,6 @@ au BufRead,BufNewFile *.vs,*.fs set filetype=glsl
 au BufRead,BufNewFile *.asm set filetype=nasm
 au BufRead,BufNewFile fonts.conf set filetype=xml
 
+""" mnemo
 au BufRead,BufNewFile *.mnemo set filetype=mnemo
-au BufRead,BufNewFile *.sentences set filetype=sentences
+au BufRead,BufNewFile */mnemo/sen/* set filetype=sentences

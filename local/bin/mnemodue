@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-cd ~/docs/mnemo || exit 1
+cd "${MNEMO_DIR:?}" || exit 1
 
 fd -e mnemo -X mnemo -i \
     | cut -d ' ' -f2 \
@@ -9,6 +9,6 @@ fd -e mnemo -X mnemo -i \
     | awk '{print $1, "cards due"}'
 
 fd --strip-cwd-prefix -e mnemo -X mnemo -i \
-    | sort -rn -k 2 \
+    | sort -n -k 2r,1 \
     | sed 's/^.\///; /[1-9][0-9]* due/s/.*/\x1b[0;33m->:&\x1b[0m/; / 0 due/s/.*/:&/' \
     | tabulate -s '[:,]'

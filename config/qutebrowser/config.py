@@ -8,13 +8,13 @@ c: ConfigContainer = c
 CONFIG = os.getenv('XDG_CONFIG_HOME')
 EDITOR = os.getenv('EDITOR')
 HOME = os.getenv('HOME')
-TERM = os.getenv('TERM')
+TERMINAL = os.getenv('TERMINAL')
 WIKI_DIR = os.getenv('WIKI_DIR')
 
 assert CONFIG is not None
 assert EDITOR is not None
 assert HOME is not None
-assert TERM is not None
+assert TERMINAL is not None
 assert WIKI_DIR is not None
 
 ####
@@ -27,9 +27,9 @@ config.bind('<ctrl-r>', 'config-source')
 config.set('url.default_page', os.getenv('HOMEPAGE'))
 config.set('content.netrc_file', CONFIG + '/netrc')
 config.set('content.notifications.enabled', False)
-config.set('editor.command', [TERM, '-e', EDITOR, '{file}'])
+config.set('editor.command', [TERMINAL, '-e', EDITOR, '{file}'])
 config.set('content.notifications.enabled', False)
-# config.set('colors.webpage.darkmode.enabled', True)
+config.set('colors.webpage.darkmode.enabled', True)
 c.completion.favorite_paths = [os.path.join(WIKI_DIR, 'html')]
 
 # basic rebinds
@@ -82,8 +82,8 @@ config.set('downloads.position', 'bottom')
 config.set('downloads.remove_finished', 2000)
 
 # file picker
-select_file_cmd = [TERM, '-e', 'lf', '-selection-path={}']
-select_dir_cmd = [TERM, '-c', 'Dirpick', '-e', 'sh', '-c', 'dirpick > {}']
+select_file_cmd = [TERMINAL, '-e', 'lf', '-selection-path={}']
+select_dir_cmd = [TERMINAL, '-c', 'Dirpick', '-e', 'sh', '-c', 'dirpick > {}']
 config.set('fileselect.handler', 'external')
 config.set('fileselect.folder.command', select_dir_cmd)
 config.set('fileselect.single_file.command', select_file_cmd)
