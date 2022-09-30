@@ -1,11 +1,20 @@
 #!/usr/bin/env sh
 # All-in-one file compiler.
 
+while getopts f: o; do
+    case "$o" in
+        f) ft="$OPTARG" ;;
+        *) exit 1 ;;
+    esac
+done
+
+shift $((OPTIND - 1))
+
 file="$(readlink -f "$1")"
 dir="$(dirname "$file")"
-base="${file%.*}"
+noext="${file%.*}"
 
-[ -n "$file" ] && head -n 1 "$file" | rg -o 'compiler: (.+)' -r '$1' | {
+[ -n "$file" ] && head -n 1 "$file" | rg -o 'compile: (.+)' -r '$1' | {
     read -r cmd
     [ -n "$cmd" ] && {
         $cmd "$file"
@@ -13,47 +22,47 @@ base="${file%.*}"
     }
 }
 
-if [ -f .compile ]; then
+[ -f .compile ] && {
     sh .compile
     exit
-fi
+}
 
-if [ -f Makefile ]; then
+[ -f Makefile ] && {
     make
     exit
-fi
+}
 
 [ -z "$file" ] && exit 1
 
-case "${file#*.}" in
+case "$ft" in
     # shell
     sh) sh "$file" ;;
 
     # programming
-    c)   cc "$file" -o "$base" && "$base" ;;
-    cpp) g++ "$file" -o "$base" && "$base" ;;
+    c)   cc "$file" -o "$noext" && "$noext" ;;
+    cpp) g++ "$file" -o "$noext" && "$noext" ;;
     cs)  mcs "$file" ;;
     go)  go run "$file" ;;
     hs)  runhaskell "$file" ;;
     js)  node "$file" ;;
-    nim) if fd -q -e nimble; then nimble build -r; else nim r --verbosity:0 "$file"; fi ;;
+    nim) nimble build -r ;;
     pl)  perl "$file" ;;
     py)  python "$file" ;;
     rkt) racket "$file" ;;
     rs)  cargo run ;;
     scm) chicken-csi -q "$file" ;;
     ts)  deno run --allow-read "$file" ;;
-    zig) if [ -f "build.zig" ]; then zig build run; else zig run "$(grep -q "cImport" "$file" && echo "-lc")" "$file"; fi ;;
+    zig) zig build run ;;
 
     # documents
-    tex)  xelatex --output-directory="$dir" "$base" ;;
-    md)   pandoc "$file" --pdf-engine=xelatex --template=template -o "$base".pdf ;;
+    tex)  xelatex --output-directory="$dir" "$noext" ;;
+    md)   pandoc "$file" --pdf-engine=xelatex --template=template -o "$noext".pdf ;;
     sent) setsid sent "$file" & ;;
 
     # custom formats
     mnemo)     mnemo -i "$file" ;;
-    sentences) mnemo "${dir}/../$(basename "$base")/sen.mnemo" -a "$file" && echo > "$file" ;;
+    sentences) mnemo "$dir/../$(basename "$file")/sen.mnemo" -a "$file" && echo > "$file" ;;
 
     # shebang
-    *) sed -n '1{/^#!/s///p}' "$file" | xargs -r -I {} "$file" ;;
+    *) $ft "$file" ;;
 esac

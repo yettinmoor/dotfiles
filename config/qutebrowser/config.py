@@ -17,6 +17,8 @@ assert HOME is not None
 assert TERMINAL is not None
 assert WIKI_DIR is not None
 
+CSS = CONFIG + '/qutebrowser/css/gruvbox.css'
+
 ####
 
 config.load_autoconfig(False)
@@ -24,13 +26,19 @@ config.bind('<ctrl-e>', 'config-edit')
 config.bind('<ctrl-r>', 'config-source')
 
 # basic settings
+config.set('fonts.default_size', '12pt')
+config.set('zoom.default', '125%')
 config.set('url.default_page', os.getenv('HOMEPAGE'))
 config.set('content.netrc_file', CONFIG + '/netrc')
 config.set('content.notifications.enabled', False)
 config.set('editor.command', [TERMINAL, '-e', EDITOR, '{file}'])
 config.set('content.notifications.enabled', False)
-config.set('colors.webpage.darkmode.enabled', True)
 c.completion.favorite_paths = [os.path.join(WIKI_DIR, 'html')]
+
+# aesth
+# config.set('colors.webpage.darkmode.enabled', True)
+config.set('content.user_stylesheets', CSS)
+config.bind('<ctrl-m>', f'config-cycle content.user_stylesheets "{CSS}" ""')
 
 # basic rebinds
 config.bind('<tab>', 'nop')

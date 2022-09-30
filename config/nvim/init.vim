@@ -1,7 +1,7 @@
-""" Plug
+""" plug
 source ~/.config/nvim/plug.vim
 
-""" Colorscheme
+""" color
 set termguicolors
 set bg=dark
 let g:gruvbox_material_background='medium'
@@ -11,7 +11,7 @@ colo gruvbox-material
 hi Normal guibg=NONE ctermbg=NONE
 hi EndOfBuffer guibg=NONE ctermbg=NONE
 
-""" Basic options
+""" basics
 let mapleader=","
 set mouse=a
 set number relativenumber
@@ -25,14 +25,14 @@ set smartcase
 set wildignore+=*/.git/*
 setl formatoptions-=cro
 
-""" Compile & show scripts
-nmap <leader>c :w! \| :sp term://compile \"%\"<CR>
-nmap <leader>p :w! \| :sp term://run \"%\"<CR>
+""" compile
+nmap <silent> <leader>c :w! \| :execute 'sp term://compile -f ' . &filetype . ' ' . bufname("%")<CR>
+nmap <silent> <leader>p :w! \| :sp term://run \"%\"<CR>
 
-""" Delete trailing whitespace
+""" trailing whitespace
 au BufWritePre * %s/\s\+$//e
 
-""" Tabbing
+""" tabs
 set scrolloff=8
 set tabstop=4
 set shiftwidth=4
@@ -43,19 +43,19 @@ let g:ctrlp_by_filename = 1
 let g:ctrlp_regexp = 0
 let g:ctrlp_show_hidden = 1
 
-""" Term
+""" term
 nmap <A-CR> :vs term://zsh<CR>
 
-""" Statusline
+""" statusline
 set statusline+=%#warningmsg#
 set statusline+=%*
 
-""" Term mode
+""" term
 au TermOpen * set nonumber norelativenumber
 au TermOpen * startinsert
 tnoremap <Esc> <C-\><C-n>
 
-""" Misc remaps
+""" misc remaps
 nnoremap S :%s//g<Left><Left>
 nnoremap <A-S> :.s//g<Left><Left>
 xnoremap S :s//g<Left><Left>
@@ -63,7 +63,7 @@ nnoremap c "_c
 nnoremap <leader>g :Magit<CR>
 map <leader>ff :Goyo \| set linebreak \| hi Normal guibg=NONE ctermbg=NONE<CR>
 
-""" Annoying keys
+""" annoying keys
 command! W w
 map Q <nop>
 
@@ -72,7 +72,7 @@ map <C-n> :NERDTreeToggle<CR>
 let NERDTreeMinimalUI = 1
 au StdinReadPre * let s:std_in=1
 
-""" Splits
+""" splits
 set splitbelow splitright
 tnoremap <A-h> <C-\><C-N><C-w>h
 tnoremap <A-j> <C-\><C-N><C-w>j
@@ -87,7 +87,7 @@ nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
 
-""" VimWiki
+""" vimwiki
 let g:vimwiki_list = [{
             \ 'path': '~/docs/wiki',
             \ 'path_html': '~/docs/wiki/html',
@@ -100,7 +100,7 @@ let g:vimwiki_global_ext = 0
 """ Recompile files when edited
 au BufWritePost *shortcuts/* !mkshortcuts
 
-""" CoC
+""" coc
 let g:coc_snippet_next = '<S-Tab>'
 set shortmess+=c
 " set signcolumn=yes
@@ -110,7 +110,7 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1] =~# '\s'
 endfunction
 
-" Insert <tab> when previous text is space, refresh completion if not.
+" insert <tab> when previous text is space, refresh completion if not.
 inoremap <silent><expr> <TAB>
 \ coc#pum#visible() ? coc#pum#next(1):
 \ <SID>check_back_space() ? "\<Tab>" :
@@ -141,7 +141,7 @@ omap af <Plug>(coc-funcobj-a)
 
 inoremap <F2> <Plug>(coc-rename)
 
-""" Ale
+""" ale
 let g:ale_sign_error                  = '✘'
 let g:ale_sign_warning                = '⚠'
 highlight ALEErrorSign ctermbg        =NONE ctermfg=red
@@ -179,7 +179,7 @@ let g:ale_fixers['xml'] = ['prettier']
 let g:ale_fixers['yaml'] = ['prettier']
 
 
-""" Misc filetype stuff
+""" misc filetype stuff
 nmap <leader>ft :set ft=
 
 au BufRead,BufNewFile *.h set filetype=c
