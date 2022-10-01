@@ -1,0 +1,47 @@
+#!/usr/bin/env sh
+
+L='\['
+R='\]'
+
+lang="$(basename "$1")"
+
+case "$lang" in
+    ja)
+        L='「'
+        R='」'
+        translateword() {
+            jisho -n 1 "$1" | {
+                read -r head
+                read -r defn
+                printf "%s: %s" \
+                    "$(echo "$head" | rg -o '^[^\]]+]')" \
+                    "$(echo "$defn" | sed 's/^1\. \+//')"
+            }
+        }
+        ;;
+    fr)
+        translateword() {
+            printf "%s: %s" "$1" "$(trans -b "${lang}:" "$1")"
+        }
+        ;;
+    *) exit 1 ;;
+esac
+
+nl -b a | while read -r i line; do
+    if { echo "$line" | grep -q "$L.\+$R"; } && ! { echo "$line" | grep -q '|'; }; then
+        echo "$line" \
+            | rg -o "$L([^$R]*)$R" -r '$1' \
+            | nl \
+            | while read -r j word; do
+                printf '%s %s | %s\n' \
+                    "${i}.${j}" \
+                    "$(translateword "$word")" \
+                    "$(echo "$line" | perl -pe "s/$L(?!${word}$R)//g; s/(?<!$L${word})$R//g")" \
+                    &
+            done &
+    else
+        echo "$i $line"
+    fi
+done | sort -n | cut -d ' ' -f2-
+
+wait
