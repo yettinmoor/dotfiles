@@ -75,36 +75,36 @@
   --task-checkbox: var(--dark4);
 }
 
-.theme-light {
-  --background-primary: var(--light0);
-  --background-primary-alt: var(--light0);
-  --background-secondary: var(--light0-hard);
-  --background-secondary-alt: var(--light1);
-  --text-normal: var(--dark0);
-  --text-faint: var(--dark3);
-  --text-title-h1: var(--faded-red);
-  --text-title-h2: var(--faded-orange);
-  --text-title-h3: var(--faded-yellow);
-  --text-title-h4: var(--faded-green);
-  --text-title-h5: var(--faded-aqua);
-  --text-title-h6: var(--faded-blue);
-  --text-link: var(--neutral-blue);
-  --text-a: var(--neutral-orange);
-  --text-a-hover: var(--neutral-blue);
-  --text-mark: rgba(215, 153, 33, 0.4); /* neutral-yellow */
-  --pre-code: var(--light1);
-  --text-highlight-bg: var(--bright-aqua);
-  --interactive-accent: var(--neutral-orange);
-  --interactive-before: var(--light4);
-  --background-modifier-border: var(--light2);
-  --text-accent: var(--neutral-orange);
-  --interactive-accent-rgb: var(--neutral-orange);
-  --inline-code: var(--neutral-blue);
-  --vim-cursor: var(--neutral-orange);
-  --text-selection: rgba(189, 174, 147, 0.5); /* light3 */
-  --text-tag: var(--neutral-aqua);
-  --task-checkbox: var(--light4);
-}
+/* .theme-light { */
+/*   --background-primary: var(--light0); */
+/*   --background-primary-alt: var(--light0); */
+/*   --background-secondary: var(--light0-hard); */
+/*   --background-secondary-alt: var(--light1); */
+/*   --text-normal: var(--dark0); */
+/*   --text-faint: var(--dark3); */
+/*   --text-title-h1: var(--faded-red); */
+/*   --text-title-h2: var(--faded-orange); */
+/*   --text-title-h3: var(--faded-yellow); */
+/*   --text-title-h4: var(--faded-green); */
+/*   --text-title-h5: var(--faded-aqua); */
+/*   --text-title-h6: var(--faded-blue); */
+/*   --text-link: var(--neutral-blue); */
+/*   --text-a: var(--neutral-orange); */
+/*   --text-a-hover: var(--neutral-blue); */
+/*   --text-mark: rgba(215, 153, 33, 0.4); /1* neutral-yellow *1/ */
+/*   --pre-code: var(--light1); */
+/*   --text-highlight-bg: var(--bright-aqua); */
+/*   --interactive-accent: var(--neutral-orange); */
+/*   --interactive-before: var(--light4); */
+/*   --background-modifier-border: var(--light2); */
+/*   --text-accent: var(--neutral-orange); */
+/*   --interactive-accent-rgb: var(--neutral-orange); */
+/*   --inline-code: var(--neutral-blue); */
+/*   --vim-cursor: var(--neutral-orange); */
+/*   --text-selection: rgba(189, 174, 147, 0.5); /1* light3 *1/ */
+/*   --text-tag: var(--neutral-aqua); */
+/*   --task-checkbox: var(--light4); */
+/* } */
 
 .markdown-source-view {
   font-family: var(--editor-font);
@@ -143,7 +143,7 @@
 
 html,
 body {
-  font-family: serif !important;
+  font-family: sans-serif !important;
   /* font-size: 16px !important; */
 }
 
