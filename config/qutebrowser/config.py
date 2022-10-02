@@ -34,6 +34,9 @@ config.set('editor.command', [TERMINAL, '-e', EDITOR, '{file}'])
 config.set('content.notifications.enabled', False)
 c.completion.favorite_paths = [os.path.join(WIKI_DIR, 'html')]
 
+# hints
+config.set('hints.chars', 'qwerasdf')
+
 # aesth
 # config.set('colors.webpage.darkmode.enabled', True)
 config.set('content.user_stylesheets', CSS)
@@ -41,7 +44,7 @@ config.bind('<ctrl-m>', f'config-cycle content.user_stylesheets "{CSS}" ""')
 config.set('fonts.web.family.fixed', 'mono')
 config.set('fonts.web.family.sans_serif', 'sans-serif')
 config.set('fonts.web.family.serif', 'serif')
-config.set('zoom.default', '125%')
+# config.set('zoom.default', '125%')
 
 
 # basic rebinds
