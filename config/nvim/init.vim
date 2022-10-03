@@ -25,9 +25,20 @@ set smartcase
 set wildignore+=*/.git/*
 setl formatoptions-=cro
 
+""" part
+function Part(...)
+  if winwidth('%') >= winheight('%') * 2.5
+    execute 'vsplit ' . join(a:000)
+  else
+    execute 'split ' . join(a:000)
+  endif
+endfunction
+
+command! Part call Part()
+
 """ compile
-nmap <silent> <leader>c :w! \| :execute 'sp term://compile -f ' . &filetype . ' ' . bufname("%")<CR>
-nmap <silent> <leader>p :w! \| :sp term://run \"%\"<CR>
+nmap <silent> <leader>c :w! \| :call Part('term://compile -f ' . &filetype . ' ' . bufname("%"))<CR>
+nmap <silent> <leader>p :w! \| :call Part('term://run ' . bufname("%"))<CR>
 
 """ trailing whitespace
 au BufWritePre * %s/\s\+$//e
@@ -44,7 +55,7 @@ let g:ctrlp_regexp = 0
 let g:ctrlp_show_hidden = 1
 
 """ term
-nmap <A-CR> :vs term://zsh<CR>
+nmap <A-CR> :call Part('term://zsh')<CR>
 
 """ statusline
 set statusline+=%#warningmsg#
