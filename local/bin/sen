@@ -19,7 +19,7 @@ case "$lang" in
             }
         }
         ;;
-    fr)
+    fr | de)
         translateword() {
             printf "%s: %s" "$1" "$(trans -b "${lang}:" "$1")"
         }
