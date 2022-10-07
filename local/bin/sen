@@ -24,6 +24,13 @@ case "$lang" in
             printf "%s: %s" "$1" "$(trans -b "${lang}:" "$1")"
         }
         ;;
+    la)
+        translateword() {
+            printf "%s: %s" \
+                "$(words "$1" | rg -o '^([^ ,]+).*\[X' -m 1 -r '$1' | tr -d ',')" \
+                "$(words "$1" | rg -o '^([^;]+);' -m 1 -r '$1' | tr -d ';')"
+        }
+        ;;
     *) exit 1 ;;
 esac
 

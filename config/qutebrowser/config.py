@@ -39,7 +39,7 @@ config.set('hints.chars', 'qwerasdf')
 
 # aesth
 # config.set('colors.webpage.darkmode.enabled', True)
-config.set('content.user_stylesheets', CSS)
+# config.set('content.user_stylesheets', CSS)
 config.bind('<ctrl-m>', f'config-cycle content.user_stylesheets "{CSS}" ""')
 config.set('fonts.web.family.fixed', 'mono')
 config.set('fonts.web.family.sans_serif', 'sans-serif')

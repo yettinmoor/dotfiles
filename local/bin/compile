@@ -14,10 +14,15 @@ file="$(readlink -f "$1")"
 dir="$(dirname "$file")"
 noext="${file%.*}"
 
-[ -n "$file" ] && head -n 1 "$file" | rg -o 'compile: (.+)' -r '$1' | {
-    read -r cmd
+[ -n "$file" ] && {
+    cmd="$(head -n 1 "$file" | rg -o 'compile: (.+)' -r '$1')"
     [ -n "$cmd" ] && {
-        $cmd "$file"
+        if echo "$cmd" | grep -q '{}'; then
+            set -x
+            sh -c "$(echo "$cmd" | sed "s:{}:$file:g")"
+        else
+            $cmd "$file"
+        fi
         exit
     }
 }
@@ -39,20 +44,19 @@ case "$ft" in
     sh) sh "$file" ;;
 
     # programming
-    c)   cc "$file" -o "$noext" && "$noext" ;;
-    cpp) g++ "$file" -o "$noext" && "$noext" ;;
-    cs)  mcs "$file" ;;
-    go)  go run "$file" ;;
-    hs)  runhaskell "$file" ;;
-    js)  node "$file" ;;
-    nim) nimble build -r ;;
-    pl)  perl "$file" ;;
-    py)  python "$file" ;;
-    rkt) racket "$file" ;;
-    rs)  cargo run ;;
-    scm) chicken-csi -q "$file" ;;
-    ts)  deno run --allow-read "$file" ;;
-    zig) zig build run ;;
+    c)    cc "$file" -o "$noext" && "$noext" ;;
+    cpp)  g++ "$file" -o "$noext" && "$noext" ;;
+    cs)   mcs "$file" ;;
+    go)   go run "$file" ;;
+    hs)   runhaskell "$file" ;;
+    js)   node "$file" ;;
+    nim)  nimble build -r ;;
+    pl)   perl "$file" ;;
+    rkt)  racket "$file" ;;
+    rust) cargo run ;;
+    scm)  chicken-csi -q "$file" ;;
+    ts)   deno run --allow-read "$file" ;;
+    zig)  zig build run ;;
 
     # documents
     tex)  xelatex --output-directory="$dir" "$noext" ;;
