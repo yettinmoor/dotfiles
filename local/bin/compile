@@ -18,7 +18,6 @@ noext="${file%.*}"
     cmd="$(head -n 1 "$file" | rg -o 'compile: (.+)' -r '$1')"
     [ -n "$cmd" ] && {
         if echo "$cmd" | grep -q '{}'; then
-            set -x
             sh -c "$(echo "$cmd" | sed "s:{}:$file:g")"
         else
             $cmd "$file"
@@ -65,7 +64,6 @@ case "$ft" in
 
     # custom formats
     mnemo)     mnemo -i "$file" ;;
-    sentences) mnemo "$dir/../$(basename "$file")/sen.mnemo" -a "$file" && echo > "$file" ;;
 
     # shebang
     *) $ft "$file" ;;
