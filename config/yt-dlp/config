@@ -4,10 +4,13 @@
 
 --add-metadata
 
---sub-lang en,ja
+# --sub-lang en,ja
+--sub-lang all
 --embed-subs
 
 --netrc
 --netrc-location ~/.config/netrc
+
+--compat-options filename-sanitization
 
 --mark-watched
