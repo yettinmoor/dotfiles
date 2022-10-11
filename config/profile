@@ -38,7 +38,7 @@ export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 export XAUTHORITY="$XDG_CONFIG_HOME/xorg/.Xauthority"
 
 # dirs.
-export AOC_INPUT_DIR="$HOME/docs/aoc-input"
+export AOC_INPUT_DIR="$HOME/lib/misc/aoc"
 export MNEMO_DIR="$HOME/docs/mnemo"
 export WIKI_DIR="$HOME/docs/wiki"
 
