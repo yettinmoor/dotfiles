@@ -22,7 +22,7 @@ while getopts dc: o; do
             fi
             ;;
         ?)
-            echo 'usage: open [-d] [-c dir] -- [fd flags]'
+            echo 'usage: open [-d] [-c dir]'
             exit 1
             ;;
     esac

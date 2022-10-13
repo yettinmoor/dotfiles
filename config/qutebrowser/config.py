@@ -94,7 +94,7 @@ config.set('downloads.location.directory', os.path.join(HOME, 'dl'))
 config.set('downloads.location.prompt', False)
 config.set('downloads.location.remember', False)
 config.set('downloads.position', 'bottom')
-config.set('downloads.remove_finished', 2000)
+config.set('downloads.remove_finished', 5000)
 
 # file picker
 select_file_cmd = [TERMINAL, '-e', 'lf', '-selection-path={}']
