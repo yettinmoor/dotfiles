@@ -6,4 +6,4 @@ cmd="sqlite3 \"$XDG_DATA_HOME/qutebrowser/history.sqlite\" '$SQLCMD' \
     | awk -v FS='|' '{ print \"open\", \$2 }' \
     > $QUTE_FIFO"
 
-"$TERMINAL" -c Dirpick -o - -e sh -c "$cmd"
+"$TERMINAL" -c FloatTerm -o - -e sh -c "$cmd"

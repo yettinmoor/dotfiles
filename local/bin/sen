@@ -5,6 +5,8 @@ R='\]'
 
 lang="$(basename "$1")"
 
+echo here > log
+
 case "$lang" in
     ja)
         L='「'
