@@ -99,10 +99,10 @@ config.set('downloads.remove_finished', 5000)
 # file picker
 select_file_cmd = [TERMINAL, '-e', 'lf', '-selection-path={}']
 select_dir_cmd = [TERMINAL, '-c', 'Dirpick', '-e', 'sh', '-c', 'dirpick > {}']
-config.set('fileselect.handler', 'external')
-config.set('fileselect.folder.command', select_dir_cmd)
-config.set('fileselect.single_file.command', select_file_cmd)
-config.set('fileselect.multiple_files.command', select_file_cmd)
+# config.set('fileselect.handler', 'external')
+# config.set('fileselect.folder.command', select_dir_cmd)
+# config.set('fileselect.single_file.command', select_file_cmd)
+# config.set('fileselect.multiple_files.command', select_file_cmd)
 
 # adblock
 c.content.blocking.adblock.lists = [
