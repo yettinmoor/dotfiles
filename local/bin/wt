@@ -1,6 +1,4 @@
 #!/usr/bin/env sh
-echo "$1" \
-    | tr ' ' '_' \
-    | xargs -I {} curl -s "https://en.wiktionary.org/api/rest_v1/page/definition/{}" \
+curl -s "https://en.wiktionary.org/api/rest_v1/page/definition/$(echo "$1" | tr ' ' '_')" \
     | sed 's/<[^>]*>//g' \
     | jq ".$2"
