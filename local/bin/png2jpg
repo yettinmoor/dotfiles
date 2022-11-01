@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+! [ "$(file --mime-type -bL "$1")" = image/png ] && {
+    echo not a png!
+    exit 1
+}
+convert "$1" "${1%.png}.jpg" && rm "$1"
