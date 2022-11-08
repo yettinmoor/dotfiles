@@ -15,7 +15,7 @@ case "$lang" in
                 read -r defn
                 printf "%s: %s" \
                     "$(echo "$head" | rg -o '^[^\]]+]')" \
-                    "$(echo "$defn" | sed 's/^1\. \+//')"
+                    "$(echo "$defn" | sed 's/^1\. \+//; s/ \+\[.*//')"
             }
         }
         ;;
