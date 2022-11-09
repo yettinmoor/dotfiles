@@ -10,5 +10,5 @@ fd -e mnemo . "$@" -X mnemo -i \
 
 fd -e mnemo . "$@" -X mnemo -i \
     | sort \
-    | sed 's/^.\///; /[1-9][0-9]* due/s/.*/\x1b[0;33m&\x1b[0m/' \
+    | sed 's/^.\///; /[1-9][0-9]* due/s/.*/\x1b[0;33m&\x1b[0m/; /0 due/s/.*/\x1b[0;37m&\x1b[0m/' \
     | tabulate -s '[:,]' -f plain

@@ -4,6 +4,7 @@ engines=$(
     cat <<- EOF
 1 🇯🇵 anthy 文
 2 🇬🇷 fcitx-keyboard-gr AΩ
+3 🇨🇳 pinyin 中
 EOF
 )
 
@@ -34,6 +35,10 @@ case "$1" in
                 engine=$(echo "$choice" | cut -d ' ' -f3)
                 fcitx-remote -s "$engine"
             }
+        ;;
+
+    config)
+        setsid fcitx-configtool > /dev/null 2>&1 &
         ;;
 
     *)

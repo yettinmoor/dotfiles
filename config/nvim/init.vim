@@ -202,3 +202,4 @@ au BufRead,BufNewFile fonts.conf set filetype=xml
 """ mnemo
 au BufRead,BufNewFile *.mnemo set filetype=mnemo
 au BufRead,BufNewFile */mnemo/sen/* set filetype=sentences
+au BufRead,BufNewFile */mnemo/cloze/* set filetype=cloze
