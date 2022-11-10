@@ -104,6 +104,12 @@ select_dir_cmd = [TERMINAL, '-c', 'Dirpick', '-e', 'sh', '-c', 'dirpick > {}']
 # config.set('fileselect.single_file.command', select_file_cmd)
 # config.set('fileselect.multiple_files.command', select_file_cmd)
 
+# onion
+config.bind(
+    '<ctrl-t>',
+    'config-cycle --print content.proxy "system" "socks://localhost:9050/"'
+)
+
 # adblock
 c.content.blocking.adblock.lists = [
     "https://easylist.to/easylist/easylist.txt",
