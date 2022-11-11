@@ -19,6 +19,16 @@ case "$lang" in
             }
         }
         ;;
+    zh)
+        L='「'
+        R='」'
+        translateword() {
+            printf "%s[%s]: %s" \
+                "$1" \
+                "$(pypinyin "$1" | tr -d ' ')" \
+                "$(wd "$1" | awk 'NR==3 {print}' | sed 's/[a-z]\+\. //')"
+        }
+        ;;
     fr | de)
         translateword() {
             printf "%s: %s" "$1" "$(trans -b "${lang}:" "$1")"
