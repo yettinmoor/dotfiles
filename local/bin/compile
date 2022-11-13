@@ -43,8 +43,8 @@ case "$ft" in
     sh) sh "$file" ;;
 
     # programming
-    c)    cc "$file" -o "$noext" && "$noext" ;;
-    cpp)  g++ "$file" -o "$noext" && "$noext" ;;
+    c)    cc "$file" -o "$noext" ;;
+    cpp)  g++ "$file" -o "$noext" ;;
     cs)   mcs "$file" ;;
     go)   go run "$file" ;;
     hs)   runhaskell "$file" ;;
@@ -63,7 +63,7 @@ case "$ft" in
     sent) setsid sent "$file" & ;;
 
     # custom formats
-    mnemo)     mnemo -i "$file" ;;
+    mnemo) mnemo -i "$file" ;;
 
     # shebang
     *) $ft "$file" ;;
