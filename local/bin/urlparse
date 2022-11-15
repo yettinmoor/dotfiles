@@ -12,10 +12,10 @@ my $key = shift @args;
 my $DIR = "$ENV{HOME}/.config/urlparse";
 my $find = "rg '^$key (.*)' -r '\$1'";
 
-if (my $url = `$find "$DIR/searchengines"`) {
-    printf "$url", (join ' ', @args);
-} elsif ($url = `$find "$DIR/bookmarks"`) {
+if (not @args and my $url = `$find "$DIR/bookmarks"`) {
     print "$url";
+} elsif ($url = `$find "$DIR/searchengines"`) {
+    printf "$url", (join ' ', @args);
 } else {
     unshift @args, $key;
     printf `awk 'NR==1 { print \$2 }'`, join(' ', @args);
