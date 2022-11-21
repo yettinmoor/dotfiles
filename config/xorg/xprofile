@@ -7,7 +7,7 @@ kbset &
 setbg &
 xrdb ~/.config/xorg/Xresources
 xsetroot -cursor_name left_ptr
-picom -b --experimental-backends &
+picom -b &
 redshift &
 unclutter --timeout 3 &
 
