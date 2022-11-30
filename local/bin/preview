@@ -22,6 +22,8 @@ batorcat() {
 
 CACHE="$XDG_CACHE_HOME/lf/thumbnail.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$1")" | sha256sum | awk '{print $1}')"
 
+preview-clean
+
 set -x
 case "$(file --mime-type "$1" -bL)" in
     video/*)
@@ -70,7 +72,7 @@ case "$(file --mime-type "$1" -bL)" in
         als "$1"
         ;;
     application/zip)
-        if unzip -lqq "$1" | grep -Eiv '(jpe?g|png|url|db|/)$'; then
+        if unzip -lqq "$1" | rg -qiv '(jpe?g|png|url|db|/)$'; then
             unzip -lqq "$1"
         else
             [ ! -f "${CACHE}" ] \
