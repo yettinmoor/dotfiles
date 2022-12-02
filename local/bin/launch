@@ -91,9 +91,9 @@ for file in "$@"; do
                         wrap zathura "$file"
                     fi
                     ;;
-                image/svg+xml)
-                    wrap inkview "$file"
-                    ;;
+                # image/svg+xml)
+                #     wrap inkview "$file"
+                #     ;;
                 image/*)
                     wrap imgopen "$file"
                     ;;
