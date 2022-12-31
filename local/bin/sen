@@ -29,7 +29,7 @@ case "$lang" in
                 "$(wd "$1" | awk 'NR==3 {print}' | sed 's/[a-z]\+\. //')"
         }
         ;;
-    fr | de)
+    fr | de | el)
         translateword() {
             printf "%s: %s" "$1" "$(trans -b "${lang}:" "$1")"
         }
@@ -50,10 +50,12 @@ nl -b a | while read -r i line; do
             | rg -o "$L([^$R]*)$R" -r '$1' \
             | nl \
             | while read -r j word; do
+                trans="$(echo "$word" | cut -d ':' -f 2)"
+                display="$(echo "$word" | cut -d ':' -f 1)"
                 printf '%s %s | %s\n' \
                     "${i}.${j}" \
-                    "$(translateword "$word")" \
-                    "$(echo "$line" | perl -pe "s/$L(?!${word}$R)//g; s/(?<!$L${word})$R//g")" \
+                    "$(translateword "$trans")" \
+                    "$(echo "$line" | perl -pe "s/:[^$L]*(?=$R)//g; s/$L(?!${display}$R)//g; s/(?<!$L${display})$R//g;")" \
                     &
             done &
     else
