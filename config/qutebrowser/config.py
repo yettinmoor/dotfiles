@@ -77,6 +77,8 @@ config.bind('>', 'tab-move +')
 config.set('content.autoplay', False)
 config.bind('gm', 'spawn launch -dx mpv --profile=ytdl {url}')
 config.bind(',m', 'hint links spawn launch -dx mpv --profile=ytdl {hint-url}')
+config.bind('gM', 'spawn launch -x mpv --profile=ytdl {url}')
+config.bind(',M', 'hint links spawn launch -x mpv --profile=ytdl {hint-url}')
 
 # downloading
 config.bind('gd', 'spawn qdl {url:pretty}')
