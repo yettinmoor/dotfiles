@@ -31,7 +31,7 @@ case "$lang" in
         ;;
     fr | de | el)
         translateword() {
-            printf "%s: %s" "$1" "$(trans -b "${lang}:" "$1")"
+            printf "%s: %s" "$1" "$(trans -b "${lang}:" "$1" 2> /dev/null)"
         }
         ;;
     la)
