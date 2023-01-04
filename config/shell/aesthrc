@@ -103,6 +103,7 @@
     echo "*.mp4=00;$MEDIA_COLOR"
     echo "*.m4v=00;$MEDIA_COLOR"
     echo "*.mp4v=00;$MEDIA_COLOR"
+    echo "*.mpga=00;$MEDIA_COLOR"
     echo "*.vob=00;$MEDIA_COLOR"
     echo "*.qt=00;$MEDIA_COLOR"
     echo "*.nuv=00;$MEDIA_COLOR"
@@ -123,6 +124,7 @@
     echo "*.emf=00;$MEDIA_COLOR"
     echo "*.ogv=00;$MEDIA_COLOR"
     echo "*.ogx=00;$MEDIA_COLOR"
+    echo "*.3gp=00;$MEDIA_COLOR"
     ## music
     echo "*.aac=00;$MEDIA_COLOR"
     echo "*.au=00;$MEDIA_COLOR"
