@@ -11,9 +11,10 @@ usage() {
     exit "$1"
 }
 
-while getopts vst:h o; do
+while getopts vast:h o; do
     case "$o" in
         v) YTDL=1 ;;
+        a) YTDL_AUDIO=1 ;;
         s) STORE=1 ;;
         t) dir=$OPTARG ;;
         h) usage 0 ;;
@@ -41,6 +42,10 @@ if [ -n "$YTDL" ]; then
     dunstify -r "$id" qdl "downloading $url (ytdl)"
     file="$(yt-dlp --get-filename "$url")"
     yt-dlp "$url"
+elif [ -n "$YTDL_AUDIO" ]; then
+    dunstify -r "$id" qdl "downloading $url (ytdl)"
+    file="$(yt-dlp --get-filename "$url")"
+    yt-dlp -x -f "bestaudio[ext=mp3]/best" "$url"
 else
     dunstify -r "$id" qdl "downloading $url"
     curl -LO "$url"
