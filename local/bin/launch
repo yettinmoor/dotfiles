@@ -103,6 +103,9 @@ for file in "$@"; do
                 text/html)
                     wrap browser "$file"
                     ;;
+                application/vnd.openxmlformats-officedocument.wordprocessingml.document)
+                    wrap libreoffice "$file"
+                    ;;
                 *)
                     wraptty "$EDITOR" "$file"
                     ;;
