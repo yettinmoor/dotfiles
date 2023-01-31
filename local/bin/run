@@ -5,6 +5,11 @@ base="${file%.*}"
 
 cd "$(dirname "$file")" || exit 1
 
+[ -f .run ] && {
+    sh .run
+    exit $?
+}
+
 case "$file" in
     *.tex | *.pandoc) noswallow zathura "$base".pdf ;;
     *.html) setsid "$BROWSER" --target window "$file" & ;;

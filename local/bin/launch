@@ -61,7 +61,7 @@ for file in "$@"; do
                     tsp curl -LO "$file"
                     ;;
                 *)
-                    wrap browser "$file"
+                    wrap "$BROWSER" "$file"
                     ;;
             esac
             ;;
@@ -101,7 +101,7 @@ for file in "$@"; do
                     wraptty tor "$file"
                     ;;
                 text/html)
-                    wrap browser "$file"
+                    wrap "$BROWSER" --target window "$file"
                     ;;
                 application/vnd.openxmlformats-officedocument.wordprocessingml.document)
                     wrap libreoffice "$file"

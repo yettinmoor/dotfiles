@@ -29,6 +29,7 @@ Plug 'JuliaEditorSupport/julia-vim', { 'for': 'julia' }
 Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'kovetskiy/sxhkd-vim', { 'for': 'sxhkd' }
 Plug 'kalekundert/vim-nestedtext', {'for': 'nt' }
+Plug 'vim-scripts/Twee-Integration-for-Vim'
 
 " Small utilities
 Plug 'tpope/vim-repeat'

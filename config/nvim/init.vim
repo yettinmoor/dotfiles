@@ -198,6 +198,7 @@ au BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
 au BufRead,BufNewFile *.vs,*.fs set filetype=glsl
 au BufRead,BufNewFile *.asm set filetype=nasm
 au BufRead,BufNewFile fonts.conf set filetype=xml
+au BufRead,BufNewFile *.tw set filetype=twee
 
 """ mnemo
 au BufRead,BufNewFile *.mnemo set filetype=mnemo
