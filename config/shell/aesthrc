@@ -150,6 +150,8 @@
     echo "*.cfg=00;$DOC_COLOR"
     echo "*.conf=00;$DOC_COLOR"
     echo "*.djvu=00;$DOC_COLOR"
+    echo "*.doc=00;$DOC_COLOR"
+    echo "*.docx=00;$DOC_COLOR"
     echo "*.epub=00;$DOC_COLOR"
     echo "*.ini=00;$DOC_COLOR"
     echo "*.json=00;$DOC_COLOR"
@@ -157,6 +159,8 @@
     echo "*.pdf=00;$DOC_COLOR"
     echo "*.toml=00;$DOC_COLOR"
     echo "*.wiki=00;$DOC_COLOR"
+    echo "*.xls=00;$DOC_COLOR"
+    echo "*.xlsx=00;$DOC_COLOR"
     echo "*.yaml=00;$DOC_COLOR"
     echo "*.yml=00;$DOC_COLOR"
 
