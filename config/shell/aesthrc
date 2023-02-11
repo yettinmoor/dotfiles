@@ -159,6 +159,7 @@
     echo "*.odt=00;$DOC_COLOR"
     echo "*.pdf=00;$DOC_COLOR"
     echo "*.toml=00;$DOC_COLOR"
+    echo "*.txt=00;$DOC_COLOR"
     echo "*.wiki=00;$DOC_COLOR"
     echo "*.xls=00;$DOC_COLOR"
     echo "*.xlsx=00;$DOC_COLOR"
@@ -210,6 +211,8 @@
     echo 'ln='
     echo 'or='
     echo 'ex='
+
+    # src
     echo '*.c='
     echo '*.cc='
     echo '*.clj='
@@ -242,6 +245,8 @@
     echo '*.scala='
     echo '*.ts='
     echo '*.wiki='
+
+    # archives
     echo '*.tar='
     echo '*.tgz='
     echo '*.arc='
@@ -256,6 +261,8 @@
     echo '*.t7z='
     echo '*.zip='
     echo '*.7z='
+
+    # pics
     echo '*.jpg='
     echo '*.jpeg='
     echo '*.gif='
@@ -264,6 +271,8 @@
     echo '*.tiff='
     echo '*.png='
     echo '*.svg='
+
+    # vids
     echo '*.mov='
     echo '*.mpg='
     echo '*.mpeg='
@@ -271,6 +280,7 @@
     echo '*.mkv='
     echo '*.webm='
     echo '*.ogm='
+    echo '*.3gp='
     echo '*.mp4='
     echo '*.m4v='
     echo '*.mp4v='
@@ -279,6 +289,8 @@
     echo '*.nuv='
     echo '*.wmv='
     echo '*.avi='
+
+    # audio
     echo '*.aac='
     echo '*.flac='
     echo '*.m4a='
@@ -291,6 +303,8 @@
     echo '*.wav='
     echo '*.oga='
     echo '*.opus='
+
+    # book
     echo '*.pdf='
     echo '*.djvu='
     echo '*.epub='
