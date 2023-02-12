@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-cd ~/music || exit 1
+cd ~/audio || exit 1
 sel="$(fd --strip-cwd-prefix | sort | sed '1iSTOP' | dmenu -i -p 'play')" || exit 1
 mpc clear
 if ! [ "$sel" = 'STOP' ]; then
