@@ -94,6 +94,9 @@ for file in "$@"; do
                 # image/svg+xml)
                 #     wrap inkview "$file"
                 #     ;;
+                image/x-xcf)
+                    wrap gimp "$file"
+                    ;;
                 image/*)
                     wrap imgopen "$file"
                     ;;
