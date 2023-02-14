@@ -107,6 +107,7 @@ for file in "$@"; do
                     wrap "$BROWSER" --target window "$file"
                     ;;
                 application/vnd.openxmlformats-officedocument.wordprocessingml.document | \
+                    application/vnd.openxmlformats-officedocument.spreadsheetml.sheet | \
                     application/vnd.oasis.opendocument.text)
                     wrap libreoffice "$file"
                     ;;
