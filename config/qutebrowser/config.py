@@ -57,7 +57,7 @@ config.bind('gH', 'spawn -u his')
 config.bind('<alt-v>', 'set-cmd-text --append -- {clipboard}', mode='command')
 
 # statusbar shenanigans
-config.bind('<ctrl-b>', 'config-cycle -t statusbar.show always in-mode')
+config.bind('<ctrl-b>', 'config-cycle -t statusbar.show in-mode always')
 # config.bind(':', 'set statusbar.show always;; set-cmd-text :')
 # config.bind('/', 'set statusbar.show always;; set-cmd-text /')
 # config.bind(
