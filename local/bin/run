@@ -19,4 +19,5 @@ case "$file" in
     *.wiki) echo "$base" \
         | sed 's:wiki:wiki/html:' \
         | xargs -r -I {} setsid "$BROWSER" --target window "{}.html" ;;
+    *.c | *.cpp) "$base" ;;
 esac
