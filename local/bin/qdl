@@ -6,6 +6,7 @@ usage() {
     echo 'download manager.'
     echo 'options:'
     echo ' -v       | use yt-dlp instead of curl.'
+    echo ' -a       | use yt-dlp (audio) instead of curl.'
     echo ' -s       | invoke `store` on downloaded file.'
     echo ' -t <dir> | store to `dir`.'
     exit "$1"
