@@ -193,12 +193,13 @@ let g:ale_fixers['yaml'] = ['prettier']
 """ misc filetype stuff
 nmap <leader>ft :set ft=
 
+au BufRead,BufNewFile *.asm set filetype=nasm
 au BufRead,BufNewFile *.h set filetype=c
 au BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
-au BufRead,BufNewFile *.vs,*.fs set filetype=glsl
-au BufRead,BufNewFile *.asm set filetype=nasm
-au BufRead,BufNewFile fonts.conf set filetype=xml
 au BufRead,BufNewFile *.tw set filetype=twee
+au BufRead,BufNewFile *.vs,*.fs set filetype=glsl
+au BufRead,BufNewFile .clangd set filetype=yaml
+au BufRead,BufNewFile fonts.conf set filetype=xml
 
 """ mnemo
 au BufRead,BufNewFile *.mnemo set filetype=mnemo

@@ -199,6 +199,7 @@
     echo "*.scala=00;$SRC_COLOR"
     echo "*.sh=00;$SRC_COLOR"
     echo "*.ts=00;$SRC_COLOR"
+    echo "*.zig=00;$SRC_COLOR"
 
 } | paste -sd : | {
     read -r input

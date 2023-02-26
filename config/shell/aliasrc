@@ -37,6 +37,7 @@ alias otp='pass otp -c'
 alias pw='pass -c'
 alias se='dotedit'
 alias sv='sudoedit'
+alias t='todo'
 alias tree='tree -C'
 alias trem='transmission-remote'
 alias v='$EDITOR'
@@ -88,4 +89,8 @@ src() {
 
 spawn() {
     setsid "$@" > /dev/null 2>&1 &
+}
+
+tcd() {
+    cd "$(todo dir "$1")" || exit 1
 }

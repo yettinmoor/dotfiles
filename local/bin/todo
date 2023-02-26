@@ -1,0 +1,207 @@
+#!/usr/bin/env sh
+
+#shellcheck disable=2016
+usage() {
+    echo 'todo -- task organizer & daily optimizer'
+    echo ''
+    echo 'usage:'
+    echo '  todo list [search]  | default action: list all items matching `search`'
+    echo '  todo add  [dir]     | add new item in `dir`'
+    echo '  todo cat  [search]  | describe all items matching `search`'
+    echo '  todo edit [search*] | edit description of item matching `search`'
+    echo '  todo rm   [search*] | remove item matching `search`'
+    echo '  todo dir  [search*] | print directory of task matching `search`'
+    echo '                      |     add the following to your shell rc:'
+    echo '                      |     tcd() { cd "$(todo dir "$1")"; }'
+    echo '                      |'
+    echo '  todo help           | show this help'
+    echo ''
+    echo '[search] strings will match:'
+    echo '  - task IDs'
+    echo '  - task names'
+    echo '  - any file within a task, unless -x flag is used'
+    echo ''
+    echo '[search*] := you will be asked to manually select a result if multiple tasks match the search terms.'
+    echo ''
+    exit "$1"
+}
+
+search() {
+    if [ "$1" = '-x' ]; then
+        restrict_search=1
+        shift
+    fi
+
+    term="$*"
+
+    if [ -z "$1" ]; then
+        fd --strip-cwd-prefix -t d "[0-9a-f]{6}$" -x echo {}
+        return
+    fi
+
+    for item in $(fd --strip-cwd-prefix -t d "[0-9a-f]{6}$"); do
+        cd "$TODO_DIR/$item" || exit 1
+
+        # match filename
+        case "$item" in
+            *"$term"*)
+                found=1
+                echo "$item" | sed 's:/$::'
+                continue
+                ;;
+        esac
+
+        # match filename
+        case "$(cat title)" in
+            *"$term"*)
+                found=1
+                echo "$item" | sed 's:/$::'
+                continue
+                ;;
+        esac
+
+        # match any file
+        if [ -z "$restrict_search" ] && { fd -q "$term" || rg -qi "$term"; }; then
+            found=1
+            echo "$item" | sed 's:/$::'
+            continue
+        fi
+    done
+
+    cd "$TODO_DIR" || exit 1
+
+    if [ -z "$found" ]; then
+        echo no files found for search string \""$term"\" > /dev/stderr
+    fi
+}
+
+search_select() {
+    desc="$1"
+    shift
+
+    path="$(search "$*")"
+    lines="$(echo "$path" | wc -l)"
+
+    if [ "$lines" -gt 1 ]; then
+        echo "$path" | while read -r item; do
+            describe "$item"
+        done | nl > /dev/stderr
+        printf 'select file to %s) ' "$desc" > /dev/stderr
+        read -r sel
+        if [ -n "${sel##*[!0-9]*}" ] \
+                && [ "$sel" -ge 1 ] \
+                && [ "$sel" -le "$lines" ]; then
+            path="$(echo "$path" | sed "$sel!d")"
+        else
+            echo invalid selection: "$sel"
+            exit 1
+        fi
+    fi
+
+    echo "$path"
+}
+
+describe() {
+    item="$1"
+    printf "$(color yel %s/)%s | $(color blu %s)\n" \
+        "$(dirname "$item")" \
+        "$(basename "$item")" \
+        "$(cat "$item/title")"
+}
+
+TODO_DIR="${TODO_DIR:-$HOME/docs/todo}"
+cd "$TODO_DIR" || exit 1
+
+cmd="$1"
+[ -n "$cmd" ] && shift
+
+case "$cmd" in
+    '' | l | list)
+        if [ $# -gt 0 ]; then
+            # search
+            for item in $(search "$@"); do
+                describe "$item"
+            done
+        else
+            # dump all
+            for item in $(fd -t d "[0-9a-f]{6}$"); do
+                describe "$item"
+            done
+        fi | tabulate -s '\|'
+        ;;
+
+    a | add)
+        # generate name
+        dir="${1:-.}"
+        while [ -z "$path" ] || [ -f "$path" ]; do
+            path="$dir/$(hexdump -vn3 -e'"%06x" 1 "\n"' /dev/urandom)"
+        done
+
+        # edit tmp file
+        tmpfile="$(mktemp)"
+        $EDITOR "$tmpfile" || exit 1
+        [ ! -s "$tmpfile" ] && exit
+
+        mkdir -pv "$path"
+        head -n 1 "$tmpfile" > "$path/title"
+        sed -e '1d' -e '/./,$!d' "$tmpfile" > "$path/desc.md"
+
+        rm "$tmpfile"
+        ;;
+
+    c | cat)
+        search "$@" | while read -r path; do
+            if [ -n "$not_first" ]; then
+                echo
+            fi
+
+            {
+                bat -p "$path/desc.md"
+
+                cd "$path" || exit 1
+                other_files="$(fd --exclude title --exclude desc.md)"
+
+                if [ -n "$other_files" ]; then
+                    echo
+                    color yel 'other files:'
+                    echo
+                    for other_file in $other_files; do
+                        echo "  - $other_file"
+                    done
+                fi
+            } | bat --file-name="$(describe "$path")" --style=grid,header
+
+            cd "$TODO_DIR" || exit 1
+
+            not_first=1
+        done
+        ;;
+
+    e | edit)
+        path=$(search_select edit "$@")
+        [ -z "$path" ] && exit 1
+        $EDITOR "$path/desc.md"
+        ;;
+
+    r | rm)
+        path=$(search_select remove "$@")
+        printf 'remove %s? [y/N] ' "$path"
+        read -r ans
+        if echo "$ans" | grep -qiE '^y(es)?$'; then
+            rm -rv "${TODO_DIR:-.}/$path"
+        fi
+        ;;
+
+    dir)
+        [ -n "$1" ] && path=$(search_select 'cd to' "$@")
+        echo "$TODO_DIR/$path"
+        ;;
+
+    h | help)
+        usage 0
+        ;;
+
+    *)
+        usage 1
+        ;;
+esac
