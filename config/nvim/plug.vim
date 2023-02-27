@@ -31,6 +31,7 @@ Plug 'kovetskiy/sxhkd-vim', { 'for': 'sxhkd' }
 Plug 'kalekundert/vim-nestedtext', {'for': 'nt' }
 Plug 'vim-scripts/Twee-Integration-for-Vim'
 Plug 'mtdl9/vim-log-highlighting'
+Plug 'Glench/Vim-Jinja2-Syntax'
 
 " Small utilities
 Plug 'tpope/vim-repeat'

@@ -49,7 +49,7 @@ elif [ -n "$YTDL_AUDIO" ]; then
     yt-dlp -x -f "bestaudio[ext=mp3]/best" "$url"
 else
     dunstify -r "$id" qdl "downloading $url"
-    curl -LO "$url"
+    curl --user-agent 'Chrome' -LO "$url"
 fi
 
 if [ -n "$STORE" ]; then
