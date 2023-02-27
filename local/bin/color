@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+
+case "$1" in
+    blk) printf '\033[0;30m' ;;
+    red) printf '\033[0;31m' ;;
+    grn) printf '\033[0;32m' ;;
+    yel) printf '\033[0;33m' ;;
+    blu) printf '\033[0;34m' ;;
+    prp) printf '\033[0;35m' ;;
+    cyn) printf '\033[0;36m' ;;
+    wht) printf '\033[0;37m' ;;
+
+    clr) printf '\033[0m' ;;
+
+    *)
+        echo 'colors: blk red, grn, yel, blu, prp, cyn, wht'
+        echo 'clear:  clr'
+        ;;
+esac
+
+if [ $# -gt 1 ]; then
+    shift
+    printf "%s" "$@"
+    color clr
+fi
