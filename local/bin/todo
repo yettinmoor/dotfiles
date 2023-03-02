@@ -71,7 +71,7 @@ search() {
     cd "$TODO_DIR" || exit 1
 
     if [ -z "$found" ]; then
-        echo no files found for search string \""$term"\" > /dev/stderr
+        echo no tasks found for search string \""$term"\" > /dev/stderr
     fi
 }
 
@@ -86,7 +86,7 @@ search_select() {
         echo "$path" | while read -r item; do
             describe "$item"
         done | nl > /dev/stderr
-        printf 'select file to %s) ' "$desc" > /dev/stderr
+        printf 'select task to %s) ' "$desc" > /dev/stderr
         read -r sel
         if [ -n "${sel##*[!0-9]*}" ] \
                 && [ "$sel" -ge 1 ] \
