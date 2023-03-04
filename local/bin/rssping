@@ -2,11 +2,20 @@
 # Set as a cron job to check for new RSS entries for newsboat.
 # If newsboat is open, sends it an "R" key to refresh.
 
+RSSDIR=~/docs/rss
+
 pgrep -x rssping > /dev/null && exit 1
 isconnected || exit 1
 
 pgrep -x newsboat && xdotool search --name newsboat key R && exit
 
 polybar-msg action '#rss.send.?'
+
+# sync feeds
 timeout 5s newsboat -x reload
+
+# sync with other nodes
+newsboat -E $RSSDIR/read_"$(hostname)"
+fd read_ $RSSDIR -E "*$(hostname)" -x newsboat -I
+
 polybar-msg action '#rss.hook.0'
