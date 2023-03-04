@@ -61,7 +61,7 @@ for file in "$@"; do
                     tsp curl -LO "$file"
                     ;;
                 *)
-                    wrap "$BROWSER" "$file"
+                    wrap browser "$file"
                     ;;
             esac
             ;;
