@@ -163,11 +163,8 @@ case "$cmd" in
 
                 if [ -n "$other_files" ]; then
                     echo
-                    color yel 'other files:'
-                    echo
-                    for other_file in $other_files; do
-                        echo "  - $other_file"
-                    done
+                    color yel 'other files:\n'
+                    echo "$other_files"
                 fi
             } | bat --file-name="$(describe "$path")" --style=grid,header
 

@@ -20,6 +20,6 @@ esac
 
 if [ $# -gt 1 ]; then
     shift
-    printf "%s" "$@"
+    printf "%b" "$@"
     color clr
 fi

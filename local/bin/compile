@@ -58,9 +58,9 @@ case "$ft" in
     zig)  zig build run ;;
 
     # documents
-    tex)  xelatex --output-directory="$dir" "$noext" ;;
-    md)   pandoc "$file" --pdf-engine=xelatex --template=template -o "$noext".pdf ;;
-    sent) setsid sent "$file" & ;;
+    tex)      xelatex --output-directory="$dir" "$noext" ;;
+    markdown) pandoc "$file" --pdf-engine=xelatex -o "$noext".pdf ;;
+    sent)     setsid sent "$file" & ;;
 
     # custom formats
     mnemo) mnemo -i "$file" ;;
