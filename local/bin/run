@@ -12,7 +12,7 @@ cd "$(dirname "$file")" || exit 1
 
 case "$file" in
     *.tex | *.pandoc) noswallow zathura "$base".pdf ;;
-    *.html) setsid "$BROWSER" --target window "$file" & ;;
+    *.html) setsid browser "$file" & ;;
     *.sent) setsid sent "$file" > /dev/null 2>&1 & ;;
     *.hs) ghci "$file" ;;
     *.py) python -qi "$file" ;;
