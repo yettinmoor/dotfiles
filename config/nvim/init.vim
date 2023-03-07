@@ -172,8 +172,9 @@ endfunction
 execute ale#fix#registry#Add('shfmt', 'FormatSh', ['sh'], 'shfmt for sh')
 
 let g:ale_linters['haskell'] = ['hlint']
+let g:ale_linters['lua'] = ['luacheck']
 let g:ale_linters['nim'] = ['nimlsp']
-let g:ale_linters['python'] = ['pylint --disable=C0111']
+let g:ale_linters['python'] = ['ruff check']
 let g:ale_linters['rust'] = ['cargo clippy']
 let g:ale_linters['sh'] = ['shellcheck']
 
@@ -181,6 +182,7 @@ let g:ale_fixers['css'] = ['prettier']
 let g:ale_fixers['haskell'] = ['hindent']
 let g:ale_fixers['html'] = ['prettier']
 let g:ale_fixers['json'] = ['jq']
+let g:ale_fixers['lua'] = ['stylua']
 let g:ale_fixers['markdown'] = ['prettier']
 let g:ale_fixers['nim'] = ['nimpretty']
 let g:ale_fixers['python'] = ['autopep8']

@@ -7,9 +7,12 @@ if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
     silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.config/nvim/autoload/plug.vim
 endif
 
+au BufWritePost nvim/plug.vim PlugInstall
+
 call plug#begin('~/.config/nvim/plugged')
 
 " LSP
+Plug 'neovim/nvim-lspconfig'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
 Plug 'prettier/vim-prettier'
