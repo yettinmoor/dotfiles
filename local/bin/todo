@@ -9,6 +9,8 @@ usage() {
     echo '  todo add  [dir]     | add new item in `dir`'
     echo '  todo cat  [search]  | describe all items matching `search`'
     echo '  todo edit [search*] | edit description of item matching `search`'
+    echo '  todo set  [search*] | set `state` of item matching `search`'
+    echo '                      |     state := (todo|open|done)'
     echo '  todo rm   [search*] | remove item matching `search`'
     echo '  todo dir  [search*] | print directory of task matching `search`'
     echo '                      |     add the following to your shell rc:'
@@ -103,9 +105,16 @@ search_select() {
 
 describe() {
     item="$1"
-    printf "$(color yel %s/)%s | $(color blu %s)\n" \
+    state="$(cat "$item/state" 2> /dev/null)"
+    case "$state" in
+        todo) statefmt=$(color wht %s) ;;
+        open) statefmt=$(color -b yel %s) ;;
+        done) statefmt=$(color grn %s) ;;
+    esac
+    printf "$(color yel %s/)%s | $statefmt | $(color blu %s)\n" \
         "$(dirname "$item")" \
         "$(basename "$item")" \
+        "$state" \
         "$(cat "$item/title")"
 }
 
@@ -127,7 +136,7 @@ case "$cmd" in
             for item in $(fd -t d "[0-9a-f]{6}$"); do
                 describe "$item"
             done
-        fi | tabulate -s '\|'
+        fi | sort -b -t '|' -k 2r,2 -k 1,1 | tabulate -s '\|' -f plain
         ;;
 
     a | add)
@@ -146,6 +155,8 @@ case "$cmd" in
         head -n 1 "$tmpfile" > "$path/title"
         sed -e '1d' -e '/./,$!d' "$tmpfile" > "$path/desc.md"
 
+        echo 'todo' > "$path/state"
+
         rm "$tmpfile"
         ;;
 
@@ -159,7 +170,7 @@ case "$cmd" in
                 bat -p "$path/desc.md"
 
                 cd "$path" || exit 1
-                files="$(fd -t f --exclude title --exclude desc.md)"
+                files="$(fd -t f --exclude title --exclude state --exclude desc.md)"
 
                 if [ -n "$files" ]; then
                     echo
@@ -178,6 +189,18 @@ case "$cmd" in
         path=$(search_select edit "$@")
         [ -z "$path" ] && exit 1
         $EDITOR "$path/desc.md"
+        ;;
+
+    s | set)
+        state="$1"
+        case "$state" in
+            todo | open | done) ;;
+            *)  usage 1 ;;
+        esac
+        shift
+        path=$(search_select edit "$@")
+        [ -z "$path" ] && exit 1
+        echo "$state" > "$path/state"
         ;;
 
     r | rm)

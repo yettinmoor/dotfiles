@@ -1,14 +1,27 @@
 #!/usr/bin/env sh
 
+bold=0
+
+[ "$1" = -b ] && {
+    bold=1
+    shift
+}
+
+[ -n "$NO_COLOR" ] && {
+    shift
+    [ $# -gt 0 ] && echo "$*"
+    exit
+}
+
 case "$1" in
-    blk) printf '\033[0;30m' ;;
-    red) printf '\033[0;31m' ;;
-    grn) printf '\033[0;32m' ;;
-    yel) printf '\033[0;33m' ;;
-    blu) printf '\033[0;34m' ;;
-    prp) printf '\033[0;35m' ;;
-    cyn) printf '\033[0;36m' ;;
-    wht) printf '\033[0;37m' ;;
+    blk) printf '\033[%d;30m' "$bold" ;;
+    red) printf '\033[%d;31m' "$bold" ;;
+    grn) printf '\033[%d;32m' "$bold" ;;
+    yel) printf '\033[%d;33m' "$bold" ;;
+    blu) printf '\033[%d;34m' "$bold" ;;
+    prp) printf '\033[%d;35m' "$bold" ;;
+    cyn) printf '\033[%d;36m' "$bold" ;;
+    wht) printf '\033[%d;37m' "$bold" ;;
 
     clr) printf '\033[0m' ;;
 
