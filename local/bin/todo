@@ -21,7 +21,7 @@ usage() {
     echo '[search] strings will match:'
     echo '  - task IDs'
     echo '  - task names'
-    echo '  - any file within a task, unless -x flag is used'
+    echo '  - if -a flag is used, any file within a task'
     echo ''
     echo '[search*] := you will be asked to manually select a result if multiple tasks match the search terms.'
     echo ''
@@ -29,8 +29,8 @@ usage() {
 }
 
 search() {
-    if [ "$1" = '-x' ]; then
-        restrict_search=1
+    if [ "$1" = '-a' ]; then
+        search_all=1
         shift
     fi
 
@@ -63,7 +63,7 @@ search() {
         esac
 
         # match any file
-        if [ -z "$restrict_search" ] && { fd -q "$term" || rg -qi "$term"; }; then
+        if [ -n "$search_all" ] && { fd -q "$term" || rg -qi "$term"; }; then
             found=1
             echo "$item" | sed 's:/$::'
             continue
