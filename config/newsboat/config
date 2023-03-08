@@ -2,8 +2,6 @@ auto-reload no
 confirm-mark-feed-read no
 max-items 0
 
-cache-file ~/docs/rss/cache.db
-
 bind-key j down
 bind-key k up
 bind-key j next articlelist
