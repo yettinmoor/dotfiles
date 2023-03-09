@@ -208,7 +208,8 @@ case "$cmd" in
         printf 'remove %s? [y/N] ' "$path"
         read -r ans
         if echo "$ans" | grep -qiE '^y(es)?$'; then
-            rm -rv "${TODO_DIR:-.}/$path"
+            rm -r "${TODO_DIR:-.}/$path"
+            echo removed "$path"
         fi
         ;;
 
