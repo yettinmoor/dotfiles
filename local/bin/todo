@@ -10,7 +10,7 @@ usage() {
     echo '  todo cat  [search]  | describe all items matching `search`'
     echo '  todo edit [search*] | edit description of item matching `search`'
     echo '  todo set  [search*] | set `state` of item matching `search`'
-    echo '                      |     state := (todo|open|done)'
+    echo '                      |     state := (todo|open|hold|done)'
     echo '  todo rm   [search*] | remove item matching `search`'
     echo '  todo dir  [search*] | print directory of task matching `search`'
     echo '                      |     add the following to your shell rc:'
@@ -109,6 +109,7 @@ describe() {
     case "$state" in
         todo) statefmt=$(color wht %s) ;;
         open) statefmt=$(color -b yel %s) ;;
+        hold) statefmt=$(color red %s) ;;
         done) statefmt=$(color grn %s) ;;
     esac
     printf "$(color yel %s/)%s | $statefmt | $(color blu %s)\n" \
@@ -194,7 +195,7 @@ case "$cmd" in
     s | set)
         state="$1"
         case "$state" in
-            todo | open | done) ;;
+            todo | open | hold | done) ;;
             *)  usage 1 ;;
         esac
         shift

@@ -1,0 +1,10 @@
+[[language]]
+name = "python"
+language-server = { command = "ruff-lsp", args = [ "--max-line-length=240" ] }
+formatter = { command = "autopep8", args = ["-"] }
+auto-format = true
+
+[[language]]
+name = "bash"
+formatter = { command = "shfmt", args = ["-i", "4", "-bn", "-ci", "-kp", "-sr"] }
+auto-format = true
