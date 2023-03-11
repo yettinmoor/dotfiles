@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+[ $# -eq 0 ] && exit 1
 curl -s "https://en.wiktionary.org/api/rest_v1/page/definition/$(echo "$1" | tr ' ' '_')" \
     | sed 's/<[^>]*>//g' \
     | jq ".$2"
