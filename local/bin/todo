@@ -5,18 +5,19 @@ usage() {
     echo 'todo -- task organizer & daily optimizer'
     echo ''
     echo 'usage:'
-    echo '  todo list [search]  | default action: list all items matching `search`'
-    echo '  todo add  [dir]     | add new item in `dir`'
-    echo '  todo cat  [search]  | describe all items matching `search`'
-    echo '  todo edit [search*] | edit description of item matching `search`'
-    echo '  todo set  [search*] | set `state` of item matching `search`'
-    echo '                      |     state := (todo|open|hold|done)'
-    echo '  todo rm   [search*] | remove item matching `search`'
-    echo '  todo dir  [search*] | print directory of task matching `search`'
-    echo '                      |     add the following to your shell rc:'
-    echo '                      |     tcd() { cd "$(todo dir "$1")"; }'
-    echo '                      |'
-    echo '  todo help           | show this help'
+    echo '  todo list [search]   | default action: list all items matching `search`'
+    echo '  todo add  [dir]      | add new item in `dir`'
+    echo '  todo cat  [search]   | describe all items matching `search`'
+    echo '  todo edit [search*]  | edit description of item matching `search`'
+    echo '  todo title [search*] | edit description of item matching `search`'
+    echo '  todo set  [search*]  | set `state` of item matching `search`'
+    echo '                       |     state := (todo|open|hold|done)'
+    echo '  todo rm   [search*]  | remove item matching `search`'
+    echo '  todo dir  [search*]  | print directory of task matching `search`'
+    echo '                       |     add the following to your shell rc:'
+    echo '                       |     tcd() { cd "$(todo dir "$1")"; }'
+    echo '                       |'
+    echo '  todo help            | show this help'
     echo ''
     echo '[search] strings will match:'
     echo '  - task IDs'
@@ -190,6 +191,12 @@ case "$cmd" in
         path=$(search_select edit "$@")
         [ -z "$path" ] && exit 1
         $EDITOR "$path/desc.md"
+        ;;
+
+    t | title)
+        path=$(search_select edit "$@")
+        [ -z "$path" ] && exit 1
+        $EDITOR "$path/title"
         ;;
 
     s | set)
