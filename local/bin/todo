@@ -128,17 +128,10 @@ cmd="$1"
 
 case "$cmd" in
     '' | l | list)
-        if [ $# -gt 0 ]; then
-            # search
-            for item in $(search "$@"); do
-                describe "$item"
-            done
-        else
-            # dump all
-            for item in $(fd -t d "[0-9a-f]{6}$"); do
-                describe "$item"
-            done
-        fi | sort -b -t '|' -k 2r,2 -k 1,1 | tabulate -s '\|' -f plain
+        search "$@" \
+            | while read -r item; do describe "$item" & done \
+            | sort -b -t '|' -k 2r,2 -k 1,1 \
+            | tabulate -s '\|' -f plain
         ;;
 
     a | add)
@@ -164,16 +157,13 @@ case "$cmd" in
 
     c | cat)
         search "$@" | while read -r path; do
-            if [ -n "$not_first" ]; then
-                echo
-            fi
+            [ -n "$not_first" ] && echo
 
             {
                 bat -p "$path/desc.md"
 
                 cd "$path" || exit 1
                 files="$(fd -t f --exclude title --exclude state --exclude desc.md)"
-
                 if [ -n "$files" ]; then
                     echo
                     color yel 'files:\n'
