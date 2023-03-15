@@ -143,8 +143,11 @@ case "$cmd" in
 
         # edit tmp file
         tmpfile="$(mktemp)"
-        $EDITOR "$tmpfile" || exit 1
-        [ ! -s "$tmpfile" ] && exit
+        $EDITOR "$tmpfile" -c 'set ft=markdown' || exit 1
+        if [ ! -s "$tmpfile" ] || [ "$(wc -c < "$tmpfile")" -le 1 ]; then
+            echo aborting new todo item.
+            exit
+        fi
 
         mkdir -pv "$path"
         head -n 1 "$tmpfile" > "$path/title"
