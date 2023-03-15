@@ -2,18 +2,18 @@
 
 #shellcheck disable=2016
 usage() {
-    echo 'todo -- task organizer & daily optimizer'
+    echo 'todo  -- task organizer & daily optimizer'
     echo ''
     echo 'usage:'
-    echo '  todo list [search]   | default action: list all items matching `search`'
-    echo '  todo add  [dir]      | add new item in `dir`'
-    echo '  todo cat  [search]   | describe all items matching `search`'
-    echo '  todo edit [search*]  | edit description of item matching `search`'
-    echo '  todo title [search*] | edit description of item matching `search`'
-    echo '  todo set  [search*]  | set `state` of item matching `search`'
+    echo '  todo list  [search]  | (default action) list all items matching `search`'
+    echo '  todo add   [dir]     | add new item in `dir`'
+    echo '  todo cat   [search]  | describe all items matching `search`'
+    echo '  todo edit  [search]* | edit description of item matching `search`'
+    echo '  todo title [search]* | edit title of item matching `search`'
+    echo '  todo set   [search]* | set `state` of item matching `search`'
     echo '                       |     state := (todo|open|hold|done)'
-    echo '  todo rm   [search*]  | remove item matching `search`'
-    echo '  todo dir  [search*]  | print directory of task matching `search`'
+    echo '  todo rm    [search]* | remove item matching `search`'
+    echo '  todo dir   [search]* | print directory of task matching `search`'
     echo '                       |     add the following to your shell rc:'
     echo '                       |     tcd() { cd "$(todo dir "$1")"; }'
     echo '                       |'
@@ -23,8 +23,7 @@ usage() {
     echo '  - task IDs'
     echo '  - task names'
     echo '  - if -a flag is used, any file within a task'
-    echo ''
-    echo '[search*] := you will be asked to manually select a result if multiple tasks match the search terms.'
+    echo '*: must manually select from multiple results.'
     echo ''
     exit "$1"
 }
@@ -163,7 +162,7 @@ case "$cmd" in
             [ -n "$not_first" ] && echo
 
             {
-                bat -p "$path/desc.md"
+                cat "$path/desc.md"
 
                 cd "$path" || exit 1
                 files="$(fd -t f --exclude title --exclude state --exclude desc.md)"
@@ -172,12 +171,17 @@ case "$cmd" in
                     color yel 'files:\n'
                     color wht "$files"
                 fi
-            } | bat --file-name="$(describe "$path")" --style=grid,header
+            } | bat \
+                --file-name="$(describe "$path")" \
+                -f \
+                --style=grid,header \
+                --paging=never \
+                --terminal-width="$(tput cols)"
 
             cd "$TODO_DIR" || exit 1
 
             not_first=1
-        done
+        done | bat -p
         ;;
 
     e | edit)
