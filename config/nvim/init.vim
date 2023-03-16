@@ -68,6 +68,7 @@ tnoremap <Esc> <C-\><C-n>
 
 """ misc remaps
 nnoremap S :%s//g<Left><Left>
+vnoremap <leader>S :s//g<Left><Left>
 nnoremap <A-S> :.s//g<Left><Left>
 xnoremap S :s//g<Left><Left>
 nnoremap c "_c
