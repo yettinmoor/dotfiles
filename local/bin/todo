@@ -5,19 +5,19 @@ usage() {
     echo 'todo  -- task organizer & daily optimizer'
     echo ''
     echo 'usage:'
-    echo '  todo list  [search]  | (default action) list all items matching `search`'
-    echo '  todo add   [dir]     | add new item in `dir`'
-    echo '  todo cat   [search]  | describe all items matching `search`'
-    echo '  todo edit  [search]* | edit description of item matching `search`'
-    echo '  todo title [search]* | edit title of item matching `search`'
-    echo '  todo set   [search]* | set `state` of item matching `search`'
-    echo '                       |     state := (todo|open|hold|done|ever)'
-    echo '  todo rm    [search]* | remove item matching `search`'
-    echo '  todo dir   [search]* | print directory of task matching `search`'
-    echo '                       |     add the following to your shell rc:'
-    echo '                       |     tcd() { cd "$(todo dir "$1")"; }'
-    echo '                       |'
-    echo '  todo help            | show this help'
+    echo '  todo list    [search]  | (default action) list all items matching `search`'
+    echo '  todo add     [dir]     | add new item in `dir`'
+    echo '  todo cat     [search]  | describe all items matching `search`'
+    echo '  todo edit    [search]* | edit description of item matching `search`'
+    echo '  todo title   [search]* | edit title of item matching `search`'
+    echo '  todo <state> [search]* | set state of item matching `search`'
+    echo '                         |     state := (todo|open|hold|done|ever)'
+    echo '  todo rm      [search]* | remove item matching `search`'
+    echo '  todo dir     [search]* | print directory of task matching `search`'
+    echo '                         |     add the following to your shell rc:'
+    echo '                         |     tcd() { cd "$(todo dir "$1")"; }'
+    echo '                         |'
+    echo '  todo help              | show this help'
     echo ''
     echo '[search] strings will match:'
     echo '  - task IDs'
@@ -81,11 +81,11 @@ search_select() {
     desc="$1"
     shift
 
-    path="$(search "$*")"
-    lines="$(echo "$path" | wc -l)"
+    items="$(search "$*")"
+    lines="$(echo "$items" | wc -l)"
 
     if [ "$lines" -gt 1 ]; then
-        echo "$path" | while read -r item; do
+        echo "$items" | while read -r item; do
             describe "$item"
         done | nl > /dev/stderr
         printf 'select task to %s) ' "$desc" > /dev/stderr
@@ -93,14 +93,14 @@ search_select() {
         if [ -n "${sel##*[!0-9]*}" ] \
                 && [ "$sel" -ge 1 ] \
                 && [ "$sel" -le "$lines" ]; then
-            path="$(echo "$path" | sed "$sel!d")"
+            item="$(echo "$items" | sed "$sel!d")"
         else
             echo invalid selection: "$sel"
             exit 1
         fi
     fi
 
-    echo "$path"
+    echo "$item"
 }
 
 describe() {
@@ -120,6 +120,11 @@ describe() {
         "$(cat "$item/title")"
 }
 
+print_path_and_title() {
+    item="$1"
+    printf '%s (%s)' "$item" "$(cat "$item/title")"
+}
+
 TODO_DIR="${TODO_DIR:-$HOME/docs/todo}"
 cd "$TODO_DIR" || exit 1
 
@@ -129,7 +134,7 @@ cmd="$1"
 case "$cmd" in
     '' | l | list)
         search "$@" \
-            | while read -r item; do describe "$item" & done \
+            | while read -r path; do describe "$path" & done \
             | sort -b -t '|' -k 2r,2 -k 1,1 \
             | tabulate -s '\|' -f plain
         ;;
@@ -137,8 +142,8 @@ case "$cmd" in
     a | add)
         # generate name
         dir="${1:-.}"
-        while [ -z "$path" ] || [ -f "$path" ]; do
-            path="$dir/$(hexdump -vn3 -e'"%06x" 1 "\n"' /dev/urandom)"
+        while [ -z "$item" ] || [ -f "$item" ]; do
+            item="$dir/$(hexdump -vn3 -e'"%06x" 1 "\n"' /dev/urandom)"
         done
 
         # edit tmp file
@@ -149,23 +154,23 @@ case "$cmd" in
             exit
         fi
 
-        mkdir -pv "$path"
-        head -n 1 "$tmpfile" > "$path/title"
-        sed -e '1d' -e '/./,$!d' "$tmpfile" > "$path/desc.md"
+        mkdir -pv "$item"
+        head -n 1 "$tmpfile" > "$item/title"
+        sed -e '1d' -e '/./,$!d' "$tmpfile" > "$item/desc.md"
 
-        echo 'todo' > "$path/state"
+        echo 'todo' > "$item/state"
 
         rm "$tmpfile"
         ;;
 
     c | cat)
-        search "$@" | while read -r path; do
+        search "$@" | while read -r item; do
             [ -n "$not_first" ] && echo
 
             {
-                cat "$path/desc.md"
+                cat "$item/desc.md"
 
-                cd "$path" || exit 1
+                cd "$item" || exit 1
                 files="$(fd -t f --exclude title --exclude state --exclude desc.md)"
                 if [ -n "$files" ]; then
                     echo
@@ -173,7 +178,7 @@ case "$cmd" in
                     color wht "$files"
                 fi
             } | bat \
-                --file-name="$(describe "$path")" \
+                --file-name="$(describe "$item")" \
                 -f \
                 --style=grid,header \
                 --paging=never \
@@ -186,42 +191,40 @@ case "$cmd" in
         ;;
 
     e | edit)
-        path=$(search_select edit "$@")
-        [ -z "$path" ] && exit 1
-        $EDITOR "$path/desc.md"
+        item=$(search_select edit "$@")
+        [ -z "$item" ] && exit 1
+        $EDITOR "$item/desc.md"
+        echo "edited $(describe "$item")"
         ;;
 
     t | title)
-        path=$(search_select retitle "$@")
-        [ -z "$path" ] && exit 1
-        $EDITOR "$path/title"
+        item=$(search_select retitle "$@")
+        [ -z "$item" ] && exit 1
+        $EDITOR "$item/title"
+        echo "retitled $(describe "$item") to '$state'"
         ;;
 
-    s | set)
-        state="$1"
-        case "$state" in
-            todo | open | hold | done | ever) ;;
-            *) usage 1 ;;
-        esac
-        shift
-        path=$(search_select "set as '$state'" "$@")
-        [ -z "$path" ] && exit 1
-        echo "$state" > "$path/state"
+    todo | open | hold | done | ever)
+        state="$cmd"
+        item=$(search_select "set to '$state'" "$@")
+        [ -z "$item" ] && exit 1
+        echo "$state" > "$item/state"
+        echo "set $(print_path_and_title "$item") to '$state'"
         ;;
 
     r | rm)
-        path=$(search_select remove "$@")
-        printf 'remove %s (%s)? [y/N] ' "$path" "$(cat "$path/title")"
+        item=$(search_select remove "$@")
+        printf 'remove %s (%s)? [y/N] ' "$item" "$(cat "$item/title")"
         read -r ans
         if echo "$ans" | grep -qiE '^y(es)?$'; then
-            rm -r "${TODO_DIR:-.}/$path"
-            echo removed "$path"
+            rm -r "${TODO_DIR:-.}/$item"
+            echo "removed $(print_path_and_title "$item")"
         fi
         ;;
 
     dir)
-        [ -n "$1" ] && path=$(search_select 'cd to' "$@")
-        echo "$TODO_DIR/$path"
+        [ -n "$1" ] && item=$(search_select 'cd to' "$@")
+        echo "$TODO_DIR/$item"
         ;;
 
     h | help)
