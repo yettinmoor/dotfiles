@@ -11,7 +11,7 @@ usage() {
     echo '  todo edit  [search]* | edit description of item matching `search`'
     echo '  todo title [search]* | edit title of item matching `search`'
     echo '  todo set   [search]* | set `state` of item matching `search`'
-    echo '                       |     state := (todo|open|hold|done)'
+    echo '                       |     state := (todo|open|hold|done|ever)'
     echo '  todo rm    [search]* | remove item matching `search`'
     echo '  todo dir   [search]* | print directory of task matching `search`'
     echo '                       |     add the following to your shell rc:'
@@ -110,6 +110,7 @@ describe() {
         todo) statefmt=$(color wht %s) ;;
         open) statefmt=$(color -b yel %s) ;;
         hold) statefmt=$(color red %s) ;;
+        ever) statefmt=$(color prp %s) ;;
         done) statefmt=$(color grn %s) ;;
     esac
     printf "$(color yel %s/)%s | $statefmt | $(color blu %s)\n" \
@@ -191,7 +192,7 @@ case "$cmd" in
         ;;
 
     t | title)
-        path=$(search_select edit "$@")
+        path=$(search_select retitle "$@")
         [ -z "$path" ] && exit 1
         $EDITOR "$path/title"
         ;;
@@ -199,11 +200,11 @@ case "$cmd" in
     s | set)
         state="$1"
         case "$state" in
-            todo | open | hold | done) ;;
-            *)  usage 1 ;;
+            todo | open | hold | done | ever) ;;
+            *) usage 1 ;;
         esac
         shift
-        path=$(search_select edit "$@")
+        path=$(search_select "set as '$state'" "$@")
         [ -z "$path" ] && exit 1
         echo "$state" > "$path/state"
         ;;
