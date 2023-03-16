@@ -211,7 +211,7 @@ case "$cmd" in
 
     r | rm)
         path=$(search_select remove "$@")
-        printf 'remove %s? [y/N] ' "$path"
+        printf 'remove %s (%s)? [y/N] ' "$path" "$(cat "$path/title")"
         read -r ans
         if echo "$ans" | grep -qiE '^y(es)?$'; then
             rm -r "${TODO_DIR:-.}/$path"
