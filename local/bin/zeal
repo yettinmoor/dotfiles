@@ -1,0 +1,40 @@
+#!/usr/bin/env sh
+
+isinstalled /usr/bin/zeal || {
+    echo 'install zeal'
+    exit 1
+}
+
+DOCDIR="$XDG_DATA_HOME/Zeal/Zeal/docsets"
+
+# subprogram called in fzf command below
+if [ "$1" = --sql ]; then
+    shift
+    dir="$1"
+    query="$2"
+    sqlite3 \
+        -separator ';' \
+        "$dir/docSet.dsidx" \
+        "SELECT name, path FROM searchIndex WHERE name LIKE '%$query%';"
+    exit
+fi
+
+# get docset path
+search="$1"
+docset="$(fd -e docset "$search" "$DOCDIR" -x echo '{/.}' | fzf -1)"
+[ -z "$docset" ] && exit 1
+docset="$DOCDIR/${docset}.docset/"
+
+dir="$docset/Contents/Resources"
+
+"$0" --sql "$dir" \
+    | fzf \
+        --bind "change:reload('$0' --sql '$dir' {q})" \
+        --delimiter=";" \
+        --with-nth=1 \
+    | rg '([^;]*);(.*<dash_entry.*>)?(.*)' -r "$dir/Documents/\$3" \
+    | {
+        read -r path
+        [ -z "$path" ] && exit
+        launch "$path"
+    }
