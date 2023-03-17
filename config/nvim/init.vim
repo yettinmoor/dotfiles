@@ -19,7 +19,7 @@ set clipboard=unnamedplus
 set wildmode=longest,list,full
 set encoding=utf-8
 nnoremap <silent> <Esc> :noh<CR><Esc>
-set conceallevel=2
+set conceallevel=3
 set ignorecase
 set smartcase
 set wildignore+=*/.git/*

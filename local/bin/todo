@@ -7,6 +7,7 @@ usage() {
     echo 'usage:'
     echo '  todo list    [search]  | (default action) list all items matching `search`'
     echo '  todo add     [dir]     | add new item in `dir`'
+    echo '  todo ls      [search]  | list files for items matching `search`'
     echo '  todo cat     [search]  | describe all items matching `search`'
     echo '  todo edit    [search]* | edit description of item matching `search`'
     echo '  todo title   [search]* | edit title of item matching `search`'
@@ -42,38 +43,20 @@ search() {
     fi
 
     for item in $(fd --strip-cwd-prefix -t d "[0-9a-f]{6}$"); do
-        cd "$TODO_DIR/$item" || exit 1
-
-        # match filename
-        case "$item" in
-            *"$term"*)
-                found=1
-                echo "$item" | sed 's:/$::'
-                continue
-                ;;
-        esac
-
-        # match filename
-        case "$(cat title)" in
-            *"$term"*)
-                found=1
-                echo "$item" | sed 's:/$::'
-                continue
-                ;;
-        esac
-
-        # match any file
-        if [ -n "$search_all" ] && { fd -q "$term" || rg -qi "$term"; }; then
+        # match filename or title
+        if print_path_and_title "$item" | fzf -e -f "$term" > /dev/null; then
             found=1
             echo "$item" | sed 's:/$::'
-            continue
+
+        # match any file
+        elif [ -n "$search_all" ] && { fd -q "$term" "$item" || rg -qi "$term" "$item"; }; then
+            found=1
+            echo "$item" | sed 's:/$::'
         fi
     done
 
-    cd "$TODO_DIR" || exit 1
-
     if [ -z "$found" ]; then
-        echo no tasks found for search string \""$term"\" > /dev/stderr
+        echo no tasks found for search string \""$term"\" >&2
     fi
 }
 
@@ -90,7 +73,7 @@ search_select() {
         echo "$items" | while read -r item; do
             describe "$item"
         done | nl >&2
-        printf 'select task to %s) ' "$desc" > /dev/stderr
+        printf 'select task to %s) ' "$desc" >&2
         read -r sel
         if [ -n "${sel##*[!0-9]*}" ] \
                 && [ "$sel" -ge 1 ] \
@@ -168,6 +151,19 @@ case "$cmd" in
         rm "$tmpfile"
         ;;
 
+    ls)
+        search "$@" | while read -r item; do
+            files="$(tree -C -I 'state|title' "$item" \
+                | sed 1d \
+                | head -n -2)"
+            if [ -n "$files" ]; then
+                print_path_and_title "$item"
+                echo "$files"
+            fi
+            echo
+        done
+        ;;
+
     c | cat)
         search "$@" | while read -r item; do
             [ -n "$not_first" ] && echo
@@ -219,11 +215,13 @@ case "$cmd" in
 
     r | rm)
         item=$(search_select remove "$@")
-        printf 'remove %s (%s)? [y/N] ' "$item" "$(cat "$item/title")"
+        printf 'remove %s? [y/N] ' "$(print_path_and_title "$item")"
         read -r ans
         if echo "$ans" | grep -qiE '^y(es)?$'; then
-            rm -r "${TODO_DIR:-.}/$item"
-            echo "removed $(print_path_and_title "$item")"
+            path_and_title="$(print_path_and_title "$item")"
+            rm -r "$item"
+            rmdir "$(dirname "$item")" 2> /dev/null
+            echo "removed $path_and_title"
         fi
         ;;
 
