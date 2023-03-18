@@ -104,7 +104,7 @@ for file in "$@"; do
                     wraptty tor "$file"
                     ;;
                 text/html)
-                    wrap "$BROWSER" --target window "$file"
+                    wrap browser "$file"
                     ;;
                 application/vnd.openxmlformats-officedocument.wordprocessingml.document | \
                     application/vnd.openxmlformats-officedocument.spreadsheetml.sheet | \

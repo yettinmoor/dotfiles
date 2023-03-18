@@ -52,6 +52,8 @@ else
     curl --user-agent 'Chrome' -LO "$url"
 fi
 
+file="${file%%\?*}"
+
 if [ -n "$STORE" ]; then
     file=$(store -t . -p "$file")
 fi
