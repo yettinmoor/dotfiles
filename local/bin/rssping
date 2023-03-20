@@ -7,7 +7,7 @@ RSSDIR=~/docs/rss
 pgrep -x rssping > /dev/null && exit 1
 isconnected || exit 1
 
-pgrep -x newsboat && xdotool search --name newsboat key R && exit
+pgrep -x newsboat && exit
 
 polybar-msg action '#rss.send.?'
 
