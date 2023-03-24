@@ -7,15 +7,28 @@ if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
     silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.config/nvim/autoload/plug.vim
 endif
 
-au BufWritePost nvim/plug.vim PlugInstall
-
 call plug#begin('~/.config/nvim/plugged')
 
 " LSP
 Plug 'neovim/nvim-lspconfig'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
 Plug 'prettier/vim-prettier'
+
+" Small utilities
+Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'jreybert/vimagit'
+Plug 'godlygeek/tabular'
+Plug 'jiangmiao/auto-pairs'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'vim-scripts/ReplaceWithRegister'
+Plug 'christoomey/vim-sort-motion'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'mileszs/ack.vim'
+Plug 'mg979/vim-visual-multi'
+Plug 'junegunn/goyo.vim'
 
 " Languages/filetypes
 Plug 'vimwiki/vimwiki'
@@ -35,23 +48,6 @@ Plug 'kalekundert/vim-nestedtext', {'for': 'nt' }
 Plug 'vim-scripts/Twee-Integration-for-Vim'
 Plug 'mtdl9/vim-log-highlighting'
 Plug 'Glench/Vim-Jinja2-Syntax'
-
-" Small utilities
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'jreybert/vimagit'
-Plug 'godlygeek/tabular'
-Plug 'jiangmiao/auto-pairs'
-Plug 'AndrewRadev/splitjoin.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'vim-scripts/ReplaceWithRegister'
-Plug 'christoomey/vim-sort-motion'
-Plug 'michaeljsmith/vim-indent-object'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'mileszs/ack.vim'
-Plug 'mg979/vim-visual-multi'
-Plug 'junegunn/goyo.vim'
 
 " Aesthetics
 Plug 'sainnhe/gruvbox-material'

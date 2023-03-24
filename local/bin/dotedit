@@ -2,6 +2,8 @@
 
 DOT=~/repos/dotfiles
 
+cd $DOT || exit 1
+
 if [ -z "$1" ]; then
     sel() { sort | uniq | fzf --preview="bat -p --color always $DOT/{}"; }
 else
@@ -16,3 +18,5 @@ fi
 } \
     | sel "$1" \
     | xargs -r -I {} "$EDITOR" "$HOME/repos/dotfiles/{}"
+
+cd -
