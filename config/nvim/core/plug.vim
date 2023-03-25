@@ -11,6 +11,8 @@ call plug#begin('~/.config/nvim/plugged')
 
 " LSP
 Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'dense-analysis/ale'
 Plug 'prettier/vim-prettier'
 

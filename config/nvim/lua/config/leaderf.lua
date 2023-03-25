@@ -12,15 +12,15 @@ vim.g.Lf_UseCache = 0
 vim.g.Lf_UseMemoryCache = 0
 
 -- Keymaps
-vim.g.Lf_ShortcutF = "<leader>ff"
-vim.g.Lf_ShortcutB = "<leader>fb"
+vim.g.Lf_ShortcutF = ""
+vim.g.Lf_ShortcutB = ""
+
+vim.keymap.set("n", "<leader>ff", function()
+	vim.cmd.Leaderf("file")
+end)
 
 vim.keymap.set("n", "<leader>fg", function()
 	vim.cmd.Leaderf("rg")
-end)
-
-vim.keymap.set("n", "<C-p>", function()
-	vim.cmd.Leaderf("file")
 end)
 
 -- Change keybinding in LeaderF prompt mode, use ctrl-n and ctrl-p to navigate

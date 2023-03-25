@@ -1,12 +1,13 @@
 local util = require("util")
 
 local cfg_files = {
-	"plug.vim", -- plugins
-	"basic.lua", -- basic settings
-	"map.lua", -- keymaps
-	"ft.vim", -- filetype def
-	"color.lua", -- color settings
-	"term.lua", -- term settings
+	"plug.vim",
+	"basic.lua",
+	"map.lua",
+	"ft.vim",
+	"color.lua",
+	"term.lua",
+	"lsp.lua",
 }
 
 for _, name in ipairs(cfg_files) do
