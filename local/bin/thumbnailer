@@ -29,14 +29,15 @@ outfile="${outfile:-${infile}.jpg}"
 
 [ -z "$infile" ] && usage 1
 
-seq 10 10 90 \
-    | xargs -P 0 -I {} \
-        ffmpegthumbnailer \
+for i in $(seq 10 10 90); do
+    ffmpegthumbnailer \
         -i "$infile" \
-        -o "${outfile}_{}" \
+        -o "${outfile}_$i" \
         -s "${size:-$DEFAULT_SIZE}" \
         -q "${qual:-$DEFAULT_QUAL}" \
-        -t "{}%"
+        -t "${i}%" &
+done
+wait
 
 montage -geometry +0+0 "${outfile}_"* "$outfile"
 rm "${outfile}_"*
