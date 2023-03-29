@@ -19,4 +19,4 @@ fi
     | sel "$1" \
     | xargs -r -I {} "$EDITOR" "$HOME/repos/dotfiles/{}"
 
-cd -
+cd - >/dev/null
