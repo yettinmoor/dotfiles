@@ -36,3 +36,5 @@ end)
 -- misc remaps
 k.set("n", "S", ":%s//g<Left><Left>")
 k.set("n", "c", '"_c')
+k.set("n", "<backspace>", "<C-o>")
+k.set("n", "<S-backspace>", "<C-i>")

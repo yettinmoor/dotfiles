@@ -4,12 +4,13 @@ local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
 -- Setup language servers.
 lspconfig.clangd.setup({})
-lspconfig.ruff_lsp.setup({})
+lspconfig.pyright.setup({})
+-- lspconfig.ruff_lsp.setup({})
 lspconfig.rust_analyzer.setup({})
 lspconfig.tsserver.setup({})
 lspconfig.zls.setup({})
 
-local servers = { "clangd", "ruff_lsp", "rust_analyzer", "tsserver", "zls" }
+local servers = { "clangd", "pyright", "rust_analyzer", "tsserver", "zls" }
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup({
 		-- on_attach = my_custom_on_attach,

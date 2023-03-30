@@ -1,5 +1,8 @@
 vim.opt.nu = true
 vim.opt.rnu = true
+vim.opt.signcolumn = "auto:3"
+
+vim.opt.updatetime = 100
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.encoding = "utf-8"
