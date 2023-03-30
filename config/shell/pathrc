@@ -6,7 +6,7 @@ path() {
     ifhas "$HOME/.cargo/bin"
     ifhas "$HOME/.nimble/bin"
     ifhas "$HOME/.ghcup/bin"
-    gem environment path | tr ':' '\n' 2>/dev/null
+    gem environment path 2>/dev/null | tr ':' '\n'
     go env GOBIN 2>/dev/null
 
     ifhas /usr/local/bin
