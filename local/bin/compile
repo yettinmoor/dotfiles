@@ -49,6 +49,7 @@ case "$ft" in
     go)   go run "$file" ;;
     hs)   runhaskell "$file" ;;
     js)   node "$file" ;;
+    lua)  lua "$file" ;;
     nim)  nimble build -r ;;
     pl)   perl "$file" ;;
     rkt)  racket "$file" ;;

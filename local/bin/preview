@@ -55,10 +55,10 @@ case "$(file --mime-type "$1" -bL)" in
     application/x-bittorrent)
         transmission-show "$1"
         ;;
-    text/html)
-        [ ! -f "${CACHE}.jpg" ] && wkhtmltopdf "$1" - | pdftoppm -jpeg -f 1 -singlefile - "$CACHE"
-        image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
-        ;;
+    # text/html)
+    #     [ ! -f "${CACHE}.jpg" ] && wkhtmltopdf "$1" - | pdftoppm -jpeg -f 1 -singlefile - "$CACHE"
+    #     image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
+    #     ;;
     application/x-object)
         nm "$1"
         ;;

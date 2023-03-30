@@ -23,9 +23,8 @@ vim.keymap.set("n", "<leader>fg", function()
 	vim.cmd.Leaderf("rg")
 end)
 
--- Change keybinding in LeaderF prompt mode, use ctrl-n and ctrl-p to navigate
--- items.
--- vim.cmd([[let g:Lf_CommandMap = {'<C-N>': ['<C-J>'], '<C-P>': ['<C-K>']}]])
+-- use ctrl-n and ctrl-p to navigate items.
+-- vim.cmd([[let g:Lf_CommandMap = {'<C-N>': ['<a-J>'], '<C-P>': ['<C-K>']}]])
 
 vim.g.Lf_WildIgnore = {
 	dir = { ".git", "__pycache__", ".DS_Store" },

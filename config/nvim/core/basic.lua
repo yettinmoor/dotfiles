@@ -3,12 +3,17 @@ vim.opt.rnu = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.encoding = "utf-8"
-vim.opt.conceallevel = 3
 vim.opt.undofile = true
 
 vim.opt.clipboard:append("unnamedplus")
 
 vim.opt.matchpairs:append("<:>,「:」,『:』,【:】,“:”,‘:’,《:》")
+
+-- conceallevel
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = "*",
+	command = "set conceallevel=2",
+})
 
 -- wild
 vim.opt.wildmode = { "longest", "list", "full" }

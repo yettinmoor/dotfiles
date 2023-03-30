@@ -6,5 +6,5 @@ hi link racketNiceLambda Statement
 hi! link Conceal Statement
 
 " Set conceallevel/cursor
-setlocal conceallevel=1
+" setlocal conceallevel=1
 setlocal concealcursor=c

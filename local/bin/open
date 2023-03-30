@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-EXTS='\.(jpe?g|png|gif|mkv|mp4|m4v|avi|webm|mp3|pdf|djvu|epub|txt|md|docx|xlsx|sent|svg|html|cbr|cbz)$'
+EXTS='\.(jpe?g|png|gif|mkv|mp4|m4v|avi|webm|mp3|pdf|djvu|epub|txt|docx|xlsx|sent|svg|html|cbr|cbz)$'
 
 browser() {
     if [ -n "$OPEN_XORG" ]; then
@@ -29,9 +29,9 @@ while getopts dc: o; do
 done
 shift $((OPTIND - 1))
 
-exclude="{$(paste -sd , .openignore 2> /dev/null)}"
+# exclude="{$(paste -sd , .openignore 2> /dev/null)}"
 
-fd --strip-cwd-prefix -t f "$EXTS" -E "$exclude" \
+fd --strip-cwd-prefix -t f "$EXTS" --ignore-file .openignore \
     | browser \
     | {
         read -r file

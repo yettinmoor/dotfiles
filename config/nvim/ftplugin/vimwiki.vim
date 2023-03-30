@@ -6,6 +6,17 @@ nmap gd    <Plug>VimwikiFollowLink
 nmap <S-l> <Plug>VimwikiNextLink
 nmap <S-h> <Plug>VimwikiPrevLink
 
+let g:vimwiki_list = [{
+    \ 'syntax': 'markdown',
+    \ 'ext': '.wiki',
+    \ 'path': '~/docs/vimwiki',
+    \ 'path_html': '~/docs/html',
+    \ 'template_path': '~/docs/html/.templates',
+    \ 'template_default': 'template.html',
+    \ 'custom_wiki2html': 'vimwiki_markdown',
+    \ 'html_filename_parameterization': 1,
+\ }]
+
 let g:vimwiki_key_mappings = {
     \ 'all_maps': 1,
     \ 'global': 1,
