@@ -4,11 +4,12 @@ local map = {
 	{ "*.asm", "nasm" },
 	{ "*.h", "c" },
 	{ "*.ms,*.me,*.mom,*.man", "groff" },
+	{ "*.nil", "nil" },
 	{ "*.tw", "twee" },
 	{ "*.vs,*.fs", "glsl" },
 	{ "*.wiki", "vimwiki" },
-	{ ".clangd", "yaml" },
 	{ ".clang-format", "yaml" },
+	{ ".clangd", "yaml" },
 	{ ".compile", "sh" },
 	{ "fonts.conf", "xml" },
 }
