@@ -24,6 +24,8 @@ vim.g.ale_linters = {
 -- execute ale#fix#registry#Add('shfmt', 'FormatSh', ['sh'], 'shfmt for sh')
 
 vim.g.ale_fixers = {
+	c = "clang-format",
+	cpp = "clang-format",
 	css = "prettier",
 	haskell = "hindent",
 	html = "prettier",
