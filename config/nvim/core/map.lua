@@ -30,7 +30,7 @@ end)
 -- run
 k.set("n", "<leader>r", function()
 	vim.cmd.write()
-	util.split("term://run " .. vim.opt.filetype:get() .. " " .. vim.fn.bufname("%"))
+	util.split("term://run " .. vim.fn.bufname("%"))
 end)
 
 -- misc remaps
