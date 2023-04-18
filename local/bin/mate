@@ -1,0 +1,39 @@
+#!/usr/bin/env sh
+
+cmd="$1"
+
+case "$cmd" in
+    push | pull)
+        shift ;;
+    *)
+        echo "rp [push|pull] [dir]?"
+        exit 1
+        ;;
+esac
+
+# check $MATE defined & connected
+[ -z "$MATE" ] && {
+    echo "\$MATE not defined"
+    exit 1
+}
+isconnected "$MATE" || {
+    echo "$MATE not found on network"
+    exit 1
+}
+
+# get path
+p="$(realpath "${1:-.}")"
+case "$p" in
+    *actia/env*)
+        ;;
+    *)
+        echo unauthorized dir: "$p"
+        exit 1
+        ;;
+esac
+[ $# -ge 1 ] && shift
+
+case "$cmd" in
+    push) rsync "$@" -avz "$p" "$MATE:$(dirname "$p")" ;;
+    pull) rsync "$@" "$MATE:$p" -avz "$(dirname "$p")" ;;
+esac
