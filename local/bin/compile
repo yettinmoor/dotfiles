@@ -43,21 +43,21 @@ case "$ft" in
     sh) sh "$file" ;;
 
     # programming
-    c)    cc "$file" -o "$noext" ;;
-    cpp)  g++ "$file" -o "$noext" ;;
-    cs)   mcs "$file" ;;
-    go)   go run "$file" ;;
-    hs)   runhaskell "$file" ;;
-    js)   node "$file" ;;
-    lua)  lua "$file" ;;
-    nim)  nimble build -r ;;
-    nil)  ~/dev/nil/zig-out/bin/nil run "$file" ;;
-    pl)   perl "$file" ;;
-    rkt)  racket "$file" ;;
-    rust) cargo run ;;
-    scm)  chicken-csi -q "$file" ;;
-    ts)   deno run --allow-read "$file" ;;
-    zig)  zig build run ;;
+    c)           cc "$file" -o "$noext" ;;
+    cpp)         g++ "$file" -o "$noext" ;;
+    cs)          mcs "$file" ;;
+    go)          go run "$file" ;;
+    hs)          runhaskell "$file" ;;
+    javascript)  node "$file" ;;
+    lua)         lua "$file" ;;
+    nim)         nimble build -r ;;
+    nil)         ~/dev/nil/zig-out/bin/nil run "$file" ;;
+    pl)          perl "$file" ;;
+    rkt)         racket "$file" ;;
+    rust)        cargo run ;;
+    scm)         chicken-csi -q "$file" ;;
+    typescript)  deno run --allow-read "$file" ;;
+    zig)         zig build run ;;
 
     # documents
     tex)      xelatex --output-directory="$dir" "$noext" ;;

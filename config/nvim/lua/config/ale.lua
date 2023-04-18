@@ -29,6 +29,7 @@ vim.g.ale_fixers = {
 	css = "prettier",
 	haskell = "hindent",
 	html = "prettier",
+	javascript = "deno",
 	json = "jq",
 	lua = "stylua",
 	markdown = "prettier",
