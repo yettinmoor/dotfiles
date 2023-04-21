@@ -31,7 +31,7 @@ shift $((OPTIND - 1))
 
 # exclude="{$(paste -sd , .openignore 2> /dev/null)}"
 
-fd --strip-cwd-prefix -t f "$EXTS" --ignore-file .openignore \
+fd --strip-cwd-prefix -t f -t l "$EXTS" --ignore-file .openignore \
     | browser \
     | {
         read -r file
