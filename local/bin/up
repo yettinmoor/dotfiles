@@ -31,6 +31,7 @@ case "$1" in
     '')
         isconnected || exit 1
         sudo pacman -Syu
+        kbset
         ;;
     *)
         echo 'usage: up [down]'
