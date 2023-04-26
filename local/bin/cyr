@@ -1,13 +1,13 @@
 #!/usr/bin/env sh
 
-echo "$@" | sed \
-    -e 's/SHCH/Щ/g' \
-    -e 's/ZH/Ж/g' \
-    -e 's/CH/Ч/g' \
-    -e 's/SH/Ш/g' \
-    -e 's/YO/Ё/g' \
-    -e 's/YU/Ю/g' \
-    -e 's/YA/Я/g' \
+echo "$@" | sed -E \
+    -e 's/S(HCH|hch)/Щ/g' \
+    -e 's/Z[Hh]/Ж/g' \
+    -e 's/C[Hh]/Ч/g' \
+    -e 's/S[Hh]/Ш/g' \
+    -e 's/Y[Oo]/Ё/g' \
+    -e 's/Y[Uu]/Ю/g' \
+    -e 's/Y[Aa]/Я/g' \
     -e 's/A/А/g' \
     -e 's/B/Б/g' \
     -e 's/V/В/g' \
@@ -62,5 +62,6 @@ echo "$@" | sed \
     -e 's/x/х/g' \
     -e 's/c/ц/g' \
     -e 's/y/ы/g' \
+    -e 's/é/э/g' \
     -e "s/'/ь/g" \
-    -e 's/é/э/g'
+    -e 's/"/ъ/g'
