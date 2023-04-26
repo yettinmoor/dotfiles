@@ -5,6 +5,7 @@ echo "$@" | sed \
     -e 's/ZH/Ж/g' \
     -e 's/CH/Ч/g' \
     -e 's/SH/Ш/g' \
+    -e 's/TS/Ц/g' \
     -e 's/YO/Ё/g' \
     -e 's/YU/Ю/g' \
     -e 's/YA/Я/g' \
@@ -29,13 +30,13 @@ echo "$@" | sed \
     -e 's/U/У/g' \
     -e 's/F/Ф/g' \
     -e 's/X/Х/g' \
-    -e 's/C/Ц/g' \
     -e 's/Y/Ы/g' \
     -e 's/É/Э/g' \
     -e 's/shch/щ/g' \
     -e 's/zh/ж/g' \
     -e 's/ch/ч/g' \
     -e 's/sh/ш/g' \
+    -e 's/ts/ц/g' \
     -e 's/yo/ё/g' \
     -e 's/yu/ю/g' \
     -e 's/ya/я/g' \
@@ -60,7 +61,6 @@ echo "$@" | sed \
     -e 's/u/у/g' \
     -e 's/f/ф/g' \
     -e 's/x/х/g' \
-    -e 's/c/ц/g' \
     -e 's/y/ы/g' \
     -e "s/'/ь/g" \
     -e 's/é/э/g'
