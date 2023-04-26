@@ -3,11 +3,13 @@ vim.keymap.set("n", "<leader>ft", ":set ft=")
 local map = {
 	{ "*.asm", "nasm" },
 	{ "*.h", "c" },
+	{ "*.mnemo", "mnemo" },
 	{ "*.ms,*.me,*.mom,*.man", "groff" },
 	{ "*.nil", "nil" },
 	{ "*.tw", "twee" },
 	{ "*.vs,*.fs", "glsl" },
 	{ "*.wiki", "vimwiki" },
+	{ "*/mnemo/sen/*", "sentences" },
 	{ ".clang-format", "yaml" },
 	{ ".clangd", "yaml" },
 	{ ".compile", "sh" },

@@ -29,7 +29,7 @@ case "$lang" in
                 "$(wd "$1" | awk 'NR==3 {print}' | sed 's/[a-z]\+\. //')"
         }
         ;;
-    fr | de | el)
+    fr | de | ru | el)
         translateword() {
             printf "%s: %s" "$1" "$(trans -b "${lang}:" "$1" 2> /dev/null)"
         }

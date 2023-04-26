@@ -1,9 +1,18 @@
 #!/usr/bin/env sh
 
-if [ "$1" = '-l' ]; then shift; lang="$1"; shift; fi
+while getopts l:b opt; do
+    case "$opt" in
+        l) lang="$OPTARG" ;;
+        b) browse=1 ;;
+    esac
+done
+shift $((OPTIND - 1))
 
-URL=https://en.wiktionary.org/api/rest_v1/page/definition
-
-curl -s "$URL/$(if [ $# -eq 0 ]; then cat; else echo "$@"; fi | tr ' ' '_')" \
-    | sed 's/<[^>]*>//g' \
-    | jq ".$lang"
+if [ -n "$browse" ]; then
+    browser \!wt "$(if [ $# -eq 0 ]; then cat; else echo "$@"; fi)"
+else
+    URL=https://en.wiktionary.org/api/rest_v1/page/definition
+    curl -s "$URL/$(if [ $# -eq 0 ]; then cat; else echo "$@"; fi | tr ' ' '_')" \
+        | sed 's/<[^>]*>//g' \
+        | jq ".$lang"
+fi
