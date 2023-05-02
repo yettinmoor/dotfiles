@@ -72,6 +72,7 @@ config.bind('x', 'tab-close')
 config.bind('X', 'undo')
 config.bind('<', 'tab-move -')
 config.bind('>', 'tab-move +')
+config.bind('gc', 'tab-clone')
 
 # media
 config.set('content.autoplay', False)

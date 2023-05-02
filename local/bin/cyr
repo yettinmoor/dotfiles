@@ -32,6 +32,8 @@ echo "$@" | sed -E \
     -e 's/C/Ц/g' \
     -e 's/Y/Ы/g' \
     -e 's/É/Э/g' \
+    -e "s/''/Ь/g" \
+    -e 's/""/Ъ/g' \
     -e 's/shch/щ/g' \
     -e 's/zh/ж/g' \
     -e 's/ch/ч/g' \
