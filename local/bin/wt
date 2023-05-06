@@ -9,10 +9,10 @@ done
 shift $((OPTIND - 1))
 
 if [ -n "$browse" ]; then
-    browser \!wt "$(if [ $# -eq 0 ]; then cat; else echo "$@"; fi)"
+    browser \!wt "$(echoorcat "$@")"
 else
     URL=https://en.wiktionary.org/api/rest_v1/page/definition
-    curl -s "$URL/$(if [ $# -eq 0 ]; then cat; else echo "$@"; fi | tr ' ' '_')" \
+    curl -s "$URL/$(echoorcat "$@")" \
         | sed 's/<[^>]*>//g' \
         | jq ".$lang"
 fi
