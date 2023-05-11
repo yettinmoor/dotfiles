@@ -40,7 +40,7 @@ bspc rule -a Surf state=tiled
 bspc rule -a FloatTerm state=floating
 
 killall polybar
-polybar -r top >> "$XDG_DATA_HOME/polybar-top.log" 2>&1 &
-polybar -r bottom >> "$XDG_DATA_HOME/polybar-bottom.log" 2>&1 &
+polybar -r top > /dev/null 2>&1 &
+polybar -r bottom > /dev/null 2>&1 &
 
 wait
