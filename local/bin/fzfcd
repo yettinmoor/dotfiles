@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+fd -t d --strip-cwd-prefix | fzf -e || echo .

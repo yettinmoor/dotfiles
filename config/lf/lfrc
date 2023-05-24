@@ -32,7 +32,7 @@ map mkd push :mkdir<space>
 map mkf push :mkfile<space>
 
 # cd
-map <c-f> $lf -remote "send $id cd $(fd -t d --strip-cwd-prefix | fzf -e | sed "s/ /\\\\ /g")" # jesus christ
+map <c-f> $lf -remote "send $id cd '$(fzfcd)'"
 map J     $lf -remote "send $id cd '$(dirpick)'"
 
 # files
