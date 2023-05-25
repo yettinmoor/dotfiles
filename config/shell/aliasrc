@@ -24,6 +24,7 @@ alias sni='sudo ninja install'
 # misc
 alias br='spawn browser'
 alias calcurse='calcurse -D ~/.config/calcurse'
+alias clo='xclip -sel c -o'
 alias d='ddgr -x -n 5'
 alias f='$FILE'
 alias ff='nvim "+Leaderf file --fullScreen"'
@@ -96,10 +97,6 @@ spawn() {
 
 cli() {
     echoorcat "$@" | xclip -sel c -i
-}
-
-clo() {
-    echoorcat "$@" | xclip -sel c -o
 }
 
 tcd() {
