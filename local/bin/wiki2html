@@ -1,0 +1,56 @@
+#!/usr/bin/env sh
+
+[ -z "$1" ] && {
+    echo no file given
+    exit 1
+}
+
+path="$(realpath "$1")"
+base="$(basename "$path")"
+base="${base%.*}"
+out="html/$base.html"
+
+cd "$WIKI_DIR" || exit 1
+
+make_defs=$(cat << EOF
+BEGIN { FS = "::"; in_def = 0; }
+\$2 != "" {
+    if (!in_def) { print "<table class=\"def\">"; }
+    if (\$1 != "") {
+        printf("<tr><td class=\"def-term\" id=\"%s\">%s</td><td>%s</td></tr>", \$1, \$1, \$2);
+    } else {
+        printf("<tr><td>%s</td></tr>", \$2);
+    }
+    in_def = 1;
+}
+\$2 == "" {
+    if (in_def) { print "</table>"; }
+    print \$0;
+    in_def = 0;
+}
+END { if (in_def) { print "</table>"; } }
+EOF
+)
+
+echo compiling $1...
+
+cat "$path" \
+    | sed \
+        -e 's/^##### \(.*\)/<h5 id="\1">\1<\/h1>/g' \
+        -e 's/^#### \(.*\)/<h4 id="\1">\1<\/h1>/g' \
+        -e 's/^### \(.*\)/<h3 id="\1">\1<\/h1>/g' \
+        -e 's/^## \(.*\)/<h2 id="\1">\1<\/h1>/g' \
+        -e 's/^# \(.*\)/<h1 id="\1">\1<\/h1>/g' \
+        -e 's/\([^!]\|^\)\(\[[^]]*]([^)#]\+\)\(#[^)]*\)\?)/\1\2.html\3)/g # format links' \
+        -e 's/\[ \]/<input type="checkbox">/g' \
+        -e 's/\[[xX]\]/<input type="checkbox" checked="true">/g' \
+        -e 's/TODO/<span class="todo">&<\/span>/g' \
+    | tee log \
+    | awk "$make_defs" \
+    | pandoc \
+        --data-dir html/data \
+        --css data/style.css \
+        --template template.html \
+        --mathjax='data/mathjax/es5/tex-chtml.js?config=TeX-AMS-MML_HTMLorMML' \
+        --metadata title="$base" \
+        -o "$out" \
