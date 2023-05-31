@@ -29,9 +29,9 @@ while getopts dc: o; do
 done
 shift $((OPTIND - 1))
 
-# exclude="{$(paste -sd , .openignore 2> /dev/null)}"
+exclude="{$(paste -sd , .openignore 2> /dev/null)}"
 
-fd --strip-cwd-prefix -t f -t l "$EXTS" --ignore-file .openignore \
+fd --strip-cwd-prefix -t f "$EXTS" -E "$exclude" \
     | browser \
     | {
         read -r file
