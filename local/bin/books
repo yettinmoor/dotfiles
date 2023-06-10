@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+
+FILE="$WIKI_DIR/booklog.md"
+
+arg="$1"
+shift
+
+case "$arg" in
+    c | cat)
+        if [ "$1" = '-x' ]; then
+            shift
+            exact=1
+        fi
+
+        [ -n "$1" ] && year="$1" || year="$(date +%Y)"
+
+        sed -e "0,/^\\# $year\$/d" -e "/$((year - 1))/q" "$FILE" \
+            | rg '\*\*(.+)\*\*' -r '$1' \
+            | if [ -n "$exact" ]; then rg '\[x\]'; else cat -; fi \
+            | tr -d '_' \
+            | tac
+        ;;
+    e | edit)
+        $EDITOR "$FILE" ;;
+esac
