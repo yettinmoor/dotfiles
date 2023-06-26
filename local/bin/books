@@ -2,11 +2,8 @@
 
 FILE="$WIKI_DIR/booklog.md"
 
-arg="$1"
-shift
-
 case "$arg" in
-    c | cat)
+    '' | c | cat)
         if [ "$1" = '-x' ]; then
             shift
             exact=1
