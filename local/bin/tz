@@ -12,4 +12,5 @@ showdate() {
     showdate Europe/Stockholm
     showdate Europe/Moscow
     showdate Asia/Tokyo
+    showdate Australia/Sydney
 } | tabulate -s '\t'
