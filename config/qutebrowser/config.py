@@ -49,17 +49,17 @@ config.set('fonts.web.family.serif', 'serif')
 
 # basic rebinds
 config.bind('<tab>', 'nop')
-config.bind('gh', 'set-cmd-text -s :help -t')
+config.bind('gh', 'cmd-set-text -s :help -t')
 config.bind('u', 'scroll-page 0 -0.5')
 config.bind('d', 'scroll-page 0 0.5')
 config.bind('cf', 'fake-key f')
 config.bind('gH', 'spawn -u his')
-config.bind('<alt-v>', 'set-cmd-text --append -- {clipboard}', mode='command')
+config.bind('<alt-v>', 'cmd-set-text --append -- {clipboard}', mode='command')
 
 # statusbar shenanigans
 config.bind('<ctrl-b>', 'config-cycle -t statusbar.show in-mode always')
-# config.bind(':', 'set statusbar.show always;; set-cmd-text :')
-# config.bind('/', 'set statusbar.show always;; set-cmd-text /')
+# config.bind(':', 'set statusbar.show always;; cmd-set-text :')
+# config.bind('/', 'set statusbar.show always;; cmd-set-text /')
 # config.bind(
 #     '<Escape>', 'mode-enter normal;; set statusbar.show in-mode', mode='command')
 # config.bind(
