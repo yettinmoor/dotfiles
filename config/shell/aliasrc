@@ -1,7 +1,7 @@
 # vim: filetype=sh
 
 # core
-alias ls='exa -h --group-directories-first'
+alias ls='eza -h --group-directories-first'
 alias ll='ls -l'
 alias cp='cp -iv'
 alias mv='mv -iv'
