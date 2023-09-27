@@ -2,7 +2,7 @@
 
 # Enable colors and change prompt:
 autoload -U colors && colors
-PS1="%{$fg[yellow]%}%~%{$reset_color%} λ%b "
+PS1="%{$fg[yellow]%}%~%{$reset_color%} $%b "
 
 # Time
 TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
