@@ -6,7 +6,7 @@ case "$cmd" in
     push | pull)
         shift ;;
     *)
-        echo "rp [push|pull] [dir]?"
+        echo "$(basename "$0") [push|pull] [dir]?"
         exit 1
         ;;
 esac
