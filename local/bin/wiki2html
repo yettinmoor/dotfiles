@@ -45,9 +45,10 @@ cat "$path" \
         -e 's/\[ \]/<input type="checkbox">/g' \
         -e 's/\[[xX]\]/<input type="checkbox" checked="true">/g' \
         -e 's/TODO/<span class="todo">&<\/span>/g' \
-    | tee log \
     | awk "$make_defs" \
     | pandoc \
+        -f commonmark \
+        -t html \
         --data-dir html/data \
         --css data/style.css \
         --template template.html \
