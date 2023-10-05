@@ -24,7 +24,7 @@ isconnected "$MATE" || {
 # get path
 p="$(realpath "${1:-.}")"
 case "$p" in
-    *actia/env*)
+    *actia/env* | *dev/aoc* | *dev/ns*)
         ;;
     *)
         echo unauthorized dir: "$p"
