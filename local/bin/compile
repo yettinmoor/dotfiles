@@ -47,7 +47,7 @@ case "$ft" in
     cpp)         g++ "$file" -o "$noext" ;;
     cs)          mcs "$file" ;;
     go)          go run "$file" ;;
-    hs)          runhaskell "$file" ;;
+    haskell)     runhaskell "$file" ;;
     javascript)  node "$file" ;;
     lua)         lua "$file" ;;
     nim)         nimble build -r ;;
