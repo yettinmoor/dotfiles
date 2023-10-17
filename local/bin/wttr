@@ -17,7 +17,7 @@ case "$1" in
     display) display "$2" ;;
     fetch)   fetch "$2" ;;
     *)
-        echo 'forecast [fetch|display]' >&2
+        echo "$(basename "$0") [fetch|display]" >&2
         exit 1
         ;;
 esac

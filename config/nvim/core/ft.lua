@@ -18,7 +18,13 @@ local map = {
 }
 
 for _, x in ipairs(map) do
-	vim.api.nvim_create_autocmd("BufRead,BufNewFile", {
+	vim.api.nvim_create_autocmd("BufRead", {
+		pattern = x[1],
+		callback = function()
+			vim.opt.filetype = x[2]
+		end,
+	})
+	vim.api.nvim_create_autocmd("BufNewFile", {
 		pattern = x[1],
 		callback = function()
 			vim.opt.filetype = x[2]

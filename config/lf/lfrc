@@ -16,6 +16,7 @@ set cursorpreviewfmt "\033[1m"
 # unmaps
 map m
 map ,
+map t
 
 # opening
 cmd open $launch -d "$f" # map o
