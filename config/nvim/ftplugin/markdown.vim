@@ -15,3 +15,6 @@ nnoremap <leader>b :normal ysiw*lysiw*<CR>
 nnoremap <leader>B :normal ysiW*lysiW*<CR>
 nnoremap <leader>i :normal ysiw_<CR>
 nnoremap <leader>I :normal ysiW_<CR>
+
+set tabstop=2
+set shiftwidth=2
