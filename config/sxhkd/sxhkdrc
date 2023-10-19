@@ -43,8 +43,8 @@ super + shift + t
 	teams-nativefier
 super + y
 	$TERMINAL -e calcurse -D ~/.config/calcurse
-super + {_,shift +} u
-	$TERMINAL -c FloatTerm -e { ,$EDITOR ~/docs/wiki/index.wiki}
+super + u
+	spad
 super + i
 	cd ~/pics && fd --strip-cwd-prefix '(jpe?g|png)' | dmenu -p clipimg | xargs -r clipimg
 super + o
