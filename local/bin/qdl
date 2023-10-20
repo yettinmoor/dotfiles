@@ -37,6 +37,7 @@ set -e
 
 cd "$dir"
 
+# dunst id
 id="$(awk "BEGIN { srand($(date +%N)); print int(65535 * rand()); }")"
 
 if [ -n "$YTDL" ]; then
@@ -58,6 +59,7 @@ if [ -n "$STORE" ]; then
     file=$(store -t . -p "$file")
 fi
 
+# display notification
 case "$(file --mime-type "$file" -bL)" in
     image/*)
         dunstify -r "$id" qdl \
