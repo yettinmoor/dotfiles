@@ -2,21 +2,20 @@
 
 FILE="$WIKI_DIR/booklog.md"
 
-case "$arg" in
-    '' | c | cat)
-        if [ "$1" = '-x' ]; then
-            shift
-            exact=1
-        fi
+if [ "$1" = '-e' ]; then
+    $EDITOR "$FILE"
+    exit
+fi
 
-        [ -n "$1" ] && year="$1" || year="$(date +%Y)"
+if [ "$1" = '-x' ]; then
+    shift
+    exact=1
+fi
 
-        sed -e "0,/^\\# $year\$/d" -e "/$((year - 1))/q" "$FILE" \
-            | rg '\*\*(.+)\*\*' -r '$1' \
-            | if [ -n "$exact" ]; then rg '\[x\]'; else cat -; fi \
-            | tr -d '_' \
-            | tac
-        ;;
-    e | edit)
-        $EDITOR "$FILE" ;;
-esac
+[ -n "$1" ] && year="$1" || year="$(date +%Y)"
+
+sed -e "0,/^\\# $year\$/d" -e "/$((year - 1))/q" "$FILE" \
+    | rg '\*\*(.+)\*\*' -r '$1' \
+    | if [ -n "$exact" ]; then rg '\[x\]'; else cat -; fi \
+    | tr -d '_' \
+    | tac
