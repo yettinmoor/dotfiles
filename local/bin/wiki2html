@@ -41,13 +41,14 @@ cat "$path" \
         -e 's/^### \(.*\)/<h3 id="\1">\1<\/h1>/g' \
         -e 's/^## \(.*\)/<h2 id="\1">\1<\/h1>/g' \
         -e 's/^# \(.*\)/<h1 id="\1">\1<\/h1>/g' \
+        -e 's/\[\[\([^]]*\)\]\]/[\1](\1)/g # short links' \
         -e 's/\([^!]\|^\)\(\[[^]]*]([^)#]\+\)\(#[^)]*\)\?)/\1\2.html\3)/g # format links' \
         -e 's/\[ \]/<input type="checkbox">/g' \
         -e 's/\[[xX]\]/<input type="checkbox" checked="true">/g' \
         -e 's/TODO/<span class="todo">&<\/span>/g' \
     | awk "$make_defs" \
+    | tee log \
     | pandoc \
-        -f commonmark \
         -t html \
         --data-dir html/data \
         --css data/style.css \
