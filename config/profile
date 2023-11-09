@@ -59,6 +59,9 @@ case "$0" in
     *sh)  . "$XDG_CONFIG_HOME/shell/allrc" ;;
 esac
 
+# SSH agent
+. start-ssh-agent
+
 # Autorun startx.
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x Xorg > /dev/null && exec startx
 

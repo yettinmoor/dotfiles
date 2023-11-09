@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+CACHE=~/.tmp/ssh-agent.env
+
+check() {
+    [ -S "$SSH_AUTH_SOCK" ] && { ssh-add -l >& /dev/null || [ $? -ne 2 ]; }
+}
+
+# attempt to connect to a running agent
+check || export SSH_AUTH_SOCK="$(cat $CACHE 2>/dev/null)"
+# if agent.env data is invalid, start a new one
+check || {
+    eval "$(ssh-agent -s)" > /dev/null
+    echo "$SSH_AUTH_SOCK" > $CACHE
+}
