@@ -5,10 +5,11 @@
     exit 1
 }
 
-path="$(realpath "$1")"
-base="$(basename "$path")"
-base="${base%.*}"
+path="$(realpath --relative-to . "$1")"
+base="${path%.*}"
 out="html/$base.html"
+
+mkdir -p "$(dirname "$out")"
 
 cd "$WIKI_DIR" || exit 1
 
@@ -51,8 +52,8 @@ cat "$path" \
     | pandoc \
         -t html \
         --data-dir html/data \
-        --css data/style.css \
+        --css "$WIKI_DIR/html/data/style.css" \
         --template template.html \
-        --mathjax='data/mathjax/es5/tex-chtml.js?config=TeX-AMS-MML_HTMLorMML' \
+        --mathjax="$WIKI_DIR/html/data/mathjax/es5/tex-chtml.js?config=TeX-AMS-MML_HTMLorMML" \
         --metadata title="$base" \
         -o "$out" \

@@ -34,6 +34,7 @@ map mkf push :mkfile<space>
 
 # cd
 map <c-f> $lf -remote "send $id cd '$(fzfcd)'"
+map <c-g> $lf -remote "send $id cd '$(fzfcd all)'"
 map J     $lf -remote "send $id cd '$(dirpick)'"
 
 # files

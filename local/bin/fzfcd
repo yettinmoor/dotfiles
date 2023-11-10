@@ -1,2 +1,9 @@
 #!/usr/bin/env sh
-fd -t d --strip-cwd-prefix | fzf -e || echo .
+if [ "$1" = 'all' ]; then
+    fd --strip-cwd-prefix | fzf -e | {
+        read -r path
+        [ -d "$path" ] && echo "$path" || dirname "$path"
+    }|| echo .
+else
+    fd -t d --strip-cwd-prefix | fzf -e || echo .
+fi
