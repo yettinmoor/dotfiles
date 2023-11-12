@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 
-FILE="$WIKI_DIR/booklog.md"
+cd "$WIKI_DIR" || exit 1
+
+FILE="booklog.md"
 
 if [ "$1" = '-e' ]; then
     $EDITOR "$FILE"
