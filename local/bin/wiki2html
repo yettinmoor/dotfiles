@@ -5,8 +5,9 @@
     exit 1
 }
 
-path="$(realpath --relative-to . "$1")"
-base="${path%.*}"
+path="$(realpath "$1")"
+base="${path#$WIKI_DIR/}"
+base="${base%.*}"
 out="html/$base.html"
 
 mkdir -p "$(dirname "$out")"
@@ -33,7 +34,7 @@ END { if (in_def) { print "</table>"; } }
 EOF
 )
 
-echo compiling $1...
+echo compiling $base...
 
 cat "$path" \
     | sed \
