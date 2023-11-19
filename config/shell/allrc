@@ -4,8 +4,8 @@ mkshortcuts
 
 # shellcheck source=/dev/null
 {
-    . ~/.config/shell/aliasrc
     . ~/.config/shell/shortcutrc
+    . ~/.config/shell/aliasrc
     . ~/.config/shell/aesthrc
     . ~/.config/shell/privaterc
 }
