@@ -25,6 +25,10 @@ export HOMEPAGE="$HOME/docs/splash/index.html"
 GPG_TTY="$(tty)"
 export GPG_TTY
 
+# X
+export XAUTHORITY="$XDG_CONFIG_HOME/xorg/.Xauthority"
+export DISPLAY=:0
+
 # misc program stuff.
 export BAT_THEME=gruvbox-dark
 export FZF_DEFAULT_OPTS='--border --multi --reverse'
@@ -35,7 +39,6 @@ export LESS=-R
 export LESSHISTFILE=/dev/null
 export PYTHONHISTORY="$XDG_CACHE_HOME/python"
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
-export XAUTHORITY="$XDG_CONFIG_HOME/xorg/.Xauthority"
 
 # dirs.
 export AOC_INPUT_DIR="$HOME/lib/misc/aoc"

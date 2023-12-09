@@ -2,7 +2,14 @@
 
 cd "$WIKI_DIR" || exit 1
 
-FILE="booklog.md"
+case "$(basename "$0")" in
+    lit)   FILE="booklog.md" ;;
+    vidya) FILE="vidyalog.md" ;;
+    *)
+        echo 'invalid name, must be: [lit|vidya]'
+        exit 1
+        ;;
+esac
 
 if [ "$1" = '-e' ]; then
     $EDITOR "$FILE"
