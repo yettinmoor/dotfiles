@@ -1,8 +1,9 @@
 #!/usr/bin/env sh
 
-while getopts l:b opt; do
+while getopts l:ab opt; do
     case "$opt" in
         l) lang="$OPTARG" ;;
+        a) lang= ;;
         b) browse=1 ;;
     esac
 done
@@ -14,5 +15,5 @@ else
     URL=https://en.wiktionary.org/api/rest_v1/page/definition
     curl -s "$URL/$(echoorcat "$@" | tr ' ' '_')" \
         | sed 's/<[^>]*>//g' \
-        | jq ".$lang"
+        | jq ".${lang-en} // ."
 fi

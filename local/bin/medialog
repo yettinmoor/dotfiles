@@ -11,20 +11,25 @@ case "$(basename "$0")" in
         ;;
 esac
 
-if [ "$1" = '-e' ]; then
-    $EDITOR "$FILE"
-    exit
-fi
+while getopts exun o; do
+    case "$o" in
+        e) $EDITOR "$FILE"; exit ;;
+        x) filter=read ;;
+        u) filter=unread ;;
+        n) count=1 ;;
+        *) exit 1 ;;
+    esac
+done
 
-if [ "$1" = '-x' ]; then
-    shift
-    exact=1
-fi
+shift $((OPTIND - 1))
 
 [ -n "$1" ] && year="$1" || year="$(date +%Y)"
 
 sed -e "0,/^\\# $year\$/d" -e "/$((year - 1))/q" "$FILE" \
     | rg '\*\*(.+)\*\*' -r '$1' \
-    | if [ -n "$exact" ]; then rg '\[x\]'; else cat -; fi \
-    | tr -d '_' \
-    | tac
+    | case "$filter" in
+        read)   rg '\[x\]' ;;
+        unread) rg '\[ \]' ;;
+        '')     cat - ;;
+    esac \
+    | if [ -z "$count" ]; then tr -d '_' | tac; else wc -l; fi
