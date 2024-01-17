@@ -63,7 +63,7 @@ case "$0" in
 esac
 
 # SSH agent
-. start-ssh-agent
+# . start-ssh-agent
 
 # Autorun startx.
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x Xorg > /dev/null && exec startx

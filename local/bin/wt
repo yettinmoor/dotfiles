@@ -15,5 +15,5 @@ else
     URL=https://en.wiktionary.org/api/rest_v1/page/definition
     curl -s "$URL/$(echoorcat "$@" | tr ' ' '_')" \
         | sed 's/<[^>]*>//g' \
-        | jq ".${lang-en} // ."
+        | jq ".${lang-en} // .${lang}"
 fi
