@@ -8,7 +8,7 @@ super + shift + Return
 super + F5
     bspc wm -r; pkill -SIGUSR1 picom
 super + {_,shift + } {1,2,3,4,5,6,7,8,9,0}
-    bspc {desktop -f,node -d} ^{1,2,3,4,5,6,7,8,9,0}
+    bspc {desktop -f,node -d} focused:^{1,2,3,4,5,6,7,8,9,0}
 super + q
     bspc node -c
 super + f
@@ -25,10 +25,10 @@ super + shift + r
     bspc node @/1/parent -R 270
 super + {_,shift +} z
 	bspwm-gap-toggle {full,doc}
-super + Tab
-	bspc desktop -f last
-super + Escape
+super Tab
 	bspc monitor -f next
+super + {_,shift +} Tab
+	bspc node -m next --follow
 
 # Letters
 super + shift + q
