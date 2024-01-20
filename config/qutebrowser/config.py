@@ -32,6 +32,7 @@ config.set('content.netrc_file', CONFIG + '/netrc')
 config.set('content.notifications.enabled', False)
 config.set('editor.command', [TERMINAL, '-e', EDITOR, '{file}'])
 config.set('content.notifications.enabled', False)
+config.set('content.tls.certificate_errors', 'ask-block-thirdparty')
 c.completion.favorite_paths = [os.path.join(WIKI_DIR, 'html')]
 
 # hints

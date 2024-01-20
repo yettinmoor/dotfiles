@@ -1,7 +1,8 @@
 #!/usr/bin/env sh
 
-while getopts l:ab opt; do
+while getopts el:ab opt; do
     case "$opt" in
+        e) lang=en;;
         l) lang="$OPTARG" ;;
         a) lang= ;;
         b) browse=1 ;;
