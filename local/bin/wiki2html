@@ -47,7 +47,7 @@ cat "$path" \
         s/([^!]|^)(\[.*?\]\((?!https:\/\/).+?)(#.*?)?\)/\1\2.html\3)/g; # format links
         s/\[ \]/<input type="checkbox">/g;
         s/\[[xX]\]/<input type="checkbox" checked="true">/g;
-        s/TODO/<span class="todo">&<\/span>/g' \
+        s/TODO/<span class="todo">TODO<\/span>/g' \
     | awk "$make_defs" \
     | pandoc \
         -t html \
