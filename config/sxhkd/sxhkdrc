@@ -58,7 +58,7 @@ super + shift + p
 super + a
 	$TERMINAL -e qalc
 super + s
-	qplay
+	spotify
 super + shift + s
 	warncaps
 super + d
