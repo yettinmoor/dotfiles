@@ -3,12 +3,19 @@
 BAR_PADDING=25
 
 monitors() {
-    bspc query --monitors --names | grep -v LVDS
+    xrandr -q | rg '\bconnected\b' | cut -d' ' -f1
+    # bspc query --monitors --names
 }
 
-###
+## reset
+
+# bspc query --monitors --names | while read -r mon; do
+#     bspc monitor "$mon" -r
+# done
 
 bspc rule -r "*"
+
+## setup
 
 monitors | while read -r mon; do
     xrandr --output "$mon" --auto --output LVDS1 --off
