@@ -79,6 +79,7 @@
     echo "*.mjpg=00;$MEDIA_COLOR"
     echo "*.mjpeg=00;$MEDIA_COLOR"
     echo "*.gif=00;$MEDIA_COLOR"
+    echo "*.gifv=00;$MEDIA_COLOR"
     echo "*.bmp=00;$MEDIA_COLOR"
     echo "*.pbm=00;$MEDIA_COLOR"
     echo "*.pgm=00;$MEDIA_COLOR"
