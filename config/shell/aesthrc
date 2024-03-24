@@ -92,6 +92,7 @@
     echo "*.png=00;$MEDIA_COLOR"
     echo "*.svg=00;$MEDIA_COLOR"
     echo "*.svgz=00;$MEDIA_COLOR"
+    echo "*.heic=00;$MEDIA_COLOR"
     ## film
     echo "*.mov=00;$MEDIA_COLOR"
     echo "*.mpg=00;$MEDIA_COLOR"
