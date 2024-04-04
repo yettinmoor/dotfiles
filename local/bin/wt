@@ -11,10 +11,10 @@ done
 shift $((OPTIND - 1))
 
 if [ -n "$browse" ]; then
-    browser "!wt $(echoorcat "$@")"
+    browser "!wt $(catecho "$@")"
 else
     URL=https://en.wiktionary.org/api/rest_v1/page/definition
-    curl -s "$URL/$(echoorcat "$@" | tr ' ' '_')" \
+    curl -s "$URL/$(catecho "$@" | tr ' ' '_')" \
         | sed 's/<[^>]*>//g' \
         | jq ".${lang-en} // .${lang}"
 fi

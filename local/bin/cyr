@@ -1,72 +1,72 @@
 #!/usr/bin/env sh
 
-echo "$@" | sed -E \
-    -e 's/S(HCH|hch)/Щ/g' \
-    -e 's/Z[Hh]/Ж/g' \
-    -e 's/C[Hh]/Ч/g' \
-    -e 's/S[Hh]/Ш/g' \
-    -e 's/Y[Oo]/Ё/g' \
-    -e 's/Y[Uu]/Ю/g' \
-    -e 's/Y[Aa]/Я/g' \
-    -e 's/A/А/g' \
-    -e 's/B/Б/g' \
-    -e 's/V/В/g' \
-    -e 's/G/Г/g' \
-    -e 's/D/Д/g' \
-    -e 's/E/Е/g' \
-    -e 's/Z/З/g' \
-    -e 's/I/И/g' \
-    -e 's/J/Й/g' \
-    -e 's/K/К/g' \
-    -e 's/L/Л/g' \
-    -e 's/M/М/g' \
-    -e 's/N/Н/g' \
-    -e 's/O/О/g' \
-    -e 's/P/П/g' \
-    -e 's/R/Р/g' \
-    -e 's/S/С/g' \
-    -e 's/T/Т/g' \
-    -e 's/U/У/g' \
-    -e 's/F/Ф/g' \
-    -e 's/X/Х/g' \
-    -e 's/C/Ц/g' \
-    -e 's/Y/Ы/g' \
-    -e 's/É/Э/g' \
-    -e 's/Í/І/g' \
-    -e "s/''/Ь/g" \
-    -e 's/""/Ъ/g' \
-    -e 's/shch/щ/g' \
-    -e 's/zh/ж/g' \
-    -e 's/ch/ч/g' \
-    -e 's/sh/ш/g' \
-    -e 's/yo/ё/g' \
-    -e 's/yu/ю/g' \
-    -e 's/ya/я/g' \
-    -e 's/a/а/g' \
-    -e 's/b/б/g' \
-    -e 's/v/в/g' \
-    -e 's/g/г/g' \
-    -e 's/d/д/g' \
-    -e 's/e/е/g' \
-    -e 's/z/з/g' \
-    -e 's/i/и/g' \
-    -e 's/j/й/g' \
-    -e 's/k/к/g' \
-    -e 's/l/л/g' \
-    -e 's/m/м/g' \
-    -e 's/n/н/g' \
-    -e 's/o/о/g' \
-    -e 's/p/п/g' \
-    -e 's/r/р/g' \
-    -e 's/s/с/g' \
-    -e 's/t/т/g' \
-    -e 's/u/у/g' \
-    -e 's/f/ф/g' \
-    -e 's/x/х/g' \
-    -e 's/c/ц/g' \
-    -e 's/y/ы/g' \
-    -e 's/é/э/g' \
-    -e 's/í/і/g' \
-    -e "s/'/ь/g" \
-    -e 's/"/ъ/g' \
-    -e 's/#//g'
+catecho "$@" | sed -E "
+    s/S(HCH|hch)/Щ/g
+    s/Z[Hh]/Ж/g
+    s/C[Hh]/Ч/g
+    s/S[Hh]/Ш/g
+    s/Y[Oo]/Ё/g
+    s/Y[Uu]/Ю/g
+    s/Y[Aa]/Я/g
+    s/A/А/g
+    s/B/Б/g
+    s/V/В/g
+    s/G/Г/g
+    s/D/Д/g
+    s/E/Е/g
+    s/Z/З/g
+    s/I/И/g
+    s/J/Й/g
+    s/K/К/g
+    s/L/Л/g
+    s/M/М/g
+    s/N/Н/g
+    s/O/О/g
+    s/P/П/g
+    s/R/Р/g
+    s/S/С/g
+    s/T/Т/g
+    s/U/У/g
+    s/F/Ф/g
+    s/X/Х/g
+    s/C/Ц/g
+    s/Y/Ы/g
+    s/É/Э/g
+    s/Í/І/g
+    s/''/Ь/g
+    s/\"\"/Ъ/g
+    s/shch/щ/g
+    s/zh/ж/g
+    s/ch/ч/g
+    s/sh/ш/g
+    s/yo/ё/g
+    s/yu/ю/g
+    s/ya/я/g
+    s/a/а/g
+    s/b/б/g
+    s/v/в/g
+    s/g/г/g
+    s/d/д/g
+    s/e/е/g
+    s/z/з/g
+    s/i/и/g
+    s/j/й/g
+    s/k/к/g
+    s/l/л/g
+    s/m/м/g
+    s/n/н/g
+    s/o/о/g
+    s/p/п/g
+    s/r/р/g
+    s/s/с/g
+    s/t/т/g
+    s/u/у/g
+    s/f/ф/g
+    s/x/х/g
+    s/c/ц/g
+    s/y/ы/g
+    s/é/э/g
+    s/í/і/g
+    s/'/ь/g
+    s/\"/ъ/g
+    s/#//g"
