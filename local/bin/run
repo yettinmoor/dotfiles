@@ -20,4 +20,5 @@ case "$file" in
         | sed 's:wiki:wiki/html:' \
         | xargs -r -I {} setsid "$BROWSER" --target window "{}.html" ;;
     *.c | *.cpp) "$base" ;;
+    *.nim) "$base" ;;
 esac

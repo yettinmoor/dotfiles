@@ -5,6 +5,7 @@ local cmp_nvim_lsp = require("cmp_nvim_lsp")
 -- Setup language servers.
 lspconfig.clangd.setup({})
 lspconfig.hls.setup({})
+lspconfig.nimls.setup({})
 lspconfig.pyright.setup({})
 lspconfig.rust_analyzer.setup({})
 lspconfig.tsserver.setup({})

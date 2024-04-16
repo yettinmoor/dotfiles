@@ -50,7 +50,7 @@ case "$ft" in
     haskell)     runhaskell "$file" ;;
     javascript)  node "$file" ;;
     lua)         lua "$file" ;;
-    nim)         nimble build -r ;;
+    nim)         if fd -q -e nimble; then nimble build; else nim c "$file"; fi ;;
     nil)         ~/dev/nil/zig-out/bin/nil run "$file" ;;
     pl)          perl "$file" ;;
     rkt)         racket "$file" ;;
