@@ -10,9 +10,11 @@ base="${path#$WIKI_DIR/}"
 base="${base%.*}"
 out="html/$base.html"
 
-mkdir -p "$(dirname "$out")"
-
 cd "$WIKI_DIR" || exit 1
+
+echo $out
+
+mkdir -p "$(dirname "$out")"
 
 make_defs=$(cat << EOF
 BEGIN { FS = "::"; in_def = 0; }
