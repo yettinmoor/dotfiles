@@ -10,6 +10,13 @@ while getopts el:ab opt; do
 done
 shift $((OPTIND - 1))
 
+case "$1" in
+    :*)
+        lang="${1#:}"
+        shift
+        ;;
+esac
+
 if [ -n "$browse" ]; then
     browser "!wt $(catecho "$@")"
 else

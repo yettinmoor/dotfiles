@@ -6,14 +6,14 @@ catecho "$@" | sed -E '
     s/\bH(EE|ee)/Ἡ/g
     s/\bH[Ee]/Ἑ/g
     s/\bH[Ii]/Ἱ/g
-    s/\bH(OO|oo)/Ὡ/g
+    s/\bH[Ww]/Ὡ/g
     s/\bH[Oo]/Ὁ/g
     s/\bH[UuYy]/Ὑ/g
     s/\bha/ἁ/g
     s/\bhee/ἡ/g
     s/\bhe/ἑ/g
-    s/\bhi/ἱ/g
-    s/\bhoo/ὡ/g
+    s/[\bae]hi/ἱ/g
+    s/\bhw/ὡ/g
     s/\bho/ὁ/g
     s/\bh[uy]/ὑ/g
 
@@ -22,14 +22,14 @@ catecho "$@" | sed -E '
     s/\bE[Ee]/Ἠ/g
     s/\bE/Ἐ/g
     s/\bI/Ἰ/g
-    s/\bO[Oo]/Ὠ/g
+    s/\bW/Ὠ/g
     s/\bO/Ὀ/g
     s/\b[UY]/ὐ/g
     s/\ba/ἀ/g
     s/\bee/ἠ/g
     s/\be/ἐ/g
     s/\bi/ἰ/g
-    s/\boo/ὠ/g
+    s/\bw/ὠ/g
     s/\bo/ὀ/g
     s/\b[uy]/ὐ/g
 
@@ -39,13 +39,13 @@ catecho "$@" | sed -E '
     s/\bH[Éé]/Ἕ/g
     s/\bH[Íí]/Ἵ/g
     s/\bH(ÓÓ|óó)/Ὥ/g
-    s/\bH[Óó]/Ὅ/g
+    s/\bH[Ẃẃ]/Ὅ/g
     s/\bH[ÚúÝý]/Ὕ/g
     s/\bhá/ἅ/g
     s/\bhéé/ἥ/g
     s/\bhé/ἕ/g
     s/\bhí/ἵ/g
-    s/\bhóó/ὥ/g
+    s/\bhẃ/ὥ/g
     s/\bhó/ὅ/g
     s/\bh[úý]/ὕ/g
 
@@ -54,7 +54,7 @@ catecho "$@" | sed -E '
     s/\béé/ἤ/g
     s/\bé/ἔ/g
     s/\bí/ἴ/g
-    s/\bóó/ὤ/g
+    s/\bẃ/ὤ/g
     s/\bó/ὄ/g
     s/\b[úý]/ὔ/g
 
@@ -63,14 +63,14 @@ catecho "$@" | sed -E '
     s/É[Éé]/Ή/g
     s/É/Έ/g
     s/Í/Ί/g
-    s/Ó[Óo]/Ώ/g
+    s/Ẃ/Ώ/g
     s/Ó/Ό/g
     s/[ÚÝ]/Ύ/g
     s/á/ά/g
     s/éé/ή/g
     s/é/έ/g
     s/í/ί/g
-    s/óó/ώ/g
+    s/ẃ/ώ/g
     s/ó/ό/g
     s/[úý]/ύ/g
 
@@ -78,13 +78,13 @@ catecho "$@" | sed -E '
     s/A/Α/g
     s/E[Ee]/Η/g
     s/E/Ε/g
-    s/O[Oo]/Ω/g
+    s/W/Ω/g
     s/O/Ο/g
     s/Y/Υ/g
     s/a/α/g
     s/ee/η/g
     s/e/ε/g
-    s/oo/ω/g
+    s/w/ω/g
     s/o/ο/g
     s/y/υ/g
 
