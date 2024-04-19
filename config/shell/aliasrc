@@ -95,7 +95,7 @@ spawn() {
 }
 
 cli() {
-    echoorcat "$@" | xclip -sel c -i
+    catecho "$@" | xclip -sel c -i
 }
 
 x() {
