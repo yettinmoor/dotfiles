@@ -23,5 +23,5 @@ else
     URL=https://en.wiktionary.org/api/rest_v1/page/definition
     curl -s "$URL/$(catecho "$@" | tr ' ' '_')" \
         | sed 's/<[^>]*>//g' \
-        | jq ".${lang-en} // .${lang}"
+        | jq ".${lang} // .${lang}"
 fi
