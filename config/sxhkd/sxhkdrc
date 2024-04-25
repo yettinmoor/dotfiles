@@ -40,7 +40,7 @@ super + e
 super + t
 	tor
 super + shift + t
-	teams-nativefier
+	teams
 super + y
 	$TERMINAL -e calcurse -D ~/.config/calcurse
 super + u
