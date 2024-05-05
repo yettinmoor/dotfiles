@@ -49,16 +49,13 @@ for file in "$@"; do
                     *youtu.be* | \
                     *bitchute.com* | \
                     *twitch.tv* | \
-                    *nebula.app*)
-                    wrap mpv "$file"
+                    *nebula.app* | \
+                    *mp3 | *flac | *opus | *mp3?source*)
+                    wrap mpv --loop "$file"
                     ;;
                 *png | *jpg | *jpeg | *gif)
                     cd "$HOME/dl" || exit 1
                     curl -sLO "$file" && wrap sxiv -a "$(basename "$file")"
-                    ;;
-                *mp3 | *flac | *opus | *mp3?source*)
-                    cd "$HOME/dl" || exit 1
-                    tsp curl -LO "$file"
                     ;;
                 *)
                     wrap browser "$file"
