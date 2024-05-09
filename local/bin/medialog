@@ -2,14 +2,7 @@
 
 cd "$WIKI_DIR" || exit 1
 
-case "$(basename "$0")" in
-    lit)   FILE="booklog.md" ;;
-    vidya) FILE="vidyalog.md" ;;
-    *)
-        echo 'invalid name, must be: [lit|vidya]'
-        exit 1
-        ;;
-esac
+FILE="booklog.md"
 
 while getopts exun o; do
     case "$o" in

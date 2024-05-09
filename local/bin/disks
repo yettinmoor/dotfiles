@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 df -t ext4 -h \
     | awk \
-        'BEGIN { print "DISK FREE USED%" }
-        /^\/dev|:/{print $6, $4, $5}
+        'BEGIN { print "DISK FREE SIZE USED%" }
+        /^\/dev|:/{print $6, $4, $2, $5}
     ' \
     | grep -v 'boot' \
     | tabulate -1 -f plain
