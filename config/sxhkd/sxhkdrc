@@ -71,8 +71,6 @@ super + shift + x
 	prompt 'Shutdown computer?' 'sudo -A shutdown -h now'
 super + {_,shift +} c
 	{show,qr}clip
-super + v
-	$TERMINAL -e ncmpcpp -s visualizer
 super + b
 	$BROWSER --target window $HOMEPAGE
 super + n
