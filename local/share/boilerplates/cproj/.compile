@@ -1,0 +1,6 @@
+set -x
+
+gcc \
+    -g \
+    -Isrc/ns \
+    -o %NAME src/*.c

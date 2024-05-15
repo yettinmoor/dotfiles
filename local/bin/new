@@ -5,23 +5,24 @@
 BOILDIR="$HOME/.local/share/boilerplates"
 
 ext="$1"
-output="$2"
+name="$2"
 boil="$BOILDIR/$ext"
 
 # Check that boilerplate exists.
-! [ -f "$boil" ] && echo "No boilerplate \`$ext\` found in $BOILDIR." && exit 1
+! [ -e "$boil" ] && echo "No boilerplate \`$ext\` found in $BOILDIR." && exit 1
 
-# Set output to `output` and append extension, unless extension is `sh`.
-if [ -f "$boil" ] && [ "$ext" != "sh" ]; then dest="${output}.$ext"; else dest="$output"; fi
+# Set name to `name` and append extension, unless extension is `sh`.
+if [ -f "$boil" ] && [ "$ext" != "sh" ]; then dest="${name}.$ext"; else dest="$name"; fi
 
-# Check that `output` doesn't already exist.
+# Check that `name` doesn't already exist.
 [ -f "$dest" ] && echo "File '$dest' exists!" && exit 1
 
 # Copy.
 cp -rn "$boil" "$dest"
 
-# Run `new.sh` if output is a directory.
-if [ -d "$output" ]; then
-    "$output/new.sh" "$output"
+# Run `new.sh` if name is a directory.
+if [ -d "$name" ]; then
+    cd "$name" || exit 1
+    "./new.sh" "$name"
     rm new.sh
 fi
