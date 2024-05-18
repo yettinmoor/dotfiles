@@ -17,7 +17,7 @@ shift $((OPTIND - 1))
 for file in "$@"; do
     echo adding \`"$file"\`
     transmission-remote -a "$file" -w "${dir:-$HOME/dl}" \
-        && rm -fv "$file"
+        && if [ -f "$file" ]; then rm -fv "$file"; fi
 done
 
 [ -n "$DISPLAY" ] \
