@@ -105,6 +105,7 @@ for file in "$@"; do
                     ;;
                 application/vnd.openxmlformats-officedocument.wordprocessingml.document | \
                     application/vnd.openxmlformats-officedocument.spreadsheetml.sheet | \
+                    application/vnd.openxmlformats-officedocument.presentationml.presentation | \
                     application/vnd.oasis.opendocument.text)
                     wrap libreoffice "$file"
                     ;;
