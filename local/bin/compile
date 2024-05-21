@@ -43,7 +43,7 @@ case "$ft" in
     sh) sh "$file" ;;
 
     # programming
-    c)           cc "$file" -o "$noext" ;;
+    c)           cc "$file" -o "$noext" -g ;;
     cpp)         g++ "$file" -o "$noext" ;;
     cs)          mcs "$file" ;;
     go)          go run "$file" ;;

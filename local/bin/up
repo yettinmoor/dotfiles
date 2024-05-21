@@ -28,14 +28,10 @@ case "$1" in
         [ -n "$LOCATION" ] && runjob forecast fetch "$LOCATION"
         wait
         ;;
-    '')
-        isconnected || exit 1
-        sudo pacman -Syu
-        kbset
-        ;;
     *)
-        echo 'usage: up [down]'
-        exit 1
+        isconnected || exit 1
+        sudo pacman -Syu "$@"
+        kbset
         ;;
 esac
 

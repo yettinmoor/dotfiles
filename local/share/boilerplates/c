@@ -1,6 +1,12 @@
-#include <stdio.h>
-#include <stdlib.h>
+#define NS_IMPL
+#include </home/nico/dev/ns/ns.h>
 
 int main(int argc, char **argv)
 {
+    unused(argc);
+    unused(argv);
+
+    log_set_level(LOG_DBG);
+
+    printf("hello world!\n");
 }
