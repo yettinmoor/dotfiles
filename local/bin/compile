@@ -31,6 +31,11 @@ noext="${file%.*}"
     exit
 }
 
+[ -f make.sh ] && {
+    ./make.sh
+    exit
+}
+
 [ -f Makefile ] && {
     make
     exit
