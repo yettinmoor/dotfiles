@@ -1,11 +1,11 @@
 #define NS_IMPL
 #include </home/nico/dev/ns/ns.h>
 
-int main(int argc, char** argv) {
+int main(int argc, cstr* argv) {
     unused(argc);
     unused(argv);
 
-    log_set_level(LOG_DBG);
+    log_set_level(LOG_LVL_DBG);
 
     printf("hello world!\n");
 }

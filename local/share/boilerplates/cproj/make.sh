@@ -1,8 +1,0 @@
-#!/usr/bin/env sh
-set -x
-
-gcc \
-    -g \
-    -Isrc \
-    -Isrc/ns \
-    -o %NAME src/*.c

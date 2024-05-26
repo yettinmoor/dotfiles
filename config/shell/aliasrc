@@ -19,6 +19,7 @@ alias SS='sudo systemctl'
 alias smi='sudo make install'
 alias smic='sudo make install clean'
 alias sni='sudo ninja install'
+alias ,c='compile'
 
 # misc
 alias br='spawn browser'

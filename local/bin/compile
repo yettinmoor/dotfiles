@@ -31,6 +31,17 @@ noext="${file%.*}"
     exit
 }
 
+[ -x mk ] && {
+    ./mk
+    exit
+}
+
+[ -x mk.c ] && {
+    cc -o mk mk.c
+    ./mk
+    exit
+}
+
 [ -f make.sh ] && {
     ./make.sh
     exit
@@ -41,7 +52,10 @@ noext="${file%.*}"
     exit
 }
 
-[ -z "$file" ] && exit 1
+[ -z "$file" ] && {
+    echo nothing to do
+    exit 1
+}
 
 case "$ft" in
     # shell
