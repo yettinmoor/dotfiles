@@ -1,6 +1,5 @@
 [user]
 	name = Nicolas Lindström
-	email = nicolas.lindstroem@protonmail.com
 	signingkey = 1590D472EC0D5D77
 [core]
 	autocrlf = input
@@ -10,10 +9,6 @@
 	graph = log --all --decorate --oneline --graph
 [credential]
 	helper = cache --timeout=3600
-[url "git@github.com:"]
-	insteadOf = https://github.com/
-[url "git@git.actia.se:"]
-	insteadOf = https://git.actia.se/
 [pull]
 	rebase = false
 [color]
@@ -22,3 +17,5 @@
 	addIgnoredFile = false
 [init]
 	defaultBranch = master
+[status]
+    showUntrackedFiles = no

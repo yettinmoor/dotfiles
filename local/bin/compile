@@ -14,7 +14,7 @@ file="$(readlink -f "$1")"
 dir="$(dirname "$file")"
 noext="${file%.*}"
 
-[ -n "$file" ] && {
+[ -f "$file" ] && {
     cmd="$(head -n 1 "$file" | rg -o 'compile: (.+)' -r '$1')"
     [ -n "$cmd" ] && {
         if echo "$cmd" | grep -q '{}'; then
@@ -27,28 +27,22 @@ noext="${file%.*}"
 }
 
 [ -f .compile ] && {
-    sh .compile
+    sh .compile "$@"
     exit
 }
 
 [ -x mk ] && {
-    ./mk
-    exit
-}
-
-[ -x mk.c ] && {
-    cc -o mk mk.c
-    ./mk
+    ./mk "$@"
     exit
 }
 
 [ -f make.sh ] && {
-    ./make.sh
+    ./make.sh "$@"
     exit
 }
 
 [ -f Makefile ] && {
-    make
+    make "$@"
     exit
 }
 
