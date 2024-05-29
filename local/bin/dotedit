@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-DOT=~/repos/dotfiles
+DOT=$HOME/repos/dotfiles
 
 cd $DOT || exit 1
 
@@ -17,6 +17,6 @@ fi
     wait
 } \
     | sel "$1" \
-    | xargs -r -I {} "$EDITOR" "$HOME/repos/dotfiles/{}"
+    | xargs -r -I {} "$EDITOR" "$DOT/{}"
 
 cd - >/dev/null

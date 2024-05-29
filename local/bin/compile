@@ -1,19 +1,19 @@
 #!/usr/bin/env sh
 # All-in-one file compiler.
 
-while getopts f: o; do
-    case "$o" in
-        f) ft="$OPTARG" ;;
-        *) exit 1 ;;
-    esac
-done
-
-shift $((OPTIND - 1))
+if [ "$1" = -f ]; then
+    shift
+    ft="$1"
+    shift
+fi
 
 file="$(readlink -f "$1")"
 dir="$(dirname "$file")"
 noext="${file%.*}"
 
+# -----
+
+# `compile: <cmd>` in the first line
 [ -f "$file" ] && {
     cmd="$(head -n 1 "$file" | rg -o 'compile: (.+)' -r '$1')"
     [ -n "$cmd" ] && {
@@ -26,25 +26,11 @@ noext="${file%.*}"
     }
 }
 
-[ -f .compile ] && {
-    sh .compile "$@"
-    exit
-}
-
-[ -x mk ] && {
-    ./mk "$@"
-    exit
-}
-
-[ -f make.sh ] && {
-    ./make.sh "$@"
-    exit
-}
-
-[ -f Makefile ] && {
-    make "$@"
-    exit
-}
+# try a bunch of different files
+[ -f .compile ] && { sh .compile "$@"; exit; }
+[ -x mk ]       && { ./mk "$@"; exit; }
+[ -x make.sh ]  && { ./make.sh "$@"; exit; }
+[ -f Makefile ] && { make "$@"; exit; }
 
 [ -z "$file" ] && {
     echo nothing to do

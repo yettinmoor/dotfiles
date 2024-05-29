@@ -9,31 +9,20 @@ alias ..='cd ..'
 alias rg='rg -S'
 alias diff='diff --color=auto'
 alias ka='killall'
-alias cls='clear'
-
-# arch
 alias p='sudo pacman'
 alias SS='sudo systemctl'
 
 # make
 alias smi='sudo make install'
-alias smic='sudo make install clean'
-alias sni='sudo ninja install'
 alias ,c='compile'
 
 # misc
 alias br='spawn browser'
 alias calcurse='calcurse -D ~/.config/calcurse'
-alias clo='xclip -sel c -o'
-alias d='ddgr --np -x -n 3'
 alias f='$FILE'
 alias ff='nvim "+Leaderf file"'
-alias ju='jupyter lab >/dev/null 2>&1 & disown'
 alias la='words'
-alias magit='vim -c MagitOnly'
-alias mpv='mpv --input-ipc-server=/tmp/mpvsoc$( date +%s )'
 alias myip='curl ifconfig.me'
-alias otp='pass otp -c'
 alias rpush='mate push'
 alias rpull='mate pull'
 alias se='dotedit'
@@ -41,7 +30,7 @@ alias sv='sudoedit'
 alias trans='trans -j'
 alias tree='tree -C'
 alias trem='transmission-remote'
-alias v='$EDITOR'
+alias v='nvim'
 alias wi='cd ~/docs/wiki && nvim index.md'
 alias wk='wikicurses'
 alias z='spawn zathura'
@@ -53,6 +42,7 @@ alias gbr='git branch'
 alias gc='git commit'
 alias gcf='git config'
 alias gch='git checkout'
+alias gcp='git cherry-pick'
 alias gd='git diff'
 alias gg='git graph'
 alias gl='git log'
@@ -62,24 +52,25 @@ alias gr='git remote'
 alias grm='git rm'
 alias gs='git status'
 
-# zig
-alias zb='zig build'
-alias zbr='zig build run'
-alias zbe='zig build-exe'
-alias zbt='zig build test'
-alias zr='zig run'
-alias zt='zig test'
-alias szb='sudo zig build -p /usr/local'
-
 # ytdl
 alias ytd='yt-dlp'
 alias ytda='ytd -x -f "bestaudio[ext=mp3]/best"'
 alias ytdp='ytd -o "%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s"'
 
 # lang
+alias de='wt -l de'
 alias ru='wt -l ru'
 
-# Convenience functions
+# dirs
+export AOC_INPUT_DIR="$HOME/lib/aoc"
+export MNEMO_DIR="$HOME/docs/mnemo"
+export WIKI_DIR="$HOME/docs/wiki"
+
+# files
+export HOMEPAGE="$HOME/docs/splash/index.html"
+
+# --- Convenience functions
+
 mkd() {
     mkdir -pv "$@"
     [ $# -eq 1 ] && { cd "$1" || exit; }

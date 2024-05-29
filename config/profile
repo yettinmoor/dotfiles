@@ -20,7 +20,6 @@ export BROWSER=qutebrowser
 export READER=zathura
 export FILE=lf
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-export HOMEPAGE="$HOME/docs/splash/index.html"
 
 GPG_TTY="$(tty)"
 export GPG_TTY
@@ -39,11 +38,6 @@ export LESS=-R
 export LESSHISTFILE=/dev/null
 export PYTHONHISTORY="$XDG_CACHE_HOME/python"
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
-
-# dirs.
-export AOC_INPUT_DIR="$HOME/lib/misc/aoc"
-export MNEMO_DIR="$HOME/docs/mnemo"
-export WIKI_DIR="$HOME/docs/wiki"
 
 MAKEFLAGS="-j $(nproc)"
 export MAKEFLAGS

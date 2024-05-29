@@ -25,6 +25,13 @@ case "$lang" in
         }
         ;;
 
+    nl)
+        translateword() {
+            word="$1"
+            meaning="$(trans -b nl:de "$1" 2> /dev/null)"
+            printf "%s: %s" "$word" "$meaning"
+        }
+        ;;
     ja)
         L='「'
         R='」'
