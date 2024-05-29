@@ -70,6 +70,7 @@
     echo "*.dwm=00;$ARCHIVE_COLOR"
     echo "*.esd=00;$ARCHIVE_COLOR"
     echo "*.torrent=00;$ARCHIVE_COLOR"
+    echo "*.gpg=00;$ARCHIVE_COLOR"
 
     # media
     MEDIA_COLOR=35
@@ -206,6 +207,7 @@
 } | paste -sd : | {
     read -r input
     export LS_COLORS="$input"
+    export LF_COLORS="$input"
 }
 
 {
