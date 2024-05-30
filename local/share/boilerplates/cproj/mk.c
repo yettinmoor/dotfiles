@@ -18,7 +18,7 @@ int main(int argc, cstr* argv) {
     mk_add(&mk, "-o", "%NAME");
     mk_add_src_dir(&mk, "src");
 
-    int code = mk_run(mk);
+    int code = mk_run(&mk);
     if (code == 0) {
         log_info("build ok.");
     } else {
