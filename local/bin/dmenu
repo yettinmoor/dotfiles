@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-rofi -dmenu -i "$@"
+rofi -m -1 -dmenu -i "$@"
