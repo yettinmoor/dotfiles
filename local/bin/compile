@@ -1,17 +1,7 @@
 #!/usr/bin/env sh
 # All-in-one file compiler.
 
-if [ "$1" = -f ]; then
-    shift
-    ft="$1"
-    shift
-fi
-
-file="$(readlink -f "$1")"
-dir="$(dirname "$file")"
-noext="${file%.*}"
-
-# -----
+file="$(readlink -f -- "$1")"
 
 # `compile: <cmd>` in the first line
 [ -f "$file" ] && {
@@ -30,6 +20,7 @@ noext="${file%.*}"
 [ -f .compile ] && { sh .compile "$@"; exit; }
 [ -x mk ]       && { ./mk "$@"; exit; }
 [ -x make.sh ]  && { ./make.sh "$@"; exit; }
+[ -x build.sh ]  && { ./build.sh "$@"; exit; }
 [ -f Makefile ] && { make "$@"; exit; }
 
 [ -z "$file" ] && {
@@ -37,7 +28,11 @@ noext="${file%.*}"
     exit 1
 }
 
-case "$ft" in
+dir="$(dirname "$file")"
+ext="${file#*.}"
+noext="${file%.*}"
+
+case "$ext" in
     # shell
     sh) sh "$file" ;;
 
@@ -52,6 +47,7 @@ case "$ft" in
     nim)         if fd -q -e nimble; then nimble build; else nim c "$file"; fi ;;
     nil)         ~/dev/nil/zig-out/bin/nil run "$file" ;;
     pl)          perl "$file" ;;
+    py)          python "$file" ;;
     rkt)         racket "$file" ;;
     rust)        cargo run ;;
     scm)         chicken-csi -q "$file" ;;
@@ -67,5 +63,12 @@ case "$ft" in
     mnemo) mnemo -i "$file" ;;
 
     # shebang
-    *) $ft "$file" ;;
+    *)
+        if [ -x "$file" ]; then
+            "$file"
+        else
+            echo "compile doesn't know what to do with '$1', sorry."
+            exit 1
+        fi
+        ;;
 esac

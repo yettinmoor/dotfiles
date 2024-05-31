@@ -24,7 +24,7 @@ end, {
 -- compile
 k.set("n", "<leader>c", function()
 	vim.cmd.write()
-	util.split("term://compile -f " .. vim.opt.filetype:get() .. " " .. vim.fn.bufname("%"))
+	util.split("term://compile " .. vim.fn.bufname("%"))
 end)
 
 -- run
