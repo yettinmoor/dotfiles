@@ -24,41 +24,19 @@ CACHE="$XDG_CACHE_HOME/lf/thumbnail.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- 
 
 preview-clean
 
-set -x
+
 case "$(file --mime-type "$1" -bL)" in
-    video/*)
-        [ ! -f "${CACHE}.jpg" ] && thumbnailer -o "${CACHE}.jpg" "$1"
-        image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
+    application/epub+zip)
+        [ ! -f "$CACHE" ] && epub-thumbnailer "$1" "$CACHE" 1024
+        image "$CACHE" "$2" "$3" "$4" "$5"
         ;;
     application/pdf)
         [ ! -f "${CACHE}.jpg" ] && pdftoppm -jpeg -f 1 -singlefile "$1" "$CACHE"
         image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
         ;;
-    application/epub+zip)
-        [ ! -f "$CACHE" ] && epub-thumbnailer "$1" "$CACHE" 1024
-        image "$CACHE" "$2" "$3" "$4" "$5"
-        ;;
-    image/vnd.djvu)
-        [ ! -f "$CACHE" ] && ddjvu -format=tif -quality=50 -page=1 "$1" "$CACHE"
-        image "$CACHE" "$2" "$3" "$4" "$5"
-        ;;
-    image/svg+xml)
-        [ ! -f "${CACHE}.png" ] && convert "$1" "$CACHE.png"
-        image "${CACHE}.png" "$2" "$3" "$4" "$5"
-        ;;
-    image/*)
-        image "$1" "$2" "$3" "$4" "$5"
-        ;;
-    audio/*)
-        mediainfo "$1" | tabulate -f plain -s :
-        ;;
     application/x-bittorrent)
         transmission-show "$1"
         ;;
-    # text/html)
-    #     [ ! -f "${CACHE}.jpg" ] && wkhtmltopdf "$1" - | pdftoppm -jpeg -f 1 -singlefile - "$CACHE"
-    #     image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
-    #     ;;
     application/x-object)
         nm "$1"
         ;;
@@ -72,6 +50,7 @@ case "$(file --mime-type "$1" -bL)" in
         als "$1"
         ;;
     application/zip)
+        # fucking hell
         if unzip -lqq "$1" | rg -qiv '(jpe?g|png|url|db|/)$'; then
             unzip -lqq "$1"
         else
@@ -88,6 +67,24 @@ case "$(file --mime-type "$1" -bL)" in
                     }
             image "${CACHE}" "$2" "$3" "$4" "$5"
         fi
+        ;;
+    audio/*)
+        mediainfo "$1" | tabulate -f plain -s :
+        ;;
+    image/vnd.djvu)
+        [ ! -f "$CACHE" ] && ddjvu -format=tif -quality=50 -page=1 "$1" "$CACHE"
+        image "$CACHE" "$2" "$3" "$4" "$5"
+        ;;
+    image/svg+xml)
+        [ ! -f "${CACHE}.png" ] && convert "$1" "$CACHE.png"
+        image "${CACHE}.png" "$2" "$3" "$4" "$5"
+        ;;
+    image/*)
+        image "$1" "$2" "$3" "$4" "$5"
+        ;;
+    video/*)
+        [ ! -f "${CACHE}.jpg" ] && thumbnailer -o "${CACHE}.jpg" "$1"
+        image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
         ;;
     *)
         batorcat "$1"

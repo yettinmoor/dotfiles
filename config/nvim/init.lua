@@ -9,7 +9,6 @@ local cfg_files = {
 	"term.lua",
 	"lsp.lua",
 	"wiki.vim",
-	"misc.vim",
 }
 
 for _, name in ipairs(cfg_files) do
