@@ -46,7 +46,7 @@ case "$(file --mime-type "$1" -bL)" in
             readelf -h "$1"
         } | batorcat
         ;;
-    application/x-rar)
+    application/gzip | application/x-rar)
         als "$1"
         ;;
     application/zip)

@@ -16,7 +16,7 @@ int main(int argc, cstr* argv) {
     mk_add(&mk, "-Wall", "-Wextra");
     mk_add(&mk, "-Isrc", "-Isrc/ns");
     mk_add(&mk, "-o", "%NAME");
-    mk_add_src_dir(&mk, "src");
+    mk_add(&mk, "src/main.c");
 
     int code = mk_run(&mk);
     if (code == 0) {

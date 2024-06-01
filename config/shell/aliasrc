@@ -59,8 +59,9 @@ alias ytda='ytd -x -f "bestaudio[ext=mp3]/best"'
 alias ytdp='ytd -o "%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s"'
 
 # lang
-alias de='wt -l de'
-alias ru='wt -l ru'
+alias wde='wt -l de'
+alias wru='wt -l ru'
+alias wnl='wt -l nl'
 
 # dirs
 export AOC_INPUT_DIR="$HOME/lib/aoc"
