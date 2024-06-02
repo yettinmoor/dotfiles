@@ -22,14 +22,18 @@ case "$lang" in
             esac
 
             printf "%s: %s" "$word" "$meaning"
-        }
-        ;;
+        } ;;
 
     nl)
         translateword() {
             word="$1"
-            meaning="$(trans -b nl:de "$1" 2> /dev/null)"
-            printf "%s: %s" "$word" "$meaning"
+            # meaning="$(trans -b nl:de "$1" 2> /dev/null)"
+            woorden "$word" | {
+                read -r word_lookup
+                read -r meaning
+                article=$(echo "$word_lookup" | rg -o '^(I+ )?(de|het)' -r '$2 ')
+                printf "%s%s: %s" "$article" "$word" "$meaning"
+            }
         }
         ;;
     ja)

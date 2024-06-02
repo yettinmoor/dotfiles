@@ -1,4 +1,4 @@
-#define NS_IMPL 1
+#define NS_IMPL
 #include "ns.h"
 
 // cli args
@@ -33,17 +33,16 @@ static Input parse(cstr* argv) {
 
     // define args here
     cli_flag(&cli, &input.help, "-h", "--help");
-    cli_arg(&cli, &input.infile);
+    cli_arg_cstr(&cli, &input.infile);
 
     err_t err = cli_parse(&cli, argv);
     if (!err.ok) {
         log_err(STR_FMT, STR_FMT_ARG(err.msg));
-        eprintln("");
         usage(1, cli.prog_name);
     }
     if (input.help) {
         usage(0, cli.prog_name);
     }
-    input.args = cli.args.array;
+    input.args = cli.extra_args.array;
     return input;
 }
