@@ -32,7 +32,6 @@ Plug 'mg979/vim-visual-multi'
 Plug 'junegunn/goyo.vim'
 
 " Languages/filetypes
-Plug 'vimwiki/vimwiki', { 'for': 'vimwiki' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
 Plug 'rhysd/vim-clang-format', { 'for': 'c' }

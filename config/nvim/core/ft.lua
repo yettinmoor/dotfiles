@@ -8,7 +8,6 @@ local map = {
 	{ "*.nil", "nil" },
 	{ "*.tw", "twee" },
 	{ "*.vs,*.fs", "glsl" },
-	{ "*.wiki", "vimwiki" },
 	{ "*/mnemo/sen/*", "sentences" },
 	{ "*/mnemo/cloze/*", "cloze" },
 	{ ".clang-format", "yaml" },

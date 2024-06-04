@@ -16,7 +16,7 @@ case "$file" in
     *.sent) setsid sent "$file" > /dev/null 2>&1 & ;;
     *.hs) ghci "$file" ;;
     *.py) python -qi "$file" ;;
-    */wiki/*.md) echo "$base" \
+    */docs/wiki/*.md) echo "$base" \
         | sed 's:wiki:wiki/html:' \
         | xargs -r -I {} setsid "$BROWSER" --target window "{}.html" ;;
     *.c | *.cpp) "$base" ;;
