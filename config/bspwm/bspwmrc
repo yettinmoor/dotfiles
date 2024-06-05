@@ -44,9 +44,8 @@ bspc rule -a '*:*' node=@/1
 
 # Per program rules
 bspc rule -a Zathura state=tiled
-bspc rule -a Surf state=tiled
+bspc rule -a '*:fugi' state=tiled
 bspc rule -a FloatTerm state=floating
-bspc rule -a Spad state=floating
 
 killall polybar
 monitors | while read -r mon; do

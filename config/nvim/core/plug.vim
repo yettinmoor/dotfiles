@@ -14,6 +14,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'dense-analysis/ale'
+Plug 'p00f/clangd_extensions.nvim'
 
 " Small utilities
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }

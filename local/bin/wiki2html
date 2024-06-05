@@ -6,13 +6,11 @@
 }
 
 path="$(realpath "$1")"
-base="${path#$WIKI_DIR/}"
+base="${path#"$WIKI_DIR"/}"
 base="${base%.*}"
 out="html/$base.html"
 
 cd "$WIKI_DIR" || exit 1
-
-echo $out
 
 mkdir -p "$(dirname "$out")"
 
@@ -36,10 +34,9 @@ END { if (in_def) { print "</table>"; } }
 EOF
 )
 
-echo compiling $base...
+echo compiling "$base..."
 
-cat "$path" \
-    | perl -pe '
+perl "$path" -pe '
         s/^##### (.*)/<h5 id="\1">\1<\/h1>/g;
         s/^#### (.*)/<h4 id="\1">\1<\/h1>/g;
         s/^### (.*)/<h3 id="\1">\1<\/h1>/g;
