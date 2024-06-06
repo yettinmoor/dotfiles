@@ -2,10 +2,11 @@
 
 engines=$(
     cat <<- EOF
-1 🇯🇵 anthy 文
-2 🇬🇷 fcitx-keyboard-gr AΩ
-3 🇨🇳 pinyin 中
-4 🇷🇺 fcitx-keyboard-ru АЯ
+1 🇯🇵 anthy
+2 🇬🇷 fcitx-keyboard-gr
+3 🇨🇳 pinyin
+4 🇷🇺 fcitx-keyboard-ru
+5 🇰🇷 hangul
 EOF
 )
 
