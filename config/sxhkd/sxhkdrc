@@ -39,10 +39,6 @@ super + e
 	$TERMINAL -e $FILE
 super + t
 	tor
-super + shift + t
-	teams
-super + y
-	$TERMINAL -e calcurse -D ~/.config/calcurse
 super + u
 	spad
 super + i
