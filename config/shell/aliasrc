@@ -60,8 +60,9 @@ alias ytdp='ytd -o "%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s"'
 
 # lang
 alias wde='wt -l de'
-alias wru='wt -l ru'
+alias wfr='wt -l fr'
 alias wnl='wt -l nl'
+alias wru='wt -l ru'
 
 # dirs
 export AOC_INPUT_DIR="$HOME/lib/aoc"
