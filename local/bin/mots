@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+curl -sL https://www.le-dictionnaire.com/definition/"$(catecho "$@" | sed 's/ /%20/g')" \
+    | htmlq div.defbox 'span, div.motboxinfo, li' -t
+
+# term="$(catecho "$@")"
+# search_url="https://www.dictionnaire-academie.fr/search?term=$term"
+# curl -sL -X POST "$search_url" -H "Accept: application/json" \
+#     | jq ".result[] | select(.label == \"$term\") | .url" \
+#     | xargs curl -sL \
+#     | htmlq div.s_Article -t \
+#     | sed '/^$/d'
