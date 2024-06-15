@@ -100,9 +100,9 @@ for file in "$@"; do
                 application/x-bittorrent)
                     wraptty tor "$file"
                     ;;
-                # text/html)
-                #     wrap browser "$file"
-                #     ;;
+                text/html)
+                    wrap browser "$file"
+                    ;;
                 application/msword | \
                     application/vnd.openxmlformats-officedocument.wordprocessingml.document | \
                     application/vnd.openxmlformats-officedocument.spreadsheetml.sheet | \

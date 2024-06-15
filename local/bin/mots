@@ -8,7 +8,8 @@ if [ "$1" = -b ]; then
 fi
 
 curl -sL $url/"$(catecho "$@" | sed 's/ /%20/g')" \
-    | htmlq div.defbox 'span, div.motboxinfo, li' -t
+    | htmlq div.defbox 'span, div.motboxinfo, li' -t \
+    | sed '/^$/d'
 
 # term="$(catecho "$@")"
 # search_url="https://www.dictionnaire-academie.fr/search?term=$term"
