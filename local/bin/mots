@@ -1,5 +1,13 @@
 #!/usr/bin/env sh
-curl -sL https://www.le-dictionnaire.com/definition/"$(catecho "$@" | sed 's/ /%20/g')" \
+url=https://www.le-dictionnaire.com/definition
+
+if [ "$1" = -b ]; then
+    shift
+    browser "$url/$(catecho "$@")"
+    exit
+fi
+
+curl -sL $url/"$(catecho "$@" | sed 's/ /%20/g')" \
     | htmlq div.defbox 'span, div.motboxinfo, li' -t
 
 # term="$(catecho "$@")"
