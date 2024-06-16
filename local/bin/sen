@@ -31,7 +31,6 @@ case "$lang" in
                 read -r _
                 read -r info
                 read -r meaning
-                # article="$(echo "$info" | awk '/masculin/i { printf("le ") }; /féminin/i { printf "la " }')"
                 article="$(echo "$info" | sed -n '/Masculin/s/.*/le /ip; /Féminin/s/.*/la /ip')"
                 printf "%s%s: %s" "$article" "$word" "$meaning"
             }
