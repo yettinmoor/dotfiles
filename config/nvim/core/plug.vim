@@ -38,7 +38,7 @@ Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
 Plug 'rhysd/vim-clang-format', { 'for': 'c' }
 Plug 'wlangstroth/vim-racket', { 'for': 'racket' }
 Plug 'fatih/vim-go', { 'for': 'go' }
-Plug 'ziglang/zig.vim', { 'for': 'zig' }
+" Plug 'ziglang/zig.vim', { 'for': 'zig' }
 Plug 'zah/nim.vim', { 'for': 'nim' }
 Plug 'OmniSharp/omnisharp-vim', { 'for': 'csharp' }
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }

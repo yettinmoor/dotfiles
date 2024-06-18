@@ -39,4 +39,5 @@ vim.g.ale_fixers = {
 	typescript = "deno",
 	xml = "prettier",
 	yaml = "prettier",
+	zig = "zigfmt",
 }
