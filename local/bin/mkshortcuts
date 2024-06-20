@@ -3,7 +3,7 @@ SH_FILE="$HOME/.config/shell/shortcutrc"
 LF_FILE="$HOME/.config/lf/lfshortcuts"
 SHORTCUT_DIR="$HOME/.config/shell/shortcuts"
 
-mkdir -p $SHORTCUT_DIR
+mkdir -p "$SHORTCUT_DIR"
 
 echo "export SHORTCUT_DIR=$SHORTCUT_DIR" > "$SH_FILE"
 
