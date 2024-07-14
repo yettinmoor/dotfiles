@@ -24,7 +24,7 @@ file="$(readlink -f -- "$1")"
 [ -f Makefile ] && { make "$@"; exit; }
 
 [ -z "$file" ] && {
-    echo nothing to do
+    echo 'nothing to do'
     exit 1
 }
 
