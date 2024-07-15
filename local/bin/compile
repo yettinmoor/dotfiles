@@ -42,6 +42,7 @@ case "$ext" in
     cs)   mcs "$file" ;;
     go)   go run "$file" ;;
     hs)   runhaskell "$file" ;;
+    jl)   julia "$file" ;;
     js)   node "$file" ;;
     lua)  lua "$file" ;;
     pl)   perl "$file" ;;
