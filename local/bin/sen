@@ -8,7 +8,7 @@ lang="$(basename "$1")"
 # set up `translateword` function depending on language
 # "word" -> "(article) word: meaning"
 case "$lang" in
-    de | ru | tr)
+    de | ru | tr | vi)
         translateword() {
             word="$1"
             meaning="$(trans -b "${lang}:" "$1" 2> /dev/null)"
