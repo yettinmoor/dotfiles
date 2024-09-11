@@ -9,10 +9,10 @@ lspconfig.hls.setup({})
 lspconfig.nimls.setup({})
 lspconfig.pyright.setup({})
 lspconfig.rust_analyzer.setup({})
-lspconfig.tsserver.setup({})
+lspconfig.ts_ls.setup({})
 lspconfig.zls.setup({})
 
-local servers = { "bashls", "clangd", "pyright", "rust_analyzer", "tsserver", "zls" }
+local servers = { "bashls", "clangd", "pyright", "rust_analyzer", "ts_ls", "zls" }
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup({
 		-- on_attach = my_custom_on_attach,
