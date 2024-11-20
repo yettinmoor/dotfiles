@@ -3,4 +3,4 @@
     echo not a png!
     exit 1
 }
-convert "$1" "${1%.png}.jpg" && rm "$1"
+magick "$1" "${1%.png}.jpg" && rm "$1"
