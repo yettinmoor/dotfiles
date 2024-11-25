@@ -7,8 +7,8 @@ FILE="booklog.md"
 while getopts exun o; do
     case "$o" in
         e) $EDITOR "$FILE"; exit ;;
-        x) filter=read ;;
-        u) filter=unread ;;
+        x) filter='read' ;;
+        u) filter='unread' ;;
         n) count=1 ;;
         *) exit 1 ;;
     esac
@@ -19,7 +19,7 @@ shift $((OPTIND - 1))
 [ -n "$1" ] && year="$1" || year="$(date +%Y)"
 
 sed -e "0,/^\\# $year\$/d" -e "/$((year - 1))/q" "$FILE" \
-    | rg '\*\*(.+)\*\*' -r '$1' \
+    | rg '^(\[[ x]\]) \*\*(.+)\*\*' -r '$1 $2' \
     | case "$filter" in
         read)   rg '\[x\]' ;;
         unread) rg '\[ \]' ;;
