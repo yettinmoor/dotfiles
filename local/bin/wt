@@ -11,15 +11,14 @@ while getopts el:ab opt; do
 done
 shift $((OPTIND - 1))
 
-case "$1" in
-    :*)
-        lang="${1#:}"
-        shift
-        ;;
-esac
-
 if [ -n "$browse" ]; then
-    browser "!wt $(catecho "$@")"
+    WIKT=https://en.wiktionary.org/wiki
+    res=$(curl -o /dev/null -s -w '%{http_code}' "$WIKT/$*")
+    if [ "$res" = 404 ]; then
+        browser "$WIKT/Special:Search?fulltext=Full+text+search&search=$*&ns0=1"
+    else
+        browser "!wt $(catecho "$@")"
+    fi
 else
     URL=https://en.wiktionary.org/api/rest_v1/page/definition
     curl -s "$URL/$(catecho "$@" | tr ' ' '_')" \
