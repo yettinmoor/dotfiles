@@ -65,6 +65,7 @@ alias wde='wt -l de'
 alias wfr='wt -l fr'
 alias wnl='wt -l nl'
 alias wru='wt -l ru'
+alias ςτ='wt -l other'
 
 # dirs
 export AOC_INPUT_DIR="$HOME/lib/aoc"
