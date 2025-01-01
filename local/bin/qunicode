@@ -1,6 +1,9 @@
 #!/usr/bin/env sh
 DIR=~/.config/unicode
-cat $DIR/unicode.txt $DIR/emoji.txt $DIR/fontawesome.txt \
-    | dmenu -i -l 20 -p 'unicode' \
+cat $DIR/unicode.txt \
+    $DIR/superscript.txt \
+    $DIR/emoji.txt \
+    $DIR/fontawesome.txt \
+    | dmenu -matching prefix -l 20 -p 'unicode' \
 	| cut -d' ' -f1 \
 	| xclip -sel c -r
