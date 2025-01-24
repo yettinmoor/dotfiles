@@ -19,7 +19,7 @@ shift $((OPTIND - 1))
 [ -n "$1" ] && year="$1" || year="$(date +%Y)"
 
 sed -e "0,/^\\# $year\$/d" -e "/$((year - 1))/q" "$FILE" \
-    | rg '^(\[[ x]\]) \*\*(.+)\*\*' -r '$1 $2' \
+    | rg '^\[[ x]\]' \
     | case "$filter" in
         read)   rg '\[x\]' ;;
         unread) rg '\[ \]' ;;
