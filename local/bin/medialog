@@ -2,11 +2,12 @@
 
 cd "$WIKI_DIR" || exit 1
 
-FILE="booklog.md"
+file="log/$(basename "$0").md"
+touch "$file"
 
 while getopts exun o; do
     case "$o" in
-        e) $EDITOR "$FILE"; exit ;;
+        e) $EDITOR "$file"; exit ;;
         x) filter='read' ;;
         u) filter='unread' ;;
         n) count=1 ;;
@@ -18,7 +19,7 @@ shift $((OPTIND - 1))
 
 [ -n "$1" ] && year="$1" || year="$(date +%Y)"
 
-sed -e "0,/^\\# $year\$/d" -e "/$((year - 1))/q" "$FILE" \
+sed -e "0,/^\\# $year\$/d" -e "/$((year - 1))/q" "$file" \
     | rg '^\[[ x]\]' \
     | case "$filter" in
         read)   rg '\[x\]' ;;
