@@ -5,6 +5,7 @@ kbset &
 
 # Appearance
 setbg &
+xset s off -dpms
 xrdb ~/.config/xorg/Xresources
 xsetroot -cursor_name left_ptr
 picom -b &
