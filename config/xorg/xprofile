@@ -14,7 +14,7 @@ unclutter --timeout 3 &
 
 # Daemons
 sxhkd &
-fcitx -d &
+fcitx5 -d &
 dunst &
 syncthing --no-browser &
 mpd &
