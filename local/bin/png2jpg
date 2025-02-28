@@ -1,6 +1,14 @@
 #!/usr/bin/env sh
-! [ "$(file --mime-type -bL "$1")" = image/png ] && {
-    echo not a png!
-    exit 1
-}
-magick "$1" "${1%.png}.jpg" && rm "$1"
+
+case "$(file --mime-type -bL "$1")" in
+    image/png)
+        magick "$1" "${1%.png}.jpg" && rm "$1"
+        ;;
+    image/webp)
+        magick "$1" "${1%.webp}.jpg" && rm "$1"
+        ;;
+    *)
+        echo not a png!
+        exit 1
+        ;;
+esac
