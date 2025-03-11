@@ -7,6 +7,7 @@ local cfg_files = {
 	"ft.lua",
 	"color.lua",
 	"term.lua",
+	"conform.lua",
 	"lsp.lua",
 	"wiki.vim",
 }

@@ -13,7 +13,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'dense-analysis/ale'
+Plug 'stevearc/conform.nvim'
 Plug 'p00f/clangd_extensions.nvim'
 
 " Small utilities
@@ -40,6 +40,7 @@ Plug 'wlangstroth/vim-racket', { 'for': 'racket' }
 Plug 'fatih/vim-go', { 'for': 'go' }
 " Plug 'ziglang/zig.vim', { 'for': 'zig' }
 Plug 'zah/nim.vim', { 'for': 'nim' }
+Plug 'Tetralux/odin.vim', { 'for': 'nt' }
 Plug 'OmniSharp/omnisharp-vim', { 'for': 'csharp' }
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 Plug 'JuliaEditorSupport/julia-vim', { 'for': 'julia' }
