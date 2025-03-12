@@ -52,15 +52,15 @@ export XMODIFIERS=@im=fcitx
 # zshrc.
 # shellcheck disable=SC1091
 case "$0" in
-    *zsh) . "$ZDOTDIR/.zshrc" ;;
-    *sh)  . "$XDG_CONFIG_HOME/shell/allrc" ;;
+*zsh) . "$ZDOTDIR/.zshrc" ;;
+*sh) . "$XDG_CONFIG_HOME/shell/allrc" ;;
 esac
 
 # SSH agent
 # . start-ssh-agent
 
 # Autorun startx.
-[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x Xorg > /dev/null && exec startx
+[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x Xorg >/dev/null && exec startx
 
 # Switch escape and caps if tty.
-sudo -n loadkeys "$XDG_DATA_HOME/ttymaps.kmap" 2> /dev/null
+sudo -n loadkeys "$XDG_DATA_HOME/ttymaps.kmap" 2>/dev/null
