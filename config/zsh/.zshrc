@@ -79,3 +79,6 @@ setopt interactivecomments
 
 # Load zsh-syntax-highlighting; should be last.
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+
+# History
+setopt HIST_IGNORE_SPACE
