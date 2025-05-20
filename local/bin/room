@@ -1,3 +1,3 @@
 #!/usr/bin/env sh
 
-fd -t d -d 1 . "${1:-.}" --mount -x du -sh | sort -h
+fd -H -t d -d 1 . "${1:-.}" --mount -x du -sh | sort -h
