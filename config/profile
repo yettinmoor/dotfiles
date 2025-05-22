@@ -26,7 +26,6 @@ export GPG_TTY
 
 # X
 export XAUTHORITY="$HOME/.Xauthority"
-export DISPLAY=:0
 
 # misc program stuff.
 export BAT_THEME=gruvbox-dark
