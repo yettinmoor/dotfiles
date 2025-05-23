@@ -7,3 +7,5 @@ st.alpha: .8
 
 Sxiv.foreground: #cecece
 Sxiv.background: #1a1a1a
+
+#include "Xresources.private"
