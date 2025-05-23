@@ -1,5 +1,16 @@
 #!/usr/bin/env sh
 
+if [ "$1" = '--sleep' ]; then
+    case "$(hostname)" in
+    talos) ;;
+    moloch) sleep 60 ;;
+    medea) sleep 120 ;;
+    *) sleep 180 ;;
+    esac
+
+    shift
+fi
+
 cd "$1" || exit 1
 
 set -e

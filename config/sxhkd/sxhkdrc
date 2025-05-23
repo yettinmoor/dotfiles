@@ -70,7 +70,7 @@ super + {_,shift +} c
 super + b
 	$BROWSER --target window $HOMEPAGE
 super + n
-	! pgrep newsboat && $TERMINAL -e newsboat && polybar-msg action '#rss.hook.0'
+	! pgrep newsboat && $TERMINAL -e newsboat -u ~/.config/rss/urls && polybar-msg action '#rss.hook.0'
 super + shift + n
 	rssping
 super + m

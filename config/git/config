@@ -1,6 +1,7 @@
 [user]
 	name = Nicolas Lindström
 	signingkey = 1590D472EC0D5D77
+    email = nicolas.lindstroem@protonmail.com
 [core]
 	autocrlf = input
 	safecrlf = true

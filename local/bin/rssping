@@ -1,19 +1,9 @@
 #!/usr/bin/env sh
 
-RSSDIR=~/docs/rss
-
-pgrep -x rssping > /dev/null && exit 1
+pgrep -x rssping >/dev/null && exit 1
 isconnected || exit 1
-
 pgrep -x newsboat && exit
 
 polybar-msg action '#rss.send.?'
-
-# sync feeds
-timeout 5s newsboat -x reload
-
-# sync with other nodes
-newsboat -E $RSSDIR/read_"$(hostname)"
-fd read_ $RSSDIR -E "*$(hostname)" -x newsboat -I
-
+timeout 5s newsboat -u ~/.config/rss/urls -x reload
 polybar-msg action '#rss.hook.0'

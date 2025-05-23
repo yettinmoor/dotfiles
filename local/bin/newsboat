@@ -1,4 +1,0 @@
-#!/usr/bin/env sh
-
-DIR=~/docs/rss
-/usr/bin/newsboat -u $DIR/urls "$@"

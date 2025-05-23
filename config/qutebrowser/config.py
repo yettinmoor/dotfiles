@@ -19,6 +19,9 @@ assert WIKI_DIR is not None
 
 CSS = CONFIG + '/qutebrowser/css/gruvbox.css'
 
+hostname = os.uname().nodename
+is_big_monitor = hostname in ['medea']
+
 ####
 
 config.load_autoconfig(False)
@@ -26,7 +29,8 @@ config.bind('<ctrl-e>', 'config-edit')
 config.bind('<ctrl-r>', 'config-source')
 
 # basic settings
-config.set('fonts.default_size', '12pt')
+config.set('fonts.default_size', '20pt' if is_big_monitor else '12pt')
+config.set('zoom.default', '150%' if is_big_monitor else '100%')
 config.set('url.default_page', os.getenv('HOMEPAGE'))
 config.set('content.netrc_file', CONFIG + '/netrc')
 config.set('content.notifications.enabled', False)
@@ -45,7 +49,6 @@ config.bind('<ctrl-m>', f'config-cycle content.user_stylesheets "{CSS}" ""')
 config.set('fonts.web.family.fixed', 'mono')
 config.set('fonts.web.family.sans_serif', 'sans-serif')
 config.set('fonts.web.family.serif', 'serif')
-# config.set('zoom.default', '125%')
 
 
 # basic rebinds
