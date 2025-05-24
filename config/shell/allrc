@@ -7,5 +7,7 @@ mkshortcuts
     . ~/.config/shell/shortcutrc
     . ~/.config/shell/aliasrc
     . ~/.config/shell/aesthrc
-    . ~/.config/shell/privaterc
+    if [ -f ~/.config/shell/privaterc ]; then
+        . ~/.config/shell/privaterc
+    fi
 }

@@ -4,28 +4,31 @@
 # `up`      | install updates.
 
 runjob() {
-    echo "running job \`$*\`..." >&2
+    echo "running job '$*'..." >&2
     {
-        "$@" > /dev/null 2>&1
-        echo "completed job \`$*\` [$?]" >&2
+        "$@" > /dev/null
+        echo "completed job '$*' [$?]" >&2
     } &
 }
 
 packages() {
-    sudo pacman -S --noconfirm archlinux-keyrings
+    sudo pacman -S --noconfirm archlinux-keyring
     sudo pacman -Syyuw --noconfirm
+}
+
+nvimup() {
+    nvim +PlugUpdate +PlugUpgrade +qa
 }
 
 case "$1" in
     down)
         isconnected || exit 1
         polybar-msg action '#updates.send.?'
-        runjob packages
-        runjob nvim +'PlugUpdate --sync' +qa
-        runjob nvim +'PlugUpgrade --sync' +qa
-        runjob rustup update
-        runjob qalc -e
-        [ -n "$LOCATION" ] && runjob forecast fetch "$LOCATION"
+        {
+            runjob packages
+            runjob nvimup
+            runjob qalc -e
+        }
         wait
         ;;
     *)

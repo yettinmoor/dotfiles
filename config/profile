@@ -62,4 +62,4 @@ esac
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x Xorg >/dev/null && exec startx
 
 # Switch escape and caps if tty.
-sudo -n loadkeys "$XDG_DATA_HOME/ttymaps.kmap" 2>/dev/null
+tty --quiet && sudo -n loadkeys "$XDG_DATA_HOME/ttymaps.kmap" 2>/dev/null

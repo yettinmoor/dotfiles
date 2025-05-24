@@ -1,13 +1,14 @@
+# compile: sed 1d {} | crontab -
 DISPLAY=:0
-XAUTHORITY=$HOME/.Xauthority
-XDG_RUNTIME_DIR=/run/user/$UID
-DBUS_SESSION_BUS_ADDRESS=unix:path=$XDG_RUNTIME_DIR/bus
+XAUTHORITY=~/.Xauthority
+XDG_RUNTIME_DIR=/run/user/1000
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 
 # Run assorted scripts
-*      *    * * *   . $HOME/.config/profile; rssping
-15,45  *    * * *   . $HOME/.config/profile; up down
-0      18   * * *   . $HOME/.config/profile; autocommit --sleep $HOME/repos/dotfiles
-0      0    * * *   . $HOME/.config/profile; yay -Sc --noconfirm
+*      *    * * *   . ~/.config/profile; rssping
+15,45  *    * * *   . ~/.config/profile; up down
+0      18   * * *   . ~/.config/profile; autocommit --sleep ~/repos/dotfiles
+0      0    * * *   . ~/.config/profile; yay -Sc --noconfirm
 
 # Backup mon, wed, fri
-40 18 * * 1,3,5  . $HOME/.config/profile; $HOME/.local/bin/backup
+40 18 * * 1,3,5  . $HOME/.config/profile; ~/.local/bin/backup
