@@ -5,5 +5,5 @@ isconnected || exit 1
 pgrep -x newsboat && exit
 
 polybar-msg action '#rss.send.?'
-timeout 5s newsboat -u ~/.config/rss/urls -x reload
+timeout 5s newsboat -x reload
 polybar-msg action '#rss.hook.0'
