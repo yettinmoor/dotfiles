@@ -1,12 +1,12 @@
 #!/usr/bin/env sh
-url=https://www.woorden.org/woord
+url="https://www.woorden.org/woord/$(catecho "$@")"
 
 if [ "$1" = -b ]; then
     shift
-    browser "$url/$(catecho "$@")"
+    browser $url
     exit
 fi
 
-curl -s "https://www.woorden.org/woord/$(catecho "$@")" \
+curl -s "$url" \
     | htmlq 'h1, font>b' -t \
     | sed '/^[0-9]\+)/d; /^$/d; s/^ *//'
