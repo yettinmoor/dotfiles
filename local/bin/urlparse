@@ -10,11 +10,11 @@ my @args = split / +/, $_;
 my $key = shift @args;
 
 my $DIR = "$ENV{HOME}/.config/urlparse";
-my $find = "rg '^$key (.*)' -r '\$1'";
+my $find = "rg 2>/dev/null --no-filename '^$key (.*)' -r '\$1'";
 
-if (not @args and my $url = `$find "$DIR/bookmarks"`) {
+if (not @args and my $url = `$find "$DIR/bookmarks" "$DIR/bookmarks.private"`) {
     print "$url";
-} elsif ($url = `$find "$DIR/searchengines"`) {
+} elsif ($url = `$find "$DIR/searchengines" "$DIR/searchengines.private"`) {
     printf "$url", (join ' ', @args);
 } else {
     unshift @args, $key;
