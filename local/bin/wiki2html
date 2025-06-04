@@ -49,9 +49,9 @@ perl < "$path" -pe '
     | awk "$make_defs" \
     | pandoc \
         -t html \
-        --data-dir html/data \
-        --css "$WIKI_DIR/html/data/style.css" \
+        --data-dir html/.data \
+        --css "$WIKI_DIR/html/.data/style.css" \
         --template template.html \
-        --mathjax="$WIKI_DIR/html/data/mathjax/es5/tex-chtml.js?config=TeX-AMS-MML_HTMLorMML" \
+        --mathjax="$WIKI_DIR/html/.data/mathjax/es5/tex-chtml.js?config=TeX-AMS-MML_HTMLorMML" \
         --metadata title="$base" \
         -o "$out" \
