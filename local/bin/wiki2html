@@ -42,7 +42,7 @@ perl < "$path" -pe '
         s/^### (.*)/<h3 id="\1">\1<\/h1>/g;
         s/^## (.*)/<h2 id="\1">\1<\/h1>/g;
         s/^# (.*)/<h1 id="\1">\1<\/h1>/g;
-        s/([^!]|^)(\[[^]]+\]\((?!https:\/\/).+?)(#.*?)?\)/\1\2.html\3)/g; # format links
+        s/([^!]|^)(\[[^]]+\]\((?!https:\/\/)[^#].*?)(#.*?)?\)/\1\2.html\3)/g; # format links
         s/\[ \]/<input type="checkbox">/g;
         s/\[[xX]\]/<input type="checkbox" checked="true">/g;
         s/TODO/<span class="todo">TODO<\/span>/g' \
