@@ -74,13 +74,13 @@ super + n
 super + shift + n
 	rssping
 super + m
-	audio mute
+	pamixer --toggle-mute
 
 # Etc
 super + comma
 	qunicode
 super + {_,shift +} period
-	{qcopy,qpass}
+	q{copy,pass}
 super + Print
 	scrotpick
 super + {_, shift +} grave
@@ -93,20 +93,18 @@ super + F1
 	manview
 super + {_,shift +} F2
 	setbg {pick,random}
-super + {_,shift +} F9
-	dmenu{mount,umount}
 
 # Audio
 super + {_,shift +} BackSpace
 	mpc {prev,next}
 super + {minus,plus}
-	audio {dec,inc} 5
+	pamixer --unmute --{decrease,increase} 5
 
 # XF86 keys
 XF86AudioMute
-	audio mute
+	pamixer --toggle-mute
 XF86Audio{Lower,Raise}Volume
-	audio {dec,inc} 5
+	pamixer --unmute --{decrease,increase} 5
 XF86Audio{Play,Stop,Next,Prev}
 	mpc {toggle,pause,next,prev}
 XF86MonBrightness{Down,Up}
