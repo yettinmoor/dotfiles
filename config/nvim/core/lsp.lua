@@ -1,25 +1,5 @@
-local lspconfig = require("lspconfig")
 local cmp = require("cmp")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
-
--- Setup language servers.
-lspconfig.bashls.setup({})
-lspconfig.clangd.setup({})
-lspconfig.hls.setup({})
-lspconfig.nimls.setup({})
-lspconfig.ols.setup({})
-lspconfig.pyright.setup({})
-lspconfig.rust_analyzer.setup({})
-lspconfig.ts_ls.setup({})
-lspconfig.zls.setup({})
-
-local servers = { "bashls", "clangd", "ols", "pyright", "rust_analyzer", "ts_ls", "zls" }
-for _, lsp in ipairs(servers) do
-	lspconfig[lsp].setup({
-		-- on_attach = my_custom_on_attach,
-		capabilities = cmp_nvim_lsp.capabilities,
-	})
-end
 
 -- Global mappings.
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)

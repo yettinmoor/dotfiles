@@ -17,11 +17,26 @@ file="$(readlink -f -- "$1")"
 }
 
 # try a bunch of different files
-[ -f .compile ] && { sh .compile "$@"; exit; }
-[ -x mk ]       && { ./mk "$@"; exit; }
-[ -x make.sh ]  && { ./make.sh "$@"; exit; }
-[ -x build.sh ]  && { ./build.sh "$@"; exit; }
-[ -f Makefile ] && { make "$@"; exit; }
+[ -f .compile ] && {
+    sh .compile "$@"
+    exit
+}
+[ -x mk ] && {
+    ./mk "$@"
+    exit
+}
+[ -x make.sh ] && {
+    ./make.sh "$@"
+    exit
+}
+[ -x build.sh ] && {
+    ./build.sh "$@"
+    exit
+}
+[ -f Makefile ] && {
+    make "$@"
+    exit
+}
 
 [ -z "$file" ] && {
     echo 'nothing to do'
@@ -33,42 +48,42 @@ ext="${file#*.}"
 noext="${file%.*}"
 
 case "$ext" in
-    # shell
-    sh) sh "$file" ;;
+# shell
+sh) sh "$file" ;;
 
-    # programming
-    c)    cc "$file" -o "$noext" -g ;;
-    cpp)  g++ "$file" -o "$noext" ;;
-    cs)   mcs "$file" ;;
-    go)   go run "$file" ;;
-    hs)   runhaskell "$file" ;;
-    jl)   julia "$file" ;;
-    js)   node "$file" ;;
-    lua)  lua "$file" ;;
-    odin) odin run "$file" -file ;;
-    pl)   perl "$file" ;;
-    py)   python "$file" ;;
-    rkt)  racket "$file" ;;
-    rs)   cargo run ;;
-    scm)  chicken-csi -q "$file" ;;
-    ts)   deno run --allow-read "$file" ;;
-    zig)  zig build run ;;
+# programming
+c) cc "$file" -o "$noext" -g ;;
+cpp) g++ "$file" -o "$noext" ;;
+cs) mcs "$file" ;;
+go) go run "$file" ;;
+hs) runhaskell "$file" ;;
+jl) julia "$file" ;;
+js) node "$file" ;;
+lua) lua "$file" ;;
+odin) odin run "$file" -file ;;
+pl) perl "$file" ;;
+py) python "$file" ;;
+rkt) racket "$file" ;;
+rs) cargo run ;;
+scm) chicken-csi -q "$file" ;;
+ts) deno run --allow-read "$file" ;;
+zig) zig build run ;;
 
-    # documents
-    tex)  xelatex --output-directory="$dir" "$noext" ;;
-    md)   pandoc "$file" --pdf-engine=xelatex -o "$noext".pdf ;;
-    sent) setsid sent "$file" & ;;
+# documents
+tex) xelatex --output-directory="$dir" "$noext" ;;
+md) pandoc "$file" --pdf-engine=xelatex -o "$noext".pdf ;;
+sent) setsid sent "$file" & ;;
 
-    # custom formats
-    mnemo) mnemo -i "$file" ;;
+# custom formats
+mnemo) mnemo -i "$file" ;;
 
-    # shebang
-    *)
-        if [ -x "$file" ]; then
-            "$file"
-        else
-            echo "compile doesn't know what to do with '$1', sorry."
-            exit 1
-        fi
-        ;;
+# shebang
+*)
+    if [ -x "$file" ]; then
+        "$file"
+    else
+        echo "compile doesn't know what to do with '$1', sorry."
+        exit 1
+    fi
+    ;;
 esac

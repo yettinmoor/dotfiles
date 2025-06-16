@@ -1,51 +1,50 @@
 #!/usr/bin/env sh
 
 engines=$(
-    cat <<- EOF
+    cat <<-EOF
 1 🇯🇵 anthy
-2 🇬🇷 keyboard-gr
-3 🇨🇳 pinyin
-4 🇷🇺 keyboard-ru
-5 🇰🇷 hangul
+2 🇨🇳 pinyin
+3 🇰🇷 hangul
+4 🇬🇷 keyboard-gr
+5 🇷🇺 keyboard-ru
 EOF
 )
 
 DUNST_ID=9191
 
 case "$1" in
-    toggle)
-        case "$(fcitx5-remote)" in
-            1)
-                fcitx5-remote -t
-                dunstify -r $DUNST_ID ib -t 0
-                ;;
-            2)
-                fcitx5-remote -T
-                dunstify -C $DUNST_ID
-                ;;
-            *) ;;
-        esac
+toggle)
+    case "$(fcitx5-remote)" in
+    1)
+        fcitx5-remote -t
+        dunstify -r $DUNST_ID ib -t 0
         ;;
-
-    select)
-        echo "$engines" \
-            | cut -d ' ' -f1-2 \
-            | dmenu -p 'Keyboard layout' -L "$(echo "$engines" | wc -l)" -width 10 \
-            | {
-                read -r choice
-                choice=$(echo "$engines" | grep "${choice:?}")
-                engine=$(echo "$choice" | cut -d ' ' -f3)
-                fcitx5-remote -s "$engine"
-            }
+    2)
+        fcitx5-remote -T
+        dunstify -C $DUNST_ID
         ;;
+    *) ;;
+    esac
+    ;;
 
-    config)
-        setsid fcitx5-configtool > /dev/null 2>&1 &
-        ;;
+select)
+    echo "$engines" |
+        cut -d ' ' -f1-2 |
+        dmenu -p 'Keyboard layout' -L "$(echo "$engines" | wc -l)" -width 10 |
+        {
+            read -r choice
+            choice=$(echo "$engines" | grep "${choice:?}")
+            engine=$(echo "$choice" | cut -d ' ' -f3)
+            fcitx5-remote -s "$engine"
+        }
+    ;;
 
-    *)
-        echo invalid option
-        exit 1
-        ;;
+config)
+    setsid fcitx5-configtool >/dev/null 2>&1 &
+    ;;
 
+*)
+    echo invalid option
+    exit 1
+    ;;
 esac
