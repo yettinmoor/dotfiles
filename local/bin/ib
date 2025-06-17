@@ -1,12 +1,14 @@
 #!/usr/bin/env sh
 
 engines=$(
-    cat <<-EOF
-1 🇯🇵 anthy
-2 🇨🇳 pinyin
-3 🇰🇷 hangul
-4 🇬🇷 keyboard-gr
-5 🇷🇺 keyboard-ru
+    nl -s ' ' -w 1 <<-EOF
+🇯🇵 anthy
+🇨🇳 pinyin
+🇰🇷 hangul
+🇬🇷 keyboard-gr
+🇷🇺 keyboard-ru
+🇮🇱 keyboard-il-phonetic
+[ə] sil
 EOF
 )
 
@@ -31,6 +33,7 @@ select)
     echo "$engines" |
         cut -d ' ' -f1-2 |
         dmenu -p 'Keyboard layout' -L "$(echo "$engines" | wc -l)" -width 10 |
+        cut -d ' ' -f2 |
         {
             read -r choice
             choice=$(echo "$engines" | grep "${choice:?}")
