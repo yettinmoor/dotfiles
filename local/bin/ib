@@ -33,7 +33,6 @@ select)
     echo "$engines" |
         cut -d ' ' -f1-2 |
         dmenu -p 'Keyboard layout' -L "$(echo "$engines" | wc -l)" -width 10 |
-        cut -d ' ' -f2 |
         {
             read -r choice
             choice=$(echo "$engines" | grep "${choice:?}")
