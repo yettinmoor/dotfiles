@@ -5,11 +5,26 @@ R='\]'
 
 lang="$(basename "$1")"
 
-# set up `translateword` function depending on language
+translate() {
+    word="$1"
+    meaning="$(trans -b "${lang}:" "$1" 2> /dev/null)"
+
+    # get gender
+    case "$lang" in
+        de)
+            article="$(echo "$meaning" | trans ":$lang" | rg "\\(([\\w']+)\\) ${word}([^\w]+|$)" -o -r '$1')"
+            if [ -n "$article" ]; then printf "%s " "$article"; fi
+            ;;
+    esac
+
+    printf "%s: %s" "$word" "$meaning"
+}
+
+# customize `translate` function depending on language
 # "word" -> "(article) word: meaning"
 case "$lang" in
     fr)
-        translateword() {
+        translate() {
             word="$1"
             mots "$word" | {
                 read -r _
@@ -22,7 +37,7 @@ case "$lang" in
         ;;
 
     nl)
-        translateword() {
+        translate() {
             word="$1"
             # meaning="$(trans -b nl:de "$1" 2> /dev/null)"
             woorden "$word" | {
@@ -37,7 +52,7 @@ case "$lang" in
     ja)
         L='「'
         R='」'
-        translateword() {
+        translate() {
             jisho -n 1 "$1" | {
                 read -r head
                 read -r defn
@@ -51,7 +66,7 @@ case "$lang" in
     zh)
         L='「'
         R='」'
-        translateword() {
+        translate() {
             printf "%s[%s]: %s" \
                 "$1" \
                 "$(pypinyin "$1" | tr -d ' ')" \
@@ -60,28 +75,12 @@ case "$lang" in
         ;;
 
     la)
-        translateword() {
+        translate() {
             printf "%s: %s" \
                 "$(words "$1" | rg -o '^([^ ,]+).*\[X' -m 1 -r '$1' | tr -d ',')" \
                 "$(words "$1" | rg -o '^([^;]+);' -m 1 -r '$1' | tr -d ';')"
         }
         ;;
-
-    *)
-        translateword() {
-            word="$1"
-            meaning="$(trans -b "${lang}:" "$1" 2> /dev/null)"
-
-            # get gender
-            case "$lang" in
-                de)
-                    article="$(echo "$meaning" | trans ":$lang" | rg "\\(([\\w']+)\\) ${word}([^\w]+|$)" -o -r '$1')"
-                    if [ -n "$article" ]; then printf "%s " "$article"; fi
-                    ;;
-            esac
-
-            printf "%s: %s" "$word" "$meaning"
-        } ;;
 esac
 
 nl -b a | while read -r i line; do
@@ -94,7 +93,7 @@ nl -b a | while read -r i line; do
                 display="$(echo "$word" | cut -d ':' -f 1)"
                 printf '%s %s | %s\n' \
                     "${i}.${j}" \
-                    "$(translateword "$trans")" \
+                    "$(translate "$trans")" \
                     "$(echo "$line" | perl -pe "s/:[^$L]*(?=$R)//g; s/$L(?!${display}$R)//g; s/(?<!$L${display})$R//g;")" \
                     &
             done &
