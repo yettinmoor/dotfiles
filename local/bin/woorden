@@ -3,10 +3,10 @@ url="https://www.woorden.org/woord/$(catecho "$@")"
 
 if [ "$1" = -b ]; then
     shift
-    browser $url
+    browser "$url"
     exit
 fi
 
-curl -s "$url" \
-    | htmlq 'h1, font>b' -t \
-    | sed '/^[0-9]\+)/d; /^$/d; s/^ *//'
+curl -s "$url" |
+    htmlq 'h1, font>b' -t |
+    sed '/^[0-9]\+)/d; /^$/d; s/^ *//'

@@ -12,18 +12,14 @@ engines=$(
 EOF
 )
 
-DUNST_ID=9191
-
 case "$1" in
 toggle)
     case "$(fcitx5-remote)" in
     1)
         fcitx5-remote -t
-        dunstify -r $DUNST_ID ib -t 0
         ;;
     2)
         fcitx5-remote -T
-        dunstify -C $DUNST_ID
         ;;
     *) ;;
     esac
