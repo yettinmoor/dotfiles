@@ -6,7 +6,7 @@ engines=$(
 🇨🇳 pinyin
 🇰🇷 hangul
 🇬🇷 keyboard-gr
-🇷🇺 keyboard-ru
+🇷🇺 keyboard-ru-phonetic
 🇮🇱 keyboard-il-phonetic
 [ə] sil
 EOF

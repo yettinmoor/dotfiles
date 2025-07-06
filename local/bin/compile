@@ -1,7 +1,39 @@
 #!/usr/bin/env sh
 # All-in-one file compiler.
 
+if [ "$1" = --run ]; then
+    run=true
+    shift
+else
+    run=false
+fi
+
 file="$(readlink -f -- "$1")"
+dir="$(dirname "$file")"
+ext="${file#*.}"
+noext="${file%.*}"
+
+# process `--run`
+if $run; then
+    echo "$file"
+    case "$ext" in
+    c | cpp | nim) "$noext" ;;
+    hs) ghci "$file" ;;
+    html) setsid browser "$file" & ;;
+    py) python -qi "$file" ;;
+    qalc) qalc -i -t -f "$file" ;;
+    sent) setsid sent "$file" >/dev/null 2>&1 & ;;
+    tex | pandoc) zathura "$noext".pdf ;;
+    md) case "$file" in
+        */wiki/*.md)
+            echo "$noext" |
+                sed 's:wiki:wiki/html:' |
+                xargs -r -I {} setsid "$BROWSER" --target window "{}.html"
+            ;;
+        esac ;;
+    esac
+    exit
+fi
 
 # `compile: <cmd>` in the first line
 [ -f "$file" ] && {
@@ -43,10 +75,6 @@ file="$(readlink -f -- "$1")"
     exit 1
 }
 
-dir="$(dirname "$file")"
-ext="${file#*.}"
-noext="${file%.*}"
-
 case "$ext" in
 # shell
 sh) sh "$file" ;;
@@ -67,6 +95,7 @@ rkt) racket "$file" ;;
 rs) cargo run ;;
 scm) chicken-csi -q "$file" ;;
 ts) deno run --allow-read "$file" ;;
+qalc) qalc -t -f "$file" ;;
 zig) zig build run ;;
 
 # documents

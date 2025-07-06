@@ -36,7 +36,6 @@ alias v='nvim'
 alias wi='cd ~/docs/wiki && nvim index.md'
 alias wk='wikicurses'
 alias z='spawn zathura'
-alias じしょ='jisho'
 
 # git
 alias ga='git add'
@@ -64,8 +63,10 @@ alias ytdp='ytd -o "%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s"'
 alias wde='wt -l de'
 alias wfr='wt -l fr'
 alias wnl='wt -l nl'
-alias wru='wt -l ru'
 alias ςτ='wt -l other'
+alias вт='wt -l ru'
+alias ות='wt -l he'
+alias じしょ='jisho'
 
 # dirs
 export AOC_INPUT_DIR="$HOME/lib/aoc"
