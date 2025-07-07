@@ -1,6 +1,6 @@
 # Term
 super + Return
-	$TERMINAL
+	alacritty
 super + shift + Return
 	samedir
 
@@ -36,7 +36,7 @@ super + shift + q
 super + {_,shift +} w
 	dmenu -l 0 -p "$BROWSER" | urlparse | xargs -r0 "$BROWSER" {--target window, }
 super + e
-	$TERMINAL -e $FILE
+	alacritty -e $FILE
 super + t
 	tor
 super + u
@@ -52,7 +52,7 @@ super + p
 super + shift + p
 	pauseall
 super + a
-	$TERMINAL -e qalc -i -f ~/.config/qalculate/vars
+	alacritty -e qalc -i -f ~/.config/qalculate/vars
 super + s
 	spotify
 super + shift + s
@@ -70,7 +70,7 @@ super + {_,shift +} c
 super + b
 	$BROWSER --target window $HOMEPAGE
 super + n
-	! pgrep newsboat && $TERMINAL -e newsboat && polybar-msg action '#rss.hook.0'
+	! pgrep newsboat && alacritty -e newsboat && polybar-msg action '#rss.hook.0'
 super + shift + n
 	rssping
 super + m
