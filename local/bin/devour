@@ -9,7 +9,7 @@ tmp=$(mktemp -d)
 fifo="$tmp/fifo"
 mkfifo "$fifo"
 
-bspc subscribe -c 1 node_add | cut -d ' ' -f 5 > "$fifo" &
+bspc subscribe -c 1 node_add | cut -d ' ' -f 5 >"$fifo" &
 
 "$@" &
 pid=$!
@@ -18,8 +18,8 @@ new_node="$(cat "$fifo")"
 
 rm -r "$tmp"
 
-bspc subscribe node_transfer \
-    | while read -r _ _ _ src_node _ new_desk _; do
+bspc subscribe node_transfer |
+    while read -r _ _ _ src_node _ new_desk _; do
         if [ "$new_node" = "$src_node" ]; then
             bspc node "$node" -g hidden=off
             bspc node "$node" -d "$new_desk"

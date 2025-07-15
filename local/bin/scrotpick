@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 choices="$(
-    cat << EOF
+    cat <<EOF
 area
 window
 screen
@@ -14,9 +14,9 @@ EOF
 choice="$(echo "$choices" | dmenu -l "$(echo "$choices" | wc -l)" -p 'scrotpick')" || exit 1
 
 case "$choice" in
-    a*) flag='-s' ;;
-    w*) flag='-u' ;;
-    s*) flag= ;;
+a*) flag='-s' ;;
+w*) flag='-u' ;;
+s*) flag= ;;
 esac
 
 # Get dmenu/rofi outta the way
@@ -24,11 +24,11 @@ sleep .2
 
 # shellcheck disable=SC2016,SC2086
 case "$choice" in
-    *copy*)
-        scrot $flag -e 'clipimg "$f" && rm "$f"'
-        ;;
-    *)
-        filename="$HOME/pics/scrotpick-$(date +%y%m%d-%T).png"
-        scrot $flag "$filename" -e 'notify-send scrotpick "$f" -i "$f"'
-        ;;
+*copy*)
+    scrot $flag -e 'clipimg "$f" && rm "$f"'
+    ;;
+*)
+    filename="$HOME/pics/scrot-$(date +%y%m%d-%T).png"
+    scrot $flag "$filename" -e 'notify-send scrotpick "$f" -i "$f"'
+    ;;
 esac

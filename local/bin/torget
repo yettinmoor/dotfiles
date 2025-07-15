@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
-transmission-remote -l 2> /dev/null \
-    | sed -E '1d; $d; /Seeding/s/.*/1/; /100%/s/.*/1/; /(Stopped|n\/a)/s/.*/3/; /%/s/.*/2/;' \
-    | sort \
-    | uniq -c \
-    | awk 'split("  ", s) {print s[$2], $1}'
+transmission-remote -l 2>/dev/null |
+    sed -E '1d; $d; /Seeding/s/.*/1/; /100%/s/.*/1/; /(Stopped|n\/a)/s/.*/3/; /%/s/.*/2/;' |
+    sort |
+    uniq -c |
+    awk 'split("  ", s) {print s[$2], $1}'

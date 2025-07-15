@@ -12,28 +12,28 @@ browser() {
 
 while getopts dc: o; do
     case "$o" in
-        d)
-            [ -n "$DISPLAY" ] && export OPEN_XORG=1
-            ;;
-        c)
-            if ! cd "$OPTARG"; then
-                echo could not cd to dir: "$OPTARG"
-                exit 1
-            fi
-            ;;
-        ?)
-            echo 'usage: open [-d] [-c dir]'
+    d)
+        [ -n "$DISPLAY" ] && export OPEN_XORG=1
+        ;;
+    c)
+        if ! cd "$OPTARG"; then
+            echo could not cd to dir: "$OPTARG"
             exit 1
-            ;;
+        fi
+        ;;
+    ?)
+        echo 'usage: open [-d] [-c dir]'
+        exit 1
+        ;;
     esac
 done
 shift $((OPTIND - 1))
 
-exclude="{$(paste -sd , .openignore 2> /dev/null)}"
+exclude="{$(paste -sd , .openignore 2>/dev/null)}"
 
-fd --strip-cwd-prefix -L -t f -t l "$EXTS" -E "$exclude" \
-    | browser \
-    | {
+fd --strip-cwd-prefix -L -t f -t l "$EXTS" -E "$exclude" |
+    browser |
+    {
         read -r file
         [ -z "$file" ] && exit 1
         if [ -n "$OPEN_XORG" ]; then launch "$file"; else $EDITOR "$file"; fi

@@ -6,7 +6,7 @@ show() {
     cl() { timeout .2s xclip -sel "$clip" -o "$@"; }
     if cl -t TARGETS | grep image/png; then
         set -e
-        cl -t image/png > /tmp/clipimg
+        cl -t image/png >/tmp/clipimg
         notify-send "$clip" -i /tmp/clipimg
         rm /tmp/clipimg
     else

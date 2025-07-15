@@ -2,11 +2,11 @@
 
 while getopts el:ab opt; do
     case "$opt" in
-        e) lang=en;;
-        l) lang="$OPTARG" ;;
-        a) lang= ;;
-        b) browse=1 ;;
-        *) exit 1 ;;
+    e) lang=en ;;
+    l) lang="$OPTARG" ;;
+    a) lang= ;;
+    b) browse=1 ;;
+    *) exit 1 ;;
     esac
 done
 shift $((OPTIND - 1))
@@ -21,7 +21,7 @@ if [ -n "$browse" ]; then
     fi
 else
     URL=https://en.wiktionary.org/api/rest_v1/page/definition
-    curl -s "$URL/$(catecho "$@" | tr ' ' '_')" \
-        | sed 's/<[^>]*>//g' \
-        | jq ".${lang} // .${lang}"
+    curl -s "$URL/$(catecho "$@" | tr ' ' '_')" |
+        sed 's/<[^>]*>//g' |
+        jq ".${lang} // .${lang}"
 fi

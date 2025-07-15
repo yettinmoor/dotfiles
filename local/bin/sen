@@ -7,14 +7,14 @@ lang="$(basename "$1")"
 
 translate() {
     word="$1"
-    meaning="$(trans -b "${lang}:" "$1" 2> /dev/null)"
+    meaning="$(trans -b "${lang}:" "$1" 2>/dev/null)"
 
     # get gender
     case "$lang" in
-        de)
-            article="$(echo "$meaning" | trans ":$lang" | rg "\\(([\\w']+)\\) ${word}([^\w]+|$)" -o -r '$1')"
-            if [ -n "$article" ]; then printf "%s " "$article"; fi
-            ;;
+    de)
+        article="$(echo "$meaning" | trans ":$lang" | rg "\\(([\\w']+)\\) ${word}([^\w]+|$)" -o -r '$1')"
+        if [ -n "$article" ]; then printf "%s " "$article"; fi
+        ;;
     esac
 
     printf "%s: %s" "$word" "$meaning"
@@ -23,72 +23,72 @@ translate() {
 # customize `translate` function depending on language
 # "word" -> "(article) word: meaning"
 case "$lang" in
-    fr)
-        translate() {
-            word="$1"
-            mots "$word" | {
-                read -r _
-                read -r info
-                read -r meaning
-                article="$(echo "$info" | sed -n '/Masculin/s/.*/le /ip; /Féminin/s/.*/la /ip')"
-                printf "%s%s: %s" "$article" "$word" "$meaning"
-            }
+fr)
+    translate() {
+        word="$1"
+        mots "$word" | {
+            read -r _
+            read -r info
+            read -r meaning
+            article="$(echo "$info" | sed -n '/Masculin/s/.*/le /ip; /Féminin/s/.*/la /ip')"
+            printf "%s%s: %s" "$article" "$word" "$meaning"
         }
-        ;;
+    }
+    ;;
 
-    nl)
-        translate() {
-            word="$1"
-            # meaning="$(trans -b nl:de "$1" 2> /dev/null)"
-            woorden "$word" | {
-                read -r word_lookup
-                read -r meaning
-                article=$(echo "$word_lookup" | rg -o '^(I+ )?(de|het)' -r '$2 ')
-                printf "%s%s: %s" "$article" "$word" "$meaning"
-            }
+nl)
+    translate() {
+        word="$1"
+        # meaning="$(trans -b nl:de "$1" 2> /dev/null)"
+        woorden "$word" | {
+            read -r word_lookup
+            read -r meaning
+            article=$(echo "$word_lookup" | rg -o '^(I+ )?(de|het)' -r '$2 ')
+            printf "%s%s: %s" "$article" "$word" "$meaning"
         }
-        ;;
+    }
+    ;;
 
-    ja)
-        L='「'
-        R='」'
-        translate() {
-            jisho -n 1 "$1" | {
-                read -r head
-                read -r defn
-                printf "%s: %s" \
-                    "$(echo "$head" | rg -o '^[^\]]+]')" \
-                    "$(echo "$defn" | sed 's/^1\. \+//; s/ \+\[.*//')"
-            }
-        }
-        ;;
-
-    zh)
-        L='「'
-        R='」'
-        translate() {
-            printf "%s[%s]: %s" \
-                "$1" \
-                "$(pypinyin "$1" | tr -d ' ')" \
-                "$(wd "$1" | awk 'NR==3 {print}' | sed 's/[a-z]\+\. //')"
-        }
-        ;;
-
-    la)
-        translate() {
+ja)
+    L='「'
+    R='」'
+    translate() {
+        jisho -n 1 "$1" | {
+            read -r head
+            read -r defn
             printf "%s: %s" \
-                "$(words "$1" | rg -o '^([^ ,]+).*\[X' -m 1 -r '$1' | tr -d ',')" \
-                "$(words "$1" | rg -o '^([^;]+);' -m 1 -r '$1' | tr -d ';')"
+                "$(echo "$head" | rg -o '^[^\]]+]')" \
+                "$(echo "$defn" | sed 's/^1\. \+//; s/ \+\[.*//')"
         }
-        ;;
+    }
+    ;;
+
+zh)
+    L='「'
+    R='」'
+    translate() {
+        printf "%s[%s]: %s" \
+            "$1" \
+            "$(pypinyin "$1" | tr -d ' ')" \
+            "$(wd "$1" | awk 'NR==3 {print}' | sed 's/[a-z]\+\. //')"
+    }
+    ;;
+
+la)
+    translate() {
+        printf "%s: %s" \
+            "$(words "$1" | rg -o '^([^ ,]+).*\[X' -m 1 -r '$1' | tr -d ',')" \
+            "$(words "$1" | rg -o '^([^;]+);' -m 1 -r '$1' | tr -d ';')"
+    }
+    ;;
 esac
 
 nl -b a | while read -r i line; do
     if { echo "$line" | grep -q "$L.\+$R"; } && ! { echo "$line" | grep -q '|'; }; then
-        echo "$line" \
-            | rg -o "$L([^$R]*)$R" -r '$1' \
-            | nl \
-            | while read -r j word; do
+        echo "$line" |
+            rg -o "$L([^$R]*)$R" -r '$1' |
+            nl |
+            while read -r j word; do
                 trans="$(echo "$word" | cut -d ':' -f 2)"
                 display="$(echo "$word" | cut -d ':' -f 1)"
                 printf '%s %s | %s\n' \

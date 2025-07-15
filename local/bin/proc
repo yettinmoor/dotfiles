@@ -1,13 +1,14 @@
 #!/usr/bin/env sh
 
-page()  {
+page() {
     # shellcheck disable=SC2016
     fzf \
+        --exact \
         --tac \
         --header-lines 1 \
         --preview 'echo {} | awk "{print \$1}" | xargs -r pstree -TUac' \
         --bind 'alt-x:execute[echo {} | awk "\$4 != \"root\" {print \$1}" | xargs -r kill]'
 }
 
-/usr/bin/ps ax -o pid,ppid,etime,user,cmd --sort=-etime \
-    | if [ -z "$1" ]; then page; else awk "tolower(\$5) ~ /$1/ || \$1 == $1"; fi
+/usr/bin/ps ax -o pid,ppid,etime,user,cmd --sort=-etime |
+    if [ -z "$1" ]; then page; else awk "tolower(\$5) ~ /$1/ || \$1 == $1"; fi

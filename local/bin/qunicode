@@ -1,9 +1,6 @@
 #!/usr/bin/env sh
-DIR=~/.config/unicode
-cat $DIR/unicode.txt \
-    $DIR/superscript.txt \
-    $DIR/emoji.txt \
-    $DIR/fontawesome.txt \
-    | dmenu -matching prefix -l 20 -p 'unicode' \
-	| cut -d' ' -f1 \
-	| xclip -sel c -r
+cd "$XDG_CONFIG_HOME/unicode" || exit 1
+cat ./* |
+    dmenu -matching prefix -l 20 -p 'unicode' |
+    cut -d' ' -f1 |
+    xclip -sel c -r

@@ -6,7 +6,7 @@
 runjob() {
     echo "running job '$*'..." >&2
     {
-        "$@" > /dev/null
+        "$@" >/dev/null
         echo "completed job '$*' [$?]" >&2
     } &
 }
@@ -21,21 +21,21 @@ nvimup() {
 }
 
 case "$1" in
-    down)
-        isconnected || exit 1
-        polybar-msg action '#updates.send.?'
-        {
-            runjob packages
-            runjob nvimup
-            runjob qalc -e
-        }
-        wait
-        ;;
-    *)
-        isconnected || exit 1
-        sudo pacman -Syu "$@"
-        kbset
-        ;;
+down)
+    isconnected || exit 1
+    polybar-msg action '#updates.send.?'
+    {
+        runjob packages
+        runjob nvimup
+        runjob qalc -e
+    }
+    wait
+    ;;
+*)
+    isconnected || exit 1
+    sudo pacman -Syu "$@"
+    kbset
+    ;;
 esac
 
 polybar-msg action '#updates.hook.0'
