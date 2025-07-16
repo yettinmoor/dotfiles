@@ -39,6 +39,7 @@ map <c-f> $lf -remote "send $id cd '$(fzfcd)'"
 map J     $lf -remote "send $id cd '$(dirpick)'"
 
 # files
+map <esc> :clear; unselect
 map U clear
 map D delete
 map <backspace2> set hidden!
