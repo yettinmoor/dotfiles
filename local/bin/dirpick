@@ -2,9 +2,9 @@
 
 # shellcheck disable=SC2016
 pick() {
-    awk '{print $2}' "$SHORTCUT_DIR/directories" \
-        | sed "s:^~:$HOME:" \
-        | fzf \
+    awk '{print $2}' "$SHORTCUT_DIR/directories" |
+        sed "s:^~:$HOME:" |
+        fzf \
             --bind 'tab:replace-query' \
             --bind 'tab:+reload[echo {}; fd -t d . {} | sed s:/$::]' \
             --bind 'alt-bs:backward-kill-word' \
@@ -18,20 +18,20 @@ pick() {
     fifo="$tmp/dirpick.fifo"
     mkfifo "$fifo"
 
-    $TERMINAL -c FloatTerm -e sh -c "dirpick > $fifo" &
+    $TERMINAL --class FloatTerm -e sh -c "dirpick > $fifo" &
 
     cat "$fifo"
     rm -r "$tmp"
 }
 
 case "$1" in
-    '') pick ;;
-    mv)
-        shift
-        mv -v -t "$(pick)" "$@"
-        ;;
-    cp)
-        shift
-        cp -vr -t "$(pick)" "$@"
-        ;;
+'') pick ;;
+mv)
+    shift
+    mv -v -t "$(pick)" "$@"
+    ;;
+cp)
+    shift
+    cp -vr -t "$(pick)" "$@"
+    ;;
 esac
