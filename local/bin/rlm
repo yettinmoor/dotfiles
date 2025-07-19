@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-python -c 'print("\u200f", end="")' | cli
+python -c 'print("\u200f", end="")' | xclip -sel c -i
