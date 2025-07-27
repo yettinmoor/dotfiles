@@ -39,6 +39,8 @@ super + e
 	alacritty -e $FILE
 super + t
 	tor
+super + shift + t
+	alacritty -e $EDITOR ~/docs/wiki/scratch.md
 super + u
 	spad
 super + i
