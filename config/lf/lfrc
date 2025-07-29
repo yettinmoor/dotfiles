@@ -24,7 +24,7 @@ map L &launch "$f"
 map w $echo entering shell session && $SHELL
 map <enter> shell
 map ,r push $$fx<c-b><c-b><c-b><c-b><c-b><space><c-b>
-map ,R push $$fx<space>&<c-b><c-b><c-b><c-b><c-b><c-b><c-b><space><c-b>
+map ,R push $setsid<space>$fx<space>&<c-b><c-b><c-b><c-b><c-b><space><c-b>
 map gui &launch -dx thunar "$f"
 map <c-o> $lf -remote "send $id \$launch -d '$(fd --strip-cwd-prefix | fzf -e)'"
 

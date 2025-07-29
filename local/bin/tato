@@ -1,0 +1,28 @@
+#!/usr/bin/env sh
+
+while getopts xlrt:T: opt; do
+    case $opt in
+    x)
+        left=1
+        right=1
+        ;;
+    l) left=1 ;;
+    r) right=1 ;;
+    t) match="$OPTARG" ;;
+    T) unmatch="$OPTARG" ;;
+    *) exit 1 ;;
+    esac
+done
+shift $((OPTIND - 1))
+
+search="$(catecho "$@")"
+
+[ -n "$left" ] && search="\b${search}"
+[ -n "$right" ] && search="${search}\b"
+
+rg -sI "$search.*\t.*$match" "$HOME/lib/lang/res/tatoeba/$SCRAPE_LANG" |
+    if [ -n "$unmatch" ]; then rg -iv "$unmatch"; else cat; fi |
+    shuf |
+    head -n 10 |
+    awk -v FS='\t' '{printf "%s\n%s\n\n", $1, $2}' |
+    sed '$d'
