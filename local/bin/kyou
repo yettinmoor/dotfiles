@@ -1,6 +1,5 @@
 #!/usr/bin/env sh
 date '+%b %-d %w %j %V %R' |
-    sed 's/\b0*//g' |
     awk '{
         split("日月火水木金土", days, "");
         printf("%s %d %c [%d·%d] %s", $1, $2, days[$3+1], $4, $5, $6)
