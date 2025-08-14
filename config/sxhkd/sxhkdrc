@@ -37,10 +37,10 @@ super + {_,shift +} w
 	dmenu -l 0 -p "$BROWSER" | urlparse | xargs -r0 "$BROWSER" {--target window, }
 super + e
 	alacritty -e $FILE
+super + r
+	alacritty -e $EDITOR ~/docs/wiki/scratch.md
 super + t
 	tor
-super + shift + t
-	alacritty -e $EDITOR ~/docs/wiki/scratch.md
 super + u
 	spad
 super + i
