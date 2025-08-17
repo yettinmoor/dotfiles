@@ -18,3 +18,4 @@ nnoremap <leader>I :normal ysiW_<CR>
 
 set tabstop=2
 set shiftwidth=2
+set linebreak

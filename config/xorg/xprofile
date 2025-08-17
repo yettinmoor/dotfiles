@@ -17,7 +17,6 @@ sxhkd &
 fcitx5 -d &
 dunst &
 syncthing --no-browser &
-mpd &
 transmission-daemon &
 
 # Pings

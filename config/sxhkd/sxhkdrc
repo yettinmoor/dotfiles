@@ -38,7 +38,7 @@ super + {_,shift +} w
 super + e
 	alacritty -e $FILE
 super + r
-	alacritty -e $EDITOR ~/docs/wiki/scratch.md
+	alacritty --working-directory ~/docs/wiki -e $EDITOR ~/docs/wiki/scratch.md
 super + t
 	tor
 super + u
@@ -69,6 +69,8 @@ super + shift + x
 	prompt 'Shutdown computer?' 'sudo -A shutdown -h now'
 super + {_,shift +} c
 	{show,qr}clip
+super + v
+	alacritty --working-directory ~/docs/wiki -e $EDITOR ~/docs/wiki/vsc.md
 super + b
 	$BROWSER --target window $HOMEPAGE
 super + n
