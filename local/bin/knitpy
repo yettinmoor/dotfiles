@@ -1,0 +1,30 @@
+#!/usr/bin/env python
+
+# INPUT CODE IS NOT SANITIZED
+# USE AT YOUR OWN RISK
+
+import subprocess
+import sys
+import tempfile
+
+if len(sys.argv) < 2:
+    print('knitpy [file]')
+    exit(1)
+
+f = sys.argv[1]
+
+start = None
+
+lines = open(f).read().splitlines()
+for i, line in enumerate(lines):
+    if line == '```python':
+        start = i + 1
+    elif line == '```' and start is not None:
+        with tempfile.NamedTemporaryFile() as f:
+            open(f.name, 'w').write('\n'.join(lines[start:i]))
+            out = subprocess.run(
+                ['python', f.name], stdout=subprocess.PIPE).stdout.decode().strip()
+            if out:
+                print('----')
+                print('> ' + out)
+    print(line)

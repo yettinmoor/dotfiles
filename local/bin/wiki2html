@@ -14,7 +14,8 @@ cd "$WIKI_DIR" || exit 1
 
 mkdir -p "$(dirname "$out")"
 
-make_defs=$(cat << EOF
+make_defs=$(
+    cat <<EOF
 BEGIN { FS = "::"; in_def = 0; }
 \$2 != "" {
     if (!in_def) { print "<table class=\"def\">"; }
@@ -36,7 +37,8 @@ EOF
 
 echo compiling "$base..."
 
-perl < "$path" -pe '
+knitpy "$path" |
+    perl -pe '
         s/^##### (.*)/<h5 id="\1">\1<\/h1>/g;
         s/^#### (.*)/<h4 id="\1">\1<\/h1>/g;
         s/^### (.*)/<h3 id="\1">\1<\/h1>/g;
@@ -45,13 +47,13 @@ perl < "$path" -pe '
         s/([^!]|^)(\[[^]]+\]\((?!https:\/\/)[^#].*?)(#.*?)?\)/\1\2.html\3)/g; # format links
         s/\[ \]/<input type="checkbox">/g;
         s/\[[xX]\]/<input type="checkbox" checked="true">/g;
-        s/TODO/<span class="todo">TODO<\/span>/g' \
-    | awk "$make_defs" \
-    | pandoc \
+        s/TODO/<span class="todo">TODO<\/span>/g' |
+    awk "$make_defs" |
+    pandoc \
         -t html \
         --data-dir html/.data \
         --css "$WIKI_DIR/html/.data/style.css" \
         --template template.html \
         --mathjax="$WIKI_DIR/html/.data/mathjax/es5/tex-chtml.js?config=TeX-AMS-MML_HTMLorMML" \
         --metadata title="$base" \
-        -o "$out" \
+        -o "$out"
