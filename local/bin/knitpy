@@ -26,5 +26,6 @@ for i, line in enumerate(lines):
                 ['python', f.name], stdout=subprocess.PIPE).stdout.decode().strip()
             if out:
                 print('----')
-                print('> ' + out)
+                for out_line in out.splitlines():
+                    print('> ' + out_line)
     print(line)
