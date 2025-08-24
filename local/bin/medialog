@@ -2,7 +2,7 @@
 
 cd "$WIKI_DIR" || exit 1
 
-file="log/$(basename "$0").md"
+file="log-$(basename "$0").md"
 touch "$file"
 
 while getopts exun o; do
