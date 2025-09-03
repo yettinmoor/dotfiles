@@ -6752,8 +6752,6 @@ z latin small letter z
 ⌗ viewdata square
 ⌘ place of interest sign
 ⌙ turned not sign
-⌚ watch
-⌛ hourglass
 ⌜ top left corner
 ⌝ top right corner
 ⌞ bottom left corner
@@ -6959,17 +6957,11 @@ z latin small letter z
 ⏦ ac current
 ⏧ electrical intersection
 ⏨ decimal exponent symbol
-⏩ black right-pointing double triangle
-⏪ black left-pointing double triangle
-⏫ black up-pointing double triangle
-⏬ black down-pointing double triangle
 ⏭ black right-pointing double triangle with vertical bar
 ⏮ black left-pointing double triangle with vertical bar
 ⏯ black right-pointing triangle with double vertical bar
-⏰ alarm clock
 ⏱ stopwatch
 ⏲ timer clock
-⏳ hourglass with flowing sand
 ⏴ black medium left-pointing triangle
 ⏵ black medium right-pointing triangle
 ⏶ black medium up-pointing triangle
@@ -7444,8 +7436,6 @@ z latin small letter z
 ◺ lower left triangle
 ◻ white medium square
 ◼ black medium square
-◽ white medium small square
-◾ black medium small square
 ◿ lower right triangle
 ☀ black sun with rays
 ☁ cloud
@@ -7467,8 +7457,6 @@ z latin small letter z
 ☑ ballot box with check
 ☒ ballot box with x
 ☓ saltire
-☔ umbrella with rain drops
-☕ hot beverage
 ☖ white shogi piece
 ☗ black shogi piece
 ☘ shamrock
@@ -7519,18 +7507,6 @@ z latin small letter z
 ♅ uranus
 ♆ neptune
 ♇ pluto
-♈ aries
-♉ taurus
-♊ gemini
-♋ cancer
-♌ leo
-♍ virgo
-♎ libra
-♏ scorpius
-♐ sagittarius
-♑ capricorn
-♒ aquarius
-♓ pisces
 ♔ white chess king
 ♕ white chess queen
 ♖ white chess rook
@@ -7574,7 +7550,6 @@ z latin small letter z
 ♼ recycled paper symbol
 ♽ partially-recycled paper symbol
 ♾ permanent paper sign
-♿ wheelchair symbol
 ⚀ die face-1
 ⚁ die face-2
 ⚂ die face-3
@@ -7594,7 +7569,6 @@ z latin small letter z
 ⚐ white flag
 ⚑ black flag
 ⚒ hammer and pick
-⚓ anchor
 ⚔ crossed swords
 ⚕ staff of aesculapius
 ⚖ scales
@@ -7608,7 +7582,6 @@ z latin small letter z
 ⚞ three lines converging right
 ⚟ three lines converging left
 ⚠ warning sign
-⚡ high voltage sign
 ⚢ doubled female sign
 ⚣ doubled male sign
 ⚤ interlocked female and male sign
@@ -7617,8 +7590,6 @@ z latin small letter z
 ⚧ male with stroke and male and female sign
 ⚨ vertical male with stroke sign
 ⚩ horizontal male with stroke sign
-⚪ medium white circle
-⚫ medium black circle
 ⚬ medium small white circle
 ⚭ marriage symbol
 ⚮ divorce symbol
@@ -7636,15 +7607,11 @@ z latin small letter z
 ⚺ semisextile
 ⚻ quincunx
 ⚼ sesquiquadrate
-⚽ soccer ball
-⚾ baseball
 ⚿ squared key
 ⛀ white draughts man
 ⛁ white draughts king
 ⛂ black draughts man
 ⛃ black draughts king
-⛄ snowman without snow
-⛅ sun behind cloud
 ⛆ rain
 ⛇ black snowman
 ⛈ thunder cloud and rain
@@ -7653,13 +7620,11 @@ z latin small letter z
 ⛋ white diamond in square
 ⛌ crossing lanes
 ⛍ disabled car
-⛎ ophiuchus
 ⛏ pick
 ⛐ car sliding
 ⛑ helmet with white cross
 ⛒ circled crossing lanes
 ⛓ chains
-⛔ no entry
 ⛕ alternate one-way left way traffic
 ⛖ black two-way left way traffic
 ⛗ white two-way left way traffic
@@ -7681,7 +7646,6 @@ z latin small letter z
 ⛧ inverted pentagram
 ⛨ black cross on shield
 ⛩ shinto shrine
-⛪ church
 ⛫ castle
 ⛬ historic site
 ⛭ gear without hub
@@ -7689,18 +7653,13 @@ z latin small letter z
 ⛯ map symbol for lighthouse
 ⛰ mountain
 ⛱ umbrella on ground
-⛲ fountain
-⛳ flag in hole
 ⛴ ferry
-⛵ sailboat
 ⛶ square four corners
 ⛷ skier
 ⛸ ice skate
 ⛹ person with ball
-⛺ tent
 ⛻ japanese bank symbol
 ⛼ headstone graveyard symbol
-⛽ fuel pump
 ⛾ cup on black square
 ⛿ white flag with horizontal middle black stripe
 ✀ black safety scissors
@@ -7708,13 +7667,10 @@ z latin small letter z
 ✂ black scissors
 ✃ lower blade scissors
 ✄ white scissors
-✅ white heavy check mark
 ✆ telephone location sign
 ✇ tape drive
 ✈ airplane
 ✉ envelope
-✊ raised fist
-✋ raised hand
 ✌ victory hand
 ✍ writing hand
 ✎ lower right pencil
@@ -7743,7 +7699,6 @@ z latin small letter z
 ✥ four club-spoked asterisk
 ✦ black four pointed star
 ✧ white four pointed star
-✨ sparkles
 ✩ stress outlined white star
 ✪ circled white star
 ✫ open centre black star
@@ -7779,18 +7734,12 @@ z latin small letter z
 ❉ balloon-spoked asterisk
 ❊ eight teardrop-spoked propeller asterisk
 ❋ heavy eight teardrop-spoked propeller asterisk
-❌ cross mark
 ❍ shadowed white circle
-❎ negative squared cross mark
 ❏ lower right drop-shadowed white square
 ❐ upper right drop-shadowed white square
 ❑ lower right shadowed white square
 ❒ upper right shadowed white square
-❓ black question mark ornament
-❔ white question mark ornament
-❕ white exclamation mark ornament
 ❖ black diamond minus white x
-❗ heavy exclamation mark symbol
 ❘ light vertical bar
 ❙ medium vertical bar
 ❚ heavy vertical bar
@@ -7852,9 +7801,6 @@ z latin small letter z
 ➒ dingbat negative circled sans-serif digit nine
 ➓ dingbat negative circled sans-serif number ten
 ➔ heavy wide-headed rightwards arrow
-➕ heavy plus sign
-➖ heavy minus sign
-➗ heavy division sign
 ➘ heavy south east arrow
 ➙ heavy rightwards arrow
 ➚ heavy north east arrow
@@ -7879,7 +7825,6 @@ z latin small letter z
 ➭ heavy lower right-shadowed white rightwards arrow
 ➮ heavy upper right-shadowed white rightwards arrow
 ➯ notched lower right-shadowed white rightwards arrow
-➰ curly loop
 ➱ notched upper right-shadowed white rightwards arrow
 ➲ circled heavy white rightwards arrow
 ➳ white-feathered rightwards arrow
@@ -7894,7 +7839,6 @@ z latin small letter z
 ➼ wedge-tailed rightwards arrow
 ➽ heavy wedge-tailed rightwards arrow
 ➾ open-outlined rightwards arrow
-➿ double curly loop
 ⟀ three dimensional angle
 ⟁ white triangle containing small white triangle
 ⟂ perpendicular
@@ -8754,8 +8698,6 @@ z latin small letter z
 ⬘ diamond with top half black
 ⬙ diamond with bottom half black
 ⬚ dotted square
-⬛ black large square
-⬜ white large square
 ⬝ black very small square
 ⬞ white very small square
 ⬟ black pentagon
@@ -8807,12 +8749,10 @@ z latin small letter z
 ⭍ downwards triangle-headed zigzag arrow
 ⭎ short slanted north arrow
 ⭏ short backslanted south arrow
-⭐ white medium star
 ⭑ black small star
 ⭒ white small star
 ⭓ black right-pointing pentagon
 ⭔ white right-pointing pentagon
-⭕ heavy large circle
 ⭖ heavy oval with oval inside
 ⭗ heavy circle with circle inside
 ⭘ heavy circle
@@ -64509,7 +64449,6 @@ z latin small letter z
 🀁 mahjong tile south wind
 🀂 mahjong tile west wind
 🀃 mahjong tile north wind
-🀄 mahjong tile red dragon
 🀅 mahjong tile green dragon
 🀆 mahjong tile white dragon
 🀇 mahjong tile one of characters
@@ -64693,7 +64632,6 @@ z latin small letter z
 🃌 playing card knight of diamonds
 🃍 playing card queen of diamonds
 🃎 playing card king of diamonds
-🃏 playing card black joker
 🃑 playing card ace of clubs
 🃒 playing card two of clubs
 🃓 playing card three of clubs
@@ -64865,19 +64803,8 @@ z latin small letter z
 🆋 negative squared ic
 🆌 negative squared pa
 🆍 negative squared sa
-🆎 negative squared ab
 🆏 negative squared wc
 🆐 square dj
-🆑 squared cl
-🆒 squared cool
-🆓 squared free
-🆔 squared id
-🆕 squared new
-🆖 squared ng
-🆗 squared ok
-🆘 squared sos
-🆙 squared up with exclamation mark
-🆚 squared vs
 🆛 squared three d
 🆜 squared second screen
 🆝 squared two k
@@ -64923,7 +64850,6 @@ z latin small letter z
 🇾 regional indicator symbol letter y
 🇿 regional indicator symbol letter z
 🈀 square hiragana hoka
-🈁 squared katakana koko
 🈂 squared katakana sa
 🈐 squared cjk unified ideograph-624b
 🈑 squared cjk unified ideograph-5b57
@@ -64935,7 +64861,6 @@ z latin small letter z
 🈗 squared cjk unified ideograph-5929
 🈘 squared cjk unified ideograph-4ea4
 🈙 squared cjk unified ideograph-6620
-🈚 squared cjk unified ideograph-7121
 🈛 squared cjk unified ideograph-6599
 🈜 squared cjk unified ideograph-524d
 🈝 squared cjk unified ideograph-5f8c
@@ -64956,18 +64881,9 @@ z latin small letter z
 🈬 squared cjk unified ideograph-5de6
 🈭 squared cjk unified ideograph-4e2d
 🈮 squared cjk unified ideograph-53f3
-🈯 squared cjk unified ideograph-6307
 🈰 squared cjk unified ideograph-8d70
 🈱 squared cjk unified ideograph-6253
-🈲 squared cjk unified ideograph-7981
-🈳 squared cjk unified ideograph-7a7a
-🈴 squared cjk unified ideograph-5408
-🈵 squared cjk unified ideograph-6e80
-🈶 squared cjk unified ideograph-6709
 🈷 squared cjk unified ideograph-6708
-🈸 squared cjk unified ideograph-7533
-🈹 squared cjk unified ideograph-5272
-🈺 squared cjk unified ideograph-55b6
 🈻 squared cjk unified ideograph-914d
 🉀 tortoise shell bracketed cjk unified ideograph-672c
 🉁 tortoise shell bracketed cjk unified ideograph-4e09
@@ -64978,41 +64894,6 @@ z latin small letter z
 🉆 tortoise shell bracketed cjk unified ideograph-76d7
 🉇 tortoise shell bracketed cjk unified ideograph-52dd
 🉈 tortoise shell bracketed cjk unified ideograph-6557
-🉐 circled ideograph advantage
-🉑 circled ideograph accept
-🌀 cyclone
-🌁 foggy
-🌂 closed umbrella
-🌃 night with stars
-🌄 sunrise over mountains
-🌅 sunrise
-🌆 cityscape at dusk
-🌇 sunset over buildings
-🌈 rainbow
-🌉 bridge at night
-🌊 water wave
-🌋 volcano
-🌌 milky way
-🌍 earth globe europe-africa
-🌎 earth globe americas
-🌏 earth globe asia-australia
-🌐 globe with meridians
-🌑 new moon symbol
-🌒 waxing crescent moon symbol
-🌓 first quarter moon symbol
-🌔 waxing gibbous moon symbol
-🌕 full moon symbol
-🌖 waning gibbous moon symbol
-🌗 last quarter moon symbol
-🌘 waning crescent moon symbol
-🌙 crescent moon
-🌚 new moon with face
-🌛 first quarter moon with face
-🌜 last quarter moon with face
-🌝 full moon with face
-🌞 sun with face
-🌟 glowing star
-🌠 shooting star
 🌡 thermometer
 🌢 black droplet
 🌣 white sun
@@ -65025,109 +64906,8 @@ z latin small letter z
 🌪 cloud with tornado
 🌫 fog
 🌬 wind blowing face
-🌭 hot dog
-🌮 taco
-🌯 burrito
-🌰 chestnut
-🌱 seedling
-🌲 evergreen tree
-🌳 deciduous tree
-🌴 palm tree
-🌵 cactus
 🌶 hot pepper
-🌷 tulip
-🌸 cherry blossom
-🌹 rose
-🌺 hibiscus
-🌻 sunflower
-🌼 blossom
-🌽 ear of maize
-🌾 ear of rice
-🌿 herb
-🍀 four leaf clover
-🍁 maple leaf
-🍂 fallen leaf
-🍃 leaf fluttering in wind
-🍄 mushroom
-🍅 tomato
-🍆 aubergine
-🍇 grapes
-🍈 melon
-🍉 watermelon
-🍊 tangerine
-🍋 lemon
-🍌 banana
-🍍 pineapple
-🍎 red apple
-🍏 green apple
-🍐 pear
-🍑 peach
-🍒 cherries
-🍓 strawberry
-🍔 hamburger
-🍕 slice of pizza
-🍖 meat on bone
-🍗 poultry leg
-🍘 rice cracker
-🍙 rice ball
-🍚 cooked rice
-🍛 curry and rice
-🍜 steaming bowl
-🍝 spaghetti
-🍞 bread
-🍟 french fries
-🍠 roasted sweet potato
-🍡 dango
-🍢 oden
-🍣 sushi
-🍤 fried shrimp
-🍥 fish cake with swirl design
-🍦 soft ice cream
-🍧 shaved ice
-🍨 ice cream
-🍩 doughnut
-🍪 cookie
-🍫 chocolate bar
-🍬 candy
-🍭 lollipop
-🍮 custard
-🍯 honey pot
-🍰 shortcake
-🍱 bento box
-🍲 pot of food
-🍳 cooking
-🍴 fork and knife
-🍵 teacup without handle
-🍶 sake bottle and cup
-🍷 wine glass
-🍸 cocktail glass
-🍹 tropical drink
-🍺 beer mug
-🍻 clinking beer mugs
-🍼 baby bottle
 🍽 fork and knife with plate
-🍾 bottle with popping cork
-🍿 popcorn
-🎀 ribbon
-🎁 wrapped present
-🎂 birthday cake
-🎃 jack-o-lantern
-🎄 christmas tree
-🎅 father christmas
-🎆 fireworks
-🎇 firework sparkler
-🎈 balloon
-🎉 party popper
-🎊 confetti ball
-🎋 tanabata tree
-🎌 crossed flags
-🎍 pine decoration
-🎎 japanese dolls
-🎏 carp streamer
-🎐 wind chime
-🎑 moon viewing ceremony
-🎒 school satchel
-🎓 graduation cap
 🎔 heart with tip on the left
 🎕 bouquet of flowers
 🎖 military medal
@@ -65140,58 +64920,10 @@ z latin small letter z
 🎝 beamed descending musical notes
 🎞 film frames
 🎟 admission tickets
-🎠 carousel horse
-🎡 ferris wheel
-🎢 roller coaster
-🎣 fishing pole and fish
-🎤 microphone
-🎥 movie camera
-🎦 cinema
-🎧 headphone
-🎨 artist palette
-🎩 top hat
-🎪 circus tent
-🎫 ticket
-🎬 clapper board
-🎭 performing arts
-🎮 video game
-🎯 direct hit
-🎰 slot machine
-🎱 billiards
-🎲 game die
-🎳 bowling
-🎴 flower playing cards
-🎵 musical note
-🎶 multiple musical notes
-🎷 saxophone
-🎸 guitar
-🎹 musical keyboard
-🎺 trumpet
-🎻 violin
-🎼 musical score
-🎽 running shirt with sash
-🎾 tennis racquet and ball
-🎿 ski and ski boot
-🏀 basketball and hoop
-🏁 chequered flag
-🏂 snowboarder
-🏃 runner
-🏄 surfer
-🏅 sports medal
-🏆 trophy
-🏇 horse racing
-🏈 american football
-🏉 rugby football
-🏊 swimmer
 🏋 weight lifter
 🏌 golfer
 🏍 racing motorcycle
 🏎 racing car
-🏏 cricket bat and ball
-🏐 volleyball
-🏑 field hockey stick and ball
-🏒 ice hockey stick and puck
-🏓 table tennis paddle and ball
 🏔 snow capped mountain
 🏕 camping
 🏖 beach with umbrella
@@ -65204,356 +64936,21 @@ z latin small letter z
 🏝 desert island
 🏞 national park
 🏟 stadium
-🏠 house building
-🏡 house with garden
-🏢 office building
-🏣 japanese post office
-🏤 european post office
-🏥 hospital
-🏦 bank
-🏧 automated teller machine
-🏨 hotel
-🏩 love hotel
-🏪 convenience store
-🏫 school
-🏬 department store
-🏭 factory
-🏮 izakaya lantern
-🏯 japanese castle
-🏰 european castle
 🏱 white pennant
 🏲 black pennant
 🏳 waving white flag
-🏴 waving black flag
 🏵 rosette
 🏶 black rosette
 🏷 label
-🏸 badminton racquet and shuttlecock
-🏹 bow and arrow
-🏺 amphora
 🏻 emoji modifier fitzpatrick type-1-2
 🏼 emoji modifier fitzpatrick type-3
 🏽 emoji modifier fitzpatrick type-4
 🏾 emoji modifier fitzpatrick type-5
 🏿 emoji modifier fitzpatrick type-6
-🐀 rat
-🐁 mouse
-🐂 ox
-🐃 water buffalo
-🐄 cow
-🐅 tiger
-🐆 leopard
-🐇 rabbit
-🐈 cat
-🐉 dragon
-🐊 crocodile
-🐋 whale
-🐌 snail
-🐍 snake
-🐎 horse
-🐏 ram
-🐐 goat
-🐑 sheep
-🐒 monkey
-🐓 rooster
-🐔 chicken
-🐕 dog
-🐖 pig
-🐗 boar
-🐘 elephant
-🐙 octopus
-🐚 spiral shell
-🐛 bug
-🐜 ant
-🐝 honeybee
-🐞 lady beetle
-🐟 fish
-🐠 tropical fish
-🐡 blowfish
-🐢 turtle
-🐣 hatching chick
-🐤 baby chick
-🐥 front-facing baby chick
-🐦 bird
-🐧 penguin
-🐨 koala
-🐩 poodle
-🐪 dromedary camel
-🐫 bactrian camel
-🐬 dolphin
-🐭 mouse face
-🐮 cow face
-🐯 tiger face
-🐰 rabbit face
-🐱 cat face
-🐲 dragon face
-🐳 spouting whale
-🐴 horse face
-🐵 monkey face
-🐶 dog face
-🐷 pig face
-🐸 frog face
-🐹 hamster face
-🐺 wolf face
-🐻 bear face
-🐼 panda face
-🐽 pig nose
-🐾 paw prints
 🐿 chipmunk
-👀 eyes
 👁 eye
-👂 ear
-👃 nose
-👄 mouth
-👅 tongue
-👆 white up pointing backhand index
-👇 white down pointing backhand index
-👈 white left pointing backhand index
-👉 white right pointing backhand index
-👊 fisted hand sign
-👋 waving hand sign
-👌 ok hand sign
-👍 thumbs up sign
-👎 thumbs down sign
-👏 clapping hands sign
-👐 open hands sign
-👑 crown
-👒 womans hat
-👓 eyeglasses
-👔 necktie
-👕 t-shirt
-👖 jeans
-👗 dress
-👘 kimono
-👙 bikini
-👚 womans clothes
-👛 purse
-👜 handbag
-👝 pouch
-👞 mans shoe
-👟 athletic shoe
-👠 high-heeled shoe
-👡 womans sandal
-👢 womans boots
-👣 footprints
-👤 bust in silhouette
-👥 busts in silhouette
-👦 boy
-👧 girl
-👨 man
-👩 woman
-👪 family
-👫 man and woman holding hands
-👬 two men holding hands
-👭 two women holding hands
-👮 police officer
-👯 woman with bunny ears
-👰 bride with veil
-👱 person with blond hair
-👲 man with gua pi mao
-👳 man with turban
-👴 older man
-👵 older woman
-👶 baby
-👷 construction worker
-👸 princess
-👹 japanese ogre
-👺 japanese goblin
-👻 ghost
-👼 baby angel
-👽 extraterrestrial alien
-👾 alien monster
-👿 imp
-💀 skull
-💁 information desk person
-💂 guardsman
-💃 dancer
-💄 lipstick
-💅 nail polish
-💆 face massage
-💇 haircut
-💈 barber pole
-💉 syringe
-💊 pill
-💋 kiss mark
-💌 love letter
-💍 ring
-💎 gem stone
-💏 kiss
-💐 bouquet
-💑 couple with heart
-💒 wedding
-💓 beating heart
-💔 broken heart
-💕 two hearts
-💖 sparkling heart
-💗 growing heart
-💘 heart with arrow
-💙 blue heart
-💚 green heart
-💛 yellow heart
-💜 purple heart
-💝 heart with ribbon
-💞 revolving hearts
-💟 heart decoration
-💠 diamond shape with a dot inside
-💡 electric light bulb
-💢 anger symbol
-💣 bomb
-💤 sleeping symbol
-💥 collision symbol
-💦 splashing sweat symbol
-💧 droplet
-💨 dash symbol
-💩 pile of poo
-💪 flexed biceps
-💫 dizzy symbol
-💬 speech balloon
-💭 thought balloon
-💮 white flower
-💯 hundred points symbol
-💰 money bag
-💱 currency exchange
-💲 heavy dollar sign
-💳 credit card
-💴 banknote with yen sign
-💵 banknote with dollar sign
-💶 banknote with euro sign
-💷 banknote with pound sign
-💸 money with wings
-💹 chart with upwards trend and yen sign
-💺 seat
-💻 personal computer
-💼 briefcase
-💽 minidisc
-💾 floppy disk
-💿 optical disc
-📀 dvd
-📁 file folder
-📂 open file folder
-📃 page with curl
-📄 page facing up
-📅 calendar
-📆 tear-off calendar
-📇 card index
-📈 chart with upwards trend
-📉 chart with downwards trend
-📊 bar chart
-📋 clipboard
-📌 pushpin
-📍 round pushpin
-📎 paperclip
-📏 straight ruler
-📐 triangular ruler
-📑 bookmark tabs
-📒 ledger
-📓 notebook
-📔 notebook with decorative cover
-📕 closed book
-📖 open book
-📗 green book
-📘 blue book
-📙 orange book
-📚 books
-📛 name badge
-📜 scroll
-📝 memo
-📞 telephone receiver
-📟 pager
-📠 fax machine
-📡 satellite antenna
-📢 public address loudspeaker
-📣 cheering megaphone
-📤 outbox tray
-📥 inbox tray
-📦 package
-📧 e-mail symbol
-📨 incoming envelope
-📩 envelope with downwards arrow above
-📪 closed mailbox with lowered flag
-📫 closed mailbox with raised flag
-📬 open mailbox with raised flag
-📭 open mailbox with lowered flag
-📮 postbox
-📯 postal horn
-📰 newspaper
-📱 mobile phone
-📲 mobile phone with rightwards arrow at left
-📳 vibration mode
-📴 mobile phone off
-📵 no mobile phones
-📶 antenna with bars
-📷 camera
-📸 camera with flash
-📹 video camera
-📺 television
-📻 radio
-📼 videocassette
 📽 film projector
 📾 portable stereo
-📿 prayer beads
-🔀 twisted rightwards arrows
-🔁 clockwise rightwards and leftwards open circle arrows
-🔂 clockwise rightwards and leftwards open circle arrows with circled one overlay
-🔃 clockwise downwards and upwards open circle arrows
-🔄 anticlockwise downwards and upwards open circle arrows
-🔅 low brightness symbol
-🔆 high brightness symbol
-🔇 speaker with cancellation stroke
-🔈 speaker
-🔉 speaker with one sound wave
-🔊 speaker with three sound waves
-🔋 battery
-🔌 electric plug
-🔍 left-pointing magnifying glass
-🔎 right-pointing magnifying glass
-🔏 lock with ink pen
-🔐 closed lock with key
-🔑 key
-🔒 lock
-🔓 open lock
-🔔 bell
-🔕 bell with cancellation stroke
-🔖 bookmark
-🔗 link symbol
-🔘 radio button
-🔙 back with leftwards arrow above
-🔚 end with leftwards arrow above
-🔛 on with exclamation mark with left right arrow above
-🔜 soon with rightwards arrow above
-🔝 top with upwards arrow above
-🔞 no one under eighteen symbol
-🔟 keycap ten
-🔠 input symbol for latin capital letters
-🔡 input symbol for latin small letters
-🔢 input symbol for numbers
-🔣 input symbol for symbols
-🔤 input symbol for latin letters
-🔥 fire
-🔦 electric torch
-🔧 wrench
-🔨 hammer
-🔩 nut and bolt
-🔪 hocho
-🔫 pistol
-🔬 microscope
-🔭 telescope
-🔮 crystal ball
-🔯 six pointed star with middle dot
-🔰 japanese symbol for beginner
-🔱 trident emblem
-🔲 black square button
-🔳 white square button
-🔴 large red circle
-🔵 large blue circle
-🔶 large orange diamond
-🔷 large blue diamond
-🔸 small orange diamond
-🔹 small blue diamond
-🔺 up-pointing red triangle
-🔻 down-pointing red triangle
-🔼 up-pointing small red triangle
-🔽 down-pointing small red triangle
 🔾 lower right shadowed white circle
 🔿 upper right shadowed white circle
 🕀 circled cross pommee
@@ -65567,35 +64964,7 @@ z latin small letter z
 🕈 celtic cross
 🕉 om symbol
 🕊 dove of peace
-🕋 kaaba
-🕌 mosque
-🕍 synagogue
-🕎 menorah with nine branches
 🕏 bowl of hygieia
-🕐 clock face one oclock
-🕑 clock face two oclock
-🕒 clock face three oclock
-🕓 clock face four oclock
-🕔 clock face five oclock
-🕕 clock face six oclock
-🕖 clock face seven oclock
-🕗 clock face eight oclock
-🕘 clock face nine oclock
-🕙 clock face ten oclock
-🕚 clock face eleven oclock
-🕛 clock face twelve oclock
-🕜 clock face one-thirty
-🕝 clock face two-thirty
-🕞 clock face three-thirty
-🕟 clock face four-thirty
-🕠 clock face five-thirty
-🕡 clock face six-thirty
-🕢 clock face seven-thirty
-🕣 clock face eight-thirty
-🕤 clock face nine-thirty
-🕥 clock face ten-thirty
-🕦 clock face eleven-thirty
-🕧 clock face twelve-thirty
 🕨 right speaker
 🕩 right speaker with one sound wave
 🕪 right speaker with three sound waves
@@ -65614,7 +64983,6 @@ z latin small letter z
 🕷 spider
 🕸 spider web
 🕹 joystick
-🕺 man dancing
 🕻 left hand telephone receiver
 🕼 telephone receiver with page
 🕽 right hand telephone receiver
@@ -65641,8 +65009,6 @@ z latin small letter z
 🖒 reversed thumbs up sign
 🖓 reversed thumbs down sign
 🖔 reversed victory hand
-🖕 reversed hand with middle finger extended
-🖖 raised hand with part between middle and ring fingers
 🖗 white down pointing left hand index
 🖘 sideways white left pointing index
 🖙 sideways white right pointing index
@@ -65656,7 +65022,6 @@ z latin small letter z
 🖡 sideways black down pointing index
 🖢 black up pointing backhand index
 🖣 black down pointing backhand index
-🖤 black heart
 🖥 desktop computer
 🖦 keyboard and mouse
 🖧 three networked computers
@@ -65743,91 +65108,6 @@ z latin small letter z
 🗸 light check mark
 🗹 ballot box with bold check
 🗺 world map
-🗻 mount fuji
-🗼 tokyo tower
-🗽 statue of liberty
-🗾 silhouette of japan
-🗿 moyai
-😀 grinning face
-😁 grinning face with smiling eyes
-😂 face with tears of joy
-😃 smiling face with open mouth
-😄 smiling face with open mouth and smiling eyes
-😅 smiling face with open mouth and cold sweat
-😆 smiling face with open mouth and tightly-closed eyes
-😇 smiling face with halo
-😈 smiling face with horns
-😉 winking face
-😊 smiling face with smiling eyes
-😋 face savouring delicious food
-😌 relieved face
-😍 smiling face with heart-shaped eyes
-😎 smiling face with sunglasses
-😏 smirking face
-😐 neutral face
-😑 expressionless face
-😒 unamused face
-😓 face with cold sweat
-😔 pensive face
-😕 confused face
-😖 confounded face
-😗 kissing face
-😘 face throwing a kiss
-😙 kissing face with smiling eyes
-😚 kissing face with closed eyes
-😛 face with stuck-out tongue
-😜 face with stuck-out tongue and winking eye
-😝 face with stuck-out tongue and tightly-closed eyes
-😞 disappointed face
-😟 worried face
-😠 angry face
-😡 pouting face
-😢 crying face
-😣 persevering face
-😤 face with look of triumph
-😥 disappointed but relieved face
-😦 frowning face with open mouth
-😧 anguished face
-😨 fearful face
-😩 weary face
-😪 sleepy face
-😫 tired face
-😬 grimacing face
-😭 loudly crying face
-😮 face with open mouth
-😯 hushed face
-😰 face with open mouth and cold sweat
-😱 face screaming in fear
-😲 astonished face
-😳 flushed face
-😴 sleeping face
-😵 dizzy face
-😶 face without mouth
-😷 face with medical mask
-😸 grinning cat face with smiling eyes
-😹 cat face with tears of joy
-😺 smiling cat face with open mouth
-😻 smiling cat face with heart-shaped eyes
-😼 cat face with wry smile
-😽 kissing cat face with closed eyes
-😾 pouting cat face
-😿 crying cat face
-🙀 weary cat face
-🙁 slightly frowning face
-🙂 slightly smiling face
-🙃 upside-down face
-🙄 face with rolling eyes
-🙅 face with no good gesture
-🙆 face with ok gesture
-🙇 person bowing deeply
-🙈 see-no-evil monkey
-🙉 hear-no-evil monkey
-🙊 speak-no-evil monkey
-🙋 happy person raising one hand
-🙌 person raising both hands in celebration
-🙍 person frowning
-🙎 person with pouting face
-🙏 person with folded hands
 🙐 north west pointing leaf
 🙑 south west pointing leaf
 🙒 north east pointing leaf
@@ -65876,89 +65156,15 @@ z latin small letter z
 🙽 very heavy reverse solidus
 🙾 checker board
 🙿 reverse checker board
-🚀 rocket
-🚁 helicopter
-🚂 steam locomotive
-🚃 railway car
-🚄 high-speed train
-🚅 high-speed train with bullet nose
-🚆 train
-🚇 metro
-🚈 light rail
-🚉 station
-🚊 tram
-🚋 tram car
-🚌 bus
-🚍 oncoming bus
-🚎 trolleybus
-🚏 bus stop
-🚐 minibus
-🚑 ambulance
-🚒 fire engine
-🚓 police car
-🚔 oncoming police car
-🚕 taxi
-🚖 oncoming taxi
-🚗 automobile
-🚘 oncoming automobile
-🚙 recreational vehicle
-🚚 delivery truck
-🚛 articulated lorry
-🚜 tractor
-🚝 monorail
-🚞 mountain railway
-🚟 suspension railway
-🚠 mountain cableway
-🚡 aerial tramway
-🚢 ship
-🚣 rowboat
-🚤 speedboat
-🚥 horizontal traffic light
-🚦 vertical traffic light
-🚧 construction sign
-🚨 police cars revolving light
-🚩 triangular flag on post
-🚪 door
-🚫 no entry sign
-🚬 smoking symbol
-🚭 no smoking symbol
-🚮 put litter in its place symbol
-🚯 do not litter symbol
-🚰 potable water symbol
-🚱 non-potable water symbol
-🚲 bicycle
-🚳 no bicycles
-🚴 bicyclist
-🚵 mountain bicyclist
-🚶 pedestrian
-🚷 no pedestrians
-🚸 children crossing
-🚹 mens symbol
-🚺 womens symbol
-🚻 restroom
-🚼 baby symbol
-🚽 toilet
-🚾 water closet
-🚿 shower
-🛀 bath
-🛁 bathtub
-🛂 passport control
-🛃 customs
-🛄 baggage claim
-🛅 left luggage
 🛆 triangle with rounded corners
 🛇 prohibited sign
 🛈 circled information source
 🛉 boys symbol
 🛊 girls symbol
 🛋 couch and lamp
-🛌 sleeping accommodation
 🛍 shopping bags
 🛎 bellhop bell
 🛏 bed
-🛐 place of worship
-🛑 octagonal sign
-🛒 shopping trolley
 🛠 hammer and wrench
 🛡 shield
 🛢 oil drum
@@ -65970,15 +65176,10 @@ z latin small letter z
 🛨 up-pointing small airplane
 🛩 small airplane
 🛪 northeast-pointing airplane
-🛫 airplane departure
-🛬 airplane arriving
 🛰 satellite
 🛱 oncoming fire engine
 🛲 diesel locomotive
 🛳 passenger ship
-🛴 scooter
-🛵 motor scooter
-🛶 canoe
 🜀 alchemical symbol for quintessence
 🜁 alchemical symbol for air
 🜂 alchemical symbol for fire
@@ -66328,88 +65529,8 @@ z latin small letter z
 🢫 rightwards front-tilted shadowed white arrow
 🢬 white arrow shaft width one
 🢭 white arrow shaft width two thirds
-🤐 zipper-mouth face
-🤑 money-mouth face
-🤒 face with thermometer
-🤓 nerd face
-🤔 thinking face
-🤕 face with head-bandage
-🤖 robot face
-🤗 hugging face
-🤘 sign of the horns
-🤙 call me hand
-🤚 raised back of hand
-🤛 left-facing fist
-🤜 right-facing fist
-🤝 handshake
-🤞 hand with index and middle fingers crossed
-🤠 face with cowboy hat
-🤡 clown face
-🤢 nauseated face
-🤣 rolling on the floor laughing
-🤤 drooling face
-🤥 lying face
-🤦 face palm
-🤧 sneezing face
-🤰 pregnant woman
-🤳 selfie
-🤴 prince
-🤵 man in tuxedo
-🤶 mother christmas
-🤷 shrug
-🤸 person doing cartwheel
-🤹 juggling
-🤺 fencer
 🤻 modern pentathlon
-🤼 wrestlers
-🤽 water polo
-🤾 handball
-🥀 wilted flower
-🥁 drum with drumsticks
-🥂 clinking glasses
-🥃 tumbler glass
-🥄 spoon
-🥅 goal net
 🥆 rifle
-🥇 first place medal
-🥈 second place medal
-🥉 third place medal
-🥊 boxing glove
-🥋 martial arts uniform
-🥐 croissant
-🥑 avocado
-🥒 cucumber
-🥓 bacon
-🥔 potato
-🥕 carrot
-🥖 baguette bread
-🥗 green salad
-🥘 shallow pan of food
-🥙 stuffed flatbread
-🥚 egg
-🥛 glass of milk
-🥜 peanuts
-🥝 kiwifruit
-🥞 pancakes
-🦀 crab
-🦁 lion face
-🦂 scorpion
-🦃 turkey
-🦄 unicorn face
-🦅 eagle
-🦆 duck
-🦇 bat
-🦈 shark
-🦉 owl
-🦊 fox face
-🦋 butterfly
-🦌 deer
-🦍 gorilla
-🦎 lizard
-🦏 rhinoceros
-🦐 shrimp
-🦑 squid
-🧀 cheese wedge
 𠀀 cjk unified ideograph-20000
 𠀁 cjk unified ideograph-20001
 𠀂 cjk unified ideograph-20002
