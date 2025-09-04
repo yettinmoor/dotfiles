@@ -672,7 +672,7 @@
 🍦 soft ice cream
 🍧 shaved ice
 🍨 ice cream
-🍩 doughnut
+🍩 donut
 🍪 cookie
 🎂 birthday cake
 🍰 shortcake
