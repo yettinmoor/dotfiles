@@ -36,10 +36,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
 		vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
 		vim.keymap.set("n", "grn", vim.lsp.buf.rename, opts)
-		vim.keymap.set("n", "gca", vim.lsp.buf.code_action, opts)
+		vim.keymap.set("n", "gcd", vim.lsp.buf.code_action, opts)
 		vim.keymap.set("n", "grf", vim.lsp.buf.references, opts)
 	end,
 })
+
+vim.keymap.del("n", "gri")
+vim.keymap.del("n", "gra")
+vim.keymap.del("n", "grt")
 
 cmp.setup({
 	-- snippet = {
