@@ -1,24 +1,24 @@
 [user]
-	name = Nicolas Lindström
-	signingkey = 1590D472EC0D5D77
+    name = Nicolas Lindström
+    signingkey = 1590D472EC0D5D77
     email = nicolas.lindstroem@protonmail.com
 [core]
-	autocrlf = input
-	safecrlf = true
-	excludesFile = ~/.config/git/ignore
+    autocrlf = input
+    safecrlf = true
+    excludesFile = ~/.config/git/ignore
 [alias]
-	graph = log --all --decorate --oneline --graph
+    graph = log --all --decorate --oneline --graph
 [credential]
-	helper = cache --timeout=3600
+    helper = cache --timeout=3600
 [pull]
-	rebase = false
+    rebase = false
 [color]
-	ui = true
+    ui = true
 [advice]
-	addIgnoredFile = false
+    addIgnoredFile = false
 [init]
-	defaultBranch = master
+    defaultBranch = master
 [status]
     showUntrackedFiles = no
 [url "git@github.com:"]
-   insteadOf = https://github.com/
+    insteadOf = https://github.com/
