@@ -1,0 +1,29 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = true
+format = """
+($username)\
+$directory\
+([($git_branch/)$git_commit $git_status](blue))\
+$character
+"""
+
+[username]
+format = '[$user ]($style)'
+style_user = 'blue'
+
+[directory]
+truncation_length = 5
+truncate_to_repo = false
+truncation_symbol = '·/'
+style = 'yellow'
+
+[git_branch]
+format = '$symbol$branch'
+only_attached = true
+
+[git_commit]
+tag_disabled = false
+only_detached = false
+format = '$hash$tag'

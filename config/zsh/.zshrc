@@ -1,6 +1,9 @@
-# Enable colors and change prompt:
+# -- Prompt
 autoload -U colors && colors
-PS1="%{$fg[yellow]%}%~%{$reset_color%} $%b "
+autoload -Uz vcs_info
+precmd() { vcs_info }
+zstyle ':vcs_info:git:*' formats ' [%b]'
+PS1="%{$fg[yellow]%}%~${vcs_info_msg_0_}%{$reset_color%} $%b "
 if [ -n "$SSH_CONNECTION" ]; then
     PS1="%{$fg[blue]%}%m%{$reset_color%}:$PS1"
 fi
@@ -12,6 +15,7 @@ TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.cache/zsh/history
+setopt HIST_IGNORE_SPACE
 
 # Basic auto/tab complete:
 autoload -U compinit
@@ -63,7 +67,7 @@ lfcd () {
         [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
     fi
 }
-bindkey -s '^o' 'lfcd\n'
+bindkey -s '^f' 'lfcd\n'
 
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
@@ -81,5 +85,4 @@ setopt interactivecomments
 # Load zsh-syntax-highlighting; should be last.
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 
-# History
-setopt HIST_IGNORE_SPACE
+eval "$(starship init zsh)"
