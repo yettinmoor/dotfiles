@@ -25,3 +25,5 @@ keybind = alt+shift+j=resize_split:down,20
 keybind = alt+shift+k=resize_split:up,20
 
 keybind = performable:ctrl+c=copy_to_clipboard
+
+config-file = ?config.private
