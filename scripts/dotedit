@@ -10,13 +10,8 @@ else
     sel() { grep -m 1 "$1"; }
 fi
 
-{
-    git -C $DOT ls-tree -r --name-only HEAD &
-    fd . --base-directory $DOT local/bin &
-    fd . --base-directory $DOT config/shell &
-    wait
-} \
-    | sel "$1" \
-    | xargs -r -I {} "$EDITOR" "$DOT/{}"
+git -C $DOT ls-tree -r --name-only HEAD |
+    sel "$1" |
+    xargs -r -I {} "$EDITOR" "$DOT/{}"
 
 cd - >/dev/null

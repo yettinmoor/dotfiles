@@ -2,7 +2,11 @@
 
 path() {
     ifhas() { [ -d "$1" ] && echo "$1"; }
+
+    ifhas "$HOME/repos/dotfiles/scripts"
     ifhas "$HOME/.local/bin"
+
+    # langs
     ifhas "$HOME/.cargo/bin"
     ifhas "$HOME/.nimble/bin"
     ifhas "$HOME/.ghcup/bin"
