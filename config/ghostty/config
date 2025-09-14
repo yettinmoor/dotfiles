@@ -15,7 +15,6 @@ keybind = alt+d=scroll_page_lines:10
 keybind = alt+u=scroll_page_lines:-10
 
 keybind = ctrl+t=new_tab
-keybind = ctrl+w=close_tab
 
 keybind = alt+enter=new_split:auto
 keybind = alt+h=goto_split:left

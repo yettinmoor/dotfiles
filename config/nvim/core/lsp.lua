@@ -1,7 +1,16 @@
 local cmp = require("cmp")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
-for _, lsp in ipairs({ "bashls", "clangd", "hls", "nimls", "pyright", "rust_analyzer", "ts_ls", "zls" }) do
+for _, lsp in ipairs({
+	"bashls",
+	"clangd",
+	"hls",
+	"nimls",
+	"pyright",
+	"rust_analyzer",
+	"ts_ls",
+	"zls",
+}) do
 	vim.lsp.enable(lsp)
 	vim.lsp.config(lsp, {
 		-- on_attach = my_custom_on_attach,
