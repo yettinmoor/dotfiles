@@ -80,7 +80,7 @@ bindkey -v '^R' history-incremental-search-backward
 setopt interactivecomments
 
 # Load aliases and shortcuts if existent.
-. $HOME/.config/shell/allrc 2> /dev/null
+. $HOME/.config/shell/rc/allrc 2> /dev/null
 
 # Load zsh-syntax-highlighting; should be last.
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null

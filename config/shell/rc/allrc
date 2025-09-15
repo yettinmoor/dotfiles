@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+mkshortcuts
+
+# shellcheck source=/dev/null
+{
+    . ~/.config/shell/rc/shortcutrc
+    . ~/.config/shell/rc/aliasrc
+    . ~/.config/shell/rc/aesthrc
+    if [ -f ~/.config/shell/rc/privaterc ]; then
+        . ~/.config/shell/rc/privaterc
+    fi
+}

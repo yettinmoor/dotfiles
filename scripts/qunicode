@@ -1,6 +1,5 @@
 #!/usr/bin/env sh
-cd "$XDG_CONFIG_HOME/unicode" || exit 1
-cat ./* |
+cat ~/repos/dotfiles/etc/unicode |
     dmenu -matching prefix -l 20 -p 'unicode' |
     cut -d' ' -f1 |
     xclip -sel c -r

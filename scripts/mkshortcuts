@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
-SH_FILE="$HOME/.config/shell/shortcutrc"
+SH_FILE="$HOME/.config/shell/rc/shortcutrc"
 LF_FILE="$HOME/.config/lf/lfshortcuts"
-SHORTCUT_DIR="$HOME/.config/shell/shortcuts"
+SHORTCUT_DIR="$HOME/.config/shortcuts"
 
 mkdir -p "$SHORTCUT_DIR"
 
