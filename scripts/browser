@@ -1,3 +1,2 @@
 #!/usr/bin/env sh
-notify-send browser "$*"
-setsid qutebrowser --target window "$(catecho "$@")" &
+setsid firefox --new-window "$(catecho "$@")" &

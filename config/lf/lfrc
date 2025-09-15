@@ -9,8 +9,8 @@ set icons
 set drawbox
 set ratios 1:2:3
 set period 1
-set previewer '~/.local/bin/preview'
-set cleaner '~/.local/bin/preview-clean'
+set previewer 'preview'
+set cleaner 'preview-clean'
 set cursorpreviewfmt "\033[1m"
 
 # unmaps

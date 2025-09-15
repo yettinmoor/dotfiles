@@ -28,7 +28,7 @@ if $run; then
         */wiki/*.md)
             echo "$noext" |
                 sed 's:wiki:wiki/html:' |
-                xargs -r -I {} setsid "$BROWSER" --target window "{}.html"
+                xargs -r -I {} browser "{}.html"
             ;;
         esac ;;
     esac

@@ -16,7 +16,6 @@ export OPENER=launch
 export TERM=ghostty
 export TERMINAL=$TERM
 export PAGER='bat -p'
-export BROWSER=qutebrowser
 export READER=zathura
 export FILE=lf
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
