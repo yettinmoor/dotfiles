@@ -1,22 +1,24 @@
-#!/usr/bin/env perl
-use v5.36;
+#!/usr/bin/env sh
 
-chomp($_ = <STDIN>);
+read -r -a terms <<< "$(catecho "$@")"
 
-my $URL = "^(https?://)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]+\.[a-zA-Z0-9]+.*\$";
-if (/"$URL"/) { print; exit; }
+# If $1 is URL, just open it
+echo "${terms[0]}" | grep -E '^(https?://)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]+\.[a-zA-Z0-9]+.*$' && exit
 
-my @args = split / +/, $_;
-my $key = shift @args;
+dir=~/.config/urlparse
 
-my $DIR = "$ENV{HOME}/.config/urlparse";
-my $find = "rg 2>/dev/null --no-filename '^$key (.*)' -r '\$1'";
+# If has search string, check searchengines
+if [ ${#terms[@]} -gt 1 ] && [ -n "${se:=$(awk '!/^#/ && $1 == "'"${terms[0]}"'" {print $2}' $dir/searchengines)}" ]; then
+    terms=${terms[@]:1}
+    printf "$se" "${terms}"
+    exit
+fi
 
-if (not @args and my $url = `$find "$DIR/bookmarks" "$DIR/bookmarks.private"`) {
-    print "$url";
-} elsif ($url = `$find "$DIR/searchengines" "$DIR/searchengines.private"`) {
-    printf "$url", (join ' ', @args);
-} else {
-    unshift @args, $key;
-    print join(' ', @args);
-}
+# Check bookmarks
+if [ -n "${bm:=$(awk '!/^#/ && $1 == "'"${terms[0]}"'" {print $2}' $dir/bookmarks)}" ]; then
+    echo "$bm"
+    exit
+fi
+
+# Default to 1st search engine
+printf "$(awk 'NR==1 {print $2}' $dir/searchengines)" "${terms[*]}"

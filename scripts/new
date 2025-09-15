@@ -2,7 +2,7 @@
 
 ! [ $# -eq 2 ] && echo 'Usage: new <boilerplate> <name>' && exit 1
 
-BOILDIR="$HOME/.local/share/boilerplates"
+BOILDIR=~/repos/dotfiles/etc/boilerplates
 
 ext="$1"
 name="$2"
