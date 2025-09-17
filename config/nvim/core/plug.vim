@@ -35,21 +35,9 @@ Plug 'junegunn/goyo.vim'
 " Languages/filetypes
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
-Plug 'rhysd/vim-clang-format', { 'for': 'c' }
-Plug 'wlangstroth/vim-racket', { 'for': 'racket' }
-Plug 'fatih/vim-go', { 'for': 'go' }
-" Plug 'ziglang/zig.vim', { 'for': 'zig' }
-Plug 'zah/nim.vim', { 'for': 'nim' }
-Plug 'Tetralux/odin.vim', { 'for': 'nt' }
-Plug 'OmniSharp/omnisharp-vim', { 'for': 'csharp' }
-Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
-Plug 'JuliaEditorSupport/julia-vim', { 'for': 'julia' }
 Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'kovetskiy/sxhkd-vim', { 'for': 'sxhkd' }
-Plug 'kalekundert/vim-nestedtext', {'for': 'nt' }
-Plug 'vim-scripts/Twee-Integration-for-Vim'
 Plug 'mtdl9/vim-log-highlighting'
-Plug 'Glench/Vim-Jinja2-Syntax'
 
 " Aesthetics
 Plug 'sainnhe/gruvbox-material'

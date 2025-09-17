@@ -12,6 +12,8 @@ vim.opt.clipboard:append("unnamedplus")
 
 vim.opt.matchpairs:append("<:>,「:」,『:』,【:】,“:”,‘:’,《:》")
 
+vim.opt.winborder = "rounded"
+
 -- conceallevel
 vim.api.nvim_create_autocmd("BufEnter", {
 	pattern = "*",

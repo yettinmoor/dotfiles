@@ -5,6 +5,7 @@ for _, lsp in ipairs({
 	"bashls",
 	"clangd",
 	"hls",
+	"lua_ls",
 	"nimls",
 	"pyright",
 	"rust_analyzer",
