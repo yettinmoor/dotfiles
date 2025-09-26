@@ -5,10 +5,10 @@ XDG_RUNTIME_DIR=/run/user/1000
 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 
 # Run assorted scripts
-*      *    * * *   . ~/.config/profile; rssping
-15,45  *    * * *   . ~/.config/profile; up down
-0      18   * * *   . ~/.config/profile; autocommit --sleep ~/repos/dotfiles
-0      0    * * *   . ~/.config/profile; yay -Sc --noconfirm
+*      *    * * *   . ~/.config/shell/profile; rssping
+15,45  *    * * *   . ~/.config/shell/profile; up down
+0      18   * * *   . ~/.config/shell/profile; autocommit --sleep ~/repos/dotfiles
+0      0    * * *   . ~/.config/shell/profile; yay -Sc --noconfirm
 
 # Backup mon, wed, fri
-40 18 * * 1,3,5  . $HOME/.config/profile; ~/.local/bin/backup
+40 18 * * 1,3,5  . ~/.config/shell/profile; ~/.local/bin/backup
