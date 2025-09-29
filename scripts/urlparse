@@ -9,7 +9,7 @@ dir=~/.config/urlparse
 
 # If has search string, check searchengines
 if [ ${#terms[@]} -gt 1 ] && [ -n "${se:=$(awk '!/^#/ && $1 == "'"${terms[0]}"'" {print $2}' $dir/searchengines)}" ]; then
-    printf "$se" "${terms[@]:1}"
+    printf "$se" "${terms[*]:1}"
     exit
 fi
 

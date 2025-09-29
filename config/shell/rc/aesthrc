@@ -211,7 +211,7 @@
 }
 
 {
-    echo 'di=🖿'
+    echo 'di='
     echo 'fi='
     echo 'ln='
     echo 'or='
