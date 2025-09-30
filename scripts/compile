@@ -115,7 +115,7 @@ mnemo) mnemo -i "$file" ;;
     if [ -x "$file" ]; then
         "$file"
     else
-        echo "compile doesn't know what to do with '$1', sorry."
+        echo "compile doesn't know what to do with '$file', sorry."
         exit 1
     fi
     ;;
