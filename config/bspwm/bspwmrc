@@ -44,7 +44,7 @@ bspc rule -a '*:*' node=@/1
 
 # Per program rules
 bspc rule -a '*:fugi' state=tiled
-bspc rule -a FloatTerm state=floating
+bspc rule -a '*:FloatTerm' state=floating
 
 killall polybar
 monitors | while read -r mon; do
