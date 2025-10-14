@@ -89,6 +89,7 @@ cpp) g++ "$file" -o "$noext" ;;
 cs) mcs "$file" ;;
 go) go run "$file" ;;
 hs) runhaskell "$file" ;;
+ino) arduino-cli compile && arduino-cli upload ;;
 jl) julia "$file" ;;
 js) node "$file" ;;
 lua) lua "$file" ;;
