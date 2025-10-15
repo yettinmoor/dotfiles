@@ -2,6 +2,8 @@
 
 read -r -a terms <<<"$(catecho "$@")"
 
+[ -z "${terms[0]}" ] && exit 1
+
 # If $1 is URL, just open it
 echo "${terms[0]}" | grep -E '^(https?://)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]+\.[a-zA-Z0-9]+.*$' && exit
 
