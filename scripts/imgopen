@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+set -x
+
 file="$1"
 imgs() { fd '(jpe?g|bmp|png|gifv?|webp|svg|heic)$' "$(dirname "$file")" -d 1 | sort -fV; }
 
