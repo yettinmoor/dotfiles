@@ -17,6 +17,8 @@ keybind = alt+u=scroll_page_lines:-10
 keybind = ctrl+t=new_tab
 
 keybind = alt+enter=new_split:auto
+keybind = alt+w=goto_split:up
+keybind = alt+s=goto_split:down
 keybind = alt+h=goto_split:left
 keybind = alt+l=goto_split:right
 keybind = alt+shift+h=resize_split:left,20
