@@ -89,8 +89,8 @@ super + Print
 	scrotpick
 super + {_, shift +} grave
 	ib {toggle, select}
-ctrl + space
-	dunstctl close-all
+# ctrl + space
+# 	dunstctl close-all
 
 # Function keys
 super + F1
