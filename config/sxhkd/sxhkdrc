@@ -34,7 +34,7 @@ super + {_,shift +} Tab
 super + shift + q
 	prompt "Exit X?" "killall Xorg"
 super + w
-	dmenu -l 0 -p browse | xargs -r browser
+	dmenu -l 0 -p browse | xargs browser
 super + e
 	$TERM -e $FILE
 super + r

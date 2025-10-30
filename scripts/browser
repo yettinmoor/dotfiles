@@ -1,2 +1,5 @@
 #!/usr/bin/env sh
-setsid firefox --new-window "$(catecho "$@" | urlparse)" &
+set -x
+url="$(catecho "$@" | urlparse)"
+[ -z "$url" ] && exit 1
+setsid firefox --new-window "$url" &
