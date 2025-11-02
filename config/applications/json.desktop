@@ -1,5 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=json
-Exec=/usr/local/bin/st -e nvim %u
-Mime=application/json

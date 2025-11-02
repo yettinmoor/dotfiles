@@ -42,3 +42,4 @@ application/xhtml+xml=firefox.desktop;
 application/x-extension-xhtml=firefox.desktop;
 application/x-extension-xht=firefox.desktop;
 image/jpeg=sxiv.desktop;
+image/gif=sxiv.desktop;
