@@ -1,14 +1,15 @@
 #!/usr/bin/env sh
 
-case "$(file --mime-type -bL "$1")" in
-    image/png)
-        magick "$1" "${1%.png}.jpg" && rm "$1"
-        ;;
-    image/webp)
-        magick "$1" "${1%.webp}.jpg" && rm "$1"
-        ;;
-    *)
-        echo not a png!
-        exit 1
-        ;;
-esac
+for file in "$@"; do
+    case "$(file --mime-type -bL "$file")" in
+        image/png)
+            magick "$file" "${file%.png}.jpg" && rm "$file"
+            ;;
+        image/webp)
+            magick "$file" "${file%.webp}.jpg" && rm "$file"
+            ;;
+        *)
+            echo "$file: not a png or webp!"
+            ;;
+    esac
+done
