@@ -69,8 +69,6 @@ super + shift + x
 	prompt 'Shutdown computer?' 'sudo -A shutdown -h now'
 super + {_,shift +} c
 	{show,qr}clip
-super + v
-	$TERM --working-directory ~/docs/wiki -e $EDITOR ~/docs/wiki/vsc.md
 super + b
 	firefox --new-window $HOMEPAGE
 super + n
