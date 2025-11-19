@@ -6,8 +6,8 @@ command -v transmission-daemon || exit 1
 
 while getopts w: o; do
     case "$o" in
-        w) dir="$(readlink -f "$OPTARG")" ;;
-        *) exit 1 ;;
+    w) dir="$(readlink -f "$OPTARG")" ;;
+    *) exit 1 ;;
     esac
 done
 
@@ -16,16 +16,16 @@ shift $((OPTIND - 1))
 # shellcheck disable=SC2086
 for file in "$@"; do
     echo adding \`"$file"\`
-    transmission-remote -a "$file" -w "${dir:-$HOME/dl}" \
-        && if [ -f "$file" ]; then rm -fv "$file"; fi
+    transmission-remote -a "$file" -w "${dir:-$HOME/dl}" &&
+        if [ -f "$file" ]; then rm -fv "$file"; fi
 done
 
-[ -n "$DISPLAY" ] \
-    && [ "$#" -gt 0 ] \
-    && notify-send " $# torrent(s) added."
+[ -n "$DISPLAY" ] &&
+    [ "$#" -gt 0 ] &&
+    notify-send " $# torrent(s) added."
 
 if [ -t 0 ]; then
-    tremc
+    stig
 else
-    $TERMINAL -e tremc
+    $TERMINAL -e stig
 fi
