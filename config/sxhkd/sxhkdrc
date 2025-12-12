@@ -2,7 +2,7 @@
 super + Return
 	$TERM
 super + shift + Return
-	samedir
+	$TERM --x11-instance-name=FloatTerm
 
 # bspwm
 super + F5
