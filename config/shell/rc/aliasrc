@@ -101,6 +101,8 @@ cli() {
     catecho "$@" | xclip -sel p -i
 }
 
+alias clc='cli ""'
+
 x() {
     if [ $# -eq 0 ]; then
         spawn sxiv -t .
