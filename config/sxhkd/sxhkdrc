@@ -38,7 +38,7 @@ super + w
 super + e
 	$TERM -e $FILE
 super + r
-	$TERM --working-directory=$HOME/docs/wiki -e $EDITOR ~/docs/wiki/scratch.md
+	$TERM --working-directory=$HOME/docs/wiki -e $EDITOR ~/docs/wiki/backlog.md
 super + t
 	tor
 super + u
