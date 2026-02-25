@@ -59,6 +59,6 @@ knitpy "$path" |
         -f markdown-implicit_figures \
         --css "$WIKI_DIR/html/.data/style.css" \
         --template template.html \
-        --mathjax="$WIKI_DIR/html/.data/mathjax/es5/tex-chtml.js?config=TeX-AMS-MML_HTMLorMML" \
+        --mathjax="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js" \
         --metadata title="$base" \
         -o "$out"
