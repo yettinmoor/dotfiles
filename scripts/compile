@@ -23,7 +23,7 @@ if $run; then
     py) python -qi "$file" ;;
     qalc) qalc -i -t -f "$file" ;;
     sent) setsid sent "$file" >/dev/null 2>&1 & ;;
-    tex | pandoc) launch -d "$noext".pdf ;;
+    tex | pandoc) launch "$noext".pdf ;;
     md) case "$file" in
         */wiki/*.md)
             echo "$noext" |
