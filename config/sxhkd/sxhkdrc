@@ -35,10 +35,12 @@ super + shift + q
 	prompt "Exit X?" "killall Xorg"
 super + w
 	dmenu -l 0 -p browse | xargs browser
+super + shift + w
+	open -d -c $WIKI_DIR/html
 super + e
 	$TERM -e $FILE
 super + r
-	$TERM --working-directory=$HOME/docs/wiki -e $EDITOR ~/docs/wiki/backlog.md
+	$TERM --working-directory=$WIKI_DIR -e $EDITOR backlog.md
 super + t
 	tor
 super + u
