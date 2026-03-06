@@ -36,7 +36,7 @@ super + shift + q
 super + w
 	dmenu -l 0 -p browse | xargs browser
 super + shift + w
-	open -d -c $WIKI_DIR/html
+	open -d -c $WIKI_DIR/html -e html
 super + e
 	$TERM -e $FILE
 super + r

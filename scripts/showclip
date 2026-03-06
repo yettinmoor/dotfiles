@@ -15,5 +15,21 @@ show() {
     fi
 }
 
-show clip
-show prim
+choice=$(printf 'show\nqr\ndelete\n' | dmenu -p clip -L 3 || exit 1)
+
+case $choice in
+show)
+    show clip
+    show prim
+    ;;
+qr)
+    xclip -sel clip -o | qrencode -s 25 -o /tmp/qrclip.png || exit 1
+    sxiv -pb -N 'qrclip' /tmp/qrclip.png
+    rm -f /tmp/qrclip.png
+    ;;
+delete)
+    catecho "$@" | xclip -sel c -i
+    catecho "$@" | xclip -sel p -i
+    ;;
+*) exit 1 ;;
+esac

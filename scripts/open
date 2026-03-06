@@ -10,7 +10,7 @@ browser() {
     fi
 }
 
-while getopts dc: o; do
+while getopts dc:e: o; do
     case "$o" in
     d)
         [ -n "$DISPLAY" ] && export OPEN_XORG=1
@@ -20,6 +20,9 @@ while getopts dc: o; do
             echo could not cd to dir: "$OPTARG"
             exit 1
         fi
+        ;;
+    e)
+        exts=$OPTARG
         ;;
     ?)
         echo 'usage: open [-d] [-c dir]'
@@ -31,7 +34,7 @@ shift $((OPTIND - 1))
 
 exclude="{$(paste -sd , .openignore 2>/dev/null)}"
 
-fd --strip-cwd-prefix -L -t f -t l "$EXTS" -E "$exclude" |
+fd --strip-cwd-prefix -L -t f -t l "${exts:=$EXTS}" -E "$exclude" |
     browser |
     {
         read -r file
