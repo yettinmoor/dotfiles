@@ -9,6 +9,7 @@ engines=$(
 🇷🇺 keyboard-ru-phonetic
 🇮🇱 keyboard-il-phonetic
 🇵🇸 keyboard-ara-buckwalter
+🇮🇳 keyboard-in-hin-kagapa
 EOF
 )
 
