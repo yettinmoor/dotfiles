@@ -15,6 +15,7 @@ conform.setup({
 		python = { "autopep8" },
 		rust = { "rustfmt" },
 		typescript = { "deno" },
+		typst = { "typstyle" },
 		xml = { "prettier" },
 		yaml = { "prettier" },
 		zig = { "zigfmt" },

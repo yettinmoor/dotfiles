@@ -10,6 +10,7 @@ for _, lsp in ipairs({
 	"nimls",
 	"pyright",
 	"rust_analyzer",
+	"tinymist",
 	"ts_ls",
 	"zls",
 }) do
