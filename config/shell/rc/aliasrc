@@ -34,7 +34,7 @@ alias trans='trans -j'
 alias tree='tree -C'
 alias trem='transmission-remote'
 alias v='nvim'
-alias wi='cd ~/docs/wiki && nvim index.md'
+alias wi='cd ~/docs/wiki && nvim index.typ'
 alias wk='wikicurses'
 alias z='spawn zathura'
 

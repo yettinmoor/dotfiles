@@ -40,7 +40,7 @@ super + shift + w
 super + e
 	$TERM -e $FILE
 super + r
-	$TERM --working-directory=$WIKI_DIR -e $EDITOR backlog.md
+	$TERM --working-directory=$WIKI_DIR -e $EDITOR backlog.typ
 super + t
 	tor
 super + u

@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+file="$(readlink -f -- "$1")"
+dir="$(dirname "$file")"
+noext="$(basename "${file%.*}")"
+
+typst c "$file" \
+    --input "filename=$noext" \
+    -f html --features html \
+    "$dir/html/$noext.html"
