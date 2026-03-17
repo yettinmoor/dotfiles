@@ -38,7 +38,7 @@ if $run; then
                 sed 's:wiki:wiki/html:' |
                 xargs -r -I {} setsid browser "{}.html"
             ;;
-        *) launch "$noext.pdf" ;;
+        *) launch "$noext.pdf" 2>&1 ;;
         esac ;;
     esac
     exit
