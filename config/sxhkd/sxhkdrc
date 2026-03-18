@@ -1,8 +1,8 @@
 # Term
 super + Return
-	$TERM
+	ghostty
 super + shift + Return
-	$TERM --x11-instance-name=FloatTerm
+	ghostty --x11-instance-name=FloatTerm
 
 # bspwm
 super + F5
@@ -38,9 +38,9 @@ super + w
 super + shift + w
 	open -d -c $WIKI_DIR/html -e html
 super + e
-	$TERM -e $FILE
+	ghostty -e $FILE
 super + r
-	$TERM --working-directory=$WIKI_DIR -e $EDITOR backlog.typ
+	ghostty --working-directory=$WIKI_DIR -e $EDITOR backlog.typ
 super + t
 	tor
 super + u
@@ -56,7 +56,7 @@ super + p
 super + shift + p
 	pauseall
 super + a
-	$TERM -e qalc -i -f ~/.config/qalculate/vars
+	ghostty -e qalc -i -f ~/.config/qalculate/vars
 super + s
 	spotify
 super + shift + s
@@ -74,7 +74,7 @@ super + {_,shift +} c
 super + b
 	firefox --new-window $HOMEPAGE
 super + n
-	! pgrep newsboat && $TERM -e newsboat && polybar-msg action '#rss.hook.0'
+	! pgrep newsboat && ghostty -e newsboat && polybar-msg action '#rss.hook.0'
 super + shift + n
 	rssping
 super + m
