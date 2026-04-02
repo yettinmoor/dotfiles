@@ -40,7 +40,7 @@ super + shift + w
 super + e
 	ghostty -e $FILE
 super + r
-	ghostty --working-directory=$WIKI_DIR -e $EDITOR backlog.typ
+	ghostty --working-directory=$WIKI_DIR -e $EDITOR scratch.typ
 super + t
 	tor
 super + u
