@@ -12,6 +12,12 @@ vim.opt.clipboard:append("unnamedplus")
 
 vim.opt.matchpairs:append("<:>,「:」,『:』,【:】,“:”,‘:’,《:》")
 
+vim.api.nvim_create_user_command("W", function()
+	vim.cmd.write()
+end, {
+	desc = "fucking uppercase",
+})
+
 -- conceallevel
 vim.api.nvim_create_autocmd("BufEnter", {
 	pattern = "*",
