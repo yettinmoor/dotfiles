@@ -17,6 +17,7 @@ noext="${file%.*}"
 if $run; then
     echo "$file"
     case "$ext" in
+    sh) sh "$file" ;;
     c | cpp | nim) "$noext" ;;
     hs) ghci "$file" ;;
     html) setsid browser "$file" & ;;
