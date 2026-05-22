@@ -16,15 +16,15 @@ usage() {
     exit "$1"
 }
 
-wrap()    { setsid "$@" > /dev/null 2>&1 & }
+wrap() { setsid "$@" >/dev/null 2>&1 & }
 wraptty() { if [ -t 0 ]; then "$@"; else wrap "$TERMINAL" -e "$@"; fi; }
 
 while getopts dxh o; do
     case $o in
-        d) wrap() { devour "$@"; } ;;
-        x) LITERAL=1 ;;
-        h) usage 0 ;;
-        *) usage 1 ;;
+    d) wrap() { devour "$@"; } ;;
+    x) LITERAL=1 ;;
+    h) usage 0 ;;
+    *) usage 1 ;;
     esac
 done
 
@@ -39,81 +39,81 @@ shift $((OPTIND - 1))
 
 for file in "$@"; do
     case "$file" in
-        http://* | https://*)
-            case "$file" in
-                *mkv | \
-                    *webm | \
-                    *mov | \
-                    *mp4 | \
-                    *youtube.com* | \
-                    *youtu.be* | \
-                    *bitchute.com* | \
-                    *twitch.tv* | \
-                    *nebula.app* | \
-                    *mp3 | *flac | *opus | *mp3?source*)
-                    wrap mpv --loop "$file"
-                    ;;
-                *png | *jpg | *jpeg | *gif)
-                    cd "$HOME/dl" || exit 1
-                    curl -sLO "$file" && wrap sxiv -a "$(basename "$file")"
-                    ;;
-                *)
-                    wrap browser "$file"
-                    ;;
-            esac
+    http://* | https://*)
+        case "$file" in
+        *mkv | \
+            *webm | \
+            *mov | \
+            *mp4 | \
+            *youtube.com* | \
+            *youtu.be* | \
+            *bitchute.com* | \
+            *twitch.tv* | \
+            *nebula.app* | \
+            *mp3 | *flac | *opus | *mp3?source*)
+            wrap mpv --loop "$file"
             ;;
-        magnet:*)
-            wraptty tor "$file"
+        *png | *jpg | *jpeg | *gif)
+            cd "$HOME/dl" || exit 1
+            curl -sLO "$file" && wrap sxiv -a "$(basename "$file")"
             ;;
         *)
-            file="$(readlink -f "$file")"
-            [ -f "$file" ] || {
-                echo "$PROG error: non-existent file: $1"
-                exit 1
-            }
-            case "$(file --mime-type "$file" -bL)" in
-                video/* | audio/*)
-                    wrap mpv "$file"
-                    ;;
-                application/pdf | \
-                    application/postscript | \
-                    application/epub+zip | \
-                    image/vnd.djvu)
-                    wrap zathura "$file"
-                    ;;
-                application/x-rar | application/zip)
-                    if als -qq "$file" | grep -Eiv '(jpe?g|png|/)$'; then
-                        wraptty "$EDITOR" "$file"
-                    else
-                        wrap zathura "$file"
-                    fi
-                    ;;
-                # image/svg+xml)
-                #     wrap inkview "$file"
-                #     ;;
-                image/x-xcf)
-                    wrap gimp "$file"
-                    ;;
-                image/*)
-                    wrap imgopen "$file"
-                    ;;
-                application/x-bittorrent)
-                    wraptty tor "$file"
-                    ;;
-                text/html)
-                    wrap browser "$file"
-                    ;;
-                application/msword | \
-                    application/vnd.openxmlformats-officedocument.wordprocessingml.document | \
-                    application/vnd.openxmlformats-officedocument.spreadsheetml.sheet | \
-                    application/vnd.openxmlformats-officedocument.presentationml.presentation | \
-                    application/vnd.oasis.opendocument.text)
-                    wrap libreoffice "$file"
-                    ;;
-                *)
-                    wraptty "$EDITOR" "$file"
-                    ;;
-            esac
+            wrap browser "$file"
             ;;
+        esac
+        ;;
+    magnet:*)
+        wraptty tor "$file"
+        ;;
+    *)
+        file="$(readlink -f "$file")"
+        [ -f "$file" ] || {
+            echo "$PROG error: non-existent file: $1"
+            exit 1
+        }
+        case "$(file --mime-type "$file" -bL)" in
+        video/* | audio/*)
+            wrap mpv "$file"
+            ;;
+        application/pdf | \
+            application/postscript | \
+            application/epub+zip | \
+            image/vnd.djvu)
+            wrap zathura "$file"
+            ;;
+        application/x-rar | application/zip)
+            if als -qq "$file" | grep -Eiv '(jpe?g|png|/)$'; then
+                wraptty "$EDITOR" "$file"
+            else
+                wrap zathura "$file"
+            fi
+            ;;
+        # image/svg+xml)
+        #     wrap inkview "$file"
+        #     ;;
+        image/x-xcf)
+            wrap gimp "$file"
+            ;;
+        image/*)
+            wrap imgopen "$file"
+            ;;
+        application/x-bittorrent)
+            wraptty tor "$file"
+            ;;
+        text/html)
+            wrap browser "$file"
+            ;;
+        application/msword | \
+            application/vnd.openxmlformats-officedocument.wordprocessingml.document | \
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet | \
+            application/vnd.openxmlformats-officedocument.presentationml.presentation | \
+            application/vnd.oasis.opendocument.text)
+            wrap libreoffice "$file"
+            ;;
+        *)
+            wraptty "$EDITOR" "$file"
+            ;;
+        esac
+        ;;
     esac
 done
