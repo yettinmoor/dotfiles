@@ -12,7 +12,7 @@ pick) fd . ~/pics/wallpapers | shuf | sxiv -tio | sed 1q ;;
 *) readlink -f "$1" ;;
 esac | {
     read -r file
-    ln -sfT "$file" "$WALL"
+    [ -n "$file" ] && ln -sfT "$file" "$WALL"
 }
 
 xwallpaper --zoom "$WALL"
