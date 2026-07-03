@@ -76,7 +76,7 @@
     "sequential_download": false,
     "sleep-per-seconds-during-verify": 100,
     "speed-limit-down": 8000,
-    "speed-limit-down-enabled": true,
+    "speed-limit-down-enabled": false,
     "speed-limit-up": 8000,
     "speed-limit-up-enabled": false,
     "start-added-torrents": true,
@@ -92,3 +92,4 @@
     "watch-dir-enabled": false,
     "watch-dir-force-generic": false
 }
+
