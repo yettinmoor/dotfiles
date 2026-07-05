@@ -9,4 +9,8 @@ function M.split(arg)
 	end
 end
 
+function M.bufname()
+	return vim.fn.shellescape(vim.fn.bufname())
+end
+
 return M

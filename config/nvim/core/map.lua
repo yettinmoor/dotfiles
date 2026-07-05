@@ -24,13 +24,13 @@ end, {
 -- compile
 k.set("n", "<leader>c", function()
 	vim.cmd.write()
-	util.split("term://compile '" .. vim.fn.bufname("%") .. "'")
+	vim.cmd("!compile " .. util.bufname())
 end)
 
 -- run
 k.set("n", "<leader>r", function()
 	vim.cmd.write()
-	util.split("term://compile --run '" .. vim.fn.bufname("%") .. "'")
+	vim.cmd("!compile --run " .. util.bufname())
 end)
 
 -- misc remaps
