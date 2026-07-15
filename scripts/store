@@ -7,10 +7,10 @@ usage() {
 
 while getopts t:ph o; do
     case "$o" in
-        t) dir=$OPTARG ;;
-        p) PRINT=1 ;;
-        h) usage 0 ;;
-        *) usage 1 ;;
+    t) dir=$OPTARG ;;
+    p) PRINT=1 ;;
+    h) usage 0 ;;
+    *) usage 1 ;;
     esac
 done
 
@@ -28,7 +28,7 @@ fi | {
     for file in "$@"; do
         ext="${file##*.}"
         [ "$ext" = jpeg ] && ext=jpg
-        outfile="$(head -c 1000 "$file" | sha256sum | cut -c 1-10).$ext"
+        outfile="$(head -c 10000 "$file" | sha256sum | cut -c 1-10).$ext"
         mkdir -p "$dir"
         if [ -n "$PRINT" ]; then
             # print to stdout
