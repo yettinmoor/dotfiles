@@ -42,7 +42,7 @@ map J     $lf -remote "send $id cd '$(dirpick)'"
 map <esc> :clear; unselect
 map U clear
 map D delete
-map <backspace2> set hidden!
+map <backspace> set hidden!
 
 # misc commands
 map ,yy $echo "$f" | xclip -sel c -i
