@@ -43,6 +43,7 @@ map <esc> :clear; unselect
 map U clear
 map D delete
 map <backspace> set hidden!
+map <backspace2> set hidden!
 
 # misc commands
 map ,yy $echo "$f" | xclip -sel c -i
