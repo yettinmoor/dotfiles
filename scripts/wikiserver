@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+cd $WIKI_DIR/html
+python -m http.server

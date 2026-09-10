@@ -18,3 +18,4 @@ fcitx5 -d &
 dunst &
 syncthing --no-browser &
 transmission-daemon &
+wikiserver &

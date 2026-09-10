@@ -101,7 +101,10 @@ for file in "$@"; do
             wraptty tor "$file"
             ;;
         text/html)
-            wrap browser "$file"
+            case $file in
+                */wiki/html/*) wrap browser http://localhost:4242/"$(basename "$file")" ;;
+                *) wrap browser "$file" ;;
+            esac
             ;;
         application/msword | \
             application/vnd.openxmlformats-officedocument.wordprocessingml.document | \
