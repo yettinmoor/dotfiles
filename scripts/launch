@@ -102,7 +102,7 @@ for file in "$@"; do
             ;;
         text/html)
             case $file in
-                */wiki/html/*) wrap browser http://localhost:4242/"$(basename "$file")" ;;
+                $WIKI_DIR/html/*) wrap browser "http://localhost:4242/$(echo "$file" | sed "s:^$WIKI_DIR/html/::")" ;;
                 *) wrap browser "$file" ;;
             esac
             ;;
