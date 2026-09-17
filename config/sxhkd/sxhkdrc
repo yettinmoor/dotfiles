@@ -72,7 +72,7 @@ super + shift + x
 super + {_,shift +} c
 	{show,qr}clip
 super + b
-	firefox --new-window $HOMEPAGE
+	browser $HOMEPAGE
 super + n
 	! pgrep newsboat && ghostty -e newsboat && polybar-msg action '#rss.hook.0'
 super + shift + n

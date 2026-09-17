@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 
 cd $WIKI_DIR/html
-python -m http.server
+python -m http.server 4242
