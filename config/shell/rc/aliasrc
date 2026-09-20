@@ -35,9 +35,12 @@ alias tsp='trans -speak'
 alias tree='tree -C'
 alias trem='transmission-remote'
 alias v='nvim'
-alias wi='cd ~/docs/wiki && nvim index.typ'
-alias wk='wikicurses'
 alias z='spawn zathura'
+
+# wiki
+alias wi='cd ~/docs/wiki && nvim index.typ'
+alias t='cd ~/docs/wiki && nvim scratch.typ'
+alias lit='cd ~/docs/wiki && nvim books.typ'
 
 # git
 alias ga='git add'

@@ -57,6 +57,8 @@ super + shift + p
 	pauseall
 super + a
 	ghostty -e qalc -i -f ~/.config/qalculate/vars
+super + shift + a
+	anki
 super + s
 	spotify
 super + shift + s
