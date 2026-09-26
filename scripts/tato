@@ -26,6 +26,7 @@ search="$(catecho "$@")"
 rg -sI "$search.*\t.*$match" "$HOME/lib/lang/res/tatoeba/$lang" |
     if [ -n "$unmatch" ]; then rg -iv "$unmatch"; else cat; fi |
     shuf |
-    head -n 10 |
+    head -n 50 |
     awk -v FS='\t' '{printf "%s\n%s\n\n", $1, $2}' |
-    sed '$d'
+    sed '$d' |
+    $PAGER
