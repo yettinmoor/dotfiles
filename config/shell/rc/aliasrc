@@ -41,6 +41,7 @@ alias z='spawn zathura'
 alias wi='cd ~/docs/wiki && nvim index.typ'
 alias t='cd ~/docs/wiki && nvim scratch.typ'
 alias lit='cd ~/docs/wiki && nvim books.typ'
+alias vg='cd ~/docs/wiki && nvim vg.typ'
 
 # git
 alias ga='git add'
