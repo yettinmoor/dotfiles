@@ -67,15 +67,6 @@ alias ytd='yt-dlp'
 alias ytda='ytd -x -f "bestaudio[ext=mp3]/best"'
 alias ytdp='ytd -o "%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s"'
 
-# lang
-alias wde='wt -l de'
-alias wfr='wt -l fr'
-alias wnl='wt -l nl'
-alias ςτ='wt -l other'
-alias вт='wt -l ru'
-alias ות='wt -l he'
-alias じしょ='jisho'
-
 # dirs
 export AOC_INPUT_DIR="$HOME/lib/aoc"
 export MNEMO_DIR="$HOME/docs/mnemo"

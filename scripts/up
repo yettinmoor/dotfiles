@@ -12,12 +12,12 @@ runjob() {
 }
 
 packages() {
-    sudo pacman -S --noconfirm archlinux-keyring
+    sudo pacman -S --needed --noconfirm archlinux-keyring
     sudo pacman -Syyuw --noconfirm
 }
 
 nvimup() {
-    nvim +PlugUpdate +PlugUpgrade +qa
+    nvim --headless +PlugUpdate +PlugUpgrade +qa
 }
 
 case "$1" in
@@ -30,6 +30,7 @@ down)
         runjob qalc -e
     }
     wait
+    sleep 1
     ;;
 *)
     isconnected || exit 1
