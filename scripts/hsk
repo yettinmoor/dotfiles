@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+cd ~/lib/lang/cjkv/chinese/hsk
+rg --sort=path "$@"

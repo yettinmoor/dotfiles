@@ -97,6 +97,7 @@ lua) lua "$file" ;;
 odin) odin run "$file" -file ;;
 pl) perl "$file" ;;
 py) python "$file" ;;
+rb) ruby "$file" ;;
 rkt) racket "$file" ;;
 rs) cargo run ;;
 scm) chicken-csi -q "$file" ;;
