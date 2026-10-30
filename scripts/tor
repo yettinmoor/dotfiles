@@ -25,7 +25,7 @@ done
     notify-send " $# torrent(s) added."
 
 if [ -t 0 ]; then
-    stig
+    tremc
 else
-    $TERMINAL -e stig
+    $TERMINAL -e tremc
 fi
