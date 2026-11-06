@@ -7,4 +7,5 @@ noext="$(basename "${file%.*}")"
 typst c "$file" \
     --input "filename=$noext" \
     -f html --features html \
+    --pretty \
     "$dir/html/$noext.html"
